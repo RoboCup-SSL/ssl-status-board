@@ -10,27 +10,18 @@
 
         <hr class="upper-lower-separator">
 
-        <div class="lower-container">
-            <div style="height:80%">
-                <div class="game-event-container">
-                    <div v-for="(gameEvent, index) in refereeMessage.gameEvents"
-                         :key="index"
-                         class="game-event-element">
-                        {{gameEvent}}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <GameEvents class="lower-container"/>
     </div>
 </template>
 
 <script>
     import TeamStatus from "./TeamStatus";
     import MatchStatus from "./MatchStatus";
+    import GameEvents from "./GameEvents";
 
     export default {
         name: "StatusBoard",
-        components: {MatchStatus, TeamStatus},
+        components: {GameEvents, MatchStatus, TeamStatus},
         computed: {
             refereeMessage() {
                 return this.$store.state.refereeMsg;
@@ -75,18 +66,6 @@
     .team-status {
         width: 30%;
         float: left;
-    }
-
-    .game-event-container {
-        width: 100%;
-        height: 100%;
-        font-size: 6vmin;
-        font-weight: 700;
-    }
-
-    .game-event-element {
-        width: 100%;
-        text-align: center;
     }
 
 </style>
