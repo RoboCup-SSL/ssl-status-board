@@ -10,10 +10,9 @@
 
         <hr class="separator"/>
 
-        <div v-if="refereeMessage.stageTimeLeft >= 0" class="time-container time-positive">
-            {{refereeMessage.stageTimeLeft}}
-        </div>
-        <div v-if="refereeMessage.stageTimeLeft < 0" class="time-container time-negative">
+        <div class="time-container"
+             v-format-us-duration
+             :class="{'time-positive': refereeMessage.stageTimeLeft >= 0, 'time-negative': refereeMessage.stageTimeLeft < 0}">
             {{refereeMessage.stageTimeLeft}}
         </div>
     </div>
