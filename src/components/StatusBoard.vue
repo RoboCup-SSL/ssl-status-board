@@ -44,7 +44,6 @@
 </template>
 
 <script>
-    import {Referee} from "@/sslProto"
     import TeamStatus from "./TeamStatus";
 
     export default {
@@ -52,19 +51,7 @@
         components: {TeamStatus},
         computed: {
             refereeMessage() {
-                return new Referee({
-                    yellow: new Referee.TeamInfo({
-                        name: 'Yellow',
-                        score: 0
-                    }),
-                    blue: new Referee.TeamInfo({
-                        name: 'Blue',
-                        score: 1
-                    }),
-                    stage: 0,
-                    command: 0,
-                    stageTimeLeft: 4,
-                });
+                return this.$store.state.refereeMsg;
             }
         }
     }
