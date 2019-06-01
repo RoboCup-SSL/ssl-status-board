@@ -1,5 +1,5 @@
 <template>
-    <div class="referee-container">
+    <div class="status-board">
         <div class="upper-container">
             <div class="team-container">
                 <TeamStatus color="yellow" :team="refereeMessage.yellow"/>
@@ -28,6 +28,8 @@
                 <TeamStatus color="blue" :team="refereeMessage.blue"/>
             </div>
         </div>
+
+        <hr class="upper-lower-separator">
 
         <div class="lower-container">
             <div style="height:80%">
@@ -58,22 +60,22 @@
 </script>
 
 <style scoped>
-    .referee-container {
+    .status-board {
         text-align: center;
         height: 100%;
         max-height: 100%;
-        font-size: 6vmin;
+        font-size: 6vh;
     }
 
     .upper-container {
         width: 100%;
-        height: 60%;
+        height: 58%;
         align-items: center;
     }
 
     .lower-container {
-        width: 100%;
-        height: 40%;
+        width: 99%;
+        height: 39%;
     }
 
     .center-container {
@@ -88,15 +90,6 @@
     .team-container {
         width: 30%;
         float: left;
-    }
-
-    .score-container {
-        width: 40%;
-        height: 100%;
-        float: left;
-        font-size: 3em;
-        justify-content: center;
-        align-items: center;
     }
 
     .time-container {
@@ -125,17 +118,13 @@
         text-align: center;
     }
 
-    .command-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-top-style: dashed;
-        border-top-color: white;
-    }
-
     .separator {
         margin: 3vmin;
+    }
+
+    .upper-lower-separator {
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
 
     .score {

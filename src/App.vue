@@ -22,6 +22,6 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: aliceblue;
-        margin-top: 60px;
+        height: 100%;
     }
 </style>

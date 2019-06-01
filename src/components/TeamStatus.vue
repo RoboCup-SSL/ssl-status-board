@@ -1,35 +1,29 @@
 <template>
     <div>
-        <img :src="logoUrl" alt="team logo" class="team-logo"/>
-
         <div :class="{'team-yellow': color === 'yellow', 'team-blue': color === 'blue'}" class="team-name">
-            {{team.name}}
+            <div>{{team.name}}</div>
         </div>
 
-        <div class="team-details">
-            <div class="cards">
+        <img :src="logoUrl" alt="team logo" class="team-logo"/>
+
+        <hr class="logo-card-separator">
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-pic red-card"></div>
+                <div class="card-count">{{team.redCards}}</div>
+            </div>
+            <span> | </span>
+            <div v-if="team.yellowCards > 0 && team.yellowCards % 3 === 0" class="inline">
+                <div class="marked-card">
+                    <div class="card-pic yellow-card"></div>
+                    <div class="card-count">{{team.yellowCards}}</div>
+                </div>
+            </div>
+            <div v-if="team.yellowCards === 0 || team.yellowCards % 3 !== 0" class="inline">
                 <div class="card">
-                    <div class="card-pic red-card"></div>
-                    <div class="card-count">{{team.redCards}}</div>
-                </div>
-                <div class="inline"> |</div>
-                <div v-if="team.yellowCards > 0 && team.yellowCards % 3 === 0" class="inline">
-                    <div class="marked-card">
-                        <div class="card-pic yellow-card"></div>
-                        <div class="card-count">{{team.yellowCards}}</div>
-                    </div>
-                </div>
-                <div v-if="team.yellowCards === 0 || team.yellowCards % 3 !== 0" class="inline">
-                    <div class="card">
-                        <div class="card-pic yellow-card"></div>
-                        <div class="card-count">{{team.yellowCards}}</div>
-                    </div>
-                </div>
-                <div class="card-times">
-                    <div v-for="(time, index) in team.yellowCardTimes" :key="index" class="card-time">
-                        <span v-format-ns-duration="time"></span>
-                        <span v-if="index !== team.yellowCardTimes.length - 1">&nbsp;|&nbsp;</span>
-                    </div>
+                    <div class="card-pic yellow-card"></div>
+                    <div class="card-count">{{team.yellowCards}}</div>
                 </div>
             </div>
         </div>
@@ -56,17 +50,12 @@
 
 <style scoped>
     .team-name {
-        margin-top: 0.1em;
+        height: 15vh;
     }
 
     .team-logo {
         max-width: 20vw;
-        max-height: 25vh;
-    }
-
-    .team-logo-button {
-        width: 100%;
-        height: 100%;
+        max-height: 30vh;
     }
 
     .card {
@@ -106,30 +95,20 @@
     .card-count {
         display: inline-block;
         vertical-align: middle;
-        margin-right: 1vmin;
-        margin-left: 1vmin;
-    }
-
-    .timeout-card {
-        background: azure;
-    }
-
-    .team-details {
-        font-size: 0.8em;
+        margin-right: 1vw;
+        margin-left: 1vw;
     }
 
     .cards {
         vertical-align: middle;
     }
 
-    .card-time {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 1vmin;
-    }
-
     .inline {
         display: inline;
+    }
+
+    .logo-card-separator {
+        margin: 2vh;
     }
 
 </style>
