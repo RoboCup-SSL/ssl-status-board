@@ -45,13 +45,12 @@
     }
 
     .lower-container {
-        width: 99%;
         height: 39%;
     }
 
     .upper-lower-separator {
-        margin-top: 1%;
-        margin-bottom: 1%;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
     }
 
     .match-status {

@@ -64,7 +64,7 @@
     }
 
     .logo-card-separator {
-        margin: 2vh;
+        margin: 0.2em;
     }
 
 </style>

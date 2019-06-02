@@ -81,7 +81,7 @@
     }
 
     .separator {
-        margin: 3vmin;
+        margin: 0.2em;
     }
 
     .score {

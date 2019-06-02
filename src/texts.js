@@ -1,4 +1,5 @@
 import {Referee} from "./sslProto"
+import sslProto from "./sslProto"
 
 const stageToText = new Map();
 stageToText.set(Referee.Stage.NORMAL_FIRST_HALF_PRE, 'Matched to be started');
@@ -51,4 +52,190 @@ export const mapCommandToText = function (command) {
         return text;
     }
     return 'unknown command: ' + command;
+};
+
+
+const formatTeam = function (team) {
+    if (team === sslProto.Team.BLUE) {
+        return '<span style="color: #779fff">Blue</span>';
+    } else if (team === sslProto.Team.YELLOW) {
+        return '<span style="color: #fff145">Yellow</span>';
+    }
+    return 'Unknown;';
+};
+
+const teamAndBot = function (event) {
+    if (event.byTeam === undefined) {
+        return '';
+    }
+    if (event.byBot === undefined || !event.hasOwnProperty('byBot')) {
+        return formatTeam(event.byTeam);
+    }
+    return formatTeam(event.byTeam) + ' ' + event.byBot;
+};
+
+const radToDeg = function (rad) {
+    return Number(rad * 180 / Math.PI).toFixed(0) + '°';
+};
+
+const velocity = function (v) {
+    return Number(v).toFixed(1) + 'm/s';
+};
+
+const distance = function (v) {
+    return Number(v).toFixed(2) + 'm';
+};
+
+const seconds = function (v) {
+    return Number(v).toFixed(1) + 's';
+};
+
+export const mapGameEventToText = function (event) {
+    if (event.prepared != null) {
+        return `Prepared after ${seconds(event.prepared.timeTaken)}`;
+    }
+    if (event.noProgressInGame != null) {
+        return `No progress for ${seconds(event.noProgressInGame.time)}`;
+    }
+    if (event.placementFailed != null) {
+        return `${teamAndBot(event.placementFailed)} failed placing ball `
+            + ` (${distance(event.placementFailed.remainingDistance)} remaining)`;
+    }
+    if (event.placementSucceeded != null) {
+        return `${teamAndBot(event.placementSucceeded)} placed ball successfully `
+            + `over ${distance(event.placementSucceeded.distance)} `
+            + `within ${seconds(event.placementSucceeded.timeTaken)} `
+            + `and ${distance(event.placementSucceeded.precision)}`;
+    }
+    if (event.botSubstitution != null) {
+        return `${teamAndBot(event.botSubstitution)} requests bot substitution`;
+    }
+    if (event.tooManyRobots != null) {
+        return `${teamAndBot(event.tooManyRobots)} has too many robots on field`;
+    }
+    if (event.ballLeftFieldTouchLine != null) {
+        return `${teamAndBot(event.ballLeftFieldTouchLine)} kicked ball out via touch line`;
+    }
+    if (event.ballLeftFieldGoalLine != null) {
+        return `${teamAndBot(event.ballLeftFieldGoalLine)} kicked ball out via goal line`;
+    }
+    if (event.possibleGoal != null) {
+        return `${teamAndBot(event.possibleGoal)} might have scored a goal`;
+    }
+    if (event.goal != null) {
+        return `${teamAndBot(event.goal)} has scored a goal`;
+    }
+    if (event.indirectGoal != null) {
+        return `${teamAndBot(event.indirectGoal)} performed an illegal indirect goal`;
+    }
+    if (event.chippedGoal != null) {
+        return `${teamAndBot(event.chippedGoal)} chipped on goal`;
+    }
+    if (event.aimlessKick != null) {
+        return `${teamAndBot(event.aimlessKick)} kicked aimlessly`;
+    }
+    if (event.kickTimeout != null) {
+        return `${teamAndBot(event.kickTimeout)} `
+            + `has not kicked within ${seconds(event.kickTimeout.time)}`;
+    }
+    if (event.keeperHeldBall != null) {
+        return `${teamAndBot(event.keeperHeldBall)}'s keeper `
+            + `held the ball for ${seconds(event.keeperHeldBall.duration)}`;
+    }
+    if (event.attackerDoubleTouchedBall != null) {
+        return `${teamAndBot(event.attackerDoubleTouchedBall)} touched ball twice`;
+    }
+    if (event.attackerInDefenseArea != null) {
+        return `${teamAndBot(event.attackerInDefenseArea)} was in opponent defense area`;
+    }
+    if (event.attackerTouchedKeeper != null) {
+        return `${teamAndBot(event.attackerTouchedKeeper)} touched opponent keeper`;
+    }
+    if (event.botDribbledBallTooFar != null) {
+        return `${teamAndBot(event.botDribbledBallTooFar)} dribbled ball too far`;
+    }
+    if (event.botKickedBallTooFast != null) {
+        return `${teamAndBot(event.botKickedBallTooFast)} kicked ball too fast` +
+            `(${velocity(event.botKickedBallTooFast.initialBallSpeed)})`;
+    }
+    if (event.attackerTooCloseToDefenseArea != null) {
+        return `${teamAndBot(event.attackerTooCloseToDefenseArea)} too close to opponent defense area `
+            + `(${distance(event.attackerTooCloseToDefenseArea.distance)})`;
+    }
+    if (event.botInterferedPlacement != null) {
+        return `${teamAndBot(event.botInterferedPlacement)} interfered placement`;
+    }
+    if (event.botCrashDrawn != null) {
+        return `Bot Blue ${event.botCrashDrawn.botBlue} and Yellow ${event.botCrashDrawn.botYellow} `
+            + `crashed with ${velocity(event.botCrashDrawn.crashSpeed)} `
+            + `@ ${radToDeg(event.botCrashDrawn.crashAngle)} `
+            + `(Δ${velocity(event.botCrashDrawn.speedDiff)})`;
+    }
+    if (event.botCrashUnique != null) {
+        return `${teamAndBot(event.botCrashUnique)} ${event.botCrashUnique.violator} `
+            + `crashed into ${event.botCrashUnique.victim} `
+            + `with ${velocity(event.botCrashUnique.crashSpeed)} `
+            + `@ ${radToDeg(event.botCrashUnique.crashAngle)} `
+            + `(Δ${velocity(event.botCrashUnique.speedDiff)})`;
+    }
+    if (event.botCrashUniqueSkipped != null) {
+        return `Skipped: ${teamAndBot(event.botCrashUniqueSkipped)} ${event.botCrashUniqueSkipped.violator} `
+            + `crashed into ${event.botCrashUniqueSkipped.victim} `
+            + `with ${velocity(event.botCrashUniqueSkipped.crashSpeed)} `
+            + `@ ${radToDeg(event.botCrashUniqueSkipped.crashAngle)} `
+            + `(Δ${velocity(event.botCrashUniqueSkipped.speedDiff)})`;
+    }
+    if (event.botPushedBot != null) {
+        return `${teamAndBot(event.botPushedBot)} ${event.botPushedBot.violator} `
+            + `pushed ${event.botPushedBot.victim} `
+            + `over ${distance(event.botPushedBot.pushedDistance)}`;
+    }
+    if (event.botPushedBotSkipped != null) {
+        return `Skipped: ${teamAndBot(event.botPushedBotSkipped)} ${event.botPushedBotSkipped.violator} `
+            + `pushed ${event.botPushedBotSkipped.victim} `
+            + `over ${distance(event.botPushedBotSkipped.pushedDistance)}`;
+    }
+    if (event.botHeldBallDeliberately != null) {
+        return `${teamAndBot(event.botHeldBallDeliberately)} `
+            + `held ball deliberately for ${event.botHeldBallDeliberately.duration}`;
+    }
+    if (event.botTippedOver != null) {
+        return `${teamAndBot(event.botTippedOver)} tipped over`;
+    }
+    if (event.botTooFastInStop != null) {
+        return `${teamAndBot(event.botTooFastInStop)} `
+            + `too fast during stop (${velocity(event.botTooFastInStop.speed)})`;
+    }
+    if (event.defenderTooCloseToKickPoint != null) {
+        return `${teamAndBot(event.defenderTooCloseToKickPoint)} `
+            + `too close to kick point (${velocity(event.defenderTooCloseToKickPoint.distance)})`;
+    }
+    if (event.defenderInDefenseAreaPartially != null) {
+        return `${teamAndBot(event.defenderInDefenseAreaPartially)} `
+            + `touched ball while partially inside own defense area `
+            + `(${distance(event.defenderInDefenseAreaPartially.distance)})`;
+    }
+    if (event.defenderInDefenseArea != null) {
+        return `${teamAndBot(event.defenderInDefenseArea)} `
+            + `touched ball while fully inside own defense area `
+            + `(${distance(event.defenderInDefenseArea.distance)})`;
+    }
+    if (event.multipleCards != null) {
+        return `${teamAndBot(event.multipleCards)} collected multiple cards`;
+    }
+    if (event.multiplePlacementFailures != null) {
+        return `${teamAndBot(event.multiplePlacementFailures)} failed ball placement repeatedly`;
+    }
+    if (event.multipleFouls != null) {
+        return `${teamAndBot(event.multipleFouls)} collected multiple fouls`;
+    }
+    if (event.unsportingBehaviorMinor != null) {
+        return `Unsporting behavior by ${teamAndBot(event.unsportingBehaviorMinor)}: `
+            + event.unsportingBehaviorMinor.reason;
+    }
+    if (event.unsportingBehaviorMajor != null) {
+        return `Major unsporting behavior by ${teamAndBot(event.unsportingBehaviorMajor)}: `
+            + event.unsportingBehaviorMajor.reason;
+    }
+    return 'unknown game event';
 };
