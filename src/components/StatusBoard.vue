@@ -3,7 +3,9 @@
         <div class="upper-container">
             <TeamStatus class="team-status" color="yellow" :team="refereeMessage.yellow"/>
 
-            <MatchStatus class="match-status"/>
+            <div class="match-status-container">
+                <MatchStatus/>
+            </div>
 
             <TeamStatus class="team-status" color="blue" :team="refereeMessage.blue"/>
         </div>
@@ -53,13 +55,12 @@
         margin-bottom: 0.2em;
     }
 
-    .match-status {
+    .match-status-container {
         align-items: center;
         display: inline;
         width: 40%;
         height: 100%;
         float: left;
-        justify-content: center;
     }
 
     .team-status {

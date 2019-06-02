@@ -1,20 +1,24 @@
 <template>
-    <div>
-        <div class="stage">{{stage}}</div>
+    <div class="match-status">
+        <div>
+            <div class="stage">{{stage}}</div>
 
-        <span class="score">
-            {{refereeMessage.yellow.score}} : {{refereeMessage.blue.score}}
-        </span>
-
-        <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
-            {{gameState}}
-            <span v-if="isBallPlacement">
+            <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
+                {{gameState}}
+                <span v-if="isBallPlacement">
                 (<span v-format-us-duration="remainingTime"></span>)
             </span>
+            </div>
+
+            <span class="score">
+                {{refereeMessage.yellow.score}} : {{refereeMessage.blue.score}}
+            </span>
+
+            <hr class="separator"/>
+
+            <PowerPlay/>
+
         </div>
-
-        <hr class="separator"/>
-
         <div class="time-container"
              v-format-us-duration="refereeMessage.stageTimeLeft"
              :class="{'time-positive': refereeMessage.stageTimeLeft >= 0, 'time-negative': refereeMessage.stageTimeLeft < 0}">
@@ -25,9 +29,11 @@
 <script>
     import {Referee} from "@/sslProto"
     import {mapStageToText, mapCommandToText} from "@/texts";
+    import PowerPlay from "./PowerPlay";
 
     export default {
         name: "MatchStatus",
+        components: {PowerPlay},
         computed: {
             refereeMessage() {
                 return this.$store.state.refereeMsg;
@@ -43,7 +49,7 @@
                     this.refereeMessage.command === Referee.Command.BALL_PLACEMENT_YELLOW;
             },
             remainingTime() {
-              return this.refereeMessage.currentActionTimeRemaining;
+                return this.refereeMessage.currentActionTimeRemaining;
             },
             commandForBlue() {
                 switch (this.refereeMessage.command) {
@@ -77,6 +83,14 @@
 
 <style scoped>
 
+    .match-status {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        align-items: center;
+    }
+
     .time-container {
         border-style: dashed;
         display: inline-block;
@@ -93,6 +107,7 @@
 
     .separator {
         margin: 0.2em;
+        width: 100%;
     }
 
     .score {
