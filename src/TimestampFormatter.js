@@ -24,8 +24,12 @@ const process = function (el, binding) {
     } else {
         timestamp = el.innerHTML;
     }
-    if (!isNaN(timestamp)) {
-        el.innerHTML = formatUsDuration(timestamp);
+    if (isNaN(timestamp)) {
+        return;
+    }
+    const formattedTimestamp = formatUsDuration(timestamp);
+    if (el.innerHTML !== formattedTimestamp) {
+        el.innerHTML = formattedTimestamp;
     }
 };
 
