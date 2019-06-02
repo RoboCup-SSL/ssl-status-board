@@ -57,9 +57,9 @@ export const mapCommandToText = function (command) {
 
 const formatTeam = function (team) {
     if (team === sslProto.Team.BLUE) {
-        return '<span style="color: #779fff">Blue</span>';
+        return '<span class="team-blue">Blue</span>';
     } else if (team === sslProto.Team.YELLOW) {
-        return '<span style="color: #fff145">Yellow</span>';
+        return '<span class="team-yellow">Yellow</span>';
     }
     return 'Unknown;';
 };
