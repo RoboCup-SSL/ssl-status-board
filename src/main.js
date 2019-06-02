@@ -56,10 +56,10 @@ const store = new Vuex.Store({
 let wsAddress;
 if (process.env.NODE_ENV === 'development') {
     // use the default backend port
-    wsAddress = 'ws://localhost:4201/ssl-status/field-a/subscribe';
+    wsAddress = 'ws://localhost:8082/api/referee';
 } else {
     // UI and backend are served on the same host+port on production builds
-    wsAddress = 'ws://' + window.location.hostname + ':' + window.location.port + '/ssl-status/field-a/subscribe';
+    wsAddress = 'ws://' + window.location.hostname + ':' + window.location.port + '/api/referee';
 }
 
 var ws = new WebSocket(wsAddress);
