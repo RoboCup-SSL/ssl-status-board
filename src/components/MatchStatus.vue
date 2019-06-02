@@ -6,14 +6,18 @@
             {{refereeMessage.yellow.score}} : {{refereeMessage.blue.score}}
         </span>
 
-        <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">{{command}}</div>
+        <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
+            {{gameState}}
+            <span v-if="isBallPlacement">
+                (<span v-format-us-duration="remainingTime"></span>)
+            </span>
+        </div>
 
         <hr class="separator"/>
 
         <div class="time-container"
-             v-format-us-duration
+             v-format-us-duration="refereeMessage.stageTimeLeft"
              :class="{'time-positive': refereeMessage.stageTimeLeft >= 0, 'time-negative': refereeMessage.stageTimeLeft < 0}">
-            {{refereeMessage.stageTimeLeft}}
         </div>
     </div>
 </template>
@@ -31,8 +35,15 @@
             stage() {
                 return mapStageToText(this.refereeMessage.stage);
             },
-            command() {
+            gameState() {
                 return mapCommandToText(this.refereeMessage.command);
+            },
+            isBallPlacement() {
+                return this.refereeMessage.command === Referee.Command.BALL_PLACEMENT_BLUE ||
+                    this.refereeMessage.command === Referee.Command.BALL_PLACEMENT_YELLOW;
+            },
+            remainingTime() {
+              return this.refereeMessage.currentActionTimeRemaining;
             },
             commandForBlue() {
                 switch (this.refereeMessage.command) {
