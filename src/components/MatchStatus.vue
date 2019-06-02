@@ -1,6 +1,7 @@
 <template>
-    <div class="match-status">
-        <div>
+    <div class="match-status full-width">
+        <div class="full-width">
+            <div class="full-width" :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt}">
             <div class="stage">{{stage}}</div>
 
             <span class="score">
@@ -9,9 +10,13 @@
 
             <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
                 {{gameState}}
-                <span v-if="isBallPlacement">
+                <span v-if="isBallPlacement && remainingTime >= 0">
                     (<span v-format-us-duration="remainingTime"></span>)
                 </span>
+                <span v-if="isTimeout">
+                    (<span v-format-us-duration="timeoutTime"></span>)
+                </span>
+            </div>
             </div>
 
             <hr class="separator"/>
@@ -38,6 +43,12 @@
             refereeMessage() {
                 return this.$store.state.refereeMsg;
             },
+            isHalt() {
+                return this.refereeMessage.command === Referee.Command.HALT;
+            },
+            isStop() {
+                return this.refereeMessage.command === Referee.Command.STOP;
+            },
             stage() {
                 return mapStageToText(this.refereeMessage.stage);
             },
@@ -50,6 +61,18 @@
             },
             remainingTime() {
                 return this.refereeMessage.currentActionTimeRemaining;
+            },
+            isTimeout() {
+                return this.refereeMessage.command === Referee.Command.TIMEOUT_BLUE ||
+                    this.refereeMessage.command === Referee.Command.TIMEOUT_YELLOW;
+            },
+            timeoutTime() {
+                if (this.refereeMessage.command === Referee.Command.TIMEOUT_BLUE) {
+                    return this.refereeMessage.blue.timeoutTime;
+                } else if (this.refereeMessage.command === Referee.Command.TIMEOUT_YELLOW) {
+                    return this.refereeMessage.yellow.timeoutTime;
+                }
+                return 0;
             },
             commandForBlue() {
                 switch (this.refereeMessage.command) {
@@ -91,6 +114,10 @@
         align-items: center;
     }
 
+    .full-width {
+        width: 100%;
+    }
+
     .time-container {
         border-style: dashed;
         display: inline-block;
@@ -122,6 +149,21 @@
 
     .command {
         margin-top: 3vmin;
+    }
+
+    .highlight-command {
+        transition: background-color 1000ms ease;
+        border-radius: 1em;
+        padding: 0.1em;
+        margin-top: 0.1em;
+    }
+
+    .highlight-command.stop-command {
+        background-color: #E23D28;
+    }
+
+    .highlight-command.halt-command {
+        background-color: #A50021;
     }
 
 </style>

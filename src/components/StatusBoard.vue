@@ -27,7 +27,7 @@
         computed: {
             refereeMessage() {
                 return this.$store.state.refereeMsg;
-            }
+            },
         }
     }
 </script>
