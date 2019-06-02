@@ -1,7 +1,7 @@
 <template>
     <div>
         <div :class="{'team-yellow': color === 'yellow', 'team-blue': color === 'blue'}" class="team-name">
-            <div>{{team.name}}</div>
+            <div class="team-name-text">{{team.name}}</div>
         </div>
 
         <img :src="logoUrl" alt="team logo" class="team-logo"/>
@@ -44,6 +44,9 @@
 <style scoped>
     .team-name {
         height: 15vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .team-logo {
