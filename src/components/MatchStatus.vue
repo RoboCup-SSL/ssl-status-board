@@ -3,16 +3,16 @@
         <div>
             <div class="stage">{{stage}}</div>
 
-            <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
-                {{gameState}}
-                <span v-if="isBallPlacement">
-                (<span v-format-us-duration="remainingTime"></span>)
-            </span>
-            </div>
-
             <span class="score">
                 {{refereeMessage.yellow.score}} : {{refereeMessage.blue.score}}
             </span>
+
+            <div class="command" :class="{'team-yellow': commandForYellow, 'team-blue': commandForBlue}">
+                {{gameState}}
+                <span v-if="isBallPlacement">
+                    (<span v-format-us-duration="remainingTime"></span>)
+                </span>
+            </div>
 
             <hr class="separator"/>
 
