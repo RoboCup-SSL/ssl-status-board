@@ -2,19 +2,19 @@ import {Referee} from "./sslProto"
 import sslProto from "./sslProto"
 
 const stageToText = new Map();
-stageToText.set(Referee.Stage.NORMAL_FIRST_HALF_PRE, 'Matched to be started');
-stageToText.set(Referee.Stage.NORMAL_FIRST_HALF, 'First Half');
+stageToText.set(Referee.Stage.NORMAL_FIRST_HALF_PRE, 'Match to be started');
+stageToText.set(Referee.Stage.NORMAL_FIRST_HALF, '1st Half');
 stageToText.set(Referee.Stage.NORMAL_HALF_TIME, 'Half Time');
-stageToText.set(Referee.Stage.NORMAL_SECOND_HALF_PRE, 'Second Half');
-stageToText.set(Referee.Stage.NORMAL_SECOND_HALF, 'Second Half');
-stageToText.set(Referee.Stage.EXTRA_TIME_BREAK, 'Break');
-stageToText.set(Referee.Stage.EXTRA_FIRST_HALF_PRE, 'Extra First Half');
-stageToText.set(Referee.Stage.EXTRA_FIRST_HALF, 'Extra First Half');
-stageToText.set(Referee.Stage.EXTRA_HALF_TIME, 'Extra Half Time');
-stageToText.set(Referee.Stage.EXTRA_SECOND_HALF_PRE, 'Extra Second Half');
-stageToText.set(Referee.Stage.EXTRA_SECOND_HALF, 'Extra Second Half');
-stageToText.set(Referee.Stage.PENALTY_SHOOTOUT_BREAK, 'Break');
-stageToText.set(Referee.Stage.PENALTY_SHOOTOUT, 'Shootout');
+stageToText.set(Referee.Stage.NORMAL_SECOND_HALF_PRE, '2nd Half');
+stageToText.set(Referee.Stage.NORMAL_SECOND_HALF, '2nd Half');
+stageToText.set(Referee.Stage.EXTRA_TIME_BREAK, 'Game goes into Overtime');
+stageToText.set(Referee.Stage.EXTRA_FIRST_HALF_PRE, '1st Half (Overtime)');
+stageToText.set(Referee.Stage.EXTRA_FIRST_HALF, '1st Half (Overtime)');
+stageToText.set(Referee.Stage.EXTRA_HALF_TIME, 'Half Time (Overtime)');
+stageToText.set(Referee.Stage.EXTRA_SECOND_HALF_PRE, '2nd Half (Overtime)');
+stageToText.set(Referee.Stage.EXTRA_SECOND_HALF, '2nd Half (Overtime)');
+stageToText.set(Referee.Stage.PENALTY_SHOOTOUT_BREAK, 'Prepare for Penalty Shootout');
+stageToText.set(Referee.Stage.PENALTY_SHOOTOUT, 'Penalty Shootout');
 stageToText.set(Referee.Stage.POST_GAME, 'Match finished');
 
 export const mapStageToText = function (stage) {
