@@ -2,8 +2,9 @@
     <div class="game-events">
         <table class="table-striped">
             <tbody>
-            <tr v-for="(gameEvent, index) in refereeMessage.gameEvents"
-                :key="index">
+            <tr v-for="(gameEvent, index) in gameEvents"
+                :key="index"
+                :style="{'font-size': rowHeight}">
                 <td v-html="formatGameEvent(gameEvent)"></td>
             </tr>
             </tbody>
@@ -14,12 +15,21 @@
 <script>
     import {mapGameEventToText} from "../texts";
 
+    const maxUnscaledItems = 6;
+
     export default {
         name: "GameEvents",
         computed: {
             refereeMessage() {
                 return this.$store.state.refereeMsg;
-            }
+            },
+            gameEvents() {
+                return this.refereeMessage.gameEvents;
+            },
+            rowHeight() {
+                let rel = 1 - (Math.max(0, this.gameEvents.length - maxUnscaledItems) / maxUnscaledItems);
+                return rel + 'em';
+            },
         },
         methods: {
             formatGameEvent(gameEvent) {
@@ -33,7 +43,7 @@
 
     .game-events {
         text-align: left;
-        font-size: 0.7em;
+        font-size: 5.0vh;
     }
 
     .table-striped {
