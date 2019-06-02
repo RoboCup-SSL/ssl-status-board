@@ -55,6 +55,15 @@ export const mapCommandToText = function (command) {
 };
 
 
+const oppositeTeam = function (team) {
+    if (team === sslProto.Team.BLUE) {
+        return sslProto.Team.YELLOW;
+    } else if (team === sslProto.Team.YELLOW) {
+        return sslProto.Team.BLUE;
+    }
+    return 'Unknown;';
+};
+
 const formatTeam = function (team) {
     if (team === sslProto.Team.BLUE) {
         return '<span class="team-blue">Blue</span>';
@@ -75,19 +84,19 @@ const teamAndBot = function (event) {
 };
 
 const radToDeg = function (rad) {
-    return Number(rad * 180 / Math.PI).toFixed(0) + '°';
+    return Math.ceil(rad * 180 / Math.PI) + '°';
 };
 
 const velocity = function (v) {
-    return Number(v).toFixed(1) + 'm/s';
+    return Number(Math.ceil(v * 10) / 10).toFixed(1) + 'm/s';
 };
 
 const distance = function (v) {
-    return Number(v).toFixed(2) + 'm';
+    return Number(Math.ceil(v * 100) / 100).toFixed(2) + 'm';
 };
 
 const seconds = function (v) {
-    return Number(v).toFixed(1) + 's';
+    return Number(Math.ceil(v * 10) / 10).toFixed(1) + 's';
 };
 
 export const mapGameEventToText = function (event) {
@@ -186,14 +195,30 @@ export const mapGameEventToText = function (event) {
             + `(Δ${velocity(event.botCrashUniqueSkipped.speedDiff)})`;
     }
     if (event.botPushedBot != null) {
-        return `${teamAndBot(event.botPushedBot)} ${event.botPushedBot.violator} `
-            + `pushed ${event.botPushedBot.victim} `
-            + `over ${distance(event.botPushedBot.pushedDistance)}`;
+        let byTeam = event.botPushedBot.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.botPushedBot.violator;
+        let victim = event.botPushedBot.victim;
+        let dist = event.botPushedBot.pushedDistance;
+        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
+            + ` pushed ${formatTeam(otherTeam)} ${victim}`;
+        if (dist > 0) {
+            text += ` over ${distance(dist)}`
+        }
+        return text;
     }
     if (event.botPushedBotSkipped != null) {
-        return `Skipped: ${teamAndBot(event.botPushedBotSkipped)} ${event.botPushedBotSkipped.violator} `
-            + `pushed ${event.botPushedBotSkipped.victim} `
-            + `over ${distance(event.botPushedBotSkipped.pushedDistance)}`;
+        let byTeam = event.botPushedBotSkipped.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.botPushedBotSkipped.violator;
+        let victim = event.botPushedBotSkipped.victim;
+        let dist = event.botPushedBotSkipped.pushedDistance;
+        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
+            + ` pushed ${formatTeam(otherTeam)} ${victim}`;
+        if (dist > 0) {
+            text += ` over ${distance(dist)}`
+        }
+        return text;
     }
     if (event.botHeldBallDeliberately != null) {
         return `${teamAndBot(event.botHeldBallDeliberately)} `
