@@ -1272,8 +1272,9 @@ export const GameEvent = $root.GameEvent = (() => {
      * @property {GameEvent.IKickTimeout|null} [kickTimeout] GameEvent kickTimeout
      * @property {GameEvent.IKeeperHeldBall|null} [keeperHeldBall] GameEvent keeperHeldBall
      * @property {GameEvent.IAttackerDoubleTouchedBall|null} [attackerDoubleTouchedBall] GameEvent attackerDoubleTouchedBall
-     * @property {GameEvent.IAttackerInDefenseArea|null} [attackerInDefenseArea] GameEvent attackerInDefenseArea
-     * @property {GameEvent.IAttackerTouchedKeeper|null} [attackerTouchedKeeper] GameEvent attackerTouchedKeeper
+     * @property {GameEvent.IAttackerTouchedBallInDefenseArea|null} [attackerTouchedBallInDefenseArea] GameEvent attackerTouchedBallInDefenseArea
+     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseArea] GameEvent attackerTouchedOpponentInDefenseArea
+     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseAreaSkipped] GameEvent attackerTouchedOpponentInDefenseAreaSkipped
      * @property {GameEvent.IBotDribbledBallTooFar|null} [botDribbledBallTooFar] GameEvent botDribbledBallTooFar
      * @property {GameEvent.IBotKickedBallTooFast|null} [botKickedBallTooFast] GameEvent botKickedBallTooFast
      * @property {GameEvent.IAttackerTooCloseToDefenseArea|null} [attackerTooCloseToDefenseArea] GameEvent attackerTooCloseToDefenseArea
@@ -1457,20 +1458,28 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.attackerDoubleTouchedBall = null;
 
     /**
-     * GameEvent attackerInDefenseArea.
-     * @member {GameEvent.IAttackerInDefenseArea|null|undefined} attackerInDefenseArea
+     * GameEvent attackerTouchedBallInDefenseArea.
+     * @member {GameEvent.IAttackerTouchedBallInDefenseArea|null|undefined} attackerTouchedBallInDefenseArea
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.attackerInDefenseArea = null;
+    GameEvent.prototype.attackerTouchedBallInDefenseArea = null;
 
     /**
-     * GameEvent attackerTouchedKeeper.
-     * @member {GameEvent.IAttackerTouchedKeeper|null|undefined} attackerTouchedKeeper
+     * GameEvent attackerTouchedOpponentInDefenseArea.
+     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseArea
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.attackerTouchedKeeper = null;
+    GameEvent.prototype.attackerTouchedOpponentInDefenseArea = null;
+
+    /**
+     * GameEvent attackerTouchedOpponentInDefenseAreaSkipped.
+     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseAreaSkipped
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.attackerTouchedOpponentInDefenseAreaSkipped = null;
 
     /**
      * GameEvent botDribbledBallTooFar.
@@ -1637,12 +1646,12 @@ export const GameEvent = $root.GameEvent = (() => {
 
     /**
      * GameEvent event.
-     * @member {"prepared"|"noProgressInGame"|"placementFailed"|"placementSucceeded"|"botSubstitution"|"tooManyRobots"|"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"possibleGoal"|"goal"|"indirectGoal"|"chippedGoal"|"aimlessKick"|"kickTimeout"|"keeperHeldBall"|"attackerDoubleTouchedBall"|"attackerInDefenseArea"|"attackerTouchedKeeper"|"botDribbledBallTooFar"|"botKickedBallTooFast"|"attackerTooCloseToDefenseArea"|"botInterferedPlacement"|"botCrashDrawn"|"botCrashUnique"|"botCrashUniqueSkipped"|"botPushedBot"|"botPushedBotSkipped"|"botHeldBallDeliberately"|"botTippedOver"|"botTooFastInStop"|"defenderTooCloseToKickPoint"|"defenderInDefenseAreaPartially"|"defenderInDefenseArea"|"multipleCards"|"multiplePlacementFailures"|"multipleFouls"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|undefined} event
+     * @member {"prepared"|"noProgressInGame"|"placementFailed"|"placementSucceeded"|"botSubstitution"|"tooManyRobots"|"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"possibleGoal"|"goal"|"indirectGoal"|"chippedGoal"|"aimlessKick"|"kickTimeout"|"keeperHeldBall"|"attackerDoubleTouchedBall"|"attackerTouchedBallInDefenseArea"|"attackerTouchedOpponentInDefenseArea"|"attackerTouchedOpponentInDefenseAreaSkipped"|"botDribbledBallTooFar"|"botKickedBallTooFast"|"attackerTooCloseToDefenseArea"|"botInterferedPlacement"|"botCrashDrawn"|"botCrashUnique"|"botCrashUniqueSkipped"|"botPushedBot"|"botPushedBotSkipped"|"botHeldBallDeliberately"|"botTippedOver"|"botTooFastInStop"|"defenderTooCloseToKickPoint"|"defenderInDefenseAreaPartially"|"defenderInDefenseArea"|"multipleCards"|"multiplePlacementFailures"|"multipleFouls"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|undefined} event
      * @memberof GameEvent
      * @instance
      */
     Object.defineProperty(GameEvent.prototype, "event", {
-        get: $util.oneOfGetter($oneOfFields = ["prepared", "noProgressInGame", "placementFailed", "placementSucceeded", "botSubstitution", "tooManyRobots", "ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "possibleGoal", "goal", "indirectGoal", "chippedGoal", "aimlessKick", "kickTimeout", "keeperHeldBall", "attackerDoubleTouchedBall", "attackerInDefenseArea", "attackerTouchedKeeper", "botDribbledBallTooFar", "botKickedBallTooFast", "attackerTooCloseToDefenseArea", "botInterferedPlacement", "botCrashDrawn", "botCrashUnique", "botCrashUniqueSkipped", "botPushedBot", "botPushedBotSkipped", "botHeldBallDeliberately", "botTippedOver", "botTooFastInStop", "defenderTooCloseToKickPoint", "defenderInDefenseAreaPartially", "defenderInDefenseArea", "multipleCards", "multiplePlacementFailures", "multipleFouls", "unsportingBehaviorMinor", "unsportingBehaviorMajor"]),
+        get: $util.oneOfGetter($oneOfFields = ["prepared", "noProgressInGame", "placementFailed", "placementSucceeded", "botSubstitution", "tooManyRobots", "ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "possibleGoal", "goal", "indirectGoal", "chippedGoal", "aimlessKick", "kickTimeout", "keeperHeldBall", "attackerDoubleTouchedBall", "attackerTouchedBallInDefenseArea", "attackerTouchedOpponentInDefenseArea", "attackerTouchedOpponentInDefenseAreaSkipped", "botDribbledBallTooFar", "botKickedBallTooFast", "attackerTooCloseToDefenseArea", "botInterferedPlacement", "botCrashDrawn", "botCrashUnique", "botCrashUniqueSkipped", "botPushedBot", "botPushedBotSkipped", "botHeldBallDeliberately", "botTippedOver", "botTooFastInStop", "defenderTooCloseToKickPoint", "defenderInDefenseAreaPartially", "defenderInDefenseArea", "multipleCards", "multiplePlacementFailures", "multipleFouls", "unsportingBehaviorMinor", "unsportingBehaviorMajor"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -1696,10 +1705,10 @@ export const GameEvent = $root.GameEvent = (() => {
             $root.GameEvent.KeeperHeldBall.encode(message.keeperHeldBall, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
         if (message.attackerDoubleTouchedBall != null && message.hasOwnProperty("attackerDoubleTouchedBall"))
             $root.GameEvent.AttackerDoubleTouchedBall.encode(message.attackerDoubleTouchedBall, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
-        if (message.attackerInDefenseArea != null && message.hasOwnProperty("attackerInDefenseArea"))
-            $root.GameEvent.AttackerInDefenseArea.encode(message.attackerInDefenseArea, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
-        if (message.attackerTouchedKeeper != null && message.hasOwnProperty("attackerTouchedKeeper"))
-            $root.GameEvent.AttackerTouchedKeeper.encode(message.attackerTouchedKeeper, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea"))
+            $root.GameEvent.AttackerTouchedBallInDefenseArea.encode(message.attackerTouchedBallInDefenseArea, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea"))
+            $root.GameEvent.AttackerTouchedOpponentInDefenseArea.encode(message.attackerTouchedOpponentInDefenseArea, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
         if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar"))
             $root.GameEvent.BotDribbledBallTooFar.encode(message.botDribbledBallTooFar, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
         if (message.botKickedBallTooFast != null && message.hasOwnProperty("botKickedBallTooFast"))
@@ -1750,6 +1759,8 @@ export const GameEvent = $root.GameEvent = (() => {
         if (message.origin != null && message.origin.length)
             for (let i = 0; i < message.origin.length; ++i)
                 writer.uint32(/* id 41, wireType 2 =*/330).string(message.origin[i]);
+        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped"))
+            $root.GameEvent.AttackerTouchedOpponentInDefenseArea.encode(message.attackerTouchedOpponentInDefenseAreaSkipped, writer.uint32(/* id 42, wireType 2 =*/338).fork()).ldelim();
         return writer;
     };
 
@@ -1841,10 +1852,13 @@ export const GameEvent = $root.GameEvent = (() => {
                 message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.decode(reader, reader.uint32());
                 break;
             case 15:
-                message.attackerInDefenseArea = $root.GameEvent.AttackerInDefenseArea.decode(reader, reader.uint32());
+                message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.decode(reader, reader.uint32());
                 break;
             case 16:
-                message.attackerTouchedKeeper = $root.GameEvent.AttackerTouchedKeeper.decode(reader, reader.uint32());
+                message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
+                break;
+            case 42:
+                message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
                 break;
             case 17:
                 message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.decode(reader, reader.uint32());
@@ -1966,6 +1980,7 @@ export const GameEvent = $root.GameEvent = (() => {
         case 14:
         case 15:
         case 16:
+        case 40:
         case 17:
         case 18:
         case 19:
@@ -2153,24 +2168,34 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "attackerDoubleTouchedBall." + error;
             }
         }
-        if (message.attackerInDefenseArea != null && message.hasOwnProperty("attackerInDefenseArea")) {
+        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.AttackerInDefenseArea.verify(message.attackerInDefenseArea);
+                let error = $root.GameEvent.AttackerTouchedBallInDefenseArea.verify(message.attackerTouchedBallInDefenseArea);
                 if (error)
-                    return "attackerInDefenseArea." + error;
+                    return "attackerTouchedBallInDefenseArea." + error;
             }
         }
-        if (message.attackerTouchedKeeper != null && message.hasOwnProperty("attackerTouchedKeeper")) {
+        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.AttackerTouchedKeeper.verify(message.attackerTouchedKeeper);
+                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseArea);
                 if (error)
-                    return "attackerTouchedKeeper." + error;
+                    return "attackerTouchedOpponentInDefenseArea." + error;
+            }
+        }
+        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseAreaSkipped);
+                if (error)
+                    return "attackerTouchedOpponentInDefenseAreaSkipped." + error;
             }
         }
         if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar")) {
@@ -2457,13 +2482,17 @@ export const GameEvent = $root.GameEvent = (() => {
         case 14:
             message.type = 14;
             break;
-        case "ATTACKER_IN_DEFENSE_AREA":
+        case "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA":
         case 15:
             message.type = 15;
             break;
-        case "ATTACKER_TOUCHED_KEEPER":
+        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA":
         case 16:
             message.type = 16;
+            break;
+        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED":
+        case 40:
+            message.type = 40;
             break;
         case "BOT_DRIBBLED_BALL_TOO_FAR":
         case 17:
@@ -2633,15 +2662,20 @@ export const GameEvent = $root.GameEvent = (() => {
                 throw TypeError(".GameEvent.attackerDoubleTouchedBall: object expected");
             message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.fromObject(object.attackerDoubleTouchedBall);
         }
-        if (object.attackerInDefenseArea != null) {
-            if (typeof object.attackerInDefenseArea !== "object")
-                throw TypeError(".GameEvent.attackerInDefenseArea: object expected");
-            message.attackerInDefenseArea = $root.GameEvent.AttackerInDefenseArea.fromObject(object.attackerInDefenseArea);
+        if (object.attackerTouchedBallInDefenseArea != null) {
+            if (typeof object.attackerTouchedBallInDefenseArea !== "object")
+                throw TypeError(".GameEvent.attackerTouchedBallInDefenseArea: object expected");
+            message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.fromObject(object.attackerTouchedBallInDefenseArea);
         }
-        if (object.attackerTouchedKeeper != null) {
-            if (typeof object.attackerTouchedKeeper !== "object")
-                throw TypeError(".GameEvent.attackerTouchedKeeper: object expected");
-            message.attackerTouchedKeeper = $root.GameEvent.AttackerTouchedKeeper.fromObject(object.attackerTouchedKeeper);
+        if (object.attackerTouchedOpponentInDefenseArea != null) {
+            if (typeof object.attackerTouchedOpponentInDefenseArea !== "object")
+                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseArea: object expected");
+            message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseArea);
+        }
+        if (object.attackerTouchedOpponentInDefenseAreaSkipped != null) {
+            if (typeof object.attackerTouchedOpponentInDefenseAreaSkipped !== "object")
+                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseAreaSkipped: object expected");
+            message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseAreaSkipped);
         }
         if (object.botDribbledBallTooFar != null) {
             if (typeof object.botDribbledBallTooFar !== "object")
@@ -2828,15 +2862,15 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.oneofs)
                 object.event = "attackerDoubleTouchedBall";
         }
-        if (message.attackerInDefenseArea != null && message.hasOwnProperty("attackerInDefenseArea")) {
-            object.attackerInDefenseArea = $root.GameEvent.AttackerInDefenseArea.toObject(message.attackerInDefenseArea, options);
+        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea")) {
+            object.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.toObject(message.attackerTouchedBallInDefenseArea, options);
             if (options.oneofs)
-                object.event = "attackerInDefenseArea";
+                object.event = "attackerTouchedBallInDefenseArea";
         }
-        if (message.attackerTouchedKeeper != null && message.hasOwnProperty("attackerTouchedKeeper")) {
-            object.attackerTouchedKeeper = $root.GameEvent.AttackerTouchedKeeper.toObject(message.attackerTouchedKeeper, options);
+        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea")) {
+            object.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.toObject(message.attackerTouchedOpponentInDefenseArea, options);
             if (options.oneofs)
-                object.event = "attackerTouchedKeeper";
+                object.event = "attackerTouchedOpponentInDefenseArea";
         }
         if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar")) {
             object.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.toObject(message.botDribbledBallTooFar, options);
@@ -2959,6 +2993,11 @@ export const GameEvent = $root.GameEvent = (() => {
             object.origin = [];
             for (let j = 0; j < message.origin.length; ++j)
                 object.origin[j] = message.origin[j];
+        }
+        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped")) {
+            object.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.toObject(message.attackerTouchedOpponentInDefenseAreaSkipped, options);
+            if (options.oneofs)
+                object.event = "attackerTouchedOpponentInDefenseAreaSkipped";
         }
         return object;
     };
@@ -6727,27 +6766,27 @@ export const GameEvent = $root.GameEvent = (() => {
         return DefenderInDefenseAreaPartially;
     })();
 
-    GameEvent.AttackerInDefenseArea = (function() {
+    GameEvent.AttackerTouchedBallInDefenseArea = (function() {
 
         /**
-         * Properties of an AttackerInDefenseArea.
+         * Properties of an AttackerTouchedBallInDefenseArea.
          * @memberof GameEvent
-         * @interface IAttackerInDefenseArea
-         * @property {Team} byTeam AttackerInDefenseArea byTeam
-         * @property {number|null} [byBot] AttackerInDefenseArea byBot
-         * @property {ILocation|null} [location] AttackerInDefenseArea location
-         * @property {number|null} [distance] AttackerInDefenseArea distance
+         * @interface IAttackerTouchedBallInDefenseArea
+         * @property {Team} byTeam AttackerTouchedBallInDefenseArea byTeam
+         * @property {number|null} [byBot] AttackerTouchedBallInDefenseArea byBot
+         * @property {ILocation|null} [location] AttackerTouchedBallInDefenseArea location
+         * @property {number|null} [distance] AttackerTouchedBallInDefenseArea distance
          */
 
         /**
-         * Constructs a new AttackerInDefenseArea.
+         * Constructs a new AttackerTouchedBallInDefenseArea.
          * @memberof GameEvent
-         * @classdesc Represents an AttackerInDefenseArea.
-         * @implements IAttackerInDefenseArea
+         * @classdesc Represents an AttackerTouchedBallInDefenseArea.
+         * @implements IAttackerTouchedBallInDefenseArea
          * @constructor
-         * @param {GameEvent.IAttackerInDefenseArea=} [properties] Properties to set
+         * @param {GameEvent.IAttackerTouchedBallInDefenseArea=} [properties] Properties to set
          */
-        function AttackerInDefenseArea(properties) {
+        function AttackerTouchedBallInDefenseArea(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6755,59 +6794,59 @@ export const GameEvent = $root.GameEvent = (() => {
         }
 
         /**
-         * AttackerInDefenseArea byTeam.
+         * AttackerTouchedBallInDefenseArea byTeam.
          * @member {Team} byTeam
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          */
-        AttackerInDefenseArea.prototype.byTeam = 0;
+        AttackerTouchedBallInDefenseArea.prototype.byTeam = 0;
 
         /**
-         * AttackerInDefenseArea byBot.
+         * AttackerTouchedBallInDefenseArea byBot.
          * @member {number} byBot
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          */
-        AttackerInDefenseArea.prototype.byBot = 0;
+        AttackerTouchedBallInDefenseArea.prototype.byBot = 0;
 
         /**
-         * AttackerInDefenseArea location.
+         * AttackerTouchedBallInDefenseArea location.
          * @member {ILocation|null|undefined} location
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          */
-        AttackerInDefenseArea.prototype.location = null;
+        AttackerTouchedBallInDefenseArea.prototype.location = null;
 
         /**
-         * AttackerInDefenseArea distance.
+         * AttackerTouchedBallInDefenseArea distance.
          * @member {number} distance
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          */
-        AttackerInDefenseArea.prototype.distance = 0;
+        AttackerTouchedBallInDefenseArea.prototype.distance = 0;
 
         /**
-         * Creates a new AttackerInDefenseArea instance using the specified properties.
+         * Creates a new AttackerTouchedBallInDefenseArea instance using the specified properties.
          * @function create
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerInDefenseArea=} [properties] Properties to set
-         * @returns {GameEvent.AttackerInDefenseArea} AttackerInDefenseArea instance
+         * @param {GameEvent.IAttackerTouchedBallInDefenseArea=} [properties] Properties to set
+         * @returns {GameEvent.AttackerTouchedBallInDefenseArea} AttackerTouchedBallInDefenseArea instance
          */
-        AttackerInDefenseArea.create = function create(properties) {
-            return new AttackerInDefenseArea(properties);
+        AttackerTouchedBallInDefenseArea.create = function create(properties) {
+            return new AttackerTouchedBallInDefenseArea(properties);
         };
 
         /**
-         * Encodes the specified AttackerInDefenseArea message. Does not implicitly {@link GameEvent.AttackerInDefenseArea.verify|verify} messages.
+         * Encodes the specified AttackerTouchedBallInDefenseArea message. Does not implicitly {@link GameEvent.AttackerTouchedBallInDefenseArea.verify|verify} messages.
          * @function encode
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerInDefenseArea} message AttackerInDefenseArea message or plain object to encode
+         * @param {GameEvent.IAttackerTouchedBallInDefenseArea} message AttackerTouchedBallInDefenseArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AttackerInDefenseArea.encode = function encode(message, writer) {
+        AttackerTouchedBallInDefenseArea.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
@@ -6821,33 +6860,33 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Encodes the specified AttackerInDefenseArea message, length delimited. Does not implicitly {@link GameEvent.AttackerInDefenseArea.verify|verify} messages.
+         * Encodes the specified AttackerTouchedBallInDefenseArea message, length delimited. Does not implicitly {@link GameEvent.AttackerTouchedBallInDefenseArea.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerInDefenseArea} message AttackerInDefenseArea message or plain object to encode
+         * @param {GameEvent.IAttackerTouchedBallInDefenseArea} message AttackerTouchedBallInDefenseArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AttackerInDefenseArea.encodeDelimited = function encodeDelimited(message, writer) {
+        AttackerTouchedBallInDefenseArea.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes an AttackerInDefenseArea message from the specified reader or buffer.
+         * Decodes an AttackerTouchedBallInDefenseArea message from the specified reader or buffer.
          * @function decode
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {GameEvent.AttackerInDefenseArea} AttackerInDefenseArea
+         * @returns {GameEvent.AttackerTouchedBallInDefenseArea} AttackerTouchedBallInDefenseArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AttackerInDefenseArea.decode = function decode(reader, length) {
+        AttackerTouchedBallInDefenseArea.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.AttackerInDefenseArea();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.AttackerTouchedBallInDefenseArea();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -6874,30 +6913,30 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Decodes an AttackerInDefenseArea message from the specified reader or buffer, length delimited.
+         * Decodes an AttackerTouchedBallInDefenseArea message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {GameEvent.AttackerInDefenseArea} AttackerInDefenseArea
+         * @returns {GameEvent.AttackerTouchedBallInDefenseArea} AttackerTouchedBallInDefenseArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AttackerInDefenseArea.decodeDelimited = function decodeDelimited(reader) {
+        AttackerTouchedBallInDefenseArea.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies an AttackerInDefenseArea message.
+         * Verifies an AttackerTouchedBallInDefenseArea message.
          * @function verify
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AttackerInDefenseArea.verify = function verify(message) {
+        AttackerTouchedBallInDefenseArea.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             switch (message.byTeam) {
@@ -6923,17 +6962,17 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Creates an AttackerInDefenseArea message from a plain object. Also converts values to their respective internal types.
+         * Creates an AttackerTouchedBallInDefenseArea message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {GameEvent.AttackerInDefenseArea} AttackerInDefenseArea
+         * @returns {GameEvent.AttackerTouchedBallInDefenseArea} AttackerTouchedBallInDefenseArea
          */
-        AttackerInDefenseArea.fromObject = function fromObject(object) {
-            if (object instanceof $root.GameEvent.AttackerInDefenseArea)
+        AttackerTouchedBallInDefenseArea.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.AttackerTouchedBallInDefenseArea)
                 return object;
-            let message = new $root.GameEvent.AttackerInDefenseArea();
+            let message = new $root.GameEvent.AttackerTouchedBallInDefenseArea();
             switch (object.byTeam) {
             case "UNKNOWN":
             case 0:
@@ -6952,7 +6991,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 message.byBot = object.byBot >>> 0;
             if (object.location != null) {
                 if (typeof object.location !== "object")
-                    throw TypeError(".GameEvent.AttackerInDefenseArea.location: object expected");
+                    throw TypeError(".GameEvent.AttackerTouchedBallInDefenseArea.location: object expected");
                 message.location = $root.Location.fromObject(object.location);
             }
             if (object.distance != null)
@@ -6961,15 +7000,15 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Creates a plain object from an AttackerInDefenseArea message. Also converts values to other types if specified.
+         * Creates a plain object from an AttackerTouchedBallInDefenseArea message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @static
-         * @param {GameEvent.AttackerInDefenseArea} message AttackerInDefenseArea
+         * @param {GameEvent.AttackerTouchedBallInDefenseArea} message AttackerTouchedBallInDefenseArea
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AttackerInDefenseArea.toObject = function toObject(message, options) {
+        AttackerTouchedBallInDefenseArea.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
@@ -6991,17 +7030,17 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Converts this AttackerInDefenseArea to JSON.
+         * Converts this AttackerTouchedBallInDefenseArea to JSON.
          * @function toJSON
-         * @memberof GameEvent.AttackerInDefenseArea
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AttackerInDefenseArea.prototype.toJSON = function toJSON() {
+        AttackerTouchedBallInDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return AttackerInDefenseArea;
+        return AttackerTouchedBallInDefenseArea;
     })();
 
     GameEvent.BotKickedBallTooFast = (function() {
@@ -7585,26 +7624,27 @@ export const GameEvent = $root.GameEvent = (() => {
         return BotDribbledBallTooFar;
     })();
 
-    GameEvent.AttackerTouchedKeeper = (function() {
+    GameEvent.AttackerTouchedOpponentInDefenseArea = (function() {
 
         /**
-         * Properties of an AttackerTouchedKeeper.
+         * Properties of an AttackerTouchedOpponentInDefenseArea.
          * @memberof GameEvent
-         * @interface IAttackerTouchedKeeper
-         * @property {Team} byTeam AttackerTouchedKeeper byTeam
-         * @property {number|null} [byBot] AttackerTouchedKeeper byBot
-         * @property {ILocation|null} [location] AttackerTouchedKeeper location
+         * @interface IAttackerTouchedOpponentInDefenseArea
+         * @property {Team} byTeam AttackerTouchedOpponentInDefenseArea byTeam
+         * @property {number|null} [byBot] AttackerTouchedOpponentInDefenseArea byBot
+         * @property {number|null} [victim] AttackerTouchedOpponentInDefenseArea victim
+         * @property {ILocation|null} [location] AttackerTouchedOpponentInDefenseArea location
          */
 
         /**
-         * Constructs a new AttackerTouchedKeeper.
+         * Constructs a new AttackerTouchedOpponentInDefenseArea.
          * @memberof GameEvent
-         * @classdesc Represents an AttackerTouchedKeeper.
-         * @implements IAttackerTouchedKeeper
+         * @classdesc Represents an AttackerTouchedOpponentInDefenseArea.
+         * @implements IAttackerTouchedOpponentInDefenseArea
          * @constructor
-         * @param {GameEvent.IAttackerTouchedKeeper=} [properties] Properties to set
+         * @param {GameEvent.IAttackerTouchedOpponentInDefenseArea=} [properties] Properties to set
          */
-        function AttackerTouchedKeeper(properties) {
+        function AttackerTouchedOpponentInDefenseArea(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -7612,51 +7652,59 @@ export const GameEvent = $root.GameEvent = (() => {
         }
 
         /**
-         * AttackerTouchedKeeper byTeam.
+         * AttackerTouchedOpponentInDefenseArea byTeam.
          * @member {Team} byTeam
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @instance
          */
-        AttackerTouchedKeeper.prototype.byTeam = 0;
+        AttackerTouchedOpponentInDefenseArea.prototype.byTeam = 0;
 
         /**
-         * AttackerTouchedKeeper byBot.
+         * AttackerTouchedOpponentInDefenseArea byBot.
          * @member {number} byBot
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @instance
          */
-        AttackerTouchedKeeper.prototype.byBot = 0;
+        AttackerTouchedOpponentInDefenseArea.prototype.byBot = 0;
 
         /**
-         * AttackerTouchedKeeper location.
+         * AttackerTouchedOpponentInDefenseArea victim.
+         * @member {number} victim
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
+         * @instance
+         */
+        AttackerTouchedOpponentInDefenseArea.prototype.victim = 0;
+
+        /**
+         * AttackerTouchedOpponentInDefenseArea location.
          * @member {ILocation|null|undefined} location
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @instance
          */
-        AttackerTouchedKeeper.prototype.location = null;
+        AttackerTouchedOpponentInDefenseArea.prototype.location = null;
 
         /**
-         * Creates a new AttackerTouchedKeeper instance using the specified properties.
+         * Creates a new AttackerTouchedOpponentInDefenseArea instance using the specified properties.
          * @function create
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerTouchedKeeper=} [properties] Properties to set
-         * @returns {GameEvent.AttackerTouchedKeeper} AttackerTouchedKeeper instance
+         * @param {GameEvent.IAttackerTouchedOpponentInDefenseArea=} [properties] Properties to set
+         * @returns {GameEvent.AttackerTouchedOpponentInDefenseArea} AttackerTouchedOpponentInDefenseArea instance
          */
-        AttackerTouchedKeeper.create = function create(properties) {
-            return new AttackerTouchedKeeper(properties);
+        AttackerTouchedOpponentInDefenseArea.create = function create(properties) {
+            return new AttackerTouchedOpponentInDefenseArea(properties);
         };
 
         /**
-         * Encodes the specified AttackerTouchedKeeper message. Does not implicitly {@link GameEvent.AttackerTouchedKeeper.verify|verify} messages.
+         * Encodes the specified AttackerTouchedOpponentInDefenseArea message. Does not implicitly {@link GameEvent.AttackerTouchedOpponentInDefenseArea.verify|verify} messages.
          * @function encode
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerTouchedKeeper} message AttackerTouchedKeeper message or plain object to encode
+         * @param {GameEvent.IAttackerTouchedOpponentInDefenseArea} message AttackerTouchedOpponentInDefenseArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AttackerTouchedKeeper.encode = function encode(message, writer) {
+        AttackerTouchedOpponentInDefenseArea.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
@@ -7664,37 +7712,39 @@ export const GameEvent = $root.GameEvent = (() => {
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
                 $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.victim != null && message.hasOwnProperty("victim"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.victim);
             return writer;
         };
 
         /**
-         * Encodes the specified AttackerTouchedKeeper message, length delimited. Does not implicitly {@link GameEvent.AttackerTouchedKeeper.verify|verify} messages.
+         * Encodes the specified AttackerTouchedOpponentInDefenseArea message, length delimited. Does not implicitly {@link GameEvent.AttackerTouchedOpponentInDefenseArea.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
-         * @param {GameEvent.IAttackerTouchedKeeper} message AttackerTouchedKeeper message or plain object to encode
+         * @param {GameEvent.IAttackerTouchedOpponentInDefenseArea} message AttackerTouchedOpponentInDefenseArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AttackerTouchedKeeper.encodeDelimited = function encodeDelimited(message, writer) {
+        AttackerTouchedOpponentInDefenseArea.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes an AttackerTouchedKeeper message from the specified reader or buffer.
+         * Decodes an AttackerTouchedOpponentInDefenseArea message from the specified reader or buffer.
          * @function decode
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {GameEvent.AttackerTouchedKeeper} AttackerTouchedKeeper
+         * @returns {GameEvent.AttackerTouchedOpponentInDefenseArea} AttackerTouchedOpponentInDefenseArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AttackerTouchedKeeper.decode = function decode(reader, length) {
+        AttackerTouchedOpponentInDefenseArea.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.AttackerTouchedKeeper();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.AttackerTouchedOpponentInDefenseArea();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -7703,6 +7753,9 @@ export const GameEvent = $root.GameEvent = (() => {
                     break;
                 case 2:
                     message.byBot = reader.uint32();
+                    break;
+                case 4:
+                    message.victim = reader.uint32();
                     break;
                 case 3:
                     message.location = $root.Location.decode(reader, reader.uint32());
@@ -7718,30 +7771,30 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Decodes an AttackerTouchedKeeper message from the specified reader or buffer, length delimited.
+         * Decodes an AttackerTouchedOpponentInDefenseArea message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {GameEvent.AttackerTouchedKeeper} AttackerTouchedKeeper
+         * @returns {GameEvent.AttackerTouchedOpponentInDefenseArea} AttackerTouchedOpponentInDefenseArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AttackerTouchedKeeper.decodeDelimited = function decodeDelimited(reader) {
+        AttackerTouchedOpponentInDefenseArea.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies an AttackerTouchedKeeper message.
+         * Verifies an AttackerTouchedOpponentInDefenseArea message.
          * @function verify
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AttackerTouchedKeeper.verify = function verify(message) {
+        AttackerTouchedOpponentInDefenseArea.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             switch (message.byTeam) {
@@ -7755,6 +7808,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
+            if (message.victim != null && message.hasOwnProperty("victim"))
+                if (!$util.isInteger(message.victim))
+                    return "victim: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
                 let error = $root.Location.verify(message.location);
                 if (error)
@@ -7764,17 +7820,17 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         /**
-         * Creates an AttackerTouchedKeeper message from a plain object. Also converts values to their respective internal types.
+         * Creates an AttackerTouchedOpponentInDefenseArea message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {GameEvent.AttackerTouchedKeeper} AttackerTouchedKeeper
+         * @returns {GameEvent.AttackerTouchedOpponentInDefenseArea} AttackerTouchedOpponentInDefenseArea
          */
-        AttackerTouchedKeeper.fromObject = function fromObject(object) {
-            if (object instanceof $root.GameEvent.AttackerTouchedKeeper)
+        AttackerTouchedOpponentInDefenseArea.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.AttackerTouchedOpponentInDefenseArea)
                 return object;
-            let message = new $root.GameEvent.AttackerTouchedKeeper();
+            let message = new $root.GameEvent.AttackerTouchedOpponentInDefenseArea();
             switch (object.byTeam) {
             case "UNKNOWN":
             case 0:
@@ -7791,24 +7847,26 @@ export const GameEvent = $root.GameEvent = (() => {
             }
             if (object.byBot != null)
                 message.byBot = object.byBot >>> 0;
+            if (object.victim != null)
+                message.victim = object.victim >>> 0;
             if (object.location != null) {
                 if (typeof object.location !== "object")
-                    throw TypeError(".GameEvent.AttackerTouchedKeeper.location: object expected");
+                    throw TypeError(".GameEvent.AttackerTouchedOpponentInDefenseArea.location: object expected");
                 message.location = $root.Location.fromObject(object.location);
             }
             return message;
         };
 
         /**
-         * Creates a plain object from an AttackerTouchedKeeper message. Also converts values to other types if specified.
+         * Creates a plain object from an AttackerTouchedOpponentInDefenseArea message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @static
-         * @param {GameEvent.AttackerTouchedKeeper} message AttackerTouchedKeeper
+         * @param {GameEvent.AttackerTouchedOpponentInDefenseArea} message AttackerTouchedOpponentInDefenseArea
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AttackerTouchedKeeper.toObject = function toObject(message, options) {
+        AttackerTouchedOpponentInDefenseArea.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
@@ -7816,6 +7874,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
                 object.byBot = 0;
                 object.location = null;
+                object.victim = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
@@ -7823,21 +7882,23 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
                 object.location = $root.Location.toObject(message.location, options);
+            if (message.victim != null && message.hasOwnProperty("victim"))
+                object.victim = message.victim;
             return object;
         };
 
         /**
-         * Converts this AttackerTouchedKeeper to JSON.
+         * Converts this AttackerTouchedOpponentInDefenseArea to JSON.
          * @function toJSON
-         * @memberof GameEvent.AttackerTouchedKeeper
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AttackerTouchedKeeper.prototype.toJSON = function toJSON() {
+        AttackerTouchedOpponentInDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return AttackerTouchedKeeper;
+        return AttackerTouchedOpponentInDefenseArea;
     })();
 
     GameEvent.AttackerDoubleTouchedBall = (function() {
@@ -11821,8 +11882,9 @@ export const GameEvent = $root.GameEvent = (() => {
  * @property {number} KICK_TIMEOUT=12 KICK_TIMEOUT value
  * @property {number} KEEPER_HELD_BALL=13 KEEPER_HELD_BALL value
  * @property {number} ATTACKER_DOUBLE_TOUCHED_BALL=14 ATTACKER_DOUBLE_TOUCHED_BALL value
- * @property {number} ATTACKER_IN_DEFENSE_AREA=15 ATTACKER_IN_DEFENSE_AREA value
- * @property {number} ATTACKER_TOUCHED_KEEPER=16 ATTACKER_TOUCHED_KEEPER value
+ * @property {number} ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA=15 ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA value
+ * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA=16 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA value
+ * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED=40 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED value
  * @property {number} BOT_DRIBBLED_BALL_TOO_FAR=17 BOT_DRIBBLED_BALL_TOO_FAR value
  * @property {number} BOT_KICKED_BALL_TOO_FAST=18 BOT_KICKED_BALL_TOO_FAST value
  * @property {number} ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA=19 ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA value
@@ -11863,8 +11925,9 @@ $root.GameEventType = (function() {
     values[valuesById[12] = "KICK_TIMEOUT"] = 12;
     values[valuesById[13] = "KEEPER_HELD_BALL"] = 13;
     values[valuesById[14] = "ATTACKER_DOUBLE_TOUCHED_BALL"] = 14;
-    values[valuesById[15] = "ATTACKER_IN_DEFENSE_AREA"] = 15;
-    values[valuesById[16] = "ATTACKER_TOUCHED_KEEPER"] = 16;
+    values[valuesById[15] = "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA"] = 15;
+    values[valuesById[16] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA"] = 16;
+    values[valuesById[40] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED"] = 40;
     values[valuesById[17] = "BOT_DRIBBLED_BALL_TOO_FAR"] = 17;
     values[valuesById[18] = "BOT_KICKED_BALL_TOO_FAST"] = 18;
     values[valuesById[19] = "ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA"] = 19;

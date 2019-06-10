@@ -154,11 +154,22 @@ export const mapGameEventToText = function (event) {
     if (event.attackerDoubleTouchedBall != null) {
         return `${teamAndBot(event.attackerDoubleTouchedBall)} touched ball twice`;
     }
-    if (event.attackerInDefenseArea != null) {
-        return `${teamAndBot(event.attackerInDefenseArea)} was in opponent defense area`;
+    if (event.attackerTouchedBallInDefenseArea != null) {
+        return `${teamAndBot(event.attackerTouchedBallInDefenseArea)} touched ball in opponent defense area`;
     }
-    if (event.attackerTouchedKeeper != null) {
-        return `${teamAndBot(event.attackerTouchedKeeper)} touched opponent keeper`;
+    if (event.attackerTouchedOpponentInDefenseArea != null) {
+        let byTeam = event.attackerTouchedOpponentInDefenseArea.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.attackerTouchedOpponentInDefenseArea.byBot;
+        let victim = event.attackerTouchedOpponentInDefenseArea.victim;
+        return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`;
+    }
+    if (event.attackerTouchedOpponentInDefenseAreaSkipped != null) {
+        let byTeam = event.attackerTouchedOpponentInDefenseAreaSkipped.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.attackerTouchedOpponentInDefenseAreaSkipped.byBot;
+        let victim = event.attackerTouchedOpponentInDefenseAreaSkipped.victim;
+        return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`;
     }
     if (event.botDribbledBallTooFar != null) {
         return `${teamAndBot(event.botDribbledBallTooFar)} dribbled ball too far`;
@@ -175,24 +186,62 @@ export const mapGameEventToText = function (event) {
         return `${teamAndBot(event.botInterferedPlacement)} interfered placement`;
     }
     if (event.botCrashDrawn != null) {
-        return `Bot Blue ${event.botCrashDrawn.botBlue} and Yellow ${event.botCrashDrawn.botYellow} `
-            + `crashed with ${velocity(event.botCrashDrawn.crashSpeed)} `
-            + `@ ${radToDeg(event.botCrashDrawn.crashAngle)} `
-            + `(Δ${velocity(event.botCrashDrawn.speedDiff)})`;
+        let crashSpeed = event.botCrashDrawn.crashSpeed;
+        let crashAngle = event.botCrashDrawn.crashAngle;
+        let speedDiff = event.botCrashDrawn.speedDiff;
+        let text = `Bot Blue ${event.botCrashDrawn.botBlue} and Yellow ${event.botCrashDrawn.botYellow} `;
+        if (crashSpeed > 0) {
+            text += ` with ${velocity(crashSpeed)}`
+        }
+        if (crashAngle > 0) {
+            text += ` @ ${radToDeg(crashAngle)}`
+        }
+        if (speedDiff > 0) {
+            text += ` (Δ ${velocity(speedDiff)})`
+        }
+        return text;
     }
     if (event.botCrashUnique != null) {
-        return `${teamAndBot(event.botCrashUnique)} ${event.botCrashUnique.violator} `
-            + `crashed into ${event.botCrashUnique.victim} `
-            + `with ${velocity(event.botCrashUnique.crashSpeed)} `
-            + `@ ${radToDeg(event.botCrashUnique.crashAngle)} `
-            + `(Δ${velocity(event.botCrashUnique.speedDiff)})`;
+        let byTeam = event.botCrashUnique.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.botCrashUnique.violator;
+        let victim = event.botCrashUnique.victim;
+        let crashSpeed = event.botCrashUnique.crashSpeed;
+        let crashAngle = event.botCrashUnique.crashAngle;
+        let speedDiff = event.botCrashUnique.speedDiff;
+        let text = `${formatTeam(byTeam)} ${violator}`
+            + ` crashed into ${formatTeam(otherTeam)} ${victim}`;
+        if (crashSpeed > 0) {
+            text += ` with ${velocity(crashSpeed)}`
+        }
+        if (crashAngle > 0) {
+            text += ` @ ${radToDeg(crashAngle)}`
+        }
+        if (speedDiff > 0) {
+            text += ` (Δ ${velocity(speedDiff)})`
+        }
+        return text;
     }
     if (event.botCrashUniqueSkipped != null) {
-        return `Skipped: ${teamAndBot(event.botCrashUniqueSkipped)} ${event.botCrashUniqueSkipped.violator} `
-            + `crashed into ${event.botCrashUniqueSkipped.victim} `
-            + `with ${velocity(event.botCrashUniqueSkipped.crashSpeed)} `
-            + `@ ${radToDeg(event.botCrashUniqueSkipped.crashAngle)} `
-            + `(Δ${velocity(event.botCrashUniqueSkipped.speedDiff)})`;
+        let byTeam = event.botCrashUniqueSkipped.byTeam;
+        let otherTeam = oppositeTeam(byTeam);
+        let violator = event.botCrashUniqueSkipped.violator;
+        let victim = event.botCrashUniqueSkipped.victim;
+        let crashSpeed = event.botCrashUniqueSkipped.crashSpeed;
+        let crashAngle = event.botCrashUniqueSkipped.crashAngle;
+        let speedDiff = event.botCrashUniqueSkipped.speedDiff;
+        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
+            + ` crashed into ${formatTeam(otherTeam)} ${victim}`;
+        if (crashSpeed > 0) {
+            text += ` with ${velocity(crashSpeed)}`
+        }
+        if (crashAngle > 0) {
+            text += ` @ ${radToDeg(crashAngle)}`
+        }
+        if (speedDiff > 0) {
+            text += ` (Δ ${velocity(speedDiff)})`
+        }
+        return text;
     }
     if (event.botPushedBot != null) {
         let byTeam = event.botPushedBot.byTeam;
@@ -200,7 +249,7 @@ export const mapGameEventToText = function (event) {
         let violator = event.botPushedBot.violator;
         let victim = event.botPushedBot.victim;
         let dist = event.botPushedBot.pushedDistance;
-        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
+        let text = `${formatTeam(byTeam)} ${violator}`
             + ` pushed ${formatTeam(otherTeam)} ${victim}`;
         if (dist > 0) {
             text += ` over ${distance(dist)}`
