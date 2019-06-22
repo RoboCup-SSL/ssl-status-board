@@ -12872,6 +12872,7 @@ export const Referee = $root.Referee = (() => {
          * @property {number|null} [ballPlacementFailures] TeamInfo ballPlacementFailures
          * @property {boolean|null} [canPlaceBall] TeamInfo canPlaceBall
          * @property {number|null} [maxAllowedBots] TeamInfo maxAllowedBots
+         * @property {boolean|null} [botSubstitutionIntent] TeamInfo botSubstitutionIntent
          */
 
         /**
@@ -12987,6 +12988,14 @@ export const Referee = $root.Referee = (() => {
         TeamInfo.prototype.maxAllowedBots = 0;
 
         /**
+         * TeamInfo botSubstitutionIntent.
+         * @member {boolean} botSubstitutionIntent
+         * @memberof Referee.TeamInfo
+         * @instance
+         */
+        TeamInfo.prototype.botSubstitutionIntent = false;
+
+        /**
          * Creates a new TeamInfo instance using the specified properties.
          * @function create
          * @memberof Referee.TeamInfo
@@ -13031,6 +13040,8 @@ export const Referee = $root.Referee = (() => {
                 writer.uint32(/* id 12, wireType 0 =*/96).bool(message.canPlaceBall);
             if (message.maxAllowedBots != null && message.hasOwnProperty("maxAllowedBots"))
                 writer.uint32(/* id 13, wireType 0 =*/104).uint32(message.maxAllowedBots);
+            if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
+                writer.uint32(/* id 14, wireType 0 =*/112).bool(message.botSubstitutionIntent);
             return writer;
         };
 
@@ -13107,6 +13118,9 @@ export const Referee = $root.Referee = (() => {
                     break;
                 case 13:
                     message.maxAllowedBots = reader.uint32();
+                    break;
+                case 14:
+                    message.botSubstitutionIntent = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -13190,6 +13204,9 @@ export const Referee = $root.Referee = (() => {
             if (message.maxAllowedBots != null && message.hasOwnProperty("maxAllowedBots"))
                 if (!$util.isInteger(message.maxAllowedBots))
                     return "maxAllowedBots: integer expected";
+            if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
+                if (typeof message.botSubstitutionIntent !== "boolean")
+                    return "botSubstitutionIntent: boolean expected";
             return null;
         };
 
@@ -13234,6 +13251,8 @@ export const Referee = $root.Referee = (() => {
                 message.canPlaceBall = Boolean(object.canPlaceBall);
             if (object.maxAllowedBots != null)
                 message.maxAllowedBots = object.maxAllowedBots >>> 0;
+            if (object.botSubstitutionIntent != null)
+                message.botSubstitutionIntent = Boolean(object.botSubstitutionIntent);
             return message;
         };
 
@@ -13264,6 +13283,7 @@ export const Referee = $root.Referee = (() => {
                 object.ballPlacementFailures = 0;
                 object.canPlaceBall = false;
                 object.maxAllowedBots = 0;
+                object.botSubstitutionIntent = false;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
@@ -13292,6 +13312,8 @@ export const Referee = $root.Referee = (() => {
                 object.canPlaceBall = message.canPlaceBall;
             if (message.maxAllowedBots != null && message.hasOwnProperty("maxAllowedBots"))
                 object.maxAllowedBots = message.maxAllowedBots;
+            if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
+                object.botSubstitutionIntent = message.botSubstitutionIntent;
             return object;
         };
 

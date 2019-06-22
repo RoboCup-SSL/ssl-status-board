@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{'bot-substitution-intent': botSubstitutionIntent}">
         <div :class="{'team-yellow': color === 'yellow', 'team-blue': color === 'blue'}" class="team-name">
             <div class="team-name-text">{{team.name}}</div>
         </div>
@@ -36,12 +36,20 @@
             },
             markYellowCard() {
                 return this.team.yellowCards > 0 && this.team.yellowCards % 3 === 0;
+            },
+            botSubstitutionIntent() {
+                return this.team.botSubstitutionIntent;
             }
         }
     }
 </script>
 
 <style scoped>
+
+    .bot-substitution-intent {
+        background-color: #c2c3d0;
+    }
+
     .team-name {
         height: 15vh;
         display: flex;
