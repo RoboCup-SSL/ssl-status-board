@@ -1,12 +1,14 @@
 const knownLogos = new Map([
-    ['yellow', require('@/assets/logos/yellow.png')],
-    ['blue', require('@/assets/logos/blue.png')],
     ['ais', require('@/assets/logos/ais.png')],
+    ['blue', require('@/assets/logos/blue.png')],
     ['cmμs', require('@/assets/logos/cmμs.png')],
     ['er-force', require('@/assets/logos/er-force.png')],
     ['immortals', require('@/assets/logos/immortals.png')],
     ['kiks', require('@/assets/logos/kiks.png')],
+    ['mct-susano-logics', require('@/assets/logos/mct-susano-logics.png')],
+    ['namec', require('@/assets/logos/namec.png')],
     ['neuislanders', require('@/assets/logos/neuislanders.png')],
+    ['op-amp', require('@/assets/logos/op-amp.png')],
     ['robodragons', require('@/assets/logos/robodragons.png')],
     ['robofei', require('@/assets/logos/robofei.png')],
     ['roboime', require('@/assets/logos/roboime.png')],
@@ -14,7 +16,9 @@ const knownLogos = new Map([
     ['roboteam-twente', require('@/assets/logos/roboteam-twente.png')],
     ['tigers-mannheim', require('@/assets/logos/tigers-mannheim.png')],
     ['ubc-thunderbots', require('@/assets/logos/ubc-thunderbots.png')],
+    ['ultron', require('@/assets/logos/ultron.png')],
     ['umass-minutebots', require('@/assets/logos/umass-minutebots.png')],
+    ['yellow', require('@/assets/logos/yellow.png')],
     ['zjunlict', require('@/assets/logos/zjunlict.png')],
 ]);
 
