@@ -1,12 +1,12 @@
 const knownLogos = new Map([
     ['ais', require('@/assets/logos/ais.png')],
     ['blue', require('@/assets/logos/blue.png')],
-    ['mrl', require('@/assets/logos/MRL.png')],
     ['cmμs', require('@/assets/logos/cmμs.png')],
     ['er-force', require('@/assets/logos/er-force.png')],
     ['immortals', require('@/assets/logos/immortals.png')],
     ['kiks', require('@/assets/logos/kiks.png')],
     ['mct-susano-logics', require('@/assets/logos/mct-susano-logics.png')],
+    ['mrl', require('@/assets/logos/mrl.png')],
     ['namec', require('@/assets/logos/namec.png')],
     ['neuislanders', require('@/assets/logos/neuislanders.png')],
     ['op-amp', require('@/assets/logos/op-amp.png')],
