@@ -2,7 +2,7 @@
     <div class="game-events">
         <table class="table-striped">
             <tbody>
-            <tr v-for="(gameEvent, index) in gameEvents"
+            <tr v-for="(gameEvent, index) in gameEvents.slice(0,8)"
                 :key="index"
                 :style="{'font-size': rowHeight}">
                 <td class="autoRefIndicator" v-html="autoRefIndicator(gameEvent)"></td>
@@ -10,13 +10,14 @@
             </tr>
             </tbody>
         </table>
+        <div class="more-game-events" v-if="gameEvents.length > 8"> + {{gameEvents.length - 8}} more game events </div>
     </div>
 </template>
 
 <script>
     import {mapGameEventToText} from "../texts";
 
-    const maxUnscaledItems = 6;
+    const maxUnscaledItems = 5.5;
 
     export default {
         name: "GameEvents",
@@ -28,7 +29,8 @@
                 return this.refereeMessage.gameEvents;
             },
             rowHeight() {
-                let rel = 1 - (Math.max(0, this.gameEvents.length - maxUnscaledItems) / maxUnscaledItems);
+                let n = Math.min(8, this.gameEvents.length)
+                let rel = 1 - (Math.max(0, n - maxUnscaledItems) / maxUnscaledItems);
                 return rel + 'em';
             },
         },
@@ -75,9 +77,12 @@
         padding: 2px;
         padding-left: 10px;
     }
-
-    .autoRefIndicator {
-        font-size: 3vh;
+    
+    .more-game-events {
+        font-size: 2.5vmin;
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #fff;
     }
-
 </style>
