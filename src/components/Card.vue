@@ -20,8 +20,6 @@
 <style scoped>
 
     .card {
-        border-style: dotted;
-        border-width: 0.4vh;
         display: inline-block;
         margin: 0.1em;
         height: 7vmin;

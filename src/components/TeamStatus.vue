@@ -78,7 +78,7 @@
     }
 
     .marked-card {
-        border-color: yellow;
+        background-color: rgba(255, 255, 0, 0.2);
     }
 
     .inline {
@@ -102,8 +102,6 @@
 
     .botinfo {
         display: inline-block;
-        border-style: dotted;
-        border-width: 0.4vh;
         min-width: 130px;
         height: 7vmin;
     }
