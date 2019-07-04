@@ -18,8 +18,11 @@
                 {{team.maxAllowedBots}}
             </span>
             <div class="cardTimers">
-                <CardTimer v-for="cardTime in team.yellowCardTimes.slice(0,3)"
+                <span v-for="(cardTime, index) in team.yellowCardTimes.slice(0,3)" :key="index">
+                <CardTimer 
                     :cardTimer="cardTime" />
+                </span>
+
 
                 <div class="additional-cards" v-if="team.yellowCardTimes.length > 3"> + {{ team.yellowCardTimes.length - 3}} more </div>
             </div>
