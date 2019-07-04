@@ -5,6 +5,7 @@
             <tr v-for="(gameEvent, index) in gameEvents"
                 :key="index"
                 :style="{'font-size': rowHeight}">
+                <td class="autoRefIndicator" v-html="autoRefIndicator(gameEvent)"></td>
                 <td v-html="formatGameEvent(gameEvent)"></td>
             </tr>
             </tbody>
@@ -34,6 +35,15 @@
         methods: {
             formatGameEvent(gameEvent) {
                 return mapGameEventToText(gameEvent);
+            },
+
+            autoRefIndicator(gameEvent) {
+                if(gameEvent.origin == "")
+                {
+                    return "GameController";
+                } else {
+                    return gameEvent.origin;
+                }
             }
         }
     }
@@ -43,13 +53,13 @@
 
     .game-events {
         text-align: left;
-        font-size: 5.0vh;
+        font-size: 4.5vh;
     }
 
     .table-striped {
         width: 100%;
-        padding-left: 0.2em;
-        padding-right: 0.2em;
+        padding-left: 0.1em;
+        padding-right: 0.1em;
     }
 
     .table-striped tbody tr:nth-of-type(odd) {
@@ -58,6 +68,16 @@
 
     .table-striped tbody tr:nth-of-type(even) {
         background-color: #444
+    }
+
+    .table-striped td {
+        vertical-align: baseline;
+        padding: 2px;
+        padding-left: 10px;
+    }
+
+    .autoRefIndicator {
+        font-size: 3vh;
     }
 
 </style>
