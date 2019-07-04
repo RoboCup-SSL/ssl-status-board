@@ -2,20 +2,22 @@
     <div class="game-events">
         <table class="table-striped">
             <tbody>
-            <tr v-for="(gameEvent, index) in gameEvents"
+            <tr v-for="(gameEvent, index) in gameEvents.slice(0,8)"
                 :key="index"
                 :style="{'font-size': rowHeight}">
+                <td class="autoRefIndicator" v-html="autoRefIndicator(gameEvent)"></td>
                 <td v-html="formatGameEvent(gameEvent)"></td>
             </tr>
             </tbody>
         </table>
+        <div class="more-game-events" v-if="gameEvents.length > 8"> + {{gameEvents.length - 8}} more game events </div>
     </div>
 </template>
 
 <script>
     import {mapGameEventToText} from "../texts";
 
-    const maxUnscaledItems = 6;
+    const maxUnscaledItems = 5.5;
 
     export default {
         name: "GameEvents",
@@ -27,13 +29,23 @@
                 return this.refereeMessage.gameEvents;
             },
             rowHeight() {
-                let rel = 1 - (Math.max(0, this.gameEvents.length - maxUnscaledItems) / maxUnscaledItems);
+                let n = Math.min(8, this.gameEvents.length)
+                let rel = 1 - (Math.max(0, n - maxUnscaledItems) / maxUnscaledItems);
                 return rel + 'em';
             },
         },
         methods: {
             formatGameEvent(gameEvent) {
                 return mapGameEventToText(gameEvent);
+            },
+
+            autoRefIndicator(gameEvent) {
+                if(gameEvent.origin == "")
+                {
+                    return "GameController";
+                } else {
+                    return gameEvent.origin;
+                }
             }
         }
     }
@@ -43,21 +55,34 @@
 
     .game-events {
         text-align: left;
-        font-size: 5.0vh;
+        font-size: 4.5vh;
     }
 
     .table-striped {
         width: 100%;
-        padding-left: 0.2em;
-        padding-right: 0.2em;
+        padding-left: 0.1em;
+        padding-right: 0.1em;
     }
 
     .table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(111, 158, 208, 0.6);
+        background-color: #222;
     }
 
     .table-striped tbody tr:nth-of-type(even) {
-        background-color: rgba(194, 195, 208, 0.6);
+        background-color: #444
     }
 
+    .table-striped td {
+        vertical-align: baseline;
+        padding: 2px;
+        padding-left: 10px;
+    }
+    
+    .more-game-events {
+        font-size: 2.5vmin;
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #fff;
+    }
 </style>

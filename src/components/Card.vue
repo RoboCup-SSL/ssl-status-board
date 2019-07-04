@@ -1,7 +1,9 @@
 <template>
     <div class="card">
         <div class="card-pic" :class="{'red-card': color === 'red', 'yellow-card': color === 'yellow'}"></div>
-        <div class="card-count">{{numCards}}</div>
+        <div class="card-count">
+            {{numCards}}
+        </div>
     </div>
 </template>
 
@@ -18,10 +20,11 @@
 <style scoped>
 
     .card {
-        border-style: dotted;
-        border-width: 0.4vh;
         display: inline-block;
         margin: 0.1em;
+        height: 7vmin;
+        min-width: 130px;
+        text-align: center;
     }
 
     .card-pic {
@@ -30,7 +33,7 @@
         height: 5vmin;
         margin-left: 1vmin;
         display: inline-block;
-        font-size: initial;
+        font-size: 12pt;
         /* IE 7 hack */
         *zoom: 1;
         *display: inline;
@@ -39,7 +42,8 @@
 
     .card-count {
         display: inline-block;
-        vertical-align: middle;
+        line-height: 7vmin;
+        vertical-align: baseline;
         margin-right: 1vw;
         margin-left: 1vw;
     }
