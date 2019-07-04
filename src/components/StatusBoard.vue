@@ -42,17 +42,18 @@
 
     .upper-container {
         width: 100%;
-        height: 58%;
         align-items: center;
+        height: 62%
     }
 
     .lower-container {
-        height: 39%;
+        height: 35%;
     }
 
     .upper-lower-separator {
         margin-top: 0.2em;
         margin-bottom: 0.2em;
+        display: block;
     }
 
     .match-status-container {

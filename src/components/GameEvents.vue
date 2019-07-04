@@ -53,11 +53,11 @@
     }
 
     .table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(111, 158, 208, 0.6);
+        background-color: #222;
     }
 
     .table-striped tbody tr:nth-of-type(even) {
-        background-color: rgba(194, 195, 208, 0.6);
+        background-color: #444
     }
 
 </style>
