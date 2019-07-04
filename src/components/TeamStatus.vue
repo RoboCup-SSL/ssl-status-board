@@ -100,13 +100,15 @@
 
     .boticon {
         height: 4.5vmin;
-        vertical-align: middle;
+        vertical-align: baseline;
     }
 
     .botinfo {
         display: inline-block;
         min-width: 130px;
         height: 7vmin;
+        line-height: 7vmin;
+        vertical-align: baseline
     }
 
     .additional-cards {

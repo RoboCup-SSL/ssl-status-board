@@ -42,7 +42,8 @@
 
     .card-count {
         display: inline-block;
-        vertical-align: middle;
+        line-height: 7vmin;
+        vertical-align: baseline;
         margin-right: 1vw;
         margin-left: 1vw;
     }
