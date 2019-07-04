@@ -189,7 +189,7 @@ export const mapGameEventToText = function (event) {
         let crashSpeed = event.botCrashDrawn.crashSpeed;
         let crashAngle = event.botCrashDrawn.crashAngle;
         let speedDiff = event.botCrashDrawn.speedDiff;
-        let text = `Bot Blue ${event.botCrashDrawn.botBlue} and Yellow ${event.botCrashDrawn.botYellow} `;
+        let text = `Bot Blue ${event.botCrashDrawn.botBlue} and Yellow ${event.botCrashDrawn.botYellow} crashed`;
         if (crashSpeed > 0) {
             text += ` with ${velocity(crashSpeed)}`
         }
