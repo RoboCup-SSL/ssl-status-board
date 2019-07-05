@@ -8,11 +8,11 @@
 
         <div class="cards">
             <Card color="red" :num-cards="team.redCards"/>
-            <span> | </span>
+            <span class="card-separator"> | </span>
             <Card color="yellow"
                   :class="{'marked-card': markYellowCard}"
                   :num-cards="team.yellowCards"/>
-            <span> | </span>
+            <span class="card-separator"> | </span>
             <span class="botinfo">
                 <img class="boticon" src="bot.png"/>
                 {{team.maxAllowedBots}}
@@ -69,7 +69,9 @@
     }
 
     .team-name {
-        height: 12vh;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        font-size: 5vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -114,5 +116,10 @@
     .additional-cards {
         font-size: 24pt;
         color: yellow;
+    }
+
+    .card-separator {
+        display: inline-block;
+        padding-right: 2px;
     }
 </style>
