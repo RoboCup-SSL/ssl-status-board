@@ -282,7 +282,7 @@ export const mapGameEventToText = function (event) {
     }
     if (event.defenderTooCloseToKickPoint != null) {
         return `${teamAndBot(event.defenderTooCloseToKickPoint)} `
-            + `too close to kick point (${velocity(event.defenderTooCloseToKickPoint.distance)})`;
+            + `too close to kick point (${distance(event.defenderTooCloseToKickPoint.distance)})`;
     }
     if (event.defenderInDefenseAreaPartially != null) {
         return `${teamAndBot(event.defenderInDefenseAreaPartially)} `

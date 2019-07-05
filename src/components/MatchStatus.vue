@@ -137,7 +137,7 @@
 
     .separator {
         margin: 0.2em;
-        width: 100%;
+        width: 100%
     }
 
     .score {
