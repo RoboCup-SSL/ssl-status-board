@@ -126,10 +126,13 @@
 
     .time-positive {
         border-color: green;
+        background-color: rgba(0, 255, 0, 0.1);
+
     }
 
     .time-negative {
         border-color: red;
+        background-color: rgba(255, 0, 0, 0.1);
     }
 
     .separator {
@@ -152,18 +155,19 @@
     }
 
     .highlight-command {
-        transition: background-color 1000ms ease;
-        border-radius: 1em;
+        transition: background-color 500ms ease;
+        border-radius: .5em;
         padding: 0.1em;
+        padding-top: 0.2em;
         margin-top: 0.1em;
     }
 
     .highlight-command.stop-command {
-        background-color: #E23D28;
+        background-color: #FF7000
     }
 
     .highlight-command.halt-command {
-        background-color: #A50021;
+        background-color: #EE0022;
     }
 
 </style>
