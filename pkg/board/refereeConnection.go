@@ -1,9 +1,6 @@
 package board
 
 import (
-	"fmt"
-	"github.com/RoboCup-SSL/ssl-game-controller/pkg/refproto"
-	"github.com/golang/protobuf/proto"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -12,8 +9,8 @@ import (
 
 // Board contains the state of this referee board
 type Board struct {
-	cfg     RefereeConfig
-	referee *refproto.Referee
+	cfg         RefereeConfig
+	refereeData []byte
 }
 
 // NewBoard creates a new referee board
@@ -27,24 +24,14 @@ func (b *Board) HandleIncomingMessages() {
 }
 
 func (b *Board) handlingMessage(data []byte) {
-	message := new(refproto.Referee)
-	err := proto.Unmarshal(data, message)
-	if err != nil {
-		log.Print("Could not parse referee message: ", err)
-	} else {
-		b.referee = message
-	}
+	b.refereeData = data
 }
 
 // SendToWebSocket sends latest data to the given websocket
 func (b *Board) SendToWebSocket(conn *websocket.Conn) {
 	for {
-		if b.referee != nil {
-			data, err := proto.Marshal(b.referee)
-			if err != nil {
-				fmt.Println("Marshal error:", err)
-			}
-			if err := conn.WriteMessage(websocket.BinaryMessage, data); err != nil {
+		if len(b.refereeData) > 0 {
+			if err := conn.WriteMessage(websocket.BinaryMessage, b.refereeData); err != nil {
 				log.Println("Could not write to referee websocket: ", err)
 				return
 			}
