@@ -40,11 +40,11 @@
             },
 
             autoRefIndicator(gameEvent) {
-                if(gameEvent.origin == "")
+                if(gameEvent.origin === "")
                 {
                     return "GameController";
                 } else {
-                    return gameEvent.origin;
+                    return gameEvent.origin.join(', ');
                 }
             }
         }
@@ -77,7 +77,7 @@
         padding: 2px;
         padding-left: 10px;
     }
-    
+
     .more-game-events {
         font-size: 2.5vmin;
         text-align: center;
