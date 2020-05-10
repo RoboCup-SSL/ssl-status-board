@@ -120,7 +120,8 @@ export const mapGameEventToText = function (event) {
         return `${teamAndBot(event.botSubstitution)} requests bot substitution`;
     }
     if (event.tooManyRobots != null) {
-        return `${teamAndBot(event.tooManyRobots)} has too many robots on field`;
+        return `${teamAndBot(event.tooManyRobots)} has ${event.tooManyRobots.numRobotsOnField} robots on the field, `
+            + `but only ${event.tooManyRobots.numRobotsAllowed} are allowed`;
     }
     if (event.ballLeftFieldTouchLine != null) {
         return `${teamAndBot(event.ballLeftFieldTouchLine)} kicked ball out via touch line`;
@@ -139,6 +140,9 @@ export const mapGameEventToText = function (event) {
     }
     if (event.chippedGoal != null) {
         return `${teamAndBot(event.chippedGoal)} chipped on goal`;
+    }
+    if (event.invalidGoal != null) {
+        return `Scored goal by ${teamAndBot(event.invalidGoal)} is invalid: ${event.invalidGoal.message}`;
     }
     if (event.aimlessKick != null) {
         return `${teamAndBot(event.aimlessKick)} kicked aimlessly`;
@@ -180,7 +184,7 @@ export const mapGameEventToText = function (event) {
     }
     if (event.attackerTooCloseToDefenseArea != null) {
         return `${teamAndBot(event.attackerTooCloseToDefenseArea)} too close to opponent defense area `
-            + `(${distance(event.attackerTooCloseToDefenseArea.distance)})`;
+            + `(${distance(event.attackerTooCloseToDefenseArea.distance)}m)`;
     }
     if (event.botInterferedPlacement != null) {
         return `${teamAndBot(event.botInterferedPlacement)} interfered placement`;
@@ -310,6 +314,18 @@ export const mapGameEventToText = function (event) {
     if (event.unsportingBehaviorMajor != null) {
         return `Major unsporting behavior by ${teamAndBot(event.unsportingBehaviorMajor)}: `
             + event.unsportingBehaviorMajor.reason;
+    }
+    if (event.boundaryCrossing != null) {
+        return `${teamAndBot(event.boundaryCrossing)} kicked the ball over the field boundary`;
+    }
+    if (event.penaltyKickFailed != null) {
+        return `Penalty kick failed by ${teamAndBot(event.penaltyKickFailed)}`;
+    }
+    if (event.challengeFlag != null) {
+        return `${teamAndBot(event.challengeFlag)} raised a challenge flag`;
+    }
+    if (event.emergencyStop != null) {
+        return `Emergency stop for ${teamAndBot(event.emergencyStop)} executed`;
     }
     return 'unknown game event';
 };
