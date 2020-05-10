@@ -23,25 +23,25 @@ $root.Team = (function() {
     return values;
 })();
 
-export const BotId = $root.BotId = (() => {
+export const RobotId = $root.RobotId = (() => {
 
     /**
-     * Properties of a BotId.
-     * @exports IBotId
-     * @interface IBotId
-     * @property {number|null} [id] BotId id
-     * @property {Team|null} [team] BotId team
+     * Properties of a RobotId.
+     * @exports IRobotId
+     * @interface IRobotId
+     * @property {number|null} [id] RobotId id
+     * @property {Team|null} [team] RobotId team
      */
 
     /**
-     * Constructs a new BotId.
-     * @exports BotId
-     * @classdesc Represents a BotId.
-     * @implements IBotId
+     * Constructs a new RobotId.
+     * @exports RobotId
+     * @classdesc Represents a RobotId.
+     * @implements IRobotId
      * @constructor
-     * @param {IBotId=} [properties] Properties to set
+     * @param {IRobotId=} [properties] Properties to set
      */
-    function BotId(properties) {
+    function RobotId(properties) {
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -49,85 +49,85 @@ export const BotId = $root.BotId = (() => {
     }
 
     /**
-     * BotId id.
+     * RobotId id.
      * @member {number} id
-     * @memberof BotId
+     * @memberof RobotId
      * @instance
      */
-    BotId.prototype.id = 0;
+    RobotId.prototype.id = 0;
 
     /**
-     * BotId team.
+     * RobotId team.
      * @member {Team} team
-     * @memberof BotId
+     * @memberof RobotId
      * @instance
      */
-    BotId.prototype.team = 0;
+    RobotId.prototype.team = 0;
 
     /**
-     * Creates a new BotId instance using the specified properties.
+     * Creates a new RobotId instance using the specified properties.
      * @function create
-     * @memberof BotId
+     * @memberof RobotId
      * @static
-     * @param {IBotId=} [properties] Properties to set
-     * @returns {BotId} BotId instance
+     * @param {IRobotId=} [properties] Properties to set
+     * @returns {RobotId} RobotId instance
      */
-    BotId.create = function create(properties) {
-        return new BotId(properties);
+    RobotId.create = function create(properties) {
+        return new RobotId(properties);
     };
 
     /**
-     * Encodes the specified BotId message. Does not implicitly {@link BotId.verify|verify} messages.
+     * Encodes the specified RobotId message. Does not implicitly {@link RobotId.verify|verify} messages.
      * @function encode
-     * @memberof BotId
+     * @memberof RobotId
      * @static
-     * @param {IBotId} message BotId message or plain object to encode
+     * @param {IRobotId} message RobotId message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    BotId.encode = function encode(message, writer) {
+    RobotId.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
         if (message.id != null && message.hasOwnProperty("id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
         if (message.team != null && message.hasOwnProperty("team"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.team);
         return writer;
     };
 
     /**
-     * Encodes the specified BotId message, length delimited. Does not implicitly {@link BotId.verify|verify} messages.
+     * Encodes the specified RobotId message, length delimited. Does not implicitly {@link RobotId.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof BotId
+     * @memberof RobotId
      * @static
-     * @param {IBotId} message BotId message or plain object to encode
+     * @param {IRobotId} message RobotId message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    BotId.encodeDelimited = function encodeDelimited(message, writer) {
+    RobotId.encodeDelimited = function encodeDelimited(message, writer) {
         return this.encode(message, writer).ldelim();
     };
 
     /**
-     * Decodes a BotId message from the specified reader or buffer.
+     * Decodes a RobotId message from the specified reader or buffer.
      * @function decode
-     * @memberof BotId
+     * @memberof RobotId
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {BotId} BotId
+     * @returns {RobotId} RobotId
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    BotId.decode = function decode(reader, length) {
+    RobotId.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotId();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.RobotId();
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
-                message.id = reader.int32();
+                message.id = reader.uint32();
                 break;
             case 2:
                 message.team = reader.int32();
@@ -141,30 +141,30 @@ export const BotId = $root.BotId = (() => {
     };
 
     /**
-     * Decodes a BotId message from the specified reader or buffer, length delimited.
+     * Decodes a RobotId message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof BotId
+     * @memberof RobotId
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {BotId} BotId
+     * @returns {RobotId} RobotId
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    BotId.decodeDelimited = function decodeDelimited(reader) {
+    RobotId.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a BotId message.
+     * Verifies a RobotId message.
      * @function verify
-     * @memberof BotId
+     * @memberof RobotId
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    BotId.verify = function verify(message) {
+    RobotId.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (message.id != null && message.hasOwnProperty("id"))
@@ -183,19 +183,19 @@ export const BotId = $root.BotId = (() => {
     };
 
     /**
-     * Creates a BotId message from a plain object. Also converts values to their respective internal types.
+     * Creates a RobotId message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof BotId
+     * @memberof RobotId
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {BotId} BotId
+     * @returns {RobotId} RobotId
      */
-    BotId.fromObject = function fromObject(object) {
-        if (object instanceof $root.BotId)
+    RobotId.fromObject = function fromObject(object) {
+        if (object instanceof $root.RobotId)
             return object;
-        let message = new $root.BotId();
+        let message = new $root.RobotId();
         if (object.id != null)
-            message.id = object.id | 0;
+            message.id = object.id >>> 0;
         switch (object.team) {
         case "UNKNOWN":
         case 0:
@@ -214,15 +214,15 @@ export const BotId = $root.BotId = (() => {
     };
 
     /**
-     * Creates a plain object from a BotId message. Also converts values to other types if specified.
+     * Creates a plain object from a RobotId message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof BotId
+     * @memberof RobotId
      * @static
-     * @param {BotId} message BotId
+     * @param {RobotId} message RobotId
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    BotId.toObject = function toObject(message, options) {
+    RobotId.toObject = function toObject(message, options) {
         if (!options)
             options = {};
         let object = {};
@@ -238,1014 +238,33 @@ export const BotId = $root.BotId = (() => {
     };
 
     /**
-     * Converts this BotId to JSON.
+     * Converts this RobotId to JSON.
      * @function toJSON
-     * @memberof BotId
+     * @memberof RobotId
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    BotId.prototype.toJSON = function toJSON() {
+    RobotId.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
-    return BotId;
+    return RobotId;
 })();
 
-export const Location = $root.Location = (() => {
-
-    /**
-     * Properties of a Location.
-     * @exports ILocation
-     * @interface ILocation
-     * @property {number} x Location x
-     * @property {number} y Location y
-     */
-
-    /**
-     * Constructs a new Location.
-     * @exports Location
-     * @classdesc Represents a Location.
-     * @implements ILocation
-     * @constructor
-     * @param {ILocation=} [properties] Properties to set
-     */
-    function Location(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Location x.
-     * @member {number} x
-     * @memberof Location
-     * @instance
-     */
-    Location.prototype.x = 0;
-
-    /**
-     * Location y.
-     * @member {number} y
-     * @memberof Location
-     * @instance
-     */
-    Location.prototype.y = 0;
-
-    /**
-     * Creates a new Location instance using the specified properties.
-     * @function create
-     * @memberof Location
-     * @static
-     * @param {ILocation=} [properties] Properties to set
-     * @returns {Location} Location instance
-     */
-    Location.create = function create(properties) {
-        return new Location(properties);
-    };
-
-    /**
-     * Encodes the specified Location message. Does not implicitly {@link Location.verify|verify} messages.
-     * @function encode
-     * @memberof Location
-     * @static
-     * @param {ILocation} message Location message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Location.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
-        writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified Location message, length delimited. Does not implicitly {@link Location.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof Location
-     * @static
-     * @param {ILocation} message Location message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Location.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a Location message from the specified reader or buffer.
-     * @function decode
-     * @memberof Location
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {Location} Location
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Location.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Location();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.x = reader.float();
-                break;
-            case 2:
-                message.y = reader.float();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        if (!message.hasOwnProperty("x"))
-            throw $util.ProtocolError("missing required 'x'", { instance: message });
-        if (!message.hasOwnProperty("y"))
-            throw $util.ProtocolError("missing required 'y'", { instance: message });
-        return message;
-    };
-
-    /**
-     * Decodes a Location message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof Location
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {Location} Location
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Location.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a Location message.
-     * @function verify
-     * @memberof Location
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    Location.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (typeof message.x !== "number")
-            return "x: number expected";
-        if (typeof message.y !== "number")
-            return "y: number expected";
-        return null;
-    };
-
-    /**
-     * Creates a Location message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof Location
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {Location} Location
-     */
-    Location.fromObject = function fromObject(object) {
-        if (object instanceof $root.Location)
-            return object;
-        let message = new $root.Location();
-        if (object.x != null)
-            message.x = Number(object.x);
-        if (object.y != null)
-            message.y = Number(object.y);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a Location message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof Location
-     * @static
-     * @param {Location} message Location
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    Location.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.x = 0;
-            object.y = 0;
-        }
-        if (message.x != null && message.hasOwnProperty("x"))
-            object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
-        if (message.y != null && message.hasOwnProperty("y"))
-            object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
-        return object;
-    };
-
-    /**
-     * Converts this Location to JSON.
-     * @function toJSON
-     * @memberof Location
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    Location.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    return Location;
-})();
-
-export const ControllerReply = $root.ControllerReply = (() => {
-
-    /**
-     * Properties of a ControllerReply.
-     * @exports IControllerReply
-     * @interface IControllerReply
-     * @property {ControllerReply.StatusCode|null} [statusCode] ControllerReply statusCode
-     * @property {string|null} [reason] ControllerReply reason
-     * @property {string|null} [nextToken] ControllerReply nextToken
-     * @property {ControllerReply.Verification|null} [verification] ControllerReply verification
-     */
-
-    /**
-     * Constructs a new ControllerReply.
-     * @exports ControllerReply
-     * @classdesc Represents a ControllerReply.
-     * @implements IControllerReply
-     * @constructor
-     * @param {IControllerReply=} [properties] Properties to set
-     */
-    function ControllerReply(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ControllerReply statusCode.
-     * @member {ControllerReply.StatusCode} statusCode
-     * @memberof ControllerReply
-     * @instance
-     */
-    ControllerReply.prototype.statusCode = 0;
-
-    /**
-     * ControllerReply reason.
-     * @member {string} reason
-     * @memberof ControllerReply
-     * @instance
-     */
-    ControllerReply.prototype.reason = "";
-
-    /**
-     * ControllerReply nextToken.
-     * @member {string} nextToken
-     * @memberof ControllerReply
-     * @instance
-     */
-    ControllerReply.prototype.nextToken = "";
-
-    /**
-     * ControllerReply verification.
-     * @member {ControllerReply.Verification} verification
-     * @memberof ControllerReply
-     * @instance
-     */
-    ControllerReply.prototype.verification = 0;
-
-    /**
-     * Creates a new ControllerReply instance using the specified properties.
-     * @function create
-     * @memberof ControllerReply
-     * @static
-     * @param {IControllerReply=} [properties] Properties to set
-     * @returns {ControllerReply} ControllerReply instance
-     */
-    ControllerReply.create = function create(properties) {
-        return new ControllerReply(properties);
-    };
-
-    /**
-     * Encodes the specified ControllerReply message. Does not implicitly {@link ControllerReply.verify|verify} messages.
-     * @function encode
-     * @memberof ControllerReply
-     * @static
-     * @param {IControllerReply} message ControllerReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    ControllerReply.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        if (message.statusCode != null && message.hasOwnProperty("statusCode"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.statusCode);
-        if (message.reason != null && message.hasOwnProperty("reason"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.reason);
-        if (message.nextToken != null && message.hasOwnProperty("nextToken"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.nextToken);
-        if (message.verification != null && message.hasOwnProperty("verification"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.verification);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified ControllerReply message, length delimited. Does not implicitly {@link ControllerReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof ControllerReply
-     * @static
-     * @param {IControllerReply} message ControllerReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    ControllerReply.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a ControllerReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof ControllerReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {ControllerReply} ControllerReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    ControllerReply.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ControllerReply();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.statusCode = reader.int32();
-                break;
-            case 2:
-                message.reason = reader.string();
-                break;
-            case 3:
-                message.nextToken = reader.string();
-                break;
-            case 4:
-                message.verification = reader.int32();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Decodes a ControllerReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof ControllerReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {ControllerReply} ControllerReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    ControllerReply.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a ControllerReply message.
-     * @function verify
-     * @memberof ControllerReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    ControllerReply.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (message.statusCode != null && message.hasOwnProperty("statusCode"))
-            switch (message.statusCode) {
-            default:
-                return "statusCode: enum value expected";
-            case 0:
-            case 1:
-            case 2:
-                break;
-            }
-        if (message.reason != null && message.hasOwnProperty("reason"))
-            if (!$util.isString(message.reason))
-                return "reason: string expected";
-        if (message.nextToken != null && message.hasOwnProperty("nextToken"))
-            if (!$util.isString(message.nextToken))
-                return "nextToken: string expected";
-        if (message.verification != null && message.hasOwnProperty("verification"))
-            switch (message.verification) {
-            default:
-                return "verification: enum value expected";
-            case 0:
-            case 1:
-            case 2:
-                break;
-            }
-        return null;
-    };
-
-    /**
-     * Creates a ControllerReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof ControllerReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {ControllerReply} ControllerReply
-     */
-    ControllerReply.fromObject = function fromObject(object) {
-        if (object instanceof $root.ControllerReply)
-            return object;
-        let message = new $root.ControllerReply();
-        switch (object.statusCode) {
-        case "UNKNOWN_STATUS_CODE":
-        case 0:
-            message.statusCode = 0;
-            break;
-        case "OK":
-        case 1:
-            message.statusCode = 1;
-            break;
-        case "REJECTED":
-        case 2:
-            message.statusCode = 2;
-            break;
-        }
-        if (object.reason != null)
-            message.reason = String(object.reason);
-        if (object.nextToken != null)
-            message.nextToken = String(object.nextToken);
-        switch (object.verification) {
-        case "UNKNOWN_VERIFICATION":
-        case 0:
-            message.verification = 0;
-            break;
-        case "VERIFIED":
-        case 1:
-            message.verification = 1;
-            break;
-        case "UNVERIFIED":
-        case 2:
-            message.verification = 2;
-            break;
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a ControllerReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof ControllerReply
-     * @static
-     * @param {ControllerReply} message ControllerReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    ControllerReply.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.statusCode = options.enums === String ? "UNKNOWN_STATUS_CODE" : 0;
-            object.reason = "";
-            object.nextToken = "";
-            object.verification = options.enums === String ? "UNKNOWN_VERIFICATION" : 0;
-        }
-        if (message.statusCode != null && message.hasOwnProperty("statusCode"))
-            object.statusCode = options.enums === String ? $root.ControllerReply.StatusCode[message.statusCode] : message.statusCode;
-        if (message.reason != null && message.hasOwnProperty("reason"))
-            object.reason = message.reason;
-        if (message.nextToken != null && message.hasOwnProperty("nextToken"))
-            object.nextToken = message.nextToken;
-        if (message.verification != null && message.hasOwnProperty("verification"))
-            object.verification = options.enums === String ? $root.ControllerReply.Verification[message.verification] : message.verification;
-        return object;
-    };
-
-    /**
-     * Converts this ControllerReply to JSON.
-     * @function toJSON
-     * @memberof ControllerReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    ControllerReply.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * StatusCode enum.
-     * @name ControllerReply.StatusCode
-     * @enum {string}
-     * @property {number} UNKNOWN_STATUS_CODE=0 UNKNOWN_STATUS_CODE value
-     * @property {number} OK=1 OK value
-     * @property {number} REJECTED=2 REJECTED value
-     */
-    ControllerReply.StatusCode = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "UNKNOWN_STATUS_CODE"] = 0;
-        values[valuesById[1] = "OK"] = 1;
-        values[valuesById[2] = "REJECTED"] = 2;
-        return values;
-    })();
-
-    /**
-     * Verification enum.
-     * @name ControllerReply.Verification
-     * @enum {string}
-     * @property {number} UNKNOWN_VERIFICATION=0 UNKNOWN_VERIFICATION value
-     * @property {number} VERIFIED=1 VERIFIED value
-     * @property {number} UNVERIFIED=2 UNVERIFIED value
-     */
-    ControllerReply.Verification = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "UNKNOWN_VERIFICATION"] = 0;
-        values[valuesById[1] = "VERIFIED"] = 1;
-        values[valuesById[2] = "UNVERIFIED"] = 2;
-        return values;
-    })();
-
-    return ControllerReply;
-})();
-
-export const Signature = $root.Signature = (() => {
-
-    /**
-     * Properties of a Signature.
-     * @exports ISignature
-     * @interface ISignature
-     * @property {string} token Signature token
-     * @property {Uint8Array} pkcs1v15 Signature pkcs1v15
-     */
-
-    /**
-     * Constructs a new Signature.
-     * @exports Signature
-     * @classdesc Represents a Signature.
-     * @implements ISignature
-     * @constructor
-     * @param {ISignature=} [properties] Properties to set
-     */
-    function Signature(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Signature token.
-     * @member {string} token
-     * @memberof Signature
-     * @instance
-     */
-    Signature.prototype.token = "";
-
-    /**
-     * Signature pkcs1v15.
-     * @member {Uint8Array} pkcs1v15
-     * @memberof Signature
-     * @instance
-     */
-    Signature.prototype.pkcs1v15 = $util.newBuffer([]);
-
-    /**
-     * Creates a new Signature instance using the specified properties.
-     * @function create
-     * @memberof Signature
-     * @static
-     * @param {ISignature=} [properties] Properties to set
-     * @returns {Signature} Signature instance
-     */
-    Signature.create = function create(properties) {
-        return new Signature(properties);
-    };
-
-    /**
-     * Encodes the specified Signature message. Does not implicitly {@link Signature.verify|verify} messages.
-     * @function encode
-     * @memberof Signature
-     * @static
-     * @param {ISignature} message Signature message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Signature.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
-        writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.pkcs1v15);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified Signature message, length delimited. Does not implicitly {@link Signature.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof Signature
-     * @static
-     * @param {ISignature} message Signature message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Signature.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a Signature message from the specified reader or buffer.
-     * @function decode
-     * @memberof Signature
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {Signature} Signature
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Signature.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Signature();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.token = reader.string();
-                break;
-            case 2:
-                message.pkcs1v15 = reader.bytes();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        if (!message.hasOwnProperty("token"))
-            throw $util.ProtocolError("missing required 'token'", { instance: message });
-        if (!message.hasOwnProperty("pkcs1v15"))
-            throw $util.ProtocolError("missing required 'pkcs1v15'", { instance: message });
-        return message;
-    };
-
-    /**
-     * Decodes a Signature message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof Signature
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {Signature} Signature
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Signature.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a Signature message.
-     * @function verify
-     * @memberof Signature
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    Signature.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (!$util.isString(message.token))
-            return "token: string expected";
-        if (!(message.pkcs1v15 && typeof message.pkcs1v15.length === "number" || $util.isString(message.pkcs1v15)))
-            return "pkcs1v15: buffer expected";
-        return null;
-    };
-
-    /**
-     * Creates a Signature message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof Signature
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {Signature} Signature
-     */
-    Signature.fromObject = function fromObject(object) {
-        if (object instanceof $root.Signature)
-            return object;
-        let message = new $root.Signature();
-        if (object.token != null)
-            message.token = String(object.token);
-        if (object.pkcs1v15 != null)
-            if (typeof object.pkcs1v15 === "string")
-                $util.base64.decode(object.pkcs1v15, message.pkcs1v15 = $util.newBuffer($util.base64.length(object.pkcs1v15)), 0);
-            else if (object.pkcs1v15.length)
-                message.pkcs1v15 = object.pkcs1v15;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a Signature message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof Signature
-     * @static
-     * @param {Signature} message Signature
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    Signature.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.token = "";
-            if (options.bytes === String)
-                object.pkcs1v15 = "";
-            else {
-                object.pkcs1v15 = [];
-                if (options.bytes !== Array)
-                    object.pkcs1v15 = $util.newBuffer(object.pkcs1v15);
-            }
-        }
-        if (message.token != null && message.hasOwnProperty("token"))
-            object.token = message.token;
-        if (message.pkcs1v15 != null && message.hasOwnProperty("pkcs1v15"))
-            object.pkcs1v15 = options.bytes === String ? $util.base64.encode(message.pkcs1v15, 0, message.pkcs1v15.length) : options.bytes === Array ? Array.prototype.slice.call(message.pkcs1v15) : message.pkcs1v15;
-        return object;
-    };
-
-    /**
-     * Converts this Signature to JSON.
-     * @function toJSON
-     * @memberof Signature
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    Signature.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    return Signature;
-})();
-
-export const BallSpeedMeasurement = $root.BallSpeedMeasurement = (() => {
-
-    /**
-     * Properties of a BallSpeedMeasurement.
-     * @exports IBallSpeedMeasurement
-     * @interface IBallSpeedMeasurement
-     * @property {number|Long} timestamp BallSpeedMeasurement timestamp
-     * @property {number} ballSpeed BallSpeedMeasurement ballSpeed
-     * @property {number|null} [initialBallSpeed] BallSpeedMeasurement initialBallSpeed
-     */
-
-    /**
-     * Constructs a new BallSpeedMeasurement.
-     * @exports BallSpeedMeasurement
-     * @classdesc Represents a BallSpeedMeasurement.
-     * @implements IBallSpeedMeasurement
-     * @constructor
-     * @param {IBallSpeedMeasurement=} [properties] Properties to set
-     */
-    function BallSpeedMeasurement(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * BallSpeedMeasurement timestamp.
-     * @member {number|Long} timestamp
-     * @memberof BallSpeedMeasurement
-     * @instance
-     */
-    BallSpeedMeasurement.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-    /**
-     * BallSpeedMeasurement ballSpeed.
-     * @member {number} ballSpeed
-     * @memberof BallSpeedMeasurement
-     * @instance
-     */
-    BallSpeedMeasurement.prototype.ballSpeed = 0;
-
-    /**
-     * BallSpeedMeasurement initialBallSpeed.
-     * @member {number} initialBallSpeed
-     * @memberof BallSpeedMeasurement
-     * @instance
-     */
-    BallSpeedMeasurement.prototype.initialBallSpeed = 0;
-
-    /**
-     * Creates a new BallSpeedMeasurement instance using the specified properties.
-     * @function create
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {IBallSpeedMeasurement=} [properties] Properties to set
-     * @returns {BallSpeedMeasurement} BallSpeedMeasurement instance
-     */
-    BallSpeedMeasurement.create = function create(properties) {
-        return new BallSpeedMeasurement(properties);
-    };
-
-    /**
-     * Encodes the specified BallSpeedMeasurement message. Does not implicitly {@link BallSpeedMeasurement.verify|verify} messages.
-     * @function encode
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {IBallSpeedMeasurement} message BallSpeedMeasurement message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    BallSpeedMeasurement.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.timestamp);
-        writer.uint32(/* id 2, wireType 5 =*/21).float(message.ballSpeed);
-        if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
-            writer.uint32(/* id 3, wireType 5 =*/29).float(message.initialBallSpeed);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified BallSpeedMeasurement message, length delimited. Does not implicitly {@link BallSpeedMeasurement.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {IBallSpeedMeasurement} message BallSpeedMeasurement message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    BallSpeedMeasurement.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a BallSpeedMeasurement message from the specified reader or buffer.
-     * @function decode
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {BallSpeedMeasurement} BallSpeedMeasurement
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    BallSpeedMeasurement.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.BallSpeedMeasurement();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.timestamp = reader.uint64();
-                break;
-            case 2:
-                message.ballSpeed = reader.float();
-                break;
-            case 3:
-                message.initialBallSpeed = reader.float();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        if (!message.hasOwnProperty("timestamp"))
-            throw $util.ProtocolError("missing required 'timestamp'", { instance: message });
-        if (!message.hasOwnProperty("ballSpeed"))
-            throw $util.ProtocolError("missing required 'ballSpeed'", { instance: message });
-        return message;
-    };
-
-    /**
-     * Decodes a BallSpeedMeasurement message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {BallSpeedMeasurement} BallSpeedMeasurement
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    BallSpeedMeasurement.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a BallSpeedMeasurement message.
-     * @function verify
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    BallSpeedMeasurement.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
-            return "timestamp: integer|Long expected";
-        if (typeof message.ballSpeed !== "number")
-            return "ballSpeed: number expected";
-        if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
-            if (typeof message.initialBallSpeed !== "number")
-                return "initialBallSpeed: number expected";
-        return null;
-    };
-
-    /**
-     * Creates a BallSpeedMeasurement message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {BallSpeedMeasurement} BallSpeedMeasurement
-     */
-    BallSpeedMeasurement.fromObject = function fromObject(object) {
-        if (object instanceof $root.BallSpeedMeasurement)
-            return object;
-        let message = new $root.BallSpeedMeasurement();
-        if (object.timestamp != null)
-            if ($util.Long)
-                (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
-            else if (typeof object.timestamp === "string")
-                message.timestamp = parseInt(object.timestamp, 10);
-            else if (typeof object.timestamp === "number")
-                message.timestamp = object.timestamp;
-            else if (typeof object.timestamp === "object")
-                message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
-        if (object.ballSpeed != null)
-            message.ballSpeed = Number(object.ballSpeed);
-        if (object.initialBallSpeed != null)
-            message.initialBallSpeed = Number(object.initialBallSpeed);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a BallSpeedMeasurement message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof BallSpeedMeasurement
-     * @static
-     * @param {BallSpeedMeasurement} message BallSpeedMeasurement
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    BallSpeedMeasurement.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            if ($util.Long) {
-                let long = new $util.Long(0, 0, true);
-                object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-            } else
-                object.timestamp = options.longs === String ? "0" : 0;
-            object.ballSpeed = 0;
-            object.initialBallSpeed = 0;
-        }
-        if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-            if (typeof message.timestamp === "number")
-                object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
-            else
-                object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-        if (message.ballSpeed != null && message.hasOwnProperty("ballSpeed"))
-            object.ballSpeed = options.json && !isFinite(message.ballSpeed) ? String(message.ballSpeed) : message.ballSpeed;
-        if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
-            object.initialBallSpeed = options.json && !isFinite(message.initialBallSpeed) ? String(message.initialBallSpeed) : message.initialBallSpeed;
-        return object;
-    };
-
-    /**
-     * Converts this BallSpeedMeasurement to JSON.
-     * @function toJSON
-     * @memberof BallSpeedMeasurement
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    BallSpeedMeasurement.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    return BallSpeedMeasurement;
+/**
+ * Division enum.
+ * @exports Division
+ * @enum {string}
+ * @property {number} DIV_UNKNOWN=0 DIV_UNKNOWN value
+ * @property {number} DIV_A=1 DIV_A value
+ * @property {number} DIV_B=2 DIV_B value
+ */
+$root.Division = (function() {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "DIV_UNKNOWN"] = 0;
+    values[valuesById[1] = "DIV_A"] = 1;
+    values[valuesById[2] = "DIV_B"] = 2;
+    return values;
 })();
 
 export const GameEvent = $root.GameEvent = (() => {
@@ -1254,47 +273,52 @@ export const GameEvent = $root.GameEvent = (() => {
      * Properties of a GameEvent.
      * @exports IGameEvent
      * @interface IGameEvent
-     * @property {GameEventType} type GameEvent type
+     * @property {GameEvent.Type|null} [type] GameEvent type
      * @property {Array.<string>|null} [origin] GameEvent origin
-     * @property {GameEvent.IPrepared|null} [prepared] GameEvent prepared
-     * @property {GameEvent.INoProgressInGame|null} [noProgressInGame] GameEvent noProgressInGame
-     * @property {GameEvent.IPlacementFailed|null} [placementFailed] GameEvent placementFailed
-     * @property {GameEvent.IPlacementSucceeded|null} [placementSucceeded] GameEvent placementSucceeded
-     * @property {GameEvent.IBotSubstitution|null} [botSubstitution] GameEvent botSubstitution
-     * @property {GameEvent.ITooManyRobots|null} [tooManyRobots] GameEvent tooManyRobots
      * @property {GameEvent.IBallLeftField|null} [ballLeftFieldTouchLine] GameEvent ballLeftFieldTouchLine
      * @property {GameEvent.IBallLeftField|null} [ballLeftFieldGoalLine] GameEvent ballLeftFieldGoalLine
-     * @property {GameEvent.IGoal|null} [possibleGoal] GameEvent possibleGoal
-     * @property {GameEvent.IGoal|null} [goal] GameEvent goal
-     * @property {GameEvent.IIndirectGoal|null} [indirectGoal] GameEvent indirectGoal
-     * @property {GameEvent.IChippedGoal|null} [chippedGoal] GameEvent chippedGoal
      * @property {GameEvent.IAimlessKick|null} [aimlessKick] GameEvent aimlessKick
-     * @property {GameEvent.IKickTimeout|null} [kickTimeout] GameEvent kickTimeout
-     * @property {GameEvent.IKeeperHeldBall|null} [keeperHeldBall] GameEvent keeperHeldBall
-     * @property {GameEvent.IAttackerDoubleTouchedBall|null} [attackerDoubleTouchedBall] GameEvent attackerDoubleTouchedBall
-     * @property {GameEvent.IAttackerTouchedBallInDefenseArea|null} [attackerTouchedBallInDefenseArea] GameEvent attackerTouchedBallInDefenseArea
-     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseArea] GameEvent attackerTouchedOpponentInDefenseArea
-     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseAreaSkipped] GameEvent attackerTouchedOpponentInDefenseAreaSkipped
-     * @property {GameEvent.IBotDribbledBallTooFar|null} [botDribbledBallTooFar] GameEvent botDribbledBallTooFar
-     * @property {GameEvent.IBotKickedBallTooFast|null} [botKickedBallTooFast] GameEvent botKickedBallTooFast
      * @property {GameEvent.IAttackerTooCloseToDefenseArea|null} [attackerTooCloseToDefenseArea] GameEvent attackerTooCloseToDefenseArea
-     * @property {GameEvent.IBotInterferedPlacement|null} [botInterferedPlacement] GameEvent botInterferedPlacement
-     * @property {GameEvent.IBotCrashDrawn|null} [botCrashDrawn] GameEvent botCrashDrawn
-     * @property {GameEvent.IBotCrashUnique|null} [botCrashUnique] GameEvent botCrashUnique
-     * @property {GameEvent.IBotCrashUnique|null} [botCrashUniqueSkipped] GameEvent botCrashUniqueSkipped
+     * @property {GameEvent.IDefenderInDefenseArea|null} [defenderInDefenseArea] GameEvent defenderInDefenseArea
+     * @property {GameEvent.IBoundaryCrossing|null} [boundaryCrossing] GameEvent boundaryCrossing
+     * @property {GameEvent.IKeeperHeldBall|null} [keeperHeldBall] GameEvent keeperHeldBall
+     * @property {GameEvent.IBotDribbledBallTooFar|null} [botDribbledBallTooFar] GameEvent botDribbledBallTooFar
      * @property {GameEvent.IBotPushedBot|null} [botPushedBot] GameEvent botPushedBot
-     * @property {GameEvent.IBotPushedBot|null} [botPushedBotSkipped] GameEvent botPushedBotSkipped
      * @property {GameEvent.IBotHeldBallDeliberately|null} [botHeldBallDeliberately] GameEvent botHeldBallDeliberately
      * @property {GameEvent.IBotTippedOver|null} [botTippedOver] GameEvent botTippedOver
-     * @property {GameEvent.IBotTooFastInStop|null} [botTooFastInStop] GameEvent botTooFastInStop
+     * @property {GameEvent.IAttackerTouchedBallInDefenseArea|null} [attackerTouchedBallInDefenseArea] GameEvent attackerTouchedBallInDefenseArea
+     * @property {GameEvent.IBotKickedBallTooFast|null} [botKickedBallTooFast] GameEvent botKickedBallTooFast
+     * @property {GameEvent.IBotCrashUnique|null} [botCrashUnique] GameEvent botCrashUnique
+     * @property {GameEvent.IBotCrashDrawn|null} [botCrashDrawn] GameEvent botCrashDrawn
      * @property {GameEvent.IDefenderTooCloseToKickPoint|null} [defenderTooCloseToKickPoint] GameEvent defenderTooCloseToKickPoint
-     * @property {GameEvent.IDefenderInDefenseAreaPartially|null} [defenderInDefenseAreaPartially] GameEvent defenderInDefenseAreaPartially
-     * @property {GameEvent.IDefenderInDefenseArea|null} [defenderInDefenseArea] GameEvent defenderInDefenseArea
+     * @property {GameEvent.IBotTooFastInStop|null} [botTooFastInStop] GameEvent botTooFastInStop
+     * @property {GameEvent.IBotInterferedPlacement|null} [botInterferedPlacement] GameEvent botInterferedPlacement
+     * @property {GameEvent.IGoal|null} [possibleGoal] GameEvent possibleGoal
+     * @property {GameEvent.IGoal|null} [goal] GameEvent goal
+     * @property {GameEvent.IGoal|null} [invalidGoal] GameEvent invalidGoal
+     * @property {GameEvent.IAttackerDoubleTouchedBall|null} [attackerDoubleTouchedBall] GameEvent attackerDoubleTouchedBall
+     * @property {GameEvent.IPlacementSucceeded|null} [placementSucceeded] GameEvent placementSucceeded
+     * @property {GameEvent.IPenaltyKickFailed|null} [penaltyKickFailed] GameEvent penaltyKickFailed
+     * @property {GameEvent.INoProgressInGame|null} [noProgressInGame] GameEvent noProgressInGame
+     * @property {GameEvent.IPlacementFailed|null} [placementFailed] GameEvent placementFailed
      * @property {GameEvent.IMultipleCards|null} [multipleCards] GameEvent multipleCards
-     * @property {GameEvent.IMultiplePlacementFailures|null} [multiplePlacementFailures] GameEvent multiplePlacementFailures
      * @property {GameEvent.IMultipleFouls|null} [multipleFouls] GameEvent multipleFouls
+     * @property {GameEvent.IBotSubstitution|null} [botSubstitution] GameEvent botSubstitution
+     * @property {GameEvent.ITooManyRobots|null} [tooManyRobots] GameEvent tooManyRobots
+     * @property {GameEvent.IChallengeFlag|null} [challengeFlag] GameEvent challengeFlag
+     * @property {GameEvent.IEmergencyStop|null} [emergencyStop] GameEvent emergencyStop
      * @property {GameEvent.IUnsportingBehaviorMinor|null} [unsportingBehaviorMinor] GameEvent unsportingBehaviorMinor
      * @property {GameEvent.IUnsportingBehaviorMajor|null} [unsportingBehaviorMajor] GameEvent unsportingBehaviorMajor
+     * @property {GameEvent.IPrepared|null} [prepared] GameEvent prepared
+     * @property {GameEvent.IIndirectGoal|null} [indirectGoal] GameEvent indirectGoal
+     * @property {GameEvent.IChippedGoal|null} [chippedGoal] GameEvent chippedGoal
+     * @property {GameEvent.IKickTimeout|null} [kickTimeout] GameEvent kickTimeout
+     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseArea] GameEvent attackerTouchedOpponentInDefenseArea
+     * @property {GameEvent.IAttackerTouchedOpponentInDefenseArea|null} [attackerTouchedOpponentInDefenseAreaSkipped] GameEvent attackerTouchedOpponentInDefenseAreaSkipped
+     * @property {GameEvent.IBotCrashUnique|null} [botCrashUniqueSkipped] GameEvent botCrashUniqueSkipped
+     * @property {GameEvent.IBotPushedBot|null} [botPushedBotSkipped] GameEvent botPushedBotSkipped
+     * @property {GameEvent.IDefenderInDefenseAreaPartially|null} [defenderInDefenseAreaPartially] GameEvent defenderInDefenseAreaPartially
+     * @property {GameEvent.IMultiplePlacementFailures|null} [multiplePlacementFailures] GameEvent multiplePlacementFailures
      */
 
     /**
@@ -1315,7 +339,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
     /**
      * GameEvent type.
-     * @member {GameEventType} type
+     * @member {GameEvent.Type} type
      * @memberof GameEvent
      * @instance
      */
@@ -1328,54 +352,6 @@ export const GameEvent = $root.GameEvent = (() => {
      * @instance
      */
     GameEvent.prototype.origin = $util.emptyArray;
-
-    /**
-     * GameEvent prepared.
-     * @member {GameEvent.IPrepared|null|undefined} prepared
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.prepared = null;
-
-    /**
-     * GameEvent noProgressInGame.
-     * @member {GameEvent.INoProgressInGame|null|undefined} noProgressInGame
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.noProgressInGame = null;
-
-    /**
-     * GameEvent placementFailed.
-     * @member {GameEvent.IPlacementFailed|null|undefined} placementFailed
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.placementFailed = null;
-
-    /**
-     * GameEvent placementSucceeded.
-     * @member {GameEvent.IPlacementSucceeded|null|undefined} placementSucceeded
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.placementSucceeded = null;
-
-    /**
-     * GameEvent botSubstitution.
-     * @member {GameEvent.IBotSubstitution|null|undefined} botSubstitution
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.botSubstitution = null;
-
-    /**
-     * GameEvent tooManyRobots.
-     * @member {GameEvent.ITooManyRobots|null|undefined} tooManyRobots
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.tooManyRobots = null;
 
     /**
      * GameEvent ballLeftFieldTouchLine.
@@ -1394,108 +370,12 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.ballLeftFieldGoalLine = null;
 
     /**
-     * GameEvent possibleGoal.
-     * @member {GameEvent.IGoal|null|undefined} possibleGoal
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.possibleGoal = null;
-
-    /**
-     * GameEvent goal.
-     * @member {GameEvent.IGoal|null|undefined} goal
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.goal = null;
-
-    /**
-     * GameEvent indirectGoal.
-     * @member {GameEvent.IIndirectGoal|null|undefined} indirectGoal
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.indirectGoal = null;
-
-    /**
-     * GameEvent chippedGoal.
-     * @member {GameEvent.IChippedGoal|null|undefined} chippedGoal
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.chippedGoal = null;
-
-    /**
      * GameEvent aimlessKick.
      * @member {GameEvent.IAimlessKick|null|undefined} aimlessKick
      * @memberof GameEvent
      * @instance
      */
     GameEvent.prototype.aimlessKick = null;
-
-    /**
-     * GameEvent kickTimeout.
-     * @member {GameEvent.IKickTimeout|null|undefined} kickTimeout
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.kickTimeout = null;
-
-    /**
-     * GameEvent keeperHeldBall.
-     * @member {GameEvent.IKeeperHeldBall|null|undefined} keeperHeldBall
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.keeperHeldBall = null;
-
-    /**
-     * GameEvent attackerDoubleTouchedBall.
-     * @member {GameEvent.IAttackerDoubleTouchedBall|null|undefined} attackerDoubleTouchedBall
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.attackerDoubleTouchedBall = null;
-
-    /**
-     * GameEvent attackerTouchedBallInDefenseArea.
-     * @member {GameEvent.IAttackerTouchedBallInDefenseArea|null|undefined} attackerTouchedBallInDefenseArea
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.attackerTouchedBallInDefenseArea = null;
-
-    /**
-     * GameEvent attackerTouchedOpponentInDefenseArea.
-     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseArea
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.attackerTouchedOpponentInDefenseArea = null;
-
-    /**
-     * GameEvent attackerTouchedOpponentInDefenseAreaSkipped.
-     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseAreaSkipped
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.attackerTouchedOpponentInDefenseAreaSkipped = null;
-
-    /**
-     * GameEvent botDribbledBallTooFar.
-     * @member {GameEvent.IBotDribbledBallTooFar|null|undefined} botDribbledBallTooFar
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.botDribbledBallTooFar = null;
-
-    /**
-     * GameEvent botKickedBallTooFast.
-     * @member {GameEvent.IBotKickedBallTooFast|null|undefined} botKickedBallTooFast
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.botKickedBallTooFast = null;
 
     /**
      * GameEvent attackerTooCloseToDefenseArea.
@@ -1506,36 +386,36 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.attackerTooCloseToDefenseArea = null;
 
     /**
-     * GameEvent botInterferedPlacement.
-     * @member {GameEvent.IBotInterferedPlacement|null|undefined} botInterferedPlacement
+     * GameEvent defenderInDefenseArea.
+     * @member {GameEvent.IDefenderInDefenseArea|null|undefined} defenderInDefenseArea
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.botInterferedPlacement = null;
+    GameEvent.prototype.defenderInDefenseArea = null;
 
     /**
-     * GameEvent botCrashDrawn.
-     * @member {GameEvent.IBotCrashDrawn|null|undefined} botCrashDrawn
+     * GameEvent boundaryCrossing.
+     * @member {GameEvent.IBoundaryCrossing|null|undefined} boundaryCrossing
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.botCrashDrawn = null;
+    GameEvent.prototype.boundaryCrossing = null;
 
     /**
-     * GameEvent botCrashUnique.
-     * @member {GameEvent.IBotCrashUnique|null|undefined} botCrashUnique
+     * GameEvent keeperHeldBall.
+     * @member {GameEvent.IKeeperHeldBall|null|undefined} keeperHeldBall
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.botCrashUnique = null;
+    GameEvent.prototype.keeperHeldBall = null;
 
     /**
-     * GameEvent botCrashUniqueSkipped.
-     * @member {GameEvent.IBotCrashUnique|null|undefined} botCrashUniqueSkipped
+     * GameEvent botDribbledBallTooFar.
+     * @member {GameEvent.IBotDribbledBallTooFar|null|undefined} botDribbledBallTooFar
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.botCrashUniqueSkipped = null;
+    GameEvent.prototype.botDribbledBallTooFar = null;
 
     /**
      * GameEvent botPushedBot.
@@ -1544,14 +424,6 @@ export const GameEvent = $root.GameEvent = (() => {
      * @instance
      */
     GameEvent.prototype.botPushedBot = null;
-
-    /**
-     * GameEvent botPushedBotSkipped.
-     * @member {GameEvent.IBotPushedBot|null|undefined} botPushedBotSkipped
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.botPushedBotSkipped = null;
 
     /**
      * GameEvent botHeldBallDeliberately.
@@ -1570,12 +442,36 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.botTippedOver = null;
 
     /**
-     * GameEvent botTooFastInStop.
-     * @member {GameEvent.IBotTooFastInStop|null|undefined} botTooFastInStop
+     * GameEvent attackerTouchedBallInDefenseArea.
+     * @member {GameEvent.IAttackerTouchedBallInDefenseArea|null|undefined} attackerTouchedBallInDefenseArea
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.botTooFastInStop = null;
+    GameEvent.prototype.attackerTouchedBallInDefenseArea = null;
+
+    /**
+     * GameEvent botKickedBallTooFast.
+     * @member {GameEvent.IBotKickedBallTooFast|null|undefined} botKickedBallTooFast
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botKickedBallTooFast = null;
+
+    /**
+     * GameEvent botCrashUnique.
+     * @member {GameEvent.IBotCrashUnique|null|undefined} botCrashUnique
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botCrashUnique = null;
+
+    /**
+     * GameEvent botCrashDrawn.
+     * @member {GameEvent.IBotCrashDrawn|null|undefined} botCrashDrawn
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botCrashDrawn = null;
 
     /**
      * GameEvent defenderTooCloseToKickPoint.
@@ -1586,20 +482,84 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.defenderTooCloseToKickPoint = null;
 
     /**
-     * GameEvent defenderInDefenseAreaPartially.
-     * @member {GameEvent.IDefenderInDefenseAreaPartially|null|undefined} defenderInDefenseAreaPartially
+     * GameEvent botTooFastInStop.
+     * @member {GameEvent.IBotTooFastInStop|null|undefined} botTooFastInStop
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.defenderInDefenseAreaPartially = null;
+    GameEvent.prototype.botTooFastInStop = null;
 
     /**
-     * GameEvent defenderInDefenseArea.
-     * @member {GameEvent.IDefenderInDefenseArea|null|undefined} defenderInDefenseArea
+     * GameEvent botInterferedPlacement.
+     * @member {GameEvent.IBotInterferedPlacement|null|undefined} botInterferedPlacement
      * @memberof GameEvent
      * @instance
      */
-    GameEvent.prototype.defenderInDefenseArea = null;
+    GameEvent.prototype.botInterferedPlacement = null;
+
+    /**
+     * GameEvent possibleGoal.
+     * @member {GameEvent.IGoal|null|undefined} possibleGoal
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.possibleGoal = null;
+
+    /**
+     * GameEvent goal.
+     * @member {GameEvent.IGoal|null|undefined} goal
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.goal = null;
+
+    /**
+     * GameEvent invalidGoal.
+     * @member {GameEvent.IGoal|null|undefined} invalidGoal
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.invalidGoal = null;
+
+    /**
+     * GameEvent attackerDoubleTouchedBall.
+     * @member {GameEvent.IAttackerDoubleTouchedBall|null|undefined} attackerDoubleTouchedBall
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.attackerDoubleTouchedBall = null;
+
+    /**
+     * GameEvent placementSucceeded.
+     * @member {GameEvent.IPlacementSucceeded|null|undefined} placementSucceeded
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.placementSucceeded = null;
+
+    /**
+     * GameEvent penaltyKickFailed.
+     * @member {GameEvent.IPenaltyKickFailed|null|undefined} penaltyKickFailed
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.penaltyKickFailed = null;
+
+    /**
+     * GameEvent noProgressInGame.
+     * @member {GameEvent.INoProgressInGame|null|undefined} noProgressInGame
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.noProgressInGame = null;
+
+    /**
+     * GameEvent placementFailed.
+     * @member {GameEvent.IPlacementFailed|null|undefined} placementFailed
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.placementFailed = null;
 
     /**
      * GameEvent multipleCards.
@@ -1610,20 +570,44 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.multipleCards = null;
 
     /**
-     * GameEvent multiplePlacementFailures.
-     * @member {GameEvent.IMultiplePlacementFailures|null|undefined} multiplePlacementFailures
-     * @memberof GameEvent
-     * @instance
-     */
-    GameEvent.prototype.multiplePlacementFailures = null;
-
-    /**
      * GameEvent multipleFouls.
      * @member {GameEvent.IMultipleFouls|null|undefined} multipleFouls
      * @memberof GameEvent
      * @instance
      */
     GameEvent.prototype.multipleFouls = null;
+
+    /**
+     * GameEvent botSubstitution.
+     * @member {GameEvent.IBotSubstitution|null|undefined} botSubstitution
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botSubstitution = null;
+
+    /**
+     * GameEvent tooManyRobots.
+     * @member {GameEvent.ITooManyRobots|null|undefined} tooManyRobots
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.tooManyRobots = null;
+
+    /**
+     * GameEvent challengeFlag.
+     * @member {GameEvent.IChallengeFlag|null|undefined} challengeFlag
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.challengeFlag = null;
+
+    /**
+     * GameEvent emergencyStop.
+     * @member {GameEvent.IEmergencyStop|null|undefined} emergencyStop
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.emergencyStop = null;
 
     /**
      * GameEvent unsportingBehaviorMinor.
@@ -1641,17 +625,97 @@ export const GameEvent = $root.GameEvent = (() => {
      */
     GameEvent.prototype.unsportingBehaviorMajor = null;
 
+    /**
+     * GameEvent prepared.
+     * @member {GameEvent.IPrepared|null|undefined} prepared
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.prepared = null;
+
+    /**
+     * GameEvent indirectGoal.
+     * @member {GameEvent.IIndirectGoal|null|undefined} indirectGoal
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.indirectGoal = null;
+
+    /**
+     * GameEvent chippedGoal.
+     * @member {GameEvent.IChippedGoal|null|undefined} chippedGoal
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.chippedGoal = null;
+
+    /**
+     * GameEvent kickTimeout.
+     * @member {GameEvent.IKickTimeout|null|undefined} kickTimeout
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.kickTimeout = null;
+
+    /**
+     * GameEvent attackerTouchedOpponentInDefenseArea.
+     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseArea
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.attackerTouchedOpponentInDefenseArea = null;
+
+    /**
+     * GameEvent attackerTouchedOpponentInDefenseAreaSkipped.
+     * @member {GameEvent.IAttackerTouchedOpponentInDefenseArea|null|undefined} attackerTouchedOpponentInDefenseAreaSkipped
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.attackerTouchedOpponentInDefenseAreaSkipped = null;
+
+    /**
+     * GameEvent botCrashUniqueSkipped.
+     * @member {GameEvent.IBotCrashUnique|null|undefined} botCrashUniqueSkipped
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botCrashUniqueSkipped = null;
+
+    /**
+     * GameEvent botPushedBotSkipped.
+     * @member {GameEvent.IBotPushedBot|null|undefined} botPushedBotSkipped
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.botPushedBotSkipped = null;
+
+    /**
+     * GameEvent defenderInDefenseAreaPartially.
+     * @member {GameEvent.IDefenderInDefenseAreaPartially|null|undefined} defenderInDefenseAreaPartially
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.defenderInDefenseAreaPartially = null;
+
+    /**
+     * GameEvent multiplePlacementFailures.
+     * @member {GameEvent.IMultiplePlacementFailures|null|undefined} multiplePlacementFailures
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.multiplePlacementFailures = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * GameEvent event.
-     * @member {"prepared"|"noProgressInGame"|"placementFailed"|"placementSucceeded"|"botSubstitution"|"tooManyRobots"|"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"possibleGoal"|"goal"|"indirectGoal"|"chippedGoal"|"aimlessKick"|"kickTimeout"|"keeperHeldBall"|"attackerDoubleTouchedBall"|"attackerTouchedBallInDefenseArea"|"attackerTouchedOpponentInDefenseArea"|"attackerTouchedOpponentInDefenseAreaSkipped"|"botDribbledBallTooFar"|"botKickedBallTooFast"|"attackerTooCloseToDefenseArea"|"botInterferedPlacement"|"botCrashDrawn"|"botCrashUnique"|"botCrashUniqueSkipped"|"botPushedBot"|"botPushedBotSkipped"|"botHeldBallDeliberately"|"botTippedOver"|"botTooFastInStop"|"defenderTooCloseToKickPoint"|"defenderInDefenseAreaPartially"|"defenderInDefenseArea"|"multipleCards"|"multiplePlacementFailures"|"multipleFouls"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|undefined} event
+     * @member {"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"aimlessKick"|"attackerTooCloseToDefenseArea"|"defenderInDefenseArea"|"boundaryCrossing"|"keeperHeldBall"|"botDribbledBallTooFar"|"botPushedBot"|"botHeldBallDeliberately"|"botTippedOver"|"attackerTouchedBallInDefenseArea"|"botKickedBallTooFast"|"botCrashUnique"|"botCrashDrawn"|"defenderTooCloseToKickPoint"|"botTooFastInStop"|"botInterferedPlacement"|"possibleGoal"|"goal"|"invalidGoal"|"attackerDoubleTouchedBall"|"placementSucceeded"|"penaltyKickFailed"|"noProgressInGame"|"placementFailed"|"multipleCards"|"multipleFouls"|"botSubstitution"|"tooManyRobots"|"challengeFlag"|"emergencyStop"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|"prepared"|"indirectGoal"|"chippedGoal"|"kickTimeout"|"attackerTouchedOpponentInDefenseArea"|"attackerTouchedOpponentInDefenseAreaSkipped"|"botCrashUniqueSkipped"|"botPushedBotSkipped"|"defenderInDefenseAreaPartially"|"multiplePlacementFailures"|undefined} event
      * @memberof GameEvent
      * @instance
      */
     Object.defineProperty(GameEvent.prototype, "event", {
-        get: $util.oneOfGetter($oneOfFields = ["prepared", "noProgressInGame", "placementFailed", "placementSucceeded", "botSubstitution", "tooManyRobots", "ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "possibleGoal", "goal", "indirectGoal", "chippedGoal", "aimlessKick", "kickTimeout", "keeperHeldBall", "attackerDoubleTouchedBall", "attackerTouchedBallInDefenseArea", "attackerTouchedOpponentInDefenseArea", "attackerTouchedOpponentInDefenseAreaSkipped", "botDribbledBallTooFar", "botKickedBallTooFast", "attackerTooCloseToDefenseArea", "botInterferedPlacement", "botCrashDrawn", "botCrashUnique", "botCrashUniqueSkipped", "botPushedBot", "botPushedBotSkipped", "botHeldBallDeliberately", "botTippedOver", "botTooFastInStop", "defenderTooCloseToKickPoint", "defenderInDefenseAreaPartially", "defenderInDefenseArea", "multipleCards", "multiplePlacementFailures", "multipleFouls", "unsportingBehaviorMinor", "unsportingBehaviorMajor"]),
+        get: $util.oneOfGetter($oneOfFields = ["ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "aimlessKick", "attackerTooCloseToDefenseArea", "defenderInDefenseArea", "boundaryCrossing", "keeperHeldBall", "botDribbledBallTooFar", "botPushedBot", "botHeldBallDeliberately", "botTippedOver", "attackerTouchedBallInDefenseArea", "botKickedBallTooFast", "botCrashUnique", "botCrashDrawn", "defenderTooCloseToKickPoint", "botTooFastInStop", "botInterferedPlacement", "possibleGoal", "goal", "invalidGoal", "attackerDoubleTouchedBall", "placementSucceeded", "penaltyKickFailed", "noProgressInGame", "placementFailed", "multipleCards", "multipleFouls", "botSubstitution", "tooManyRobots", "challengeFlag", "emergencyStop", "unsportingBehaviorMinor", "unsportingBehaviorMajor", "prepared", "indirectGoal", "chippedGoal", "kickTimeout", "attackerTouchedOpponentInDefenseArea", "attackerTouchedOpponentInDefenseAreaSkipped", "botCrashUniqueSkipped", "botPushedBotSkipped", "defenderInDefenseAreaPartially", "multiplePlacementFailures"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -1755,12 +819,23 @@ export const GameEvent = $root.GameEvent = (() => {
             $root.GameEvent.TooManyRobots.encode(message.tooManyRobots, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
         if (message.possibleGoal != null && message.hasOwnProperty("possibleGoal"))
             $root.GameEvent.Goal.encode(message.possibleGoal, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
-        writer.uint32(/* id 40, wireType 0 =*/320).int32(message.type);
+        if (message.type != null && message.hasOwnProperty("type"))
+            writer.uint32(/* id 40, wireType 0 =*/320).int32(message.type);
         if (message.origin != null && message.origin.length)
             for (let i = 0; i < message.origin.length; ++i)
                 writer.uint32(/* id 41, wireType 2 =*/330).string(message.origin[i]);
         if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped"))
             $root.GameEvent.AttackerTouchedOpponentInDefenseArea.encode(message.attackerTouchedOpponentInDefenseAreaSkipped, writer.uint32(/* id 42, wireType 2 =*/338).fork()).ldelim();
+        if (message.boundaryCrossing != null && message.hasOwnProperty("boundaryCrossing"))
+            $root.GameEvent.BoundaryCrossing.encode(message.boundaryCrossing, writer.uint32(/* id 43, wireType 2 =*/346).fork()).ldelim();
+        if (message.invalidGoal != null && message.hasOwnProperty("invalidGoal"))
+            $root.GameEvent.Goal.encode(message.invalidGoal, writer.uint32(/* id 44, wireType 2 =*/354).fork()).ldelim();
+        if (message.penaltyKickFailed != null && message.hasOwnProperty("penaltyKickFailed"))
+            $root.GameEvent.PenaltyKickFailed.encode(message.penaltyKickFailed, writer.uint32(/* id 45, wireType 2 =*/362).fork()).ldelim();
+        if (message.challengeFlag != null && message.hasOwnProperty("challengeFlag"))
+            $root.GameEvent.ChallengeFlag.encode(message.challengeFlag, writer.uint32(/* id 46, wireType 2 =*/370).fork()).ldelim();
+        if (message.emergencyStop != null && message.hasOwnProperty("emergencyStop"))
+            $root.GameEvent.EmergencyStop.encode(message.emergencyStop, writer.uint32(/* id 47, wireType 2 =*/378).fork()).ldelim();
         return writer;
     };
 
@@ -1803,89 +878,32 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.origin = [];
                 message.origin.push(reader.string());
                 break;
-            case 1:
-                message.prepared = $root.GameEvent.Prepared.decode(reader, reader.uint32());
-                break;
-            case 2:
-                message.noProgressInGame = $root.GameEvent.NoProgressInGame.decode(reader, reader.uint32());
-                break;
-            case 3:
-                message.placementFailed = $root.GameEvent.PlacementFailed.decode(reader, reader.uint32());
-                break;
-            case 5:
-                message.placementSucceeded = $root.GameEvent.PlacementSucceeded.decode(reader, reader.uint32());
-                break;
-            case 37:
-                message.botSubstitution = $root.GameEvent.BotSubstitution.decode(reader, reader.uint32());
-                break;
-            case 38:
-                message.tooManyRobots = $root.GameEvent.TooManyRobots.decode(reader, reader.uint32());
-                break;
             case 6:
                 message.ballLeftFieldTouchLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
                 break;
             case 7:
                 message.ballLeftFieldGoalLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
                 break;
-            case 39:
-                message.possibleGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
-                break;
-            case 8:
-                message.goal = $root.GameEvent.Goal.decode(reader, reader.uint32());
-                break;
-            case 9:
-                message.indirectGoal = $root.GameEvent.IndirectGoal.decode(reader, reader.uint32());
-                break;
-            case 10:
-                message.chippedGoal = $root.GameEvent.ChippedGoal.decode(reader, reader.uint32());
-                break;
             case 11:
                 message.aimlessKick = $root.GameEvent.AimlessKick.decode(reader, reader.uint32());
-                break;
-            case 12:
-                message.kickTimeout = $root.GameEvent.KickTimeout.decode(reader, reader.uint32());
-                break;
-            case 13:
-                message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.decode(reader, reader.uint32());
-                break;
-            case 14:
-                message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.decode(reader, reader.uint32());
-                break;
-            case 15:
-                message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 16:
-                message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 42:
-                message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 17:
-                message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.decode(reader, reader.uint32());
-                break;
-            case 18:
-                message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.decode(reader, reader.uint32());
                 break;
             case 19:
                 message.attackerTooCloseToDefenseArea = $root.GameEvent.AttackerTooCloseToDefenseArea.decode(reader, reader.uint32());
                 break;
-            case 20:
-                message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.decode(reader, reader.uint32());
+            case 31:
+                message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.decode(reader, reader.uint32());
                 break;
-            case 21:
-                message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.decode(reader, reader.uint32());
+            case 43:
+                message.boundaryCrossing = $root.GameEvent.BoundaryCrossing.decode(reader, reader.uint32());
                 break;
-            case 22:
-                message.botCrashUnique = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+            case 13:
+                message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.decode(reader, reader.uint32());
                 break;
-            case 23:
-                message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+            case 17:
+                message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.decode(reader, reader.uint32());
                 break;
             case 24:
                 message.botPushedBot = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
-                break;
-            case 25:
-                message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
                 break;
             case 26:
                 message.botHeldBallDeliberately = $root.GameEvent.BotHeldBallDeliberately.decode(reader, reader.uint32());
@@ -1893,26 +911,68 @@ export const GameEvent = $root.GameEvent = (() => {
             case 27:
                 message.botTippedOver = $root.GameEvent.BotTippedOver.decode(reader, reader.uint32());
                 break;
-            case 28:
-                message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.decode(reader, reader.uint32());
+            case 15:
+                message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.decode(reader, reader.uint32());
+                break;
+            case 18:
+                message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.decode(reader, reader.uint32());
+                break;
+            case 22:
+                message.botCrashUnique = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+                break;
+            case 21:
+                message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.decode(reader, reader.uint32());
                 break;
             case 29:
                 message.defenderTooCloseToKickPoint = $root.GameEvent.DefenderTooCloseToKickPoint.decode(reader, reader.uint32());
                 break;
-            case 30:
-                message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.decode(reader, reader.uint32());
+            case 28:
+                message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.decode(reader, reader.uint32());
                 break;
-            case 31:
-                message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.decode(reader, reader.uint32());
+            case 20:
+                message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.decode(reader, reader.uint32());
+                break;
+            case 39:
+                message.possibleGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                break;
+            case 8:
+                message.goal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                break;
+            case 44:
+                message.invalidGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                break;
+            case 14:
+                message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.decode(reader, reader.uint32());
+                break;
+            case 5:
+                message.placementSucceeded = $root.GameEvent.PlacementSucceeded.decode(reader, reader.uint32());
+                break;
+            case 45:
+                message.penaltyKickFailed = $root.GameEvent.PenaltyKickFailed.decode(reader, reader.uint32());
+                break;
+            case 2:
+                message.noProgressInGame = $root.GameEvent.NoProgressInGame.decode(reader, reader.uint32());
+                break;
+            case 3:
+                message.placementFailed = $root.GameEvent.PlacementFailed.decode(reader, reader.uint32());
                 break;
             case 32:
                 message.multipleCards = $root.GameEvent.MultipleCards.decode(reader, reader.uint32());
                 break;
-            case 33:
-                message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.decode(reader, reader.uint32());
-                break;
             case 34:
                 message.multipleFouls = $root.GameEvent.MultipleFouls.decode(reader, reader.uint32());
+                break;
+            case 37:
+                message.botSubstitution = $root.GameEvent.BotSubstitution.decode(reader, reader.uint32());
+                break;
+            case 38:
+                message.tooManyRobots = $root.GameEvent.TooManyRobots.decode(reader, reader.uint32());
+                break;
+            case 46:
+                message.challengeFlag = $root.GameEvent.ChallengeFlag.decode(reader, reader.uint32());
+                break;
+            case 47:
+                message.emergencyStop = $root.GameEvent.EmergencyStop.decode(reader, reader.uint32());
                 break;
             case 35:
                 message.unsportingBehaviorMinor = $root.GameEvent.UnsportingBehaviorMinor.decode(reader, reader.uint32());
@@ -1920,13 +980,41 @@ export const GameEvent = $root.GameEvent = (() => {
             case 36:
                 message.unsportingBehaviorMajor = $root.GameEvent.UnsportingBehaviorMajor.decode(reader, reader.uint32());
                 break;
+            case 1:
+                message.prepared = $root.GameEvent.Prepared.decode(reader, reader.uint32());
+                break;
+            case 9:
+                message.indirectGoal = $root.GameEvent.IndirectGoal.decode(reader, reader.uint32());
+                break;
+            case 10:
+                message.chippedGoal = $root.GameEvent.ChippedGoal.decode(reader, reader.uint32());
+                break;
+            case 12:
+                message.kickTimeout = $root.GameEvent.KickTimeout.decode(reader, reader.uint32());
+                break;
+            case 16:
+                message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
+                break;
+            case 42:
+                message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
+                break;
+            case 23:
+                message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+                break;
+            case 25:
+                message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
+                break;
+            case 30:
+                message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.decode(reader, reader.uint32());
+                break;
+            case 33:
+                message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.decode(reader, reader.uint32());
+                break;
             default:
                 reader.skipType(tag & 7);
                 break;
             }
         }
-        if (!message.hasOwnProperty("type"))
-            throw $util.ProtocolError("missing required 'type'", { instance: message });
         return message;
     };
 
@@ -1958,51 +1046,57 @@ export const GameEvent = $root.GameEvent = (() => {
         if (typeof message !== "object" || message === null)
             return "object expected";
         let properties = {};
-        switch (message.type) {
-        default:
-            return "type: enum value expected";
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 5:
-        case 37:
-        case 38:
-        case 6:
-        case 7:
-        case 39:
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-        case 16:
-        case 40:
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-        case 21:
-        case 22:
-        case 23:
-        case 24:
-        case 25:
-        case 26:
-        case 27:
-        case 28:
-        case 29:
-        case 30:
-        case 31:
-        case 32:
-        case 33:
-        case 34:
-        case 35:
-        case 36:
-            break;
-        }
+        if (message.type != null && message.hasOwnProperty("type"))
+            switch (message.type) {
+            default:
+                return "type: enum value expected";
+            case 0:
+            case 6:
+            case 7:
+            case 11:
+            case 19:
+            case 31:
+            case 41:
+            case 13:
+            case 17:
+            case 24:
+            case 26:
+            case 27:
+            case 15:
+            case 18:
+            case 22:
+            case 21:
+            case 29:
+            case 28:
+            case 20:
+            case 39:
+            case 8:
+            case 42:
+            case 14:
+            case 5:
+            case 43:
+            case 2:
+            case 3:
+            case 32:
+            case 34:
+            case 37:
+            case 38:
+            case 44:
+            case 45:
+            case 35:
+            case 36:
+            case 1:
+            case 9:
+            case 10:
+            case 12:
+            case 16:
+            case 40:
+            case 23:
+            case 25:
+            case 30:
+            case 33:
+                break;
+            }
         if (message.origin != null && message.hasOwnProperty("origin")) {
             if (!Array.isArray(message.origin))
                 return "origin: array expected";
@@ -2010,67 +1104,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isString(message.origin[i]))
                     return "origin: string[] expected";
         }
-        if (message.prepared != null && message.hasOwnProperty("prepared")) {
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.Prepared.verify(message.prepared);
-                if (error)
-                    return "prepared." + error;
-            }
-        }
-        if (message.noProgressInGame != null && message.hasOwnProperty("noProgressInGame")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.NoProgressInGame.verify(message.noProgressInGame);
-                if (error)
-                    return "noProgressInGame." + error;
-            }
-        }
-        if (message.placementFailed != null && message.hasOwnProperty("placementFailed")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.PlacementFailed.verify(message.placementFailed);
-                if (error)
-                    return "placementFailed." + error;
-            }
-        }
-        if (message.placementSucceeded != null && message.hasOwnProperty("placementSucceeded")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.PlacementSucceeded.verify(message.placementSucceeded);
-                if (error)
-                    return "placementSucceeded." + error;
-            }
-        }
-        if (message.botSubstitution != null && message.hasOwnProperty("botSubstitution")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.BotSubstitution.verify(message.botSubstitution);
-                if (error)
-                    return "botSubstitution." + error;
-            }
-        }
-        if (message.tooManyRobots != null && message.hasOwnProperty("tooManyRobots")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.TooManyRobots.verify(message.tooManyRobots);
-                if (error)
-                    return "tooManyRobots." + error;
-            }
-        }
         if (message.ballLeftFieldTouchLine != null && message.hasOwnProperty("ballLeftFieldTouchLine")) {
-            if (properties.event === 1)
-                return "event: multiple values";
             properties.event = 1;
             {
                 let error = $root.GameEvent.BallLeftField.verify(message.ballLeftFieldTouchLine);
@@ -2088,46 +1122,6 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "ballLeftFieldGoalLine." + error;
             }
         }
-        if (message.possibleGoal != null && message.hasOwnProperty("possibleGoal")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.Goal.verify(message.possibleGoal);
-                if (error)
-                    return "possibleGoal." + error;
-            }
-        }
-        if (message.goal != null && message.hasOwnProperty("goal")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.Goal.verify(message.goal);
-                if (error)
-                    return "goal." + error;
-            }
-        }
-        if (message.indirectGoal != null && message.hasOwnProperty("indirectGoal")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.IndirectGoal.verify(message.indirectGoal);
-                if (error)
-                    return "indirectGoal." + error;
-            }
-        }
-        if (message.chippedGoal != null && message.hasOwnProperty("chippedGoal")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.ChippedGoal.verify(message.chippedGoal);
-                if (error)
-                    return "chippedGoal." + error;
-            }
-        }
         if (message.aimlessKick != null && message.hasOwnProperty("aimlessKick")) {
             if (properties.event === 1)
                 return "event: multiple values";
@@ -2136,86 +1130,6 @@ export const GameEvent = $root.GameEvent = (() => {
                 let error = $root.GameEvent.AimlessKick.verify(message.aimlessKick);
                 if (error)
                     return "aimlessKick." + error;
-            }
-        }
-        if (message.kickTimeout != null && message.hasOwnProperty("kickTimeout")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.KickTimeout.verify(message.kickTimeout);
-                if (error)
-                    return "kickTimeout." + error;
-            }
-        }
-        if (message.keeperHeldBall != null && message.hasOwnProperty("keeperHeldBall")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.KeeperHeldBall.verify(message.keeperHeldBall);
-                if (error)
-                    return "keeperHeldBall." + error;
-            }
-        }
-        if (message.attackerDoubleTouchedBall != null && message.hasOwnProperty("attackerDoubleTouchedBall")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.AttackerDoubleTouchedBall.verify(message.attackerDoubleTouchedBall);
-                if (error)
-                    return "attackerDoubleTouchedBall." + error;
-            }
-        }
-        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.AttackerTouchedBallInDefenseArea.verify(message.attackerTouchedBallInDefenseArea);
-                if (error)
-                    return "attackerTouchedBallInDefenseArea." + error;
-            }
-        }
-        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseArea);
-                if (error)
-                    return "attackerTouchedOpponentInDefenseArea." + error;
-            }
-        }
-        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseAreaSkipped);
-                if (error)
-                    return "attackerTouchedOpponentInDefenseAreaSkipped." + error;
-            }
-        }
-        if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.BotDribbledBallTooFar.verify(message.botDribbledBallTooFar);
-                if (error)
-                    return "botDribbledBallTooFar." + error;
-            }
-        }
-        if (message.botKickedBallTooFast != null && message.hasOwnProperty("botKickedBallTooFast")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.BotKickedBallTooFast.verify(message.botKickedBallTooFast);
-                if (error)
-                    return "botKickedBallTooFast." + error;
             }
         }
         if (message.attackerTooCloseToDefenseArea != null && message.hasOwnProperty("attackerTooCloseToDefenseArea")) {
@@ -2228,44 +1142,44 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "attackerTooCloseToDefenseArea." + error;
             }
         }
-        if (message.botInterferedPlacement != null && message.hasOwnProperty("botInterferedPlacement")) {
+        if (message.defenderInDefenseArea != null && message.hasOwnProperty("defenderInDefenseArea")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.BotInterferedPlacement.verify(message.botInterferedPlacement);
+                let error = $root.GameEvent.DefenderInDefenseArea.verify(message.defenderInDefenseArea);
                 if (error)
-                    return "botInterferedPlacement." + error;
+                    return "defenderInDefenseArea." + error;
             }
         }
-        if (message.botCrashDrawn != null && message.hasOwnProperty("botCrashDrawn")) {
+        if (message.boundaryCrossing != null && message.hasOwnProperty("boundaryCrossing")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.BotCrashDrawn.verify(message.botCrashDrawn);
+                let error = $root.GameEvent.BoundaryCrossing.verify(message.boundaryCrossing);
                 if (error)
-                    return "botCrashDrawn." + error;
+                    return "boundaryCrossing." + error;
             }
         }
-        if (message.botCrashUnique != null && message.hasOwnProperty("botCrashUnique")) {
+        if (message.keeperHeldBall != null && message.hasOwnProperty("keeperHeldBall")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.BotCrashUnique.verify(message.botCrashUnique);
+                let error = $root.GameEvent.KeeperHeldBall.verify(message.keeperHeldBall);
                 if (error)
-                    return "botCrashUnique." + error;
+                    return "keeperHeldBall." + error;
             }
         }
-        if (message.botCrashUniqueSkipped != null && message.hasOwnProperty("botCrashUniqueSkipped")) {
+        if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.BotCrashUnique.verify(message.botCrashUniqueSkipped);
+                let error = $root.GameEvent.BotDribbledBallTooFar.verify(message.botDribbledBallTooFar);
                 if (error)
-                    return "botCrashUniqueSkipped." + error;
+                    return "botDribbledBallTooFar." + error;
             }
         }
         if (message.botPushedBot != null && message.hasOwnProperty("botPushedBot")) {
@@ -2276,16 +1190,6 @@ export const GameEvent = $root.GameEvent = (() => {
                 let error = $root.GameEvent.BotPushedBot.verify(message.botPushedBot);
                 if (error)
                     return "botPushedBot." + error;
-            }
-        }
-        if (message.botPushedBotSkipped != null && message.hasOwnProperty("botPushedBotSkipped")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.BotPushedBot.verify(message.botPushedBotSkipped);
-                if (error)
-                    return "botPushedBotSkipped." + error;
             }
         }
         if (message.botHeldBallDeliberately != null && message.hasOwnProperty("botHeldBallDeliberately")) {
@@ -2308,14 +1212,44 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "botTippedOver." + error;
             }
         }
-        if (message.botTooFastInStop != null && message.hasOwnProperty("botTooFastInStop")) {
+        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.BotTooFastInStop.verify(message.botTooFastInStop);
+                let error = $root.GameEvent.AttackerTouchedBallInDefenseArea.verify(message.attackerTouchedBallInDefenseArea);
                 if (error)
-                    return "botTooFastInStop." + error;
+                    return "attackerTouchedBallInDefenseArea." + error;
+            }
+        }
+        if (message.botKickedBallTooFast != null && message.hasOwnProperty("botKickedBallTooFast")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotKickedBallTooFast.verify(message.botKickedBallTooFast);
+                if (error)
+                    return "botKickedBallTooFast." + error;
+            }
+        }
+        if (message.botCrashUnique != null && message.hasOwnProperty("botCrashUnique")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotCrashUnique.verify(message.botCrashUnique);
+                if (error)
+                    return "botCrashUnique." + error;
+            }
+        }
+        if (message.botCrashDrawn != null && message.hasOwnProperty("botCrashDrawn")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotCrashDrawn.verify(message.botCrashDrawn);
+                if (error)
+                    return "botCrashDrawn." + error;
             }
         }
         if (message.defenderTooCloseToKickPoint != null && message.hasOwnProperty("defenderTooCloseToKickPoint")) {
@@ -2328,24 +1262,104 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "defenderTooCloseToKickPoint." + error;
             }
         }
-        if (message.defenderInDefenseAreaPartially != null && message.hasOwnProperty("defenderInDefenseAreaPartially")) {
+        if (message.botTooFastInStop != null && message.hasOwnProperty("botTooFastInStop")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.DefenderInDefenseAreaPartially.verify(message.defenderInDefenseAreaPartially);
+                let error = $root.GameEvent.BotTooFastInStop.verify(message.botTooFastInStop);
                 if (error)
-                    return "defenderInDefenseAreaPartially." + error;
+                    return "botTooFastInStop." + error;
             }
         }
-        if (message.defenderInDefenseArea != null && message.hasOwnProperty("defenderInDefenseArea")) {
+        if (message.botInterferedPlacement != null && message.hasOwnProperty("botInterferedPlacement")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.GameEvent.DefenderInDefenseArea.verify(message.defenderInDefenseArea);
+                let error = $root.GameEvent.BotInterferedPlacement.verify(message.botInterferedPlacement);
                 if (error)
-                    return "defenderInDefenseArea." + error;
+                    return "botInterferedPlacement." + error;
+            }
+        }
+        if (message.possibleGoal != null && message.hasOwnProperty("possibleGoal")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.Goal.verify(message.possibleGoal);
+                if (error)
+                    return "possibleGoal." + error;
+            }
+        }
+        if (message.goal != null && message.hasOwnProperty("goal")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.Goal.verify(message.goal);
+                if (error)
+                    return "goal." + error;
+            }
+        }
+        if (message.invalidGoal != null && message.hasOwnProperty("invalidGoal")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.Goal.verify(message.invalidGoal);
+                if (error)
+                    return "invalidGoal." + error;
+            }
+        }
+        if (message.attackerDoubleTouchedBall != null && message.hasOwnProperty("attackerDoubleTouchedBall")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.AttackerDoubleTouchedBall.verify(message.attackerDoubleTouchedBall);
+                if (error)
+                    return "attackerDoubleTouchedBall." + error;
+            }
+        }
+        if (message.placementSucceeded != null && message.hasOwnProperty("placementSucceeded")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.PlacementSucceeded.verify(message.placementSucceeded);
+                if (error)
+                    return "placementSucceeded." + error;
+            }
+        }
+        if (message.penaltyKickFailed != null && message.hasOwnProperty("penaltyKickFailed")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.PenaltyKickFailed.verify(message.penaltyKickFailed);
+                if (error)
+                    return "penaltyKickFailed." + error;
+            }
+        }
+        if (message.noProgressInGame != null && message.hasOwnProperty("noProgressInGame")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.NoProgressInGame.verify(message.noProgressInGame);
+                if (error)
+                    return "noProgressInGame." + error;
+            }
+        }
+        if (message.placementFailed != null && message.hasOwnProperty("placementFailed")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.PlacementFailed.verify(message.placementFailed);
+                if (error)
+                    return "placementFailed." + error;
             }
         }
         if (message.multipleCards != null && message.hasOwnProperty("multipleCards")) {
@@ -2358,16 +1372,6 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "multipleCards." + error;
             }
         }
-        if (message.multiplePlacementFailures != null && message.hasOwnProperty("multiplePlacementFailures")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GameEvent.MultiplePlacementFailures.verify(message.multiplePlacementFailures);
-                if (error)
-                    return "multiplePlacementFailures." + error;
-            }
-        }
         if (message.multipleFouls != null && message.hasOwnProperty("multipleFouls")) {
             if (properties.event === 1)
                 return "event: multiple values";
@@ -2376,6 +1380,46 @@ export const GameEvent = $root.GameEvent = (() => {
                 let error = $root.GameEvent.MultipleFouls.verify(message.multipleFouls);
                 if (error)
                     return "multipleFouls." + error;
+            }
+        }
+        if (message.botSubstitution != null && message.hasOwnProperty("botSubstitution")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotSubstitution.verify(message.botSubstitution);
+                if (error)
+                    return "botSubstitution." + error;
+            }
+        }
+        if (message.tooManyRobots != null && message.hasOwnProperty("tooManyRobots")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.TooManyRobots.verify(message.tooManyRobots);
+                if (error)
+                    return "tooManyRobots." + error;
+            }
+        }
+        if (message.challengeFlag != null && message.hasOwnProperty("challengeFlag")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.ChallengeFlag.verify(message.challengeFlag);
+                if (error)
+                    return "challengeFlag." + error;
+            }
+        }
+        if (message.emergencyStop != null && message.hasOwnProperty("emergencyStop")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.EmergencyStop.verify(message.emergencyStop);
+                if (error)
+                    return "emergencyStop." + error;
             }
         }
         if (message.unsportingBehaviorMinor != null && message.hasOwnProperty("unsportingBehaviorMinor")) {
@@ -2398,6 +1442,106 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "unsportingBehaviorMajor." + error;
             }
         }
+        if (message.prepared != null && message.hasOwnProperty("prepared")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.Prepared.verify(message.prepared);
+                if (error)
+                    return "prepared." + error;
+            }
+        }
+        if (message.indirectGoal != null && message.hasOwnProperty("indirectGoal")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.IndirectGoal.verify(message.indirectGoal);
+                if (error)
+                    return "indirectGoal." + error;
+            }
+        }
+        if (message.chippedGoal != null && message.hasOwnProperty("chippedGoal")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.ChippedGoal.verify(message.chippedGoal);
+                if (error)
+                    return "chippedGoal." + error;
+            }
+        }
+        if (message.kickTimeout != null && message.hasOwnProperty("kickTimeout")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.KickTimeout.verify(message.kickTimeout);
+                if (error)
+                    return "kickTimeout." + error;
+            }
+        }
+        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseArea);
+                if (error)
+                    return "attackerTouchedOpponentInDefenseArea." + error;
+            }
+        }
+        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.verify(message.attackerTouchedOpponentInDefenseAreaSkipped);
+                if (error)
+                    return "attackerTouchedOpponentInDefenseAreaSkipped." + error;
+            }
+        }
+        if (message.botCrashUniqueSkipped != null && message.hasOwnProperty("botCrashUniqueSkipped")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotCrashUnique.verify(message.botCrashUniqueSkipped);
+                if (error)
+                    return "botCrashUniqueSkipped." + error;
+            }
+        }
+        if (message.botPushedBotSkipped != null && message.hasOwnProperty("botPushedBotSkipped")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.BotPushedBot.verify(message.botPushedBotSkipped);
+                if (error)
+                    return "botPushedBotSkipped." + error;
+            }
+        }
+        if (message.defenderInDefenseAreaPartially != null && message.hasOwnProperty("defenderInDefenseAreaPartially")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.DefenderInDefenseAreaPartially.verify(message.defenderInDefenseAreaPartially);
+                if (error)
+                    return "defenderInDefenseAreaPartially." + error;
+            }
+        }
+        if (message.multiplePlacementFailures != null && message.hasOwnProperty("multiplePlacementFailures")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.MultiplePlacementFailures.verify(message.multiplePlacementFailures);
+                if (error)
+                    return "multiplePlacementFailures." + error;
+            }
+        }
         return null;
     };
 
@@ -2418,30 +1562,6 @@ export const GameEvent = $root.GameEvent = (() => {
         case 0:
             message.type = 0;
             break;
-        case "PREPARED":
-        case 1:
-            message.type = 1;
-            break;
-        case "NO_PROGRESS_IN_GAME":
-        case 2:
-            message.type = 2;
-            break;
-        case "PLACEMENT_FAILED":
-        case 3:
-            message.type = 3;
-            break;
-        case "PLACEMENT_SUCCEEDED":
-        case 5:
-            message.type = 5;
-            break;
-        case "BOT_SUBSTITUTION":
-        case 37:
-            message.type = 37;
-            break;
-        case "TOO_MANY_ROBOTS":
-        case 38:
-            message.type = 38;
-            break;
         case "BALL_LEFT_FIELD_TOUCH_LINE":
         case 6:
             message.type = 6;
@@ -2450,85 +1570,33 @@ export const GameEvent = $root.GameEvent = (() => {
         case 7:
             message.type = 7;
             break;
-        case "POSSIBLE_GOAL":
-        case 39:
-            message.type = 39;
-            break;
-        case "GOAL":
-        case 8:
-            message.type = 8;
-            break;
-        case "INDIRECT_GOAL":
-        case 9:
-            message.type = 9;
-            break;
-        case "CHIPPED_GOAL":
-        case 10:
-            message.type = 10;
-            break;
         case "AIMLESS_KICK":
         case 11:
             message.type = 11;
-            break;
-        case "KICK_TIMEOUT":
-        case 12:
-            message.type = 12;
-            break;
-        case "KEEPER_HELD_BALL":
-        case 13:
-            message.type = 13;
-            break;
-        case "ATTACKER_DOUBLE_TOUCHED_BALL":
-        case 14:
-            message.type = 14;
-            break;
-        case "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA":
-        case 15:
-            message.type = 15;
-            break;
-        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA":
-        case 16:
-            message.type = 16;
-            break;
-        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED":
-        case 40:
-            message.type = 40;
-            break;
-        case "BOT_DRIBBLED_BALL_TOO_FAR":
-        case 17:
-            message.type = 17;
-            break;
-        case "BOT_KICKED_BALL_TOO_FAST":
-        case 18:
-            message.type = 18;
             break;
         case "ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA":
         case 19:
             message.type = 19;
             break;
-        case "BOT_INTERFERED_PLACEMENT":
-        case 20:
-            message.type = 20;
+        case "DEFENDER_IN_DEFENSE_AREA":
+        case 31:
+            message.type = 31;
             break;
-        case "BOT_CRASH_DRAWN":
-        case 21:
-            message.type = 21;
+        case "BOUNDARY_CROSSING":
+        case 41:
+            message.type = 41;
             break;
-        case "BOT_CRASH_UNIQUE":
-        case 22:
-            message.type = 22;
+        case "KEEPER_HELD_BALL":
+        case 13:
+            message.type = 13;
             break;
-        case "BOT_CRASH_UNIQUE_SKIPPED":
-        case 23:
-            message.type = 23;
+        case "BOT_DRIBBLED_BALL_TOO_FAR":
+        case 17:
+            message.type = 17;
             break;
         case "BOT_PUSHED_BOT":
         case 24:
             message.type = 24;
-            break;
-        case "BOT_PUSHED_BOT_SKIPPED":
-        case 25:
-            message.type = 25;
             break;
         case "BOT_HELD_BALL_DELIBERATELY":
         case 26:
@@ -2538,33 +1606,89 @@ export const GameEvent = $root.GameEvent = (() => {
         case 27:
             message.type = 27;
             break;
-        case "BOT_TOO_FAST_IN_STOP":
-        case 28:
-            message.type = 28;
+        case "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA":
+        case 15:
+            message.type = 15;
+            break;
+        case "BOT_KICKED_BALL_TOO_FAST":
+        case 18:
+            message.type = 18;
+            break;
+        case "BOT_CRASH_UNIQUE":
+        case 22:
+            message.type = 22;
+            break;
+        case "BOT_CRASH_DRAWN":
+        case 21:
+            message.type = 21;
             break;
         case "DEFENDER_TOO_CLOSE_TO_KICK_POINT":
         case 29:
             message.type = 29;
             break;
-        case "DEFENDER_IN_DEFENSE_AREA_PARTIALLY":
-        case 30:
-            message.type = 30;
+        case "BOT_TOO_FAST_IN_STOP":
+        case 28:
+            message.type = 28;
             break;
-        case "DEFENDER_IN_DEFENSE_AREA":
-        case 31:
-            message.type = 31;
+        case "BOT_INTERFERED_PLACEMENT":
+        case 20:
+            message.type = 20;
+            break;
+        case "POSSIBLE_GOAL":
+        case 39:
+            message.type = 39;
+            break;
+        case "GOAL":
+        case 8:
+            message.type = 8;
+            break;
+        case "INVALID_GOAL":
+        case 42:
+            message.type = 42;
+            break;
+        case "ATTACKER_DOUBLE_TOUCHED_BALL":
+        case 14:
+            message.type = 14;
+            break;
+        case "PLACEMENT_SUCCEEDED":
+        case 5:
+            message.type = 5;
+            break;
+        case "PENALTY_KICK_FAILED":
+        case 43:
+            message.type = 43;
+            break;
+        case "NO_PROGRESS_IN_GAME":
+        case 2:
+            message.type = 2;
+            break;
+        case "PLACEMENT_FAILED":
+        case 3:
+            message.type = 3;
             break;
         case "MULTIPLE_CARDS":
         case 32:
             message.type = 32;
             break;
-        case "MULTIPLE_PLACEMENT_FAILURES":
-        case 33:
-            message.type = 33;
-            break;
         case "MULTIPLE_FOULS":
         case 34:
             message.type = 34;
+            break;
+        case "BOT_SUBSTITUTION":
+        case 37:
+            message.type = 37;
+            break;
+        case "TOO_MANY_ROBOTS":
+        case 38:
+            message.type = 38;
+            break;
+        case "CHALLENGE_FLAG":
+        case 44:
+            message.type = 44;
+            break;
+        case "EMERGENCY_STOP":
+        case 45:
+            message.type = 45;
             break;
         case "UNSPORTING_BEHAVIOR_MINOR":
         case 35:
@@ -2574,6 +1698,46 @@ export const GameEvent = $root.GameEvent = (() => {
         case 36:
             message.type = 36;
             break;
+        case "PREPARED":
+        case 1:
+            message.type = 1;
+            break;
+        case "INDIRECT_GOAL":
+        case 9:
+            message.type = 9;
+            break;
+        case "CHIPPED_GOAL":
+        case 10:
+            message.type = 10;
+            break;
+        case "KICK_TIMEOUT":
+        case 12:
+            message.type = 12;
+            break;
+        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA":
+        case 16:
+            message.type = 16;
+            break;
+        case "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED":
+        case 40:
+            message.type = 40;
+            break;
+        case "BOT_CRASH_UNIQUE_SKIPPED":
+        case 23:
+            message.type = 23;
+            break;
+        case "BOT_PUSHED_BOT_SKIPPED":
+        case 25:
+            message.type = 25;
+            break;
+        case "DEFENDER_IN_DEFENSE_AREA_PARTIALLY":
+        case 30:
+            message.type = 30;
+            break;
+        case "MULTIPLE_PLACEMENT_FAILURES":
+        case 33:
+            message.type = 33;
+            break;
         }
         if (object.origin) {
             if (!Array.isArray(object.origin))
@@ -2581,36 +1745,6 @@ export const GameEvent = $root.GameEvent = (() => {
             message.origin = [];
             for (let i = 0; i < object.origin.length; ++i)
                 message.origin[i] = String(object.origin[i]);
-        }
-        if (object.prepared != null) {
-            if (typeof object.prepared !== "object")
-                throw TypeError(".GameEvent.prepared: object expected");
-            message.prepared = $root.GameEvent.Prepared.fromObject(object.prepared);
-        }
-        if (object.noProgressInGame != null) {
-            if (typeof object.noProgressInGame !== "object")
-                throw TypeError(".GameEvent.noProgressInGame: object expected");
-            message.noProgressInGame = $root.GameEvent.NoProgressInGame.fromObject(object.noProgressInGame);
-        }
-        if (object.placementFailed != null) {
-            if (typeof object.placementFailed !== "object")
-                throw TypeError(".GameEvent.placementFailed: object expected");
-            message.placementFailed = $root.GameEvent.PlacementFailed.fromObject(object.placementFailed);
-        }
-        if (object.placementSucceeded != null) {
-            if (typeof object.placementSucceeded !== "object")
-                throw TypeError(".GameEvent.placementSucceeded: object expected");
-            message.placementSucceeded = $root.GameEvent.PlacementSucceeded.fromObject(object.placementSucceeded);
-        }
-        if (object.botSubstitution != null) {
-            if (typeof object.botSubstitution !== "object")
-                throw TypeError(".GameEvent.botSubstitution: object expected");
-            message.botSubstitution = $root.GameEvent.BotSubstitution.fromObject(object.botSubstitution);
-        }
-        if (object.tooManyRobots != null) {
-            if (typeof object.tooManyRobots !== "object")
-                throw TypeError(".GameEvent.tooManyRobots: object expected");
-            message.tooManyRobots = $root.GameEvent.TooManyRobots.fromObject(object.tooManyRobots);
         }
         if (object.ballLeftFieldTouchLine != null) {
             if (typeof object.ballLeftFieldTouchLine !== "object")
@@ -2622,105 +1756,40 @@ export const GameEvent = $root.GameEvent = (() => {
                 throw TypeError(".GameEvent.ballLeftFieldGoalLine: object expected");
             message.ballLeftFieldGoalLine = $root.GameEvent.BallLeftField.fromObject(object.ballLeftFieldGoalLine);
         }
-        if (object.possibleGoal != null) {
-            if (typeof object.possibleGoal !== "object")
-                throw TypeError(".GameEvent.possibleGoal: object expected");
-            message.possibleGoal = $root.GameEvent.Goal.fromObject(object.possibleGoal);
-        }
-        if (object.goal != null) {
-            if (typeof object.goal !== "object")
-                throw TypeError(".GameEvent.goal: object expected");
-            message.goal = $root.GameEvent.Goal.fromObject(object.goal);
-        }
-        if (object.indirectGoal != null) {
-            if (typeof object.indirectGoal !== "object")
-                throw TypeError(".GameEvent.indirectGoal: object expected");
-            message.indirectGoal = $root.GameEvent.IndirectGoal.fromObject(object.indirectGoal);
-        }
-        if (object.chippedGoal != null) {
-            if (typeof object.chippedGoal !== "object")
-                throw TypeError(".GameEvent.chippedGoal: object expected");
-            message.chippedGoal = $root.GameEvent.ChippedGoal.fromObject(object.chippedGoal);
-        }
         if (object.aimlessKick != null) {
             if (typeof object.aimlessKick !== "object")
                 throw TypeError(".GameEvent.aimlessKick: object expected");
             message.aimlessKick = $root.GameEvent.AimlessKick.fromObject(object.aimlessKick);
-        }
-        if (object.kickTimeout != null) {
-            if (typeof object.kickTimeout !== "object")
-                throw TypeError(".GameEvent.kickTimeout: object expected");
-            message.kickTimeout = $root.GameEvent.KickTimeout.fromObject(object.kickTimeout);
-        }
-        if (object.keeperHeldBall != null) {
-            if (typeof object.keeperHeldBall !== "object")
-                throw TypeError(".GameEvent.keeperHeldBall: object expected");
-            message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.fromObject(object.keeperHeldBall);
-        }
-        if (object.attackerDoubleTouchedBall != null) {
-            if (typeof object.attackerDoubleTouchedBall !== "object")
-                throw TypeError(".GameEvent.attackerDoubleTouchedBall: object expected");
-            message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.fromObject(object.attackerDoubleTouchedBall);
-        }
-        if (object.attackerTouchedBallInDefenseArea != null) {
-            if (typeof object.attackerTouchedBallInDefenseArea !== "object")
-                throw TypeError(".GameEvent.attackerTouchedBallInDefenseArea: object expected");
-            message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.fromObject(object.attackerTouchedBallInDefenseArea);
-        }
-        if (object.attackerTouchedOpponentInDefenseArea != null) {
-            if (typeof object.attackerTouchedOpponentInDefenseArea !== "object")
-                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseArea: object expected");
-            message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseArea);
-        }
-        if (object.attackerTouchedOpponentInDefenseAreaSkipped != null) {
-            if (typeof object.attackerTouchedOpponentInDefenseAreaSkipped !== "object")
-                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseAreaSkipped: object expected");
-            message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseAreaSkipped);
-        }
-        if (object.botDribbledBallTooFar != null) {
-            if (typeof object.botDribbledBallTooFar !== "object")
-                throw TypeError(".GameEvent.botDribbledBallTooFar: object expected");
-            message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.fromObject(object.botDribbledBallTooFar);
-        }
-        if (object.botKickedBallTooFast != null) {
-            if (typeof object.botKickedBallTooFast !== "object")
-                throw TypeError(".GameEvent.botKickedBallTooFast: object expected");
-            message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.fromObject(object.botKickedBallTooFast);
         }
         if (object.attackerTooCloseToDefenseArea != null) {
             if (typeof object.attackerTooCloseToDefenseArea !== "object")
                 throw TypeError(".GameEvent.attackerTooCloseToDefenseArea: object expected");
             message.attackerTooCloseToDefenseArea = $root.GameEvent.AttackerTooCloseToDefenseArea.fromObject(object.attackerTooCloseToDefenseArea);
         }
-        if (object.botInterferedPlacement != null) {
-            if (typeof object.botInterferedPlacement !== "object")
-                throw TypeError(".GameEvent.botInterferedPlacement: object expected");
-            message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.fromObject(object.botInterferedPlacement);
+        if (object.defenderInDefenseArea != null) {
+            if (typeof object.defenderInDefenseArea !== "object")
+                throw TypeError(".GameEvent.defenderInDefenseArea: object expected");
+            message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.fromObject(object.defenderInDefenseArea);
         }
-        if (object.botCrashDrawn != null) {
-            if (typeof object.botCrashDrawn !== "object")
-                throw TypeError(".GameEvent.botCrashDrawn: object expected");
-            message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.fromObject(object.botCrashDrawn);
+        if (object.boundaryCrossing != null) {
+            if (typeof object.boundaryCrossing !== "object")
+                throw TypeError(".GameEvent.boundaryCrossing: object expected");
+            message.boundaryCrossing = $root.GameEvent.BoundaryCrossing.fromObject(object.boundaryCrossing);
         }
-        if (object.botCrashUnique != null) {
-            if (typeof object.botCrashUnique !== "object")
-                throw TypeError(".GameEvent.botCrashUnique: object expected");
-            message.botCrashUnique = $root.GameEvent.BotCrashUnique.fromObject(object.botCrashUnique);
+        if (object.keeperHeldBall != null) {
+            if (typeof object.keeperHeldBall !== "object")
+                throw TypeError(".GameEvent.keeperHeldBall: object expected");
+            message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.fromObject(object.keeperHeldBall);
         }
-        if (object.botCrashUniqueSkipped != null) {
-            if (typeof object.botCrashUniqueSkipped !== "object")
-                throw TypeError(".GameEvent.botCrashUniqueSkipped: object expected");
-            message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.fromObject(object.botCrashUniqueSkipped);
+        if (object.botDribbledBallTooFar != null) {
+            if (typeof object.botDribbledBallTooFar !== "object")
+                throw TypeError(".GameEvent.botDribbledBallTooFar: object expected");
+            message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.fromObject(object.botDribbledBallTooFar);
         }
         if (object.botPushedBot != null) {
             if (typeof object.botPushedBot !== "object")
                 throw TypeError(".GameEvent.botPushedBot: object expected");
             message.botPushedBot = $root.GameEvent.BotPushedBot.fromObject(object.botPushedBot);
-        }
-        if (object.botPushedBotSkipped != null) {
-            if (typeof object.botPushedBotSkipped !== "object")
-                throw TypeError(".GameEvent.botPushedBotSkipped: object expected");
-            message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.fromObject(object.botPushedBotSkipped);
         }
         if (object.botHeldBallDeliberately != null) {
             if (typeof object.botHeldBallDeliberately !== "object")
@@ -2732,40 +1801,110 @@ export const GameEvent = $root.GameEvent = (() => {
                 throw TypeError(".GameEvent.botTippedOver: object expected");
             message.botTippedOver = $root.GameEvent.BotTippedOver.fromObject(object.botTippedOver);
         }
-        if (object.botTooFastInStop != null) {
-            if (typeof object.botTooFastInStop !== "object")
-                throw TypeError(".GameEvent.botTooFastInStop: object expected");
-            message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.fromObject(object.botTooFastInStop);
+        if (object.attackerTouchedBallInDefenseArea != null) {
+            if (typeof object.attackerTouchedBallInDefenseArea !== "object")
+                throw TypeError(".GameEvent.attackerTouchedBallInDefenseArea: object expected");
+            message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.fromObject(object.attackerTouchedBallInDefenseArea);
+        }
+        if (object.botKickedBallTooFast != null) {
+            if (typeof object.botKickedBallTooFast !== "object")
+                throw TypeError(".GameEvent.botKickedBallTooFast: object expected");
+            message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.fromObject(object.botKickedBallTooFast);
+        }
+        if (object.botCrashUnique != null) {
+            if (typeof object.botCrashUnique !== "object")
+                throw TypeError(".GameEvent.botCrashUnique: object expected");
+            message.botCrashUnique = $root.GameEvent.BotCrashUnique.fromObject(object.botCrashUnique);
+        }
+        if (object.botCrashDrawn != null) {
+            if (typeof object.botCrashDrawn !== "object")
+                throw TypeError(".GameEvent.botCrashDrawn: object expected");
+            message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.fromObject(object.botCrashDrawn);
         }
         if (object.defenderTooCloseToKickPoint != null) {
             if (typeof object.defenderTooCloseToKickPoint !== "object")
                 throw TypeError(".GameEvent.defenderTooCloseToKickPoint: object expected");
             message.defenderTooCloseToKickPoint = $root.GameEvent.DefenderTooCloseToKickPoint.fromObject(object.defenderTooCloseToKickPoint);
         }
-        if (object.defenderInDefenseAreaPartially != null) {
-            if (typeof object.defenderInDefenseAreaPartially !== "object")
-                throw TypeError(".GameEvent.defenderInDefenseAreaPartially: object expected");
-            message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.fromObject(object.defenderInDefenseAreaPartially);
+        if (object.botTooFastInStop != null) {
+            if (typeof object.botTooFastInStop !== "object")
+                throw TypeError(".GameEvent.botTooFastInStop: object expected");
+            message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.fromObject(object.botTooFastInStop);
         }
-        if (object.defenderInDefenseArea != null) {
-            if (typeof object.defenderInDefenseArea !== "object")
-                throw TypeError(".GameEvent.defenderInDefenseArea: object expected");
-            message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.fromObject(object.defenderInDefenseArea);
+        if (object.botInterferedPlacement != null) {
+            if (typeof object.botInterferedPlacement !== "object")
+                throw TypeError(".GameEvent.botInterferedPlacement: object expected");
+            message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.fromObject(object.botInterferedPlacement);
+        }
+        if (object.possibleGoal != null) {
+            if (typeof object.possibleGoal !== "object")
+                throw TypeError(".GameEvent.possibleGoal: object expected");
+            message.possibleGoal = $root.GameEvent.Goal.fromObject(object.possibleGoal);
+        }
+        if (object.goal != null) {
+            if (typeof object.goal !== "object")
+                throw TypeError(".GameEvent.goal: object expected");
+            message.goal = $root.GameEvent.Goal.fromObject(object.goal);
+        }
+        if (object.invalidGoal != null) {
+            if (typeof object.invalidGoal !== "object")
+                throw TypeError(".GameEvent.invalidGoal: object expected");
+            message.invalidGoal = $root.GameEvent.Goal.fromObject(object.invalidGoal);
+        }
+        if (object.attackerDoubleTouchedBall != null) {
+            if (typeof object.attackerDoubleTouchedBall !== "object")
+                throw TypeError(".GameEvent.attackerDoubleTouchedBall: object expected");
+            message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.fromObject(object.attackerDoubleTouchedBall);
+        }
+        if (object.placementSucceeded != null) {
+            if (typeof object.placementSucceeded !== "object")
+                throw TypeError(".GameEvent.placementSucceeded: object expected");
+            message.placementSucceeded = $root.GameEvent.PlacementSucceeded.fromObject(object.placementSucceeded);
+        }
+        if (object.penaltyKickFailed != null) {
+            if (typeof object.penaltyKickFailed !== "object")
+                throw TypeError(".GameEvent.penaltyKickFailed: object expected");
+            message.penaltyKickFailed = $root.GameEvent.PenaltyKickFailed.fromObject(object.penaltyKickFailed);
+        }
+        if (object.noProgressInGame != null) {
+            if (typeof object.noProgressInGame !== "object")
+                throw TypeError(".GameEvent.noProgressInGame: object expected");
+            message.noProgressInGame = $root.GameEvent.NoProgressInGame.fromObject(object.noProgressInGame);
+        }
+        if (object.placementFailed != null) {
+            if (typeof object.placementFailed !== "object")
+                throw TypeError(".GameEvent.placementFailed: object expected");
+            message.placementFailed = $root.GameEvent.PlacementFailed.fromObject(object.placementFailed);
         }
         if (object.multipleCards != null) {
             if (typeof object.multipleCards !== "object")
                 throw TypeError(".GameEvent.multipleCards: object expected");
             message.multipleCards = $root.GameEvent.MultipleCards.fromObject(object.multipleCards);
         }
-        if (object.multiplePlacementFailures != null) {
-            if (typeof object.multiplePlacementFailures !== "object")
-                throw TypeError(".GameEvent.multiplePlacementFailures: object expected");
-            message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.fromObject(object.multiplePlacementFailures);
-        }
         if (object.multipleFouls != null) {
             if (typeof object.multipleFouls !== "object")
                 throw TypeError(".GameEvent.multipleFouls: object expected");
             message.multipleFouls = $root.GameEvent.MultipleFouls.fromObject(object.multipleFouls);
+        }
+        if (object.botSubstitution != null) {
+            if (typeof object.botSubstitution !== "object")
+                throw TypeError(".GameEvent.botSubstitution: object expected");
+            message.botSubstitution = $root.GameEvent.BotSubstitution.fromObject(object.botSubstitution);
+        }
+        if (object.tooManyRobots != null) {
+            if (typeof object.tooManyRobots !== "object")
+                throw TypeError(".GameEvent.tooManyRobots: object expected");
+            message.tooManyRobots = $root.GameEvent.TooManyRobots.fromObject(object.tooManyRobots);
+        }
+        if (object.challengeFlag != null) {
+            if (typeof object.challengeFlag !== "object")
+                throw TypeError(".GameEvent.challengeFlag: object expected");
+            message.challengeFlag = $root.GameEvent.ChallengeFlag.fromObject(object.challengeFlag);
+        }
+        if (object.emergencyStop != null) {
+            if (typeof object.emergencyStop !== "object")
+                throw TypeError(".GameEvent.emergencyStop: object expected");
+            message.emergencyStop = $root.GameEvent.EmergencyStop.fromObject(object.emergencyStop);
         }
         if (object.unsportingBehaviorMinor != null) {
             if (typeof object.unsportingBehaviorMinor !== "object")
@@ -2776,6 +1915,56 @@ export const GameEvent = $root.GameEvent = (() => {
             if (typeof object.unsportingBehaviorMajor !== "object")
                 throw TypeError(".GameEvent.unsportingBehaviorMajor: object expected");
             message.unsportingBehaviorMajor = $root.GameEvent.UnsportingBehaviorMajor.fromObject(object.unsportingBehaviorMajor);
+        }
+        if (object.prepared != null) {
+            if (typeof object.prepared !== "object")
+                throw TypeError(".GameEvent.prepared: object expected");
+            message.prepared = $root.GameEvent.Prepared.fromObject(object.prepared);
+        }
+        if (object.indirectGoal != null) {
+            if (typeof object.indirectGoal !== "object")
+                throw TypeError(".GameEvent.indirectGoal: object expected");
+            message.indirectGoal = $root.GameEvent.IndirectGoal.fromObject(object.indirectGoal);
+        }
+        if (object.chippedGoal != null) {
+            if (typeof object.chippedGoal !== "object")
+                throw TypeError(".GameEvent.chippedGoal: object expected");
+            message.chippedGoal = $root.GameEvent.ChippedGoal.fromObject(object.chippedGoal);
+        }
+        if (object.kickTimeout != null) {
+            if (typeof object.kickTimeout !== "object")
+                throw TypeError(".GameEvent.kickTimeout: object expected");
+            message.kickTimeout = $root.GameEvent.KickTimeout.fromObject(object.kickTimeout);
+        }
+        if (object.attackerTouchedOpponentInDefenseArea != null) {
+            if (typeof object.attackerTouchedOpponentInDefenseArea !== "object")
+                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseArea: object expected");
+            message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseArea);
+        }
+        if (object.attackerTouchedOpponentInDefenseAreaSkipped != null) {
+            if (typeof object.attackerTouchedOpponentInDefenseAreaSkipped !== "object")
+                throw TypeError(".GameEvent.attackerTouchedOpponentInDefenseAreaSkipped: object expected");
+            message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.fromObject(object.attackerTouchedOpponentInDefenseAreaSkipped);
+        }
+        if (object.botCrashUniqueSkipped != null) {
+            if (typeof object.botCrashUniqueSkipped !== "object")
+                throw TypeError(".GameEvent.botCrashUniqueSkipped: object expected");
+            message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.fromObject(object.botCrashUniqueSkipped);
+        }
+        if (object.botPushedBotSkipped != null) {
+            if (typeof object.botPushedBotSkipped !== "object")
+                throw TypeError(".GameEvent.botPushedBotSkipped: object expected");
+            message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.fromObject(object.botPushedBotSkipped);
+        }
+        if (object.defenderInDefenseAreaPartially != null) {
+            if (typeof object.defenderInDefenseAreaPartially !== "object")
+                throw TypeError(".GameEvent.defenderInDefenseAreaPartially: object expected");
+            message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.fromObject(object.defenderInDefenseAreaPartially);
+        }
+        if (object.multiplePlacementFailures != null) {
+            if (typeof object.multiplePlacementFailures !== "object")
+                throw TypeError(".GameEvent.multiplePlacementFailures: object expected");
+            message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.fromObject(object.multiplePlacementFailures);
         }
         return message;
     };
@@ -2988,7 +2177,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.event = "possibleGoal";
         }
         if (message.type != null && message.hasOwnProperty("type"))
-            object.type = options.enums === String ? $root.GameEventType[message.type] : message.type;
+            object.type = options.enums === String ? $root.GameEvent.Type[message.type] : message.type;
         if (message.origin && message.origin.length) {
             object.origin = [];
             for (let j = 0; j < message.origin.length; ++j)
@@ -2998,6 +2187,31 @@ export const GameEvent = $root.GameEvent = (() => {
             object.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.toObject(message.attackerTouchedOpponentInDefenseAreaSkipped, options);
             if (options.oneofs)
                 object.event = "attackerTouchedOpponentInDefenseAreaSkipped";
+        }
+        if (message.boundaryCrossing != null && message.hasOwnProperty("boundaryCrossing")) {
+            object.boundaryCrossing = $root.GameEvent.BoundaryCrossing.toObject(message.boundaryCrossing, options);
+            if (options.oneofs)
+                object.event = "boundaryCrossing";
+        }
+        if (message.invalidGoal != null && message.hasOwnProperty("invalidGoal")) {
+            object.invalidGoal = $root.GameEvent.Goal.toObject(message.invalidGoal, options);
+            if (options.oneofs)
+                object.event = "invalidGoal";
+        }
+        if (message.penaltyKickFailed != null && message.hasOwnProperty("penaltyKickFailed")) {
+            object.penaltyKickFailed = $root.GameEvent.PenaltyKickFailed.toObject(message.penaltyKickFailed, options);
+            if (options.oneofs)
+                object.event = "penaltyKickFailed";
+        }
+        if (message.challengeFlag != null && message.hasOwnProperty("challengeFlag")) {
+            object.challengeFlag = $root.GameEvent.ChallengeFlag.toObject(message.challengeFlag, options);
+            if (options.oneofs)
+                object.event = "challengeFlag";
+        }
+        if (message.emergencyStop != null && message.hasOwnProperty("emergencyStop")) {
+            object.emergencyStop = $root.GameEvent.EmergencyStop.toObject(message.emergencyStop, options);
+            if (options.oneofs)
+                object.event = "emergencyStop";
         }
         return object;
     };
@@ -3021,7 +2235,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBallLeftField
          * @property {Team} byTeam BallLeftField byTeam
          * @property {number|null} [byBot] BallLeftField byBot
-         * @property {ILocation|null} [location] BallLeftField location
+         * @property {IVector2|null} [location] BallLeftField location
          */
 
         /**
@@ -3057,7 +2271,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BallLeftField location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BallLeftField
          * @instance
          */
@@ -3091,7 +2305,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -3133,7 +2347,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -3184,7 +2398,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -3222,7 +2436,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BallLeftField.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             return message;
         };
@@ -3250,7 +2464,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             return object;
         };
 
@@ -3276,8 +2490,8 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IAimlessKick
          * @property {Team} byTeam AimlessKick byTeam
          * @property {number|null} [byBot] AimlessKick byBot
-         * @property {ILocation|null} [location] AimlessKick location
-         * @property {ILocation|null} [kickLocation] AimlessKick kickLocation
+         * @property {IVector2|null} [location] AimlessKick location
+         * @property {IVector2|null} [kickLocation] AimlessKick kickLocation
          */
 
         /**
@@ -3313,7 +2527,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AimlessKick location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.AimlessKick
          * @instance
          */
@@ -3321,7 +2535,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AimlessKick kickLocation.
-         * @member {ILocation|null|undefined} kickLocation
+         * @member {IVector2|null|undefined} kickLocation
          * @memberof GameEvent.AimlessKick
          * @instance
          */
@@ -3355,9 +2569,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                $root.Location.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -3399,10 +2613,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.kickLocation = $root.Location.decode(reader, reader.uint32());
+                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -3453,12 +2667,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation")) {
-                let error = $root.Location.verify(message.kickLocation);
+                let error = $root.Vector2.verify(message.kickLocation);
                 if (error)
                     return "kickLocation." + error;
             }
@@ -3496,12 +2710,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.AimlessKick.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.kickLocation != null) {
                 if (typeof object.kickLocation !== "object")
                     throw TypeError(".GameEvent.AimlessKick.kickLocation: object expected");
-                message.kickLocation = $root.Location.fromObject(object.kickLocation);
+                message.kickLocation = $root.Vector2.fromObject(object.kickLocation);
             }
             return message;
         };
@@ -3530,9 +2744,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                object.kickLocation = $root.Location.toObject(message.kickLocation, options);
+                object.kickLocation = $root.Vector2.toObject(message.kickLocation, options);
             return object;
         };
 
@@ -3559,8 +2773,12 @@ export const GameEvent = $root.GameEvent = (() => {
          * @property {Team} byTeam Goal byTeam
          * @property {Team|null} [kickingTeam] Goal kickingTeam
          * @property {number|null} [kickingBot] Goal kickingBot
-         * @property {ILocation|null} [location] Goal location
-         * @property {ILocation|null} [kickLocation] Goal kickLocation
+         * @property {IVector2|null} [location] Goal location
+         * @property {IVector2|null} [kickLocation] Goal kickLocation
+         * @property {number|null} [maxBallHeight] Goal maxBallHeight
+         * @property {number|null} [numRobotsByTeam] Goal numRobotsByTeam
+         * @property {number|Long|null} [lastTouchByTeam] Goal lastTouchByTeam
+         * @property {string|null} [message] Goal message
          */
 
         /**
@@ -3604,7 +2822,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * Goal location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.Goal
          * @instance
          */
@@ -3612,11 +2830,43 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * Goal kickLocation.
-         * @member {ILocation|null|undefined} kickLocation
+         * @member {IVector2|null|undefined} kickLocation
          * @memberof GameEvent.Goal
          * @instance
          */
         Goal.prototype.kickLocation = null;
+
+        /**
+         * Goal maxBallHeight.
+         * @member {number} maxBallHeight
+         * @memberof GameEvent.Goal
+         * @instance
+         */
+        Goal.prototype.maxBallHeight = 0;
+
+        /**
+         * Goal numRobotsByTeam.
+         * @member {number} numRobotsByTeam
+         * @memberof GameEvent.Goal
+         * @instance
+         */
+        Goal.prototype.numRobotsByTeam = 0;
+
+        /**
+         * Goal lastTouchByTeam.
+         * @member {number|Long} lastTouchByTeam
+         * @memberof GameEvent.Goal
+         * @instance
+         */
+        Goal.prototype.lastTouchByTeam = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Goal message.
+         * @member {string} message
+         * @memberof GameEvent.Goal
+         * @instance
+         */
+        Goal.prototype.message = "";
 
         /**
          * Creates a new Goal instance using the specified properties.
@@ -3646,11 +2896,19 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.kickingBot != null && message.hasOwnProperty("kickingBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.kickingBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                $root.Location.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
+                writer.uint32(/* id 5, wireType 5 =*/45).float(message.maxBallHeight);
             if (message.kickingTeam != null && message.hasOwnProperty("kickingTeam"))
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.kickingTeam);
+            if (message.numRobotsByTeam != null && message.hasOwnProperty("numRobotsByTeam"))
+                writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.numRobotsByTeam);
+            if (message.lastTouchByTeam != null && message.hasOwnProperty("lastTouchByTeam"))
+                writer.uint32(/* id 8, wireType 0 =*/64).uint64(message.lastTouchByTeam);
+            if (message.message != null && message.hasOwnProperty("message"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.message);
             return writer;
         };
 
@@ -3695,10 +2953,22 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.kickingBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.kickLocation = $root.Location.decode(reader, reader.uint32());
+                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.maxBallHeight = reader.float();
+                    break;
+                case 7:
+                    message.numRobotsByTeam = reader.uint32();
+                    break;
+                case 8:
+                    message.lastTouchByTeam = reader.uint64();
+                    break;
+                case 9:
+                    message.message = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -3758,15 +3028,27 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.kickingBot))
                     return "kickingBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation")) {
-                let error = $root.Location.verify(message.kickLocation);
+                let error = $root.Vector2.verify(message.kickLocation);
                 if (error)
                     return "kickLocation." + error;
             }
+            if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
+                if (typeof message.maxBallHeight !== "number")
+                    return "maxBallHeight: number expected";
+            if (message.numRobotsByTeam != null && message.hasOwnProperty("numRobotsByTeam"))
+                if (!$util.isInteger(message.numRobotsByTeam))
+                    return "numRobotsByTeam: integer expected";
+            if (message.lastTouchByTeam != null && message.hasOwnProperty("lastTouchByTeam"))
+                if (!$util.isInteger(message.lastTouchByTeam) && !(message.lastTouchByTeam && $util.isInteger(message.lastTouchByTeam.low) && $util.isInteger(message.lastTouchByTeam.high)))
+                    return "lastTouchByTeam: integer|Long expected";
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
             return null;
         };
 
@@ -3815,13 +3097,28 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.Goal.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.kickLocation != null) {
                 if (typeof object.kickLocation !== "object")
                     throw TypeError(".GameEvent.Goal.kickLocation: object expected");
-                message.kickLocation = $root.Location.fromObject(object.kickLocation);
+                message.kickLocation = $root.Vector2.fromObject(object.kickLocation);
             }
+            if (object.maxBallHeight != null)
+                message.maxBallHeight = Number(object.maxBallHeight);
+            if (object.numRobotsByTeam != null)
+                message.numRobotsByTeam = object.numRobotsByTeam >>> 0;
+            if (object.lastTouchByTeam != null)
+                if ($util.Long)
+                    (message.lastTouchByTeam = $util.Long.fromValue(object.lastTouchByTeam)).unsigned = true;
+                else if (typeof object.lastTouchByTeam === "string")
+                    message.lastTouchByTeam = parseInt(object.lastTouchByTeam, 10);
+                else if (typeof object.lastTouchByTeam === "number")
+                    message.lastTouchByTeam = object.lastTouchByTeam;
+                else if (typeof object.lastTouchByTeam === "object")
+                    message.lastTouchByTeam = new $util.LongBits(object.lastTouchByTeam.low >>> 0, object.lastTouchByTeam.high >>> 0).toNumber(true);
+            if (object.message != null)
+                message.message = String(object.message);
             return message;
         };
 
@@ -3843,18 +3140,37 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.kickingBot = 0;
                 object.location = null;
                 object.kickLocation = null;
+                object.maxBallHeight = 0;
                 object.kickingTeam = options.enums === String ? "UNKNOWN" : 0;
+                object.numRobotsByTeam = 0;
+                if ($util.Long) {
+                    let long = new $util.Long(0, 0, true);
+                    object.lastTouchByTeam = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.lastTouchByTeam = options.longs === String ? "0" : 0;
+                object.message = "";
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.kickingBot != null && message.hasOwnProperty("kickingBot"))
                 object.kickingBot = message.kickingBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                object.kickLocation = $root.Location.toObject(message.kickLocation, options);
+                object.kickLocation = $root.Vector2.toObject(message.kickLocation, options);
+            if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
+                object.maxBallHeight = options.json && !isFinite(message.maxBallHeight) ? String(message.maxBallHeight) : message.maxBallHeight;
             if (message.kickingTeam != null && message.hasOwnProperty("kickingTeam"))
                 object.kickingTeam = options.enums === String ? $root.Team[message.kickingTeam] : message.kickingTeam;
+            if (message.numRobotsByTeam != null && message.hasOwnProperty("numRobotsByTeam"))
+                object.numRobotsByTeam = message.numRobotsByTeam;
+            if (message.lastTouchByTeam != null && message.hasOwnProperty("lastTouchByTeam"))
+                if (typeof message.lastTouchByTeam === "number")
+                    object.lastTouchByTeam = options.longs === String ? String(message.lastTouchByTeam) : message.lastTouchByTeam;
+                else
+                    object.lastTouchByTeam = options.longs === String ? $util.Long.prototype.toString.call(message.lastTouchByTeam) : options.longs === Number ? new $util.LongBits(message.lastTouchByTeam.low >>> 0, message.lastTouchByTeam.high >>> 0).toNumber(true) : message.lastTouchByTeam;
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
             return object;
         };
 
@@ -3880,8 +3196,8 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IIndirectGoal
          * @property {Team} byTeam IndirectGoal byTeam
          * @property {number|null} [byBot] IndirectGoal byBot
-         * @property {ILocation|null} [location] IndirectGoal location
-         * @property {ILocation|null} [kickLocation] IndirectGoal kickLocation
+         * @property {IVector2|null} [location] IndirectGoal location
+         * @property {IVector2|null} [kickLocation] IndirectGoal kickLocation
          */
 
         /**
@@ -3917,7 +3233,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * IndirectGoal location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.IndirectGoal
          * @instance
          */
@@ -3925,7 +3241,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * IndirectGoal kickLocation.
-         * @member {ILocation|null|undefined} kickLocation
+         * @member {IVector2|null|undefined} kickLocation
          * @memberof GameEvent.IndirectGoal
          * @instance
          */
@@ -3959,9 +3275,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                $root.Location.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -4003,10 +3319,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.kickLocation = $root.Location.decode(reader, reader.uint32());
+                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -4057,12 +3373,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation")) {
-                let error = $root.Location.verify(message.kickLocation);
+                let error = $root.Vector2.verify(message.kickLocation);
                 if (error)
                     return "kickLocation." + error;
             }
@@ -4100,12 +3416,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.IndirectGoal.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.kickLocation != null) {
                 if (typeof object.kickLocation !== "object")
                     throw TypeError(".GameEvent.IndirectGoal.kickLocation: object expected");
-                message.kickLocation = $root.Location.fromObject(object.kickLocation);
+                message.kickLocation = $root.Vector2.fromObject(object.kickLocation);
             }
             return message;
         };
@@ -4134,9 +3450,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                object.kickLocation = $root.Location.toObject(message.kickLocation, options);
+                object.kickLocation = $root.Vector2.toObject(message.kickLocation, options);
             return object;
         };
 
@@ -4162,8 +3478,8 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IChippedGoal
          * @property {Team} byTeam ChippedGoal byTeam
          * @property {number|null} [byBot] ChippedGoal byBot
-         * @property {ILocation|null} [location] ChippedGoal location
-         * @property {ILocation|null} [kickLocation] ChippedGoal kickLocation
+         * @property {IVector2|null} [location] ChippedGoal location
+         * @property {IVector2|null} [kickLocation] ChippedGoal kickLocation
          * @property {number|null} [maxBallHeight] ChippedGoal maxBallHeight
          */
 
@@ -4200,7 +3516,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * ChippedGoal location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.ChippedGoal
          * @instance
          */
@@ -4208,7 +3524,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * ChippedGoal kickLocation.
-         * @member {ILocation|null|undefined} kickLocation
+         * @member {IVector2|null|undefined} kickLocation
          * @memberof GameEvent.ChippedGoal
          * @instance
          */
@@ -4250,9 +3566,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                $root.Location.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.maxBallHeight);
             return writer;
@@ -4296,10 +3612,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.kickLocation = $root.Location.decode(reader, reader.uint32());
+                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 5:
                     message.maxBallHeight = reader.float();
@@ -4353,12 +3669,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation")) {
-                let error = $root.Location.verify(message.kickLocation);
+                let error = $root.Vector2.verify(message.kickLocation);
                 if (error)
                     return "kickLocation." + error;
             }
@@ -4399,12 +3715,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.ChippedGoal.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.kickLocation != null) {
                 if (typeof object.kickLocation !== "object")
                     throw TypeError(".GameEvent.ChippedGoal.kickLocation: object expected");
-                message.kickLocation = $root.Location.fromObject(object.kickLocation);
+                message.kickLocation = $root.Vector2.fromObject(object.kickLocation);
             }
             if (object.maxBallHeight != null)
                 message.maxBallHeight = Number(object.maxBallHeight);
@@ -4436,9 +3752,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
-                object.kickLocation = $root.Location.toObject(message.kickLocation, options);
+                object.kickLocation = $root.Vector2.toObject(message.kickLocation, options);
             if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
                 object.maxBallHeight = options.json && !isFinite(message.maxBallHeight) ? String(message.maxBallHeight) : message.maxBallHeight;
             return object;
@@ -4466,7 +3782,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotTooFastInStop
          * @property {Team} byTeam BotTooFastInStop byTeam
          * @property {number|null} [byBot] BotTooFastInStop byBot
-         * @property {ILocation|null} [location] BotTooFastInStop location
+         * @property {IVector2|null} [location] BotTooFastInStop location
          * @property {number|null} [speed] BotTooFastInStop speed
          */
 
@@ -4503,7 +3819,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotTooFastInStop location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotTooFastInStop
          * @instance
          */
@@ -4545,7 +3861,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.speed != null && message.hasOwnProperty("speed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.speed);
             return writer;
@@ -4589,7 +3905,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.speed = reader.float();
@@ -4643,7 +3959,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -4684,7 +4000,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotTooFastInStop.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.speed != null)
                 message.speed = Number(object.speed);
@@ -4715,7 +4031,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.speed != null && message.hasOwnProperty("speed"))
                 object.speed = options.json && !isFinite(message.speed) ? String(message.speed) : message.speed;
             return object;
@@ -4743,7 +4059,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IDefenderTooCloseToKickPoint
          * @property {Team} byTeam DefenderTooCloseToKickPoint byTeam
          * @property {number|null} [byBot] DefenderTooCloseToKickPoint byBot
-         * @property {ILocation|null} [location] DefenderTooCloseToKickPoint location
+         * @property {IVector2|null} [location] DefenderTooCloseToKickPoint location
          * @property {number|null} [distance] DefenderTooCloseToKickPoint distance
          */
 
@@ -4780,7 +4096,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * DefenderTooCloseToKickPoint location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.DefenderTooCloseToKickPoint
          * @instance
          */
@@ -4822,7 +4138,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.distance != null && message.hasOwnProperty("distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
@@ -4866,7 +4182,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.distance = reader.float();
@@ -4920,7 +4236,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -4961,7 +4277,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.DefenderTooCloseToKickPoint.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.distance != null)
                 message.distance = Number(object.distance);
@@ -4992,7 +4308,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.distance != null && message.hasOwnProperty("distance"))
                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
             return object;
@@ -5020,7 +4336,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotCrashDrawn
          * @property {number|null} [botYellow] BotCrashDrawn botYellow
          * @property {number|null} [botBlue] BotCrashDrawn botBlue
-         * @property {ILocation|null} [location] BotCrashDrawn location
+         * @property {IVector2|null} [location] BotCrashDrawn location
          * @property {number|null} [crashSpeed] BotCrashDrawn crashSpeed
          * @property {number|null} [speedDiff] BotCrashDrawn speedDiff
          * @property {number|null} [crashAngle] BotCrashDrawn crashAngle
@@ -5059,7 +4375,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotCrashDrawn location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotCrashDrawn
          * @instance
          */
@@ -5118,7 +4434,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.botBlue != null && message.hasOwnProperty("botBlue"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.botBlue);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.crashSpeed);
             if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
@@ -5166,7 +4482,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.botBlue = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.crashSpeed = reader.float();
@@ -5219,7 +4535,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.botBlue))
                     return "botBlue: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -5254,7 +4570,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotCrashDrawn.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.crashSpeed != null)
                 message.crashSpeed = Number(object.crashSpeed);
@@ -5291,7 +4607,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.botBlue != null && message.hasOwnProperty("botBlue"))
                 object.botBlue = message.botBlue;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
                 object.crashSpeed = options.json && !isFinite(message.crashSpeed) ? String(message.crashSpeed) : message.crashSpeed;
             if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
@@ -5324,7 +4640,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @property {Team} byTeam BotCrashUnique byTeam
          * @property {number|null} [violator] BotCrashUnique violator
          * @property {number|null} [victim] BotCrashUnique victim
-         * @property {ILocation|null} [location] BotCrashUnique location
+         * @property {IVector2|null} [location] BotCrashUnique location
          * @property {number|null} [crashSpeed] BotCrashUnique crashSpeed
          * @property {number|null} [speedDiff] BotCrashUnique speedDiff
          * @property {number|null} [crashAngle] BotCrashUnique crashAngle
@@ -5371,7 +4687,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotCrashUnique location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotCrashUnique
          * @instance
          */
@@ -5431,7 +4747,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.victim != null && message.hasOwnProperty("victim"))
                 writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.victim);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.crashSpeed);
             if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
@@ -5482,7 +4798,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.victim = reader.uint32();
                     break;
                 case 4:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 5:
                     message.crashSpeed = reader.float();
@@ -5545,7 +4861,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.victim))
                     return "victim: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -5594,7 +4910,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotCrashUnique.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.crashSpeed != null)
                 message.crashSpeed = Number(object.crashSpeed);
@@ -5634,7 +4950,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.victim != null && message.hasOwnProperty("victim"))
                 object.victim = message.victim;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
                 object.crashSpeed = options.json && !isFinite(message.crashSpeed) ? String(message.crashSpeed) : message.crashSpeed;
             if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
@@ -5667,7 +4983,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @property {Team} byTeam BotPushedBot byTeam
          * @property {number|null} [violator] BotPushedBot violator
          * @property {number|null} [victim] BotPushedBot victim
-         * @property {ILocation|null} [location] BotPushedBot location
+         * @property {IVector2|null} [location] BotPushedBot location
          * @property {number|null} [pushedDistance] BotPushedBot pushedDistance
          */
 
@@ -5712,7 +5028,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotPushedBot location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotPushedBot
          * @instance
          */
@@ -5756,7 +5072,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.victim != null && message.hasOwnProperty("victim"))
                 writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.victim);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.pushedDistance != null && message.hasOwnProperty("pushedDistance"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.pushedDistance);
             return writer;
@@ -5803,7 +5119,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.victim = reader.uint32();
                     break;
                 case 4:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 5:
                     message.pushedDistance = reader.float();
@@ -5860,7 +5176,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.victim))
                     return "victim: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -5903,7 +5219,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotPushedBot.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.pushedDistance != null)
                 message.pushedDistance = Number(object.pushedDistance);
@@ -5937,7 +5253,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.victim != null && message.hasOwnProperty("victim"))
                 object.victim = message.victim;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.pushedDistance != null && message.hasOwnProperty("pushedDistance"))
                 object.pushedDistance = options.json && !isFinite(message.pushedDistance) ? String(message.pushedDistance) : message.pushedDistance;
             return object;
@@ -5965,7 +5281,8 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotTippedOver
          * @property {Team} byTeam BotTippedOver byTeam
          * @property {number|null} [byBot] BotTippedOver byBot
-         * @property {ILocation|null} [location] BotTippedOver location
+         * @property {IVector2|null} [location] BotTippedOver location
+         * @property {IVector2|null} [ballLocation] BotTippedOver ballLocation
          */
 
         /**
@@ -6001,11 +5318,19 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotTippedOver location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotTippedOver
          * @instance
          */
         BotTippedOver.prototype.location = null;
+
+        /**
+         * BotTippedOver ballLocation.
+         * @member {IVector2|null|undefined} ballLocation
+         * @memberof GameEvent.BotTippedOver
+         * @instance
+         */
+        BotTippedOver.prototype.ballLocation = null;
 
         /**
          * Creates a new BotTippedOver instance using the specified properties.
@@ -6035,7 +5360,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -6077,7 +5404,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6128,9 +5458,14 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
+            }
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation")) {
+                let error = $root.Vector2.verify(message.ballLocation);
+                if (error)
+                    return "ballLocation." + error;
             }
             return null;
         };
@@ -6166,7 +5501,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotTippedOver.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
+            }
+            if (object.ballLocation != null) {
+                if (typeof object.ballLocation !== "object")
+                    throw TypeError(".GameEvent.BotTippedOver.ballLocation: object expected");
+                message.ballLocation = $root.Vector2.fromObject(object.ballLocation);
             }
             return message;
         };
@@ -6188,13 +5528,16 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
                 object.byBot = 0;
                 object.location = null;
+                object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                object.ballLocation = $root.Vector2.toObject(message.ballLocation, options);
             return object;
         };
 
@@ -6220,7 +5563,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IDefenderInDefenseArea
          * @property {Team} byTeam DefenderInDefenseArea byTeam
          * @property {number|null} [byBot] DefenderInDefenseArea byBot
-         * @property {ILocation|null} [location] DefenderInDefenseArea location
+         * @property {IVector2|null} [location] DefenderInDefenseArea location
          * @property {number|null} [distance] DefenderInDefenseArea distance
          */
 
@@ -6257,7 +5600,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * DefenderInDefenseArea location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.DefenderInDefenseArea
          * @instance
          */
@@ -6299,7 +5642,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.distance != null && message.hasOwnProperty("distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
@@ -6343,7 +5686,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.distance = reader.float();
@@ -6397,7 +5740,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -6438,7 +5781,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.DefenderInDefenseArea.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.distance != null)
                 message.distance = Number(object.distance);
@@ -6469,7 +5812,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.distance != null && message.hasOwnProperty("distance"))
                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
             return object;
@@ -6497,8 +5840,9 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IDefenderInDefenseAreaPartially
          * @property {Team} byTeam DefenderInDefenseAreaPartially byTeam
          * @property {number|null} [byBot] DefenderInDefenseAreaPartially byBot
-         * @property {ILocation|null} [location] DefenderInDefenseAreaPartially location
+         * @property {IVector2|null} [location] DefenderInDefenseAreaPartially location
          * @property {number|null} [distance] DefenderInDefenseAreaPartially distance
+         * @property {IVector2|null} [ballLocation] DefenderInDefenseAreaPartially ballLocation
          */
 
         /**
@@ -6534,7 +5878,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * DefenderInDefenseAreaPartially location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.DefenderInDefenseAreaPartially
          * @instance
          */
@@ -6547,6 +5891,14 @@ export const GameEvent = $root.GameEvent = (() => {
          * @instance
          */
         DefenderInDefenseAreaPartially.prototype.distance = 0;
+
+        /**
+         * DefenderInDefenseAreaPartially ballLocation.
+         * @member {IVector2|null|undefined} ballLocation
+         * @memberof GameEvent.DefenderInDefenseAreaPartially
+         * @instance
+         */
+        DefenderInDefenseAreaPartially.prototype.ballLocation = null;
 
         /**
          * Creates a new DefenderInDefenseAreaPartially instance using the specified properties.
@@ -6576,9 +5928,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.distance != null && message.hasOwnProperty("distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
 
@@ -6620,10 +5974,13 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.distance = reader.float();
+                    break;
+                case 5:
+                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6674,13 +6031,18 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.distance != null && message.hasOwnProperty("distance"))
                 if (typeof message.distance !== "number")
                     return "distance: number expected";
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation")) {
+                let error = $root.Vector2.verify(message.ballLocation);
+                if (error)
+                    return "ballLocation." + error;
+            }
             return null;
         };
 
@@ -6715,10 +6077,15 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.DefenderInDefenseAreaPartially.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.distance != null)
                 message.distance = Number(object.distance);
+            if (object.ballLocation != null) {
+                if (typeof object.ballLocation !== "object")
+                    throw TypeError(".GameEvent.DefenderInDefenseAreaPartially.ballLocation: object expected");
+                message.ballLocation = $root.Vector2.fromObject(object.ballLocation);
+            }
             return message;
         };
 
@@ -6740,15 +6107,18 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.byBot = 0;
                 object.location = null;
                 object.distance = 0;
+                object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.distance != null && message.hasOwnProperty("distance"))
                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                object.ballLocation = $root.Vector2.toObject(message.ballLocation, options);
             return object;
         };
 
@@ -6774,7 +6144,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IAttackerTouchedBallInDefenseArea
          * @property {Team} byTeam AttackerTouchedBallInDefenseArea byTeam
          * @property {number|null} [byBot] AttackerTouchedBallInDefenseArea byBot
-         * @property {ILocation|null} [location] AttackerTouchedBallInDefenseArea location
+         * @property {IVector2|null} [location] AttackerTouchedBallInDefenseArea location
          * @property {number|null} [distance] AttackerTouchedBallInDefenseArea distance
          */
 
@@ -6811,7 +6181,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AttackerTouchedBallInDefenseArea location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.AttackerTouchedBallInDefenseArea
          * @instance
          */
@@ -6853,7 +6223,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.distance != null && message.hasOwnProperty("distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
@@ -6897,7 +6267,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.distance = reader.float();
@@ -6951,7 +6321,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -6992,7 +6362,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.AttackerTouchedBallInDefenseArea.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.distance != null)
                 message.distance = Number(object.distance);
@@ -7023,7 +6393,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.distance != null && message.hasOwnProperty("distance"))
                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
             return object;
@@ -7051,7 +6421,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotKickedBallTooFast
          * @property {Team} byTeam BotKickedBallTooFast byTeam
          * @property {number|null} [byBot] BotKickedBallTooFast byBot
-         * @property {ILocation|null} [location] BotKickedBallTooFast location
+         * @property {IVector2|null} [location] BotKickedBallTooFast location
          * @property {number|null} [initialBallSpeed] BotKickedBallTooFast initialBallSpeed
          * @property {boolean|null} [chipped] BotKickedBallTooFast chipped
          */
@@ -7089,7 +6459,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotKickedBallTooFast location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotKickedBallTooFast
          * @instance
          */
@@ -7139,7 +6509,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.initialBallSpeed);
             if (message.chipped != null && message.hasOwnProperty("chipped"))
@@ -7185,7 +6555,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.initialBallSpeed = reader.float();
@@ -7242,7 +6612,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -7286,7 +6656,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotKickedBallTooFast.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.initialBallSpeed != null)
                 message.initialBallSpeed = Number(object.initialBallSpeed);
@@ -7320,7 +6690,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
                 object.initialBallSpeed = options.json && !isFinite(message.initialBallSpeed) ? String(message.initialBallSpeed) : message.initialBallSpeed;
             if (message.chipped != null && message.hasOwnProperty("chipped"))
@@ -7350,8 +6720,8 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotDribbledBallTooFar
          * @property {Team} byTeam BotDribbledBallTooFar byTeam
          * @property {number|null} [byBot] BotDribbledBallTooFar byBot
-         * @property {ILocation|null} [start] BotDribbledBallTooFar start
-         * @property {ILocation|null} [end] BotDribbledBallTooFar end
+         * @property {IVector2|null} [start] BotDribbledBallTooFar start
+         * @property {IVector2|null} [end] BotDribbledBallTooFar end
          */
 
         /**
@@ -7387,7 +6757,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotDribbledBallTooFar start.
-         * @member {ILocation|null|undefined} start
+         * @member {IVector2|null|undefined} start
          * @memberof GameEvent.BotDribbledBallTooFar
          * @instance
          */
@@ -7395,7 +6765,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotDribbledBallTooFar end.
-         * @member {ILocation|null|undefined} end
+         * @member {IVector2|null|undefined} end
          * @memberof GameEvent.BotDribbledBallTooFar
          * @instance
          */
@@ -7429,9 +6799,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.start != null && message.hasOwnProperty("start"))
-                $root.Location.encode(message.start, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.start, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.end != null && message.hasOwnProperty("end"))
-                $root.Location.encode(message.end, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Vector2.encode(message.end, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -7473,10 +6843,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.start = $root.Location.decode(reader, reader.uint32());
+                    message.start = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.end = $root.Location.decode(reader, reader.uint32());
+                    message.end = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7527,12 +6897,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.start != null && message.hasOwnProperty("start")) {
-                let error = $root.Location.verify(message.start);
+                let error = $root.Vector2.verify(message.start);
                 if (error)
                     return "start." + error;
             }
             if (message.end != null && message.hasOwnProperty("end")) {
-                let error = $root.Location.verify(message.end);
+                let error = $root.Vector2.verify(message.end);
                 if (error)
                     return "end." + error;
             }
@@ -7570,12 +6940,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.start != null) {
                 if (typeof object.start !== "object")
                     throw TypeError(".GameEvent.BotDribbledBallTooFar.start: object expected");
-                message.start = $root.Location.fromObject(object.start);
+                message.start = $root.Vector2.fromObject(object.start);
             }
             if (object.end != null) {
                 if (typeof object.end !== "object")
                     throw TypeError(".GameEvent.BotDribbledBallTooFar.end: object expected");
-                message.end = $root.Location.fromObject(object.end);
+                message.end = $root.Vector2.fromObject(object.end);
             }
             return message;
         };
@@ -7604,9 +6974,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.start != null && message.hasOwnProperty("start"))
-                object.start = $root.Location.toObject(message.start, options);
+                object.start = $root.Vector2.toObject(message.start, options);
             if (message.end != null && message.hasOwnProperty("end"))
-                object.end = $root.Location.toObject(message.end, options);
+                object.end = $root.Vector2.toObject(message.end, options);
             return object;
         };
 
@@ -7633,7 +7003,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @property {Team} byTeam AttackerTouchedOpponentInDefenseArea byTeam
          * @property {number|null} [byBot] AttackerTouchedOpponentInDefenseArea byBot
          * @property {number|null} [victim] AttackerTouchedOpponentInDefenseArea victim
-         * @property {ILocation|null} [location] AttackerTouchedOpponentInDefenseArea location
+         * @property {IVector2|null} [location] AttackerTouchedOpponentInDefenseArea location
          */
 
         /**
@@ -7677,7 +7047,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AttackerTouchedOpponentInDefenseArea location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
          * @instance
          */
@@ -7711,7 +7081,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.victim != null && message.hasOwnProperty("victim"))
                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.victim);
             return writer;
@@ -7758,7 +7128,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.victim = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7812,7 +7182,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.victim))
                     return "victim: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -7852,7 +7222,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.AttackerTouchedOpponentInDefenseArea.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             return message;
         };
@@ -7881,7 +7251,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.victim != null && message.hasOwnProperty("victim"))
                 object.victim = message.victim;
             return object;
@@ -7909,7 +7279,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IAttackerDoubleTouchedBall
          * @property {Team} byTeam AttackerDoubleTouchedBall byTeam
          * @property {number|null} [byBot] AttackerDoubleTouchedBall byBot
-         * @property {ILocation|null} [location] AttackerDoubleTouchedBall location
+         * @property {IVector2|null} [location] AttackerDoubleTouchedBall location
          */
 
         /**
@@ -7945,7 +7315,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AttackerDoubleTouchedBall location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.AttackerDoubleTouchedBall
          * @instance
          */
@@ -7979,7 +7349,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -8021,7 +7391,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8072,7 +7442,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -8110,7 +7480,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.AttackerDoubleTouchedBall.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             return message;
         };
@@ -8138,7 +7508,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             return object;
         };
 
@@ -8164,8 +7534,9 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IAttackerTooCloseToDefenseArea
          * @property {Team} byTeam AttackerTooCloseToDefenseArea byTeam
          * @property {number|null} [byBot] AttackerTooCloseToDefenseArea byBot
-         * @property {ILocation|null} [location] AttackerTooCloseToDefenseArea location
+         * @property {IVector2|null} [location] AttackerTooCloseToDefenseArea location
          * @property {number|null} [distance] AttackerTooCloseToDefenseArea distance
+         * @property {IVector2|null} [ballLocation] AttackerTooCloseToDefenseArea ballLocation
          */
 
         /**
@@ -8201,7 +7572,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * AttackerTooCloseToDefenseArea location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.AttackerTooCloseToDefenseArea
          * @instance
          */
@@ -8214,6 +7585,14 @@ export const GameEvent = $root.GameEvent = (() => {
          * @instance
          */
         AttackerTooCloseToDefenseArea.prototype.distance = 0;
+
+        /**
+         * AttackerTooCloseToDefenseArea ballLocation.
+         * @member {IVector2|null|undefined} ballLocation
+         * @memberof GameEvent.AttackerTooCloseToDefenseArea
+         * @instance
+         */
+        AttackerTooCloseToDefenseArea.prototype.ballLocation = null;
 
         /**
          * Creates a new AttackerTooCloseToDefenseArea instance using the specified properties.
@@ -8243,9 +7622,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.distance != null && message.hasOwnProperty("distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
 
@@ -8287,10 +7668,13 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.distance = reader.float();
+                    break;
+                case 5:
+                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8341,13 +7725,18 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
             if (message.distance != null && message.hasOwnProperty("distance"))
                 if (typeof message.distance !== "number")
                     return "distance: number expected";
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation")) {
+                let error = $root.Vector2.verify(message.ballLocation);
+                if (error)
+                    return "ballLocation." + error;
+            }
             return null;
         };
 
@@ -8382,10 +7771,15 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.AttackerTooCloseToDefenseArea.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.distance != null)
                 message.distance = Number(object.distance);
+            if (object.ballLocation != null) {
+                if (typeof object.ballLocation !== "object")
+                    throw TypeError(".GameEvent.AttackerTooCloseToDefenseArea.ballLocation: object expected");
+                message.ballLocation = $root.Vector2.fromObject(object.ballLocation);
+            }
             return message;
         };
 
@@ -8407,15 +7801,18 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.byBot = 0;
                 object.location = null;
                 object.distance = 0;
+                object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.distance != null && message.hasOwnProperty("distance"))
                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                object.ballLocation = $root.Vector2.toObject(message.ballLocation, options);
             return object;
         };
 
@@ -8441,7 +7838,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotHeldBallDeliberately
          * @property {Team} byTeam BotHeldBallDeliberately byTeam
          * @property {number|null} [byBot] BotHeldBallDeliberately byBot
-         * @property {ILocation|null} [location] BotHeldBallDeliberately location
+         * @property {IVector2|null} [location] BotHeldBallDeliberately location
          * @property {number|null} [duration] BotHeldBallDeliberately duration
          */
 
@@ -8478,7 +7875,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotHeldBallDeliberately location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotHeldBallDeliberately
          * @instance
          */
@@ -8520,7 +7917,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.duration != null && message.hasOwnProperty("duration"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.duration);
             return writer;
@@ -8564,7 +7961,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 4:
                     message.duration = reader.float();
@@ -8618,7 +8015,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -8659,7 +8056,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotHeldBallDeliberately.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.duration != null)
                 message.duration = Number(object.duration);
@@ -8690,7 +8087,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.duration != null && message.hasOwnProperty("duration"))
                 object.duration = options.json && !isFinite(message.duration) ? String(message.duration) : message.duration;
             return object;
@@ -8718,7 +8115,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IBotInterferedPlacement
          * @property {Team} byTeam BotInterferedPlacement byTeam
          * @property {number|null} [byBot] BotInterferedPlacement byBot
-         * @property {ILocation|null} [location] BotInterferedPlacement location
+         * @property {IVector2|null} [location] BotInterferedPlacement location
          */
 
         /**
@@ -8754,7 +8151,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * BotInterferedPlacement location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.BotInterferedPlacement
          * @instance
          */
@@ -8788,7 +8185,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -8830,7 +8227,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byBot = reader.uint32();
                     break;
                 case 3:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8881,7 +8278,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 if (!$util.isInteger(message.byBot))
                     return "byBot: integer expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -8919,7 +8316,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.BotInterferedPlacement.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             return message;
         };
@@ -8947,7 +8344,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             return object;
         };
 
@@ -9587,7 +8984,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @memberof GameEvent
          * @interface IKickTimeout
          * @property {Team} byTeam KickTimeout byTeam
-         * @property {ILocation|null} [location] KickTimeout location
+         * @property {IVector2|null} [location] KickTimeout location
          * @property {number|null} [time] KickTimeout time
          */
 
@@ -9616,7 +9013,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * KickTimeout location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.KickTimeout
          * @instance
          */
@@ -9656,7 +9053,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.time != null && message.hasOwnProperty("time"))
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.time);
             return writer;
@@ -9697,7 +9094,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byTeam = reader.int32();
                     break;
                 case 2:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 3:
                     message.time = reader.float();
@@ -9748,7 +9145,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 break;
             }
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -9787,7 +9184,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.KickTimeout.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.time != null)
                 message.time = Number(object.time);
@@ -9815,7 +9212,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.time != null && message.hasOwnProperty("time"))
                 object.time = options.json && !isFinite(message.time) ? String(message.time) : message.time;
             return object;
@@ -9841,7 +9238,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * Properties of a NoProgressInGame.
          * @memberof GameEvent
          * @interface INoProgressInGame
-         * @property {ILocation|null} [location] NoProgressInGame location
+         * @property {IVector2|null} [location] NoProgressInGame location
          * @property {number|null} [time] NoProgressInGame time
          */
 
@@ -9862,7 +9259,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * NoProgressInGame location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.NoProgressInGame
          * @instance
          */
@@ -9901,7 +9298,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.time != null && message.hasOwnProperty("time"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.time);
             return writer;
@@ -9939,7 +9336,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.time = reader.float();
@@ -9980,7 +9377,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -10005,7 +9402,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.NoProgressInGame.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.time != null)
                 message.time = Number(object.time);
@@ -10030,7 +9427,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.time = 0;
             }
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.time != null && message.hasOwnProperty("time"))
                 object.time = options.json && !isFinite(message.time) ? String(message.time) : message.time;
             return object;
@@ -10741,7 +10138,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @memberof GameEvent
          * @interface IKeeperHeldBall
          * @property {Team} byTeam KeeperHeldBall byTeam
-         * @property {ILocation|null} [location] KeeperHeldBall location
+         * @property {IVector2|null} [location] KeeperHeldBall location
          * @property {number|null} [duration] KeeperHeldBall duration
          */
 
@@ -10770,7 +10167,7 @@ export const GameEvent = $root.GameEvent = (() => {
 
         /**
          * KeeperHeldBall location.
-         * @member {ILocation|null|undefined} location
+         * @member {IVector2|null|undefined} location
          * @memberof GameEvent.KeeperHeldBall
          * @instance
          */
@@ -10810,7 +10207,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
             if (message.location != null && message.hasOwnProperty("location"))
-                $root.Location.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.duration != null && message.hasOwnProperty("duration"))
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.duration);
             return writer;
@@ -10851,7 +10248,7 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.byTeam = reader.int32();
                     break;
                 case 2:
-                    message.location = $root.Location.decode(reader, reader.uint32());
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 case 3:
                     message.duration = reader.float();
@@ -10902,7 +10299,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 break;
             }
             if (message.location != null && message.hasOwnProperty("location")) {
-                let error = $root.Location.verify(message.location);
+                let error = $root.Vector2.verify(message.location);
                 if (error)
                     return "location." + error;
             }
@@ -10941,7 +10338,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".GameEvent.KeeperHeldBall.location: object expected");
-                message.location = $root.Location.fromObject(object.location);
+                message.location = $root.Vector2.fromObject(object.location);
             }
             if (object.duration != null)
                 message.duration = Number(object.duration);
@@ -10969,7 +10366,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
-                object.location = $root.Location.toObject(message.location, options);
+                object.location = $root.Vector2.toObject(message.location, options);
             if (message.duration != null && message.hasOwnProperty("duration"))
                 object.duration = options.json && !isFinite(message.duration) ? String(message.duration) : message.duration;
             return object;
@@ -11653,6 +11050,416 @@ export const GameEvent = $root.GameEvent = (() => {
         return BotSubstitution;
     })();
 
+    GameEvent.ChallengeFlag = (function() {
+
+        /**
+         * Properties of a ChallengeFlag.
+         * @memberof GameEvent
+         * @interface IChallengeFlag
+         * @property {Team} byTeam ChallengeFlag byTeam
+         */
+
+        /**
+         * Constructs a new ChallengeFlag.
+         * @memberof GameEvent
+         * @classdesc Represents a ChallengeFlag.
+         * @implements IChallengeFlag
+         * @constructor
+         * @param {GameEvent.IChallengeFlag=} [properties] Properties to set
+         */
+        function ChallengeFlag(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ChallengeFlag byTeam.
+         * @member {Team} byTeam
+         * @memberof GameEvent.ChallengeFlag
+         * @instance
+         */
+        ChallengeFlag.prototype.byTeam = 0;
+
+        /**
+         * Creates a new ChallengeFlag instance using the specified properties.
+         * @function create
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {GameEvent.IChallengeFlag=} [properties] Properties to set
+         * @returns {GameEvent.ChallengeFlag} ChallengeFlag instance
+         */
+        ChallengeFlag.create = function create(properties) {
+            return new ChallengeFlag(properties);
+        };
+
+        /**
+         * Encodes the specified ChallengeFlag message. Does not implicitly {@link GameEvent.ChallengeFlag.verify|verify} messages.
+         * @function encode
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {GameEvent.IChallengeFlag} message ChallengeFlag message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ChallengeFlag.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ChallengeFlag message, length delimited. Does not implicitly {@link GameEvent.ChallengeFlag.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {GameEvent.IChallengeFlag} message ChallengeFlag message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ChallengeFlag.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ChallengeFlag message from the specified reader or buffer.
+         * @function decode
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GameEvent.ChallengeFlag} ChallengeFlag
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ChallengeFlag.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.ChallengeFlag();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.byTeam = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("byTeam"))
+                throw $util.ProtocolError("missing required 'byTeam'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a ChallengeFlag message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GameEvent.ChallengeFlag} ChallengeFlag
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ChallengeFlag.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ChallengeFlag message.
+         * @function verify
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ChallengeFlag.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            switch (message.byTeam) {
+            default:
+                return "byTeam: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ChallengeFlag message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GameEvent.ChallengeFlag} ChallengeFlag
+         */
+        ChallengeFlag.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.ChallengeFlag)
+                return object;
+            let message = new $root.GameEvent.ChallengeFlag();
+            switch (object.byTeam) {
+            case "UNKNOWN":
+            case 0:
+                message.byTeam = 0;
+                break;
+            case "YELLOW":
+            case 1:
+                message.byTeam = 1;
+                break;
+            case "BLUE":
+            case 2:
+                message.byTeam = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ChallengeFlag message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {GameEvent.ChallengeFlag} message ChallengeFlag
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ChallengeFlag.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+            if (message.byTeam != null && message.hasOwnProperty("byTeam"))
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            return object;
+        };
+
+        /**
+         * Converts this ChallengeFlag to JSON.
+         * @function toJSON
+         * @memberof GameEvent.ChallengeFlag
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ChallengeFlag.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return ChallengeFlag;
+    })();
+
+    GameEvent.EmergencyStop = (function() {
+
+        /**
+         * Properties of an EmergencyStop.
+         * @memberof GameEvent
+         * @interface IEmergencyStop
+         * @property {Team} byTeam EmergencyStop byTeam
+         */
+
+        /**
+         * Constructs a new EmergencyStop.
+         * @memberof GameEvent
+         * @classdesc Represents an EmergencyStop.
+         * @implements IEmergencyStop
+         * @constructor
+         * @param {GameEvent.IEmergencyStop=} [properties] Properties to set
+         */
+        function EmergencyStop(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * EmergencyStop byTeam.
+         * @member {Team} byTeam
+         * @memberof GameEvent.EmergencyStop
+         * @instance
+         */
+        EmergencyStop.prototype.byTeam = 0;
+
+        /**
+         * Creates a new EmergencyStop instance using the specified properties.
+         * @function create
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {GameEvent.IEmergencyStop=} [properties] Properties to set
+         * @returns {GameEvent.EmergencyStop} EmergencyStop instance
+         */
+        EmergencyStop.create = function create(properties) {
+            return new EmergencyStop(properties);
+        };
+
+        /**
+         * Encodes the specified EmergencyStop message. Does not implicitly {@link GameEvent.EmergencyStop.verify|verify} messages.
+         * @function encode
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {GameEvent.IEmergencyStop} message EmergencyStop message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EmergencyStop.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified EmergencyStop message, length delimited. Does not implicitly {@link GameEvent.EmergencyStop.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {GameEvent.IEmergencyStop} message EmergencyStop message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EmergencyStop.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an EmergencyStop message from the specified reader or buffer.
+         * @function decode
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GameEvent.EmergencyStop} EmergencyStop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EmergencyStop.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.EmergencyStop();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.byTeam = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("byTeam"))
+                throw $util.ProtocolError("missing required 'byTeam'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes an EmergencyStop message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GameEvent.EmergencyStop} EmergencyStop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EmergencyStop.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an EmergencyStop message.
+         * @function verify
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        EmergencyStop.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            switch (message.byTeam) {
+            default:
+                return "byTeam: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an EmergencyStop message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GameEvent.EmergencyStop} EmergencyStop
+         */
+        EmergencyStop.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.EmergencyStop)
+                return object;
+            let message = new $root.GameEvent.EmergencyStop();
+            switch (object.byTeam) {
+            case "UNKNOWN":
+            case 0:
+                message.byTeam = 0;
+                break;
+            case "YELLOW":
+            case 1:
+                message.byTeam = 1;
+                break;
+            case "BLUE":
+            case 2:
+                message.byTeam = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an EmergencyStop message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {GameEvent.EmergencyStop} message EmergencyStop
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        EmergencyStop.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+            if (message.byTeam != null && message.hasOwnProperty("byTeam"))
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            return object;
+        };
+
+        /**
+         * Converts this EmergencyStop to JSON.
+         * @function toJSON
+         * @memberof GameEvent.EmergencyStop
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        EmergencyStop.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return EmergencyStop;
+    })();
+
     GameEvent.TooManyRobots = (function() {
 
         /**
@@ -11660,6 +11467,9 @@ export const GameEvent = $root.GameEvent = (() => {
          * @memberof GameEvent
          * @interface ITooManyRobots
          * @property {Team} byTeam TooManyRobots byTeam
+         * @property {number|null} [numRobotsAllowed] TooManyRobots numRobotsAllowed
+         * @property {number|null} [numRobotsOnField] TooManyRobots numRobotsOnField
+         * @property {IVector2|null} [ballLocation] TooManyRobots ballLocation
          */
 
         /**
@@ -11686,6 +11496,30 @@ export const GameEvent = $root.GameEvent = (() => {
         TooManyRobots.prototype.byTeam = 0;
 
         /**
+         * TooManyRobots numRobotsAllowed.
+         * @member {number} numRobotsAllowed
+         * @memberof GameEvent.TooManyRobots
+         * @instance
+         */
+        TooManyRobots.prototype.numRobotsAllowed = 0;
+
+        /**
+         * TooManyRobots numRobotsOnField.
+         * @member {number} numRobotsOnField
+         * @memberof GameEvent.TooManyRobots
+         * @instance
+         */
+        TooManyRobots.prototype.numRobotsOnField = 0;
+
+        /**
+         * TooManyRobots ballLocation.
+         * @member {IVector2|null|undefined} ballLocation
+         * @memberof GameEvent.TooManyRobots
+         * @instance
+         */
+        TooManyRobots.prototype.ballLocation = null;
+
+        /**
          * Creates a new TooManyRobots instance using the specified properties.
          * @function create
          * @memberof GameEvent.TooManyRobots
@@ -11710,6 +11544,12 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            if (message.numRobotsAllowed != null && message.hasOwnProperty("numRobotsAllowed"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.numRobotsAllowed);
+            if (message.numRobotsOnField != null && message.hasOwnProperty("numRobotsOnField"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.numRobotsOnField);
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -11746,6 +11586,15 @@ export const GameEvent = $root.GameEvent = (() => {
                 switch (tag >>> 3) {
                 case 1:
                     message.byTeam = reader.int32();
+                    break;
+                case 2:
+                    message.numRobotsAllowed = reader.int32();
+                    break;
+                case 3:
+                    message.numRobotsOnField = reader.int32();
+                    break;
+                case 4:
+                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -11792,6 +11641,17 @@ export const GameEvent = $root.GameEvent = (() => {
             case 2:
                 break;
             }
+            if (message.numRobotsAllowed != null && message.hasOwnProperty("numRobotsAllowed"))
+                if (!$util.isInteger(message.numRobotsAllowed))
+                    return "numRobotsAllowed: integer expected";
+            if (message.numRobotsOnField != null && message.hasOwnProperty("numRobotsOnField"))
+                if (!$util.isInteger(message.numRobotsOnField))
+                    return "numRobotsOnField: integer expected";
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation")) {
+                let error = $root.Vector2.verify(message.ballLocation);
+                if (error)
+                    return "ballLocation." + error;
+            }
             return null;
         };
 
@@ -11821,6 +11681,15 @@ export const GameEvent = $root.GameEvent = (() => {
                 message.byTeam = 2;
                 break;
             }
+            if (object.numRobotsAllowed != null)
+                message.numRobotsAllowed = object.numRobotsAllowed | 0;
+            if (object.numRobotsOnField != null)
+                message.numRobotsOnField = object.numRobotsOnField | 0;
+            if (object.ballLocation != null) {
+                if (typeof object.ballLocation !== "object")
+                    throw TypeError(".GameEvent.TooManyRobots.ballLocation: object expected");
+                message.ballLocation = $root.Vector2.fromObject(object.ballLocation);
+            }
             return message;
         };
 
@@ -11837,10 +11706,20 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+                object.numRobotsAllowed = 0;
+                object.numRobotsOnField = 0;
+                object.ballLocation = null;
+            }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            if (message.numRobotsAllowed != null && message.hasOwnProperty("numRobotsAllowed"))
+                object.numRobotsAllowed = message.numRobotsAllowed;
+            if (message.numRobotsOnField != null && message.hasOwnProperty("numRobotsOnField"))
+                object.numRobotsOnField = message.numRobotsOnField;
+            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+                object.ballLocation = $root.Vector2.toObject(message.ballLocation, options);
             return object;
         };
 
@@ -11858,97 +11737,1015 @@ export const GameEvent = $root.GameEvent = (() => {
         return TooManyRobots;
     })();
 
+    GameEvent.BoundaryCrossing = (function() {
+
+        /**
+         * Properties of a BoundaryCrossing.
+         * @memberof GameEvent
+         * @interface IBoundaryCrossing
+         * @property {Team} byTeam BoundaryCrossing byTeam
+         * @property {IVector2|null} [location] BoundaryCrossing location
+         */
+
+        /**
+         * Constructs a new BoundaryCrossing.
+         * @memberof GameEvent
+         * @classdesc Represents a BoundaryCrossing.
+         * @implements IBoundaryCrossing
+         * @constructor
+         * @param {GameEvent.IBoundaryCrossing=} [properties] Properties to set
+         */
+        function BoundaryCrossing(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BoundaryCrossing byTeam.
+         * @member {Team} byTeam
+         * @memberof GameEvent.BoundaryCrossing
+         * @instance
+         */
+        BoundaryCrossing.prototype.byTeam = 0;
+
+        /**
+         * BoundaryCrossing location.
+         * @member {IVector2|null|undefined} location
+         * @memberof GameEvent.BoundaryCrossing
+         * @instance
+         */
+        BoundaryCrossing.prototype.location = null;
+
+        /**
+         * Creates a new BoundaryCrossing instance using the specified properties.
+         * @function create
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {GameEvent.IBoundaryCrossing=} [properties] Properties to set
+         * @returns {GameEvent.BoundaryCrossing} BoundaryCrossing instance
+         */
+        BoundaryCrossing.create = function create(properties) {
+            return new BoundaryCrossing(properties);
+        };
+
+        /**
+         * Encodes the specified BoundaryCrossing message. Does not implicitly {@link GameEvent.BoundaryCrossing.verify|verify} messages.
+         * @function encode
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {GameEvent.IBoundaryCrossing} message BoundaryCrossing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BoundaryCrossing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            if (message.location != null && message.hasOwnProperty("location"))
+                $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BoundaryCrossing message, length delimited. Does not implicitly {@link GameEvent.BoundaryCrossing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {GameEvent.IBoundaryCrossing} message BoundaryCrossing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BoundaryCrossing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BoundaryCrossing message from the specified reader or buffer.
+         * @function decode
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GameEvent.BoundaryCrossing} BoundaryCrossing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BoundaryCrossing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.BoundaryCrossing();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.byTeam = reader.int32();
+                    break;
+                case 2:
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("byTeam"))
+                throw $util.ProtocolError("missing required 'byTeam'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a BoundaryCrossing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GameEvent.BoundaryCrossing} BoundaryCrossing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BoundaryCrossing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BoundaryCrossing message.
+         * @function verify
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BoundaryCrossing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            switch (message.byTeam) {
+            default:
+                return "byTeam: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
+            if (message.location != null && message.hasOwnProperty("location")) {
+                let error = $root.Vector2.verify(message.location);
+                if (error)
+                    return "location." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BoundaryCrossing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GameEvent.BoundaryCrossing} BoundaryCrossing
+         */
+        BoundaryCrossing.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.BoundaryCrossing)
+                return object;
+            let message = new $root.GameEvent.BoundaryCrossing();
+            switch (object.byTeam) {
+            case "UNKNOWN":
+            case 0:
+                message.byTeam = 0;
+                break;
+            case "YELLOW":
+            case 1:
+                message.byTeam = 1;
+                break;
+            case "BLUE":
+            case 2:
+                message.byTeam = 2;
+                break;
+            }
+            if (object.location != null) {
+                if (typeof object.location !== "object")
+                    throw TypeError(".GameEvent.BoundaryCrossing.location: object expected");
+                message.location = $root.Vector2.fromObject(object.location);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BoundaryCrossing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {GameEvent.BoundaryCrossing} message BoundaryCrossing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BoundaryCrossing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+                object.location = null;
+            }
+            if (message.byTeam != null && message.hasOwnProperty("byTeam"))
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            if (message.location != null && message.hasOwnProperty("location"))
+                object.location = $root.Vector2.toObject(message.location, options);
+            return object;
+        };
+
+        /**
+         * Converts this BoundaryCrossing to JSON.
+         * @function toJSON
+         * @memberof GameEvent.BoundaryCrossing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BoundaryCrossing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BoundaryCrossing;
+    })();
+
+    GameEvent.PenaltyKickFailed = (function() {
+
+        /**
+         * Properties of a PenaltyKickFailed.
+         * @memberof GameEvent
+         * @interface IPenaltyKickFailed
+         * @property {Team} byTeam PenaltyKickFailed byTeam
+         * @property {IVector2|null} [location] PenaltyKickFailed location
+         */
+
+        /**
+         * Constructs a new PenaltyKickFailed.
+         * @memberof GameEvent
+         * @classdesc Represents a PenaltyKickFailed.
+         * @implements IPenaltyKickFailed
+         * @constructor
+         * @param {GameEvent.IPenaltyKickFailed=} [properties] Properties to set
+         */
+        function PenaltyKickFailed(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PenaltyKickFailed byTeam.
+         * @member {Team} byTeam
+         * @memberof GameEvent.PenaltyKickFailed
+         * @instance
+         */
+        PenaltyKickFailed.prototype.byTeam = 0;
+
+        /**
+         * PenaltyKickFailed location.
+         * @member {IVector2|null|undefined} location
+         * @memberof GameEvent.PenaltyKickFailed
+         * @instance
+         */
+        PenaltyKickFailed.prototype.location = null;
+
+        /**
+         * Creates a new PenaltyKickFailed instance using the specified properties.
+         * @function create
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {GameEvent.IPenaltyKickFailed=} [properties] Properties to set
+         * @returns {GameEvent.PenaltyKickFailed} PenaltyKickFailed instance
+         */
+        PenaltyKickFailed.create = function create(properties) {
+            return new PenaltyKickFailed(properties);
+        };
+
+        /**
+         * Encodes the specified PenaltyKickFailed message. Does not implicitly {@link GameEvent.PenaltyKickFailed.verify|verify} messages.
+         * @function encode
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {GameEvent.IPenaltyKickFailed} message PenaltyKickFailed message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PenaltyKickFailed.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            if (message.location != null && message.hasOwnProperty("location"))
+                $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PenaltyKickFailed message, length delimited. Does not implicitly {@link GameEvent.PenaltyKickFailed.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {GameEvent.IPenaltyKickFailed} message PenaltyKickFailed message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PenaltyKickFailed.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PenaltyKickFailed message from the specified reader or buffer.
+         * @function decode
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GameEvent.PenaltyKickFailed} PenaltyKickFailed
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PenaltyKickFailed.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.PenaltyKickFailed();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.byTeam = reader.int32();
+                    break;
+                case 2:
+                    message.location = $root.Vector2.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("byTeam"))
+                throw $util.ProtocolError("missing required 'byTeam'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a PenaltyKickFailed message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GameEvent.PenaltyKickFailed} PenaltyKickFailed
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PenaltyKickFailed.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PenaltyKickFailed message.
+         * @function verify
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PenaltyKickFailed.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            switch (message.byTeam) {
+            default:
+                return "byTeam: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
+            if (message.location != null && message.hasOwnProperty("location")) {
+                let error = $root.Vector2.verify(message.location);
+                if (error)
+                    return "location." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a PenaltyKickFailed message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GameEvent.PenaltyKickFailed} PenaltyKickFailed
+         */
+        PenaltyKickFailed.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.PenaltyKickFailed)
+                return object;
+            let message = new $root.GameEvent.PenaltyKickFailed();
+            switch (object.byTeam) {
+            case "UNKNOWN":
+            case 0:
+                message.byTeam = 0;
+                break;
+            case "YELLOW":
+            case 1:
+                message.byTeam = 1;
+                break;
+            case "BLUE":
+            case 2:
+                message.byTeam = 2;
+                break;
+            }
+            if (object.location != null) {
+                if (typeof object.location !== "object")
+                    throw TypeError(".GameEvent.PenaltyKickFailed.location: object expected");
+                message.location = $root.Vector2.fromObject(object.location);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PenaltyKickFailed message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {GameEvent.PenaltyKickFailed} message PenaltyKickFailed
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PenaltyKickFailed.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+                object.location = null;
+            }
+            if (message.byTeam != null && message.hasOwnProperty("byTeam"))
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            if (message.location != null && message.hasOwnProperty("location"))
+                object.location = $root.Vector2.toObject(message.location, options);
+            return object;
+        };
+
+        /**
+         * Converts this PenaltyKickFailed to JSON.
+         * @function toJSON
+         * @memberof GameEvent.PenaltyKickFailed
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PenaltyKickFailed.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return PenaltyKickFailed;
+    })();
+
+    /**
+     * Type enum.
+     * @name GameEvent.Type
+     * @enum {string}
+     * @property {number} UNKNOWN_GAME_EVENT_TYPE=0 UNKNOWN_GAME_EVENT_TYPE value
+     * @property {number} BALL_LEFT_FIELD_TOUCH_LINE=6 BALL_LEFT_FIELD_TOUCH_LINE value
+     * @property {number} BALL_LEFT_FIELD_GOAL_LINE=7 BALL_LEFT_FIELD_GOAL_LINE value
+     * @property {number} AIMLESS_KICK=11 AIMLESS_KICK value
+     * @property {number} ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA=19 ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA value
+     * @property {number} DEFENDER_IN_DEFENSE_AREA=31 DEFENDER_IN_DEFENSE_AREA value
+     * @property {number} BOUNDARY_CROSSING=41 BOUNDARY_CROSSING value
+     * @property {number} KEEPER_HELD_BALL=13 KEEPER_HELD_BALL value
+     * @property {number} BOT_DRIBBLED_BALL_TOO_FAR=17 BOT_DRIBBLED_BALL_TOO_FAR value
+     * @property {number} BOT_PUSHED_BOT=24 BOT_PUSHED_BOT value
+     * @property {number} BOT_HELD_BALL_DELIBERATELY=26 BOT_HELD_BALL_DELIBERATELY value
+     * @property {number} BOT_TIPPED_OVER=27 BOT_TIPPED_OVER value
+     * @property {number} ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA=15 ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA value
+     * @property {number} BOT_KICKED_BALL_TOO_FAST=18 BOT_KICKED_BALL_TOO_FAST value
+     * @property {number} BOT_CRASH_UNIQUE=22 BOT_CRASH_UNIQUE value
+     * @property {number} BOT_CRASH_DRAWN=21 BOT_CRASH_DRAWN value
+     * @property {number} DEFENDER_TOO_CLOSE_TO_KICK_POINT=29 DEFENDER_TOO_CLOSE_TO_KICK_POINT value
+     * @property {number} BOT_TOO_FAST_IN_STOP=28 BOT_TOO_FAST_IN_STOP value
+     * @property {number} BOT_INTERFERED_PLACEMENT=20 BOT_INTERFERED_PLACEMENT value
+     * @property {number} POSSIBLE_GOAL=39 POSSIBLE_GOAL value
+     * @property {number} GOAL=8 GOAL value
+     * @property {number} INVALID_GOAL=42 INVALID_GOAL value
+     * @property {number} ATTACKER_DOUBLE_TOUCHED_BALL=14 ATTACKER_DOUBLE_TOUCHED_BALL value
+     * @property {number} PLACEMENT_SUCCEEDED=5 PLACEMENT_SUCCEEDED value
+     * @property {number} PENALTY_KICK_FAILED=43 PENALTY_KICK_FAILED value
+     * @property {number} NO_PROGRESS_IN_GAME=2 NO_PROGRESS_IN_GAME value
+     * @property {number} PLACEMENT_FAILED=3 PLACEMENT_FAILED value
+     * @property {number} MULTIPLE_CARDS=32 MULTIPLE_CARDS value
+     * @property {number} MULTIPLE_FOULS=34 MULTIPLE_FOULS value
+     * @property {number} BOT_SUBSTITUTION=37 BOT_SUBSTITUTION value
+     * @property {number} TOO_MANY_ROBOTS=38 TOO_MANY_ROBOTS value
+     * @property {number} CHALLENGE_FLAG=44 CHALLENGE_FLAG value
+     * @property {number} EMERGENCY_STOP=45 EMERGENCY_STOP value
+     * @property {number} UNSPORTING_BEHAVIOR_MINOR=35 UNSPORTING_BEHAVIOR_MINOR value
+     * @property {number} UNSPORTING_BEHAVIOR_MAJOR=36 UNSPORTING_BEHAVIOR_MAJOR value
+     * @property {number} PREPARED=1 PREPARED value
+     * @property {number} INDIRECT_GOAL=9 INDIRECT_GOAL value
+     * @property {number} CHIPPED_GOAL=10 CHIPPED_GOAL value
+     * @property {number} KICK_TIMEOUT=12 KICK_TIMEOUT value
+     * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA=16 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA value
+     * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED=40 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED value
+     * @property {number} BOT_CRASH_UNIQUE_SKIPPED=23 BOT_CRASH_UNIQUE_SKIPPED value
+     * @property {number} BOT_PUSHED_BOT_SKIPPED=25 BOT_PUSHED_BOT_SKIPPED value
+     * @property {number} DEFENDER_IN_DEFENSE_AREA_PARTIALLY=30 DEFENDER_IN_DEFENSE_AREA_PARTIALLY value
+     * @property {number} MULTIPLE_PLACEMENT_FAILURES=33 MULTIPLE_PLACEMENT_FAILURES value
+     */
+    GameEvent.Type = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "UNKNOWN_GAME_EVENT_TYPE"] = 0;
+        values[valuesById[6] = "BALL_LEFT_FIELD_TOUCH_LINE"] = 6;
+        values[valuesById[7] = "BALL_LEFT_FIELD_GOAL_LINE"] = 7;
+        values[valuesById[11] = "AIMLESS_KICK"] = 11;
+        values[valuesById[19] = "ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA"] = 19;
+        values[valuesById[31] = "DEFENDER_IN_DEFENSE_AREA"] = 31;
+        values[valuesById[41] = "BOUNDARY_CROSSING"] = 41;
+        values[valuesById[13] = "KEEPER_HELD_BALL"] = 13;
+        values[valuesById[17] = "BOT_DRIBBLED_BALL_TOO_FAR"] = 17;
+        values[valuesById[24] = "BOT_PUSHED_BOT"] = 24;
+        values[valuesById[26] = "BOT_HELD_BALL_DELIBERATELY"] = 26;
+        values[valuesById[27] = "BOT_TIPPED_OVER"] = 27;
+        values[valuesById[15] = "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA"] = 15;
+        values[valuesById[18] = "BOT_KICKED_BALL_TOO_FAST"] = 18;
+        values[valuesById[22] = "BOT_CRASH_UNIQUE"] = 22;
+        values[valuesById[21] = "BOT_CRASH_DRAWN"] = 21;
+        values[valuesById[29] = "DEFENDER_TOO_CLOSE_TO_KICK_POINT"] = 29;
+        values[valuesById[28] = "BOT_TOO_FAST_IN_STOP"] = 28;
+        values[valuesById[20] = "BOT_INTERFERED_PLACEMENT"] = 20;
+        values[valuesById[39] = "POSSIBLE_GOAL"] = 39;
+        values[valuesById[8] = "GOAL"] = 8;
+        values[valuesById[42] = "INVALID_GOAL"] = 42;
+        values[valuesById[14] = "ATTACKER_DOUBLE_TOUCHED_BALL"] = 14;
+        values[valuesById[5] = "PLACEMENT_SUCCEEDED"] = 5;
+        values[valuesById[43] = "PENALTY_KICK_FAILED"] = 43;
+        values[valuesById[2] = "NO_PROGRESS_IN_GAME"] = 2;
+        values[valuesById[3] = "PLACEMENT_FAILED"] = 3;
+        values[valuesById[32] = "MULTIPLE_CARDS"] = 32;
+        values[valuesById[34] = "MULTIPLE_FOULS"] = 34;
+        values[valuesById[37] = "BOT_SUBSTITUTION"] = 37;
+        values[valuesById[38] = "TOO_MANY_ROBOTS"] = 38;
+        values[valuesById[44] = "CHALLENGE_FLAG"] = 44;
+        values[valuesById[45] = "EMERGENCY_STOP"] = 45;
+        values[valuesById[35] = "UNSPORTING_BEHAVIOR_MINOR"] = 35;
+        values[valuesById[36] = "UNSPORTING_BEHAVIOR_MAJOR"] = 36;
+        values[valuesById[1] = "PREPARED"] = 1;
+        values[valuesById[9] = "INDIRECT_GOAL"] = 9;
+        values[valuesById[10] = "CHIPPED_GOAL"] = 10;
+        values[valuesById[12] = "KICK_TIMEOUT"] = 12;
+        values[valuesById[16] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA"] = 16;
+        values[valuesById[40] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED"] = 40;
+        values[valuesById[23] = "BOT_CRASH_UNIQUE_SKIPPED"] = 23;
+        values[valuesById[25] = "BOT_PUSHED_BOT_SKIPPED"] = 25;
+        values[valuesById[30] = "DEFENDER_IN_DEFENSE_AREA_PARTIALLY"] = 30;
+        values[valuesById[33] = "MULTIPLE_PLACEMENT_FAILURES"] = 33;
+        return values;
+    })();
+
     return GameEvent;
 })();
 
-/**
- * GameEventType enum.
- * @exports GameEventType
- * @enum {string}
- * @property {number} UNKNOWN_GAME_EVENT_TYPE=0 UNKNOWN_GAME_EVENT_TYPE value
- * @property {number} PREPARED=1 PREPARED value
- * @property {number} NO_PROGRESS_IN_GAME=2 NO_PROGRESS_IN_GAME value
- * @property {number} PLACEMENT_FAILED=3 PLACEMENT_FAILED value
- * @property {number} PLACEMENT_SUCCEEDED=5 PLACEMENT_SUCCEEDED value
- * @property {number} BOT_SUBSTITUTION=37 BOT_SUBSTITUTION value
- * @property {number} TOO_MANY_ROBOTS=38 TOO_MANY_ROBOTS value
- * @property {number} BALL_LEFT_FIELD_TOUCH_LINE=6 BALL_LEFT_FIELD_TOUCH_LINE value
- * @property {number} BALL_LEFT_FIELD_GOAL_LINE=7 BALL_LEFT_FIELD_GOAL_LINE value
- * @property {number} POSSIBLE_GOAL=39 POSSIBLE_GOAL value
- * @property {number} GOAL=8 GOAL value
- * @property {number} INDIRECT_GOAL=9 INDIRECT_GOAL value
- * @property {number} CHIPPED_GOAL=10 CHIPPED_GOAL value
- * @property {number} AIMLESS_KICK=11 AIMLESS_KICK value
- * @property {number} KICK_TIMEOUT=12 KICK_TIMEOUT value
- * @property {number} KEEPER_HELD_BALL=13 KEEPER_HELD_BALL value
- * @property {number} ATTACKER_DOUBLE_TOUCHED_BALL=14 ATTACKER_DOUBLE_TOUCHED_BALL value
- * @property {number} ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA=15 ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA value
- * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA=16 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA value
- * @property {number} ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED=40 ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED value
- * @property {number} BOT_DRIBBLED_BALL_TOO_FAR=17 BOT_DRIBBLED_BALL_TOO_FAR value
- * @property {number} BOT_KICKED_BALL_TOO_FAST=18 BOT_KICKED_BALL_TOO_FAST value
- * @property {number} ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA=19 ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA value
- * @property {number} BOT_INTERFERED_PLACEMENT=20 BOT_INTERFERED_PLACEMENT value
- * @property {number} BOT_CRASH_DRAWN=21 BOT_CRASH_DRAWN value
- * @property {number} BOT_CRASH_UNIQUE=22 BOT_CRASH_UNIQUE value
- * @property {number} BOT_CRASH_UNIQUE_SKIPPED=23 BOT_CRASH_UNIQUE_SKIPPED value
- * @property {number} BOT_PUSHED_BOT=24 BOT_PUSHED_BOT value
- * @property {number} BOT_PUSHED_BOT_SKIPPED=25 BOT_PUSHED_BOT_SKIPPED value
- * @property {number} BOT_HELD_BALL_DELIBERATELY=26 BOT_HELD_BALL_DELIBERATELY value
- * @property {number} BOT_TIPPED_OVER=27 BOT_TIPPED_OVER value
- * @property {number} BOT_TOO_FAST_IN_STOP=28 BOT_TOO_FAST_IN_STOP value
- * @property {number} DEFENDER_TOO_CLOSE_TO_KICK_POINT=29 DEFENDER_TOO_CLOSE_TO_KICK_POINT value
- * @property {number} DEFENDER_IN_DEFENSE_AREA_PARTIALLY=30 DEFENDER_IN_DEFENSE_AREA_PARTIALLY value
- * @property {number} DEFENDER_IN_DEFENSE_AREA=31 DEFENDER_IN_DEFENSE_AREA value
- * @property {number} MULTIPLE_CARDS=32 MULTIPLE_CARDS value
- * @property {number} MULTIPLE_PLACEMENT_FAILURES=33 MULTIPLE_PLACEMENT_FAILURES value
- * @property {number} MULTIPLE_FOULS=34 MULTIPLE_FOULS value
- * @property {number} UNSPORTING_BEHAVIOR_MINOR=35 UNSPORTING_BEHAVIOR_MINOR value
- * @property {number} UNSPORTING_BEHAVIOR_MAJOR=36 UNSPORTING_BEHAVIOR_MAJOR value
- */
-$root.GameEventType = (function() {
-    const valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN_GAME_EVENT_TYPE"] = 0;
-    values[valuesById[1] = "PREPARED"] = 1;
-    values[valuesById[2] = "NO_PROGRESS_IN_GAME"] = 2;
-    values[valuesById[3] = "PLACEMENT_FAILED"] = 3;
-    values[valuesById[5] = "PLACEMENT_SUCCEEDED"] = 5;
-    values[valuesById[37] = "BOT_SUBSTITUTION"] = 37;
-    values[valuesById[38] = "TOO_MANY_ROBOTS"] = 38;
-    values[valuesById[6] = "BALL_LEFT_FIELD_TOUCH_LINE"] = 6;
-    values[valuesById[7] = "BALL_LEFT_FIELD_GOAL_LINE"] = 7;
-    values[valuesById[39] = "POSSIBLE_GOAL"] = 39;
-    values[valuesById[8] = "GOAL"] = 8;
-    values[valuesById[9] = "INDIRECT_GOAL"] = 9;
-    values[valuesById[10] = "CHIPPED_GOAL"] = 10;
-    values[valuesById[11] = "AIMLESS_KICK"] = 11;
-    values[valuesById[12] = "KICK_TIMEOUT"] = 12;
-    values[valuesById[13] = "KEEPER_HELD_BALL"] = 13;
-    values[valuesById[14] = "ATTACKER_DOUBLE_TOUCHED_BALL"] = 14;
-    values[valuesById[15] = "ATTACKER_TOUCHED_BALL_IN_DEFENSE_AREA"] = 15;
-    values[valuesById[16] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA"] = 16;
-    values[valuesById[40] = "ATTACKER_TOUCHED_OPPONENT_IN_DEFENSE_AREA_SKIPPED"] = 40;
-    values[valuesById[17] = "BOT_DRIBBLED_BALL_TOO_FAR"] = 17;
-    values[valuesById[18] = "BOT_KICKED_BALL_TOO_FAST"] = 18;
-    values[valuesById[19] = "ATTACKER_TOO_CLOSE_TO_DEFENSE_AREA"] = 19;
-    values[valuesById[20] = "BOT_INTERFERED_PLACEMENT"] = 20;
-    values[valuesById[21] = "BOT_CRASH_DRAWN"] = 21;
-    values[valuesById[22] = "BOT_CRASH_UNIQUE"] = 22;
-    values[valuesById[23] = "BOT_CRASH_UNIQUE_SKIPPED"] = 23;
-    values[valuesById[24] = "BOT_PUSHED_BOT"] = 24;
-    values[valuesById[25] = "BOT_PUSHED_BOT_SKIPPED"] = 25;
-    values[valuesById[26] = "BOT_HELD_BALL_DELIBERATELY"] = 26;
-    values[valuesById[27] = "BOT_TIPPED_OVER"] = 27;
-    values[valuesById[28] = "BOT_TOO_FAST_IN_STOP"] = 28;
-    values[valuesById[29] = "DEFENDER_TOO_CLOSE_TO_KICK_POINT"] = 29;
-    values[valuesById[30] = "DEFENDER_IN_DEFENSE_AREA_PARTIALLY"] = 30;
-    values[valuesById[31] = "DEFENDER_IN_DEFENSE_AREA"] = 31;
-    values[valuesById[32] = "MULTIPLE_CARDS"] = 32;
-    values[valuesById[33] = "MULTIPLE_PLACEMENT_FAILURES"] = 33;
-    values[valuesById[34] = "MULTIPLE_FOULS"] = 34;
-    values[valuesById[35] = "UNSPORTING_BEHAVIOR_MINOR"] = 35;
-    values[valuesById[36] = "UNSPORTING_BEHAVIOR_MAJOR"] = 36;
-    return values;
+export const Vector2 = $root.Vector2 = (() => {
+
+    /**
+     * Properties of a Vector2.
+     * @exports IVector2
+     * @interface IVector2
+     * @property {number} x Vector2 x
+     * @property {number} y Vector2 y
+     */
+
+    /**
+     * Constructs a new Vector2.
+     * @exports Vector2
+     * @classdesc Represents a Vector2.
+     * @implements IVector2
+     * @constructor
+     * @param {IVector2=} [properties] Properties to set
+     */
+    function Vector2(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Vector2 x.
+     * @member {number} x
+     * @memberof Vector2
+     * @instance
+     */
+    Vector2.prototype.x = 0;
+
+    /**
+     * Vector2 y.
+     * @member {number} y
+     * @memberof Vector2
+     * @instance
+     */
+    Vector2.prototype.y = 0;
+
+    /**
+     * Creates a new Vector2 instance using the specified properties.
+     * @function create
+     * @memberof Vector2
+     * @static
+     * @param {IVector2=} [properties] Properties to set
+     * @returns {Vector2} Vector2 instance
+     */
+    Vector2.create = function create(properties) {
+        return new Vector2(properties);
+    };
+
+    /**
+     * Encodes the specified Vector2 message. Does not implicitly {@link Vector2.verify|verify} messages.
+     * @function encode
+     * @memberof Vector2
+     * @static
+     * @param {IVector2} message Vector2 message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Vector2.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+        writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Vector2 message, length delimited. Does not implicitly {@link Vector2.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Vector2
+     * @static
+     * @param {IVector2} message Vector2 message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Vector2.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Vector2 message from the specified reader or buffer.
+     * @function decode
+     * @memberof Vector2
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Vector2} Vector2
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Vector2.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Vector2();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.x = reader.float();
+                break;
+            case 2:
+                message.y = reader.float();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        if (!message.hasOwnProperty("x"))
+            throw $util.ProtocolError("missing required 'x'", { instance: message });
+        if (!message.hasOwnProperty("y"))
+            throw $util.ProtocolError("missing required 'y'", { instance: message });
+        return message;
+    };
+
+    /**
+     * Decodes a Vector2 message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Vector2
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Vector2} Vector2
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Vector2.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Vector2 message.
+     * @function verify
+     * @memberof Vector2
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Vector2.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (typeof message.x !== "number")
+            return "x: number expected";
+        if (typeof message.y !== "number")
+            return "y: number expected";
+        return null;
+    };
+
+    /**
+     * Creates a Vector2 message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Vector2
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Vector2} Vector2
+     */
+    Vector2.fromObject = function fromObject(object) {
+        if (object instanceof $root.Vector2)
+            return object;
+        let message = new $root.Vector2();
+        if (object.x != null)
+            message.x = Number(object.x);
+        if (object.y != null)
+            message.y = Number(object.y);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Vector2 message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Vector2
+     * @static
+     * @param {Vector2} message Vector2
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Vector2.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.x = 0;
+            object.y = 0;
+        }
+        if (message.x != null && message.hasOwnProperty("x"))
+            object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
+        if (message.y != null && message.hasOwnProperty("y"))
+            object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
+        return object;
+    };
+
+    /**
+     * Converts this Vector2 to JSON.
+     * @function toJSON
+     * @memberof Vector2
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Vector2.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Vector2;
+})();
+
+export const Vector3 = $root.Vector3 = (() => {
+
+    /**
+     * Properties of a Vector3.
+     * @exports IVector3
+     * @interface IVector3
+     * @property {number} x Vector3 x
+     * @property {number} y Vector3 y
+     * @property {number} z Vector3 z
+     */
+
+    /**
+     * Constructs a new Vector3.
+     * @exports Vector3
+     * @classdesc Represents a Vector3.
+     * @implements IVector3
+     * @constructor
+     * @param {IVector3=} [properties] Properties to set
+     */
+    function Vector3(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Vector3 x.
+     * @member {number} x
+     * @memberof Vector3
+     * @instance
+     */
+    Vector3.prototype.x = 0;
+
+    /**
+     * Vector3 y.
+     * @member {number} y
+     * @memberof Vector3
+     * @instance
+     */
+    Vector3.prototype.y = 0;
+
+    /**
+     * Vector3 z.
+     * @member {number} z
+     * @memberof Vector3
+     * @instance
+     */
+    Vector3.prototype.z = 0;
+
+    /**
+     * Creates a new Vector3 instance using the specified properties.
+     * @function create
+     * @memberof Vector3
+     * @static
+     * @param {IVector3=} [properties] Properties to set
+     * @returns {Vector3} Vector3 instance
+     */
+    Vector3.create = function create(properties) {
+        return new Vector3(properties);
+    };
+
+    /**
+     * Encodes the specified Vector3 message. Does not implicitly {@link Vector3.verify|verify} messages.
+     * @function encode
+     * @memberof Vector3
+     * @static
+     * @param {IVector3} message Vector3 message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Vector3.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+        writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+        writer.uint32(/* id 3, wireType 5 =*/29).float(message.z);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Vector3 message, length delimited. Does not implicitly {@link Vector3.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Vector3
+     * @static
+     * @param {IVector3} message Vector3 message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Vector3.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Vector3 message from the specified reader or buffer.
+     * @function decode
+     * @memberof Vector3
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Vector3} Vector3
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Vector3.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Vector3();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.x = reader.float();
+                break;
+            case 2:
+                message.y = reader.float();
+                break;
+            case 3:
+                message.z = reader.float();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        if (!message.hasOwnProperty("x"))
+            throw $util.ProtocolError("missing required 'x'", { instance: message });
+        if (!message.hasOwnProperty("y"))
+            throw $util.ProtocolError("missing required 'y'", { instance: message });
+        if (!message.hasOwnProperty("z"))
+            throw $util.ProtocolError("missing required 'z'", { instance: message });
+        return message;
+    };
+
+    /**
+     * Decodes a Vector3 message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Vector3
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Vector3} Vector3
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Vector3.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Vector3 message.
+     * @function verify
+     * @memberof Vector3
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Vector3.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (typeof message.x !== "number")
+            return "x: number expected";
+        if (typeof message.y !== "number")
+            return "y: number expected";
+        if (typeof message.z !== "number")
+            return "z: number expected";
+        return null;
+    };
+
+    /**
+     * Creates a Vector3 message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Vector3
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Vector3} Vector3
+     */
+    Vector3.fromObject = function fromObject(object) {
+        if (object instanceof $root.Vector3)
+            return object;
+        let message = new $root.Vector3();
+        if (object.x != null)
+            message.x = Number(object.x);
+        if (object.y != null)
+            message.y = Number(object.y);
+        if (object.z != null)
+            message.z = Number(object.z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Vector3 message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Vector3
+     * @static
+     * @param {Vector3} message Vector3
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Vector3.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.x = 0;
+            object.y = 0;
+            object.z = 0;
+        }
+        if (message.x != null && message.hasOwnProperty("x"))
+            object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
+        if (message.y != null && message.hasOwnProperty("y"))
+            object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
+        if (message.z != null && message.hasOwnProperty("z"))
+            object.z = options.json && !isFinite(message.z) ? String(message.z) : message.z;
+        return object;
+    };
+
+    /**
+     * Converts this Vector3 to JSON.
+     * @function toJSON
+     * @memberof Vector3
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Vector3.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Vector3;
 })();
 
 export const Referee = $root.Referee = (() => {
@@ -11969,7 +12766,7 @@ export const Referee = $root.Referee = (() => {
      * @property {boolean|null} [blueTeamOnPositiveHalf] Referee blueTeamOnPositiveHalf
      * @property {Referee.Command|null} [nextCommand] Referee nextCommand
      * @property {Array.<IGameEvent>|null} [gameEvents] Referee gameEvents
-     * @property {Array.<IProposedGameEvent>|null} [proposedGameEvents] Referee proposedGameEvents
+     * @property {Array.<IGameEventProposalGroup>|null} [gameEventProposals] Referee gameEventProposals
      * @property {number|null} [currentActionTimeRemaining] Referee currentActionTimeRemaining
      */
 
@@ -11983,7 +12780,7 @@ export const Referee = $root.Referee = (() => {
      */
     function Referee(properties) {
         this.gameEvents = [];
-        this.proposedGameEvents = [];
+        this.gameEventProposals = [];
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -12087,12 +12884,12 @@ export const Referee = $root.Referee = (() => {
     Referee.prototype.gameEvents = $util.emptyArray;
 
     /**
-     * Referee proposedGameEvents.
-     * @member {Array.<IProposedGameEvent>} proposedGameEvents
+     * Referee gameEventProposals.
+     * @member {Array.<IGameEventProposalGroup>} gameEventProposals
      * @memberof Referee
      * @instance
      */
-    Referee.prototype.proposedGameEvents = $util.emptyArray;
+    Referee.prototype.gameEventProposals = $util.emptyArray;
 
     /**
      * Referee currentActionTimeRemaining.
@@ -12141,14 +12938,14 @@ export const Referee = $root.Referee = (() => {
             writer.uint32(/* id 10, wireType 0 =*/80).bool(message.blueTeamOnPositiveHalf);
         if (message.nextCommand != null && message.hasOwnProperty("nextCommand"))
             writer.uint32(/* id 12, wireType 0 =*/96).int32(message.nextCommand);
-        if (message.gameEvents != null && message.gameEvents.length)
-            for (let i = 0; i < message.gameEvents.length; ++i)
-                $root.GameEvent.encode(message.gameEvents[i], writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
-        if (message.proposedGameEvents != null && message.proposedGameEvents.length)
-            for (let i = 0; i < message.proposedGameEvents.length; ++i)
-                $root.ProposedGameEvent.encode(message.proposedGameEvents[i], writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
         if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
             writer.uint32(/* id 15, wireType 0 =*/120).int32(message.currentActionTimeRemaining);
+        if (message.gameEvents != null && message.gameEvents.length)
+            for (let i = 0; i < message.gameEvents.length; ++i)
+                $root.GameEvent.encode(message.gameEvents[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+        if (message.gameEventProposals != null && message.gameEventProposals.length)
+            for (let i = 0; i < message.gameEventProposals.length; ++i)
+                $root.GameEventProposalGroup.encode(message.gameEventProposals[i], writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
         return writer;
     };
 
@@ -12216,15 +13013,15 @@ export const Referee = $root.Referee = (() => {
             case 12:
                 message.nextCommand = reader.int32();
                 break;
-            case 13:
+            case 16:
                 if (!(message.gameEvents && message.gameEvents.length))
                     message.gameEvents = [];
                 message.gameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
                 break;
-            case 14:
-                if (!(message.proposedGameEvents && message.proposedGameEvents.length))
-                    message.proposedGameEvents = [];
-                message.proposedGameEvents.push($root.ProposedGameEvent.decode(reader, reader.uint32()));
+            case 17:
+                if (!(message.gameEventProposals && message.gameEventProposals.length))
+                    message.gameEventProposals = [];
+                message.gameEventProposals.push($root.GameEventProposalGroup.decode(reader, reader.uint32()));
                 break;
             case 15:
                 message.currentActionTimeRemaining = reader.int32();
@@ -12380,13 +13177,13 @@ export const Referee = $root.Referee = (() => {
                     return "gameEvents." + error;
             }
         }
-        if (message.proposedGameEvents != null && message.hasOwnProperty("proposedGameEvents")) {
-            if (!Array.isArray(message.proposedGameEvents))
-                return "proposedGameEvents: array expected";
-            for (let i = 0; i < message.proposedGameEvents.length; ++i) {
-                let error = $root.ProposedGameEvent.verify(message.proposedGameEvents[i]);
+        if (message.gameEventProposals != null && message.hasOwnProperty("gameEventProposals")) {
+            if (!Array.isArray(message.gameEventProposals))
+                return "gameEventProposals: array expected";
+            for (let i = 0; i < message.gameEventProposals.length; ++i) {
+                let error = $root.GameEventProposalGroup.verify(message.gameEventProposals[i]);
                 if (error)
-                    return "proposedGameEvents." + error;
+                    return "gameEventProposals." + error;
             }
         }
         if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
@@ -12662,14 +13459,14 @@ export const Referee = $root.Referee = (() => {
                 message.gameEvents[i] = $root.GameEvent.fromObject(object.gameEvents[i]);
             }
         }
-        if (object.proposedGameEvents) {
-            if (!Array.isArray(object.proposedGameEvents))
-                throw TypeError(".Referee.proposedGameEvents: array expected");
-            message.proposedGameEvents = [];
-            for (let i = 0; i < object.proposedGameEvents.length; ++i) {
-                if (typeof object.proposedGameEvents[i] !== "object")
-                    throw TypeError(".Referee.proposedGameEvents: object expected");
-                message.proposedGameEvents[i] = $root.ProposedGameEvent.fromObject(object.proposedGameEvents[i]);
+        if (object.gameEventProposals) {
+            if (!Array.isArray(object.gameEventProposals))
+                throw TypeError(".Referee.gameEventProposals: array expected");
+            message.gameEventProposals = [];
+            for (let i = 0; i < object.gameEventProposals.length; ++i) {
+                if (typeof object.gameEventProposals[i] !== "object")
+                    throw TypeError(".Referee.gameEventProposals: object expected");
+                message.gameEventProposals[i] = $root.GameEventProposalGroup.fromObject(object.gameEventProposals[i]);
             }
         }
         if (object.currentActionTimeRemaining != null)
@@ -12692,7 +13489,7 @@ export const Referee = $root.Referee = (() => {
         let object = {};
         if (options.arrays || options.defaults) {
             object.gameEvents = [];
-            object.proposedGameEvents = [];
+            object.gameEventProposals = [];
         }
         if (options.defaults) {
             if ($util.Long) {
@@ -12744,18 +13541,18 @@ export const Referee = $root.Referee = (() => {
             object.blueTeamOnPositiveHalf = message.blueTeamOnPositiveHalf;
         if (message.nextCommand != null && message.hasOwnProperty("nextCommand"))
             object.nextCommand = options.enums === String ? $root.Referee.Command[message.nextCommand] : message.nextCommand;
+        if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
+            object.currentActionTimeRemaining = message.currentActionTimeRemaining;
         if (message.gameEvents && message.gameEvents.length) {
             object.gameEvents = [];
             for (let j = 0; j < message.gameEvents.length; ++j)
                 object.gameEvents[j] = $root.GameEvent.toObject(message.gameEvents[j], options);
         }
-        if (message.proposedGameEvents && message.proposedGameEvents.length) {
-            object.proposedGameEvents = [];
-            for (let j = 0; j < message.proposedGameEvents.length; ++j)
-                object.proposedGameEvents[j] = $root.ProposedGameEvent.toObject(message.proposedGameEvents[j], options);
+        if (message.gameEventProposals && message.gameEventProposals.length) {
+            object.gameEventProposals = [];
+            for (let j = 0; j < message.gameEventProposals.length; ++j)
+                object.gameEventProposals[j] = $root.GameEventProposalGroup.toObject(message.gameEventProposals[j], options);
         }
-        if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
-            object.currentActionTimeRemaining = message.currentActionTimeRemaining;
         return object;
     };
 
@@ -12873,6 +13670,7 @@ export const Referee = $root.Referee = (() => {
          * @property {boolean|null} [canPlaceBall] TeamInfo canPlaceBall
          * @property {number|null} [maxAllowedBots] TeamInfo maxAllowedBots
          * @property {boolean|null} [botSubstitutionIntent] TeamInfo botSubstitutionIntent
+         * @property {boolean|null} [ballPlacementFailuresReached] TeamInfo ballPlacementFailuresReached
          */
 
         /**
@@ -12996,6 +13794,14 @@ export const Referee = $root.Referee = (() => {
         TeamInfo.prototype.botSubstitutionIntent = false;
 
         /**
+         * TeamInfo ballPlacementFailuresReached.
+         * @member {boolean} ballPlacementFailuresReached
+         * @memberof Referee.TeamInfo
+         * @instance
+         */
+        TeamInfo.prototype.ballPlacementFailuresReached = false;
+
+        /**
          * Creates a new TeamInfo instance using the specified properties.
          * @function create
          * @memberof Referee.TeamInfo
@@ -13042,6 +13848,8 @@ export const Referee = $root.Referee = (() => {
                 writer.uint32(/* id 13, wireType 0 =*/104).uint32(message.maxAllowedBots);
             if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.botSubstitutionIntent);
+            if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
+                writer.uint32(/* id 15, wireType 0 =*/120).bool(message.ballPlacementFailuresReached);
             return writer;
         };
 
@@ -13121,6 +13929,9 @@ export const Referee = $root.Referee = (() => {
                     break;
                 case 14:
                     message.botSubstitutionIntent = reader.bool();
+                    break;
+                case 15:
+                    message.ballPlacementFailuresReached = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -13207,6 +14018,9 @@ export const Referee = $root.Referee = (() => {
             if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
                 if (typeof message.botSubstitutionIntent !== "boolean")
                     return "botSubstitutionIntent: boolean expected";
+            if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
+                if (typeof message.ballPlacementFailuresReached !== "boolean")
+                    return "ballPlacementFailuresReached: boolean expected";
             return null;
         };
 
@@ -13253,6 +14067,8 @@ export const Referee = $root.Referee = (() => {
                 message.maxAllowedBots = object.maxAllowedBots >>> 0;
             if (object.botSubstitutionIntent != null)
                 message.botSubstitutionIntent = Boolean(object.botSubstitutionIntent);
+            if (object.ballPlacementFailuresReached != null)
+                message.ballPlacementFailuresReached = Boolean(object.ballPlacementFailuresReached);
             return message;
         };
 
@@ -13284,6 +14100,7 @@ export const Referee = $root.Referee = (() => {
                 object.canPlaceBall = false;
                 object.maxAllowedBots = 0;
                 object.botSubstitutionIntent = false;
+                object.ballPlacementFailuresReached = false;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
@@ -13314,6 +14131,8 @@ export const Referee = $root.Referee = (() => {
                 object.maxAllowedBots = message.maxAllowedBots;
             if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
                 object.botSubstitutionIntent = message.botSubstitutionIntent;
+            if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
+                object.ballPlacementFailuresReached = message.ballPlacementFailuresReached;
             return object;
         };
 
@@ -13544,26 +14363,26 @@ export const Referee = $root.Referee = (() => {
     return Referee;
 })();
 
-export const ProposedGameEvent = $root.ProposedGameEvent = (() => {
+export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
 
     /**
-     * Properties of a ProposedGameEvent.
-     * @exports IProposedGameEvent
-     * @interface IProposedGameEvent
-     * @property {number|Long} validUntil ProposedGameEvent validUntil
-     * @property {string} proposerId ProposedGameEvent proposerId
-     * @property {IGameEvent} gameEvent ProposedGameEvent gameEvent
+     * Properties of a GameEventProposalGroup.
+     * @exports IGameEventProposalGroup
+     * @interface IGameEventProposalGroup
+     * @property {Array.<IGameEvent>|null} [gameEvent] GameEventProposalGroup gameEvent
+     * @property {boolean|null} [accepted] GameEventProposalGroup accepted
      */
 
     /**
-     * Constructs a new ProposedGameEvent.
-     * @exports ProposedGameEvent
-     * @classdesc Represents a ProposedGameEvent.
-     * @implements IProposedGameEvent
+     * Constructs a new GameEventProposalGroup.
+     * @exports GameEventProposalGroup
+     * @classdesc Represents a GameEventProposalGroup.
+     * @implements IGameEventProposalGroup
      * @constructor
-     * @param {IProposedGameEvent=} [properties] Properties to set
+     * @param {IGameEventProposalGroup=} [properties] Properties to set
      */
-    function ProposedGameEvent(properties) {
+    function GameEventProposalGroup(properties) {
+        this.gameEvent = [];
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -13571,229 +14390,208 @@ export const ProposedGameEvent = $root.ProposedGameEvent = (() => {
     }
 
     /**
-     * ProposedGameEvent validUntil.
-     * @member {number|Long} validUntil
-     * @memberof ProposedGameEvent
+     * GameEventProposalGroup gameEvent.
+     * @member {Array.<IGameEvent>} gameEvent
+     * @memberof GameEventProposalGroup
      * @instance
      */
-    ProposedGameEvent.prototype.validUntil = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+    GameEventProposalGroup.prototype.gameEvent = $util.emptyArray;
 
     /**
-     * ProposedGameEvent proposerId.
-     * @member {string} proposerId
-     * @memberof ProposedGameEvent
+     * GameEventProposalGroup accepted.
+     * @member {boolean} accepted
+     * @memberof GameEventProposalGroup
      * @instance
      */
-    ProposedGameEvent.prototype.proposerId = "";
+    GameEventProposalGroup.prototype.accepted = false;
 
     /**
-     * ProposedGameEvent gameEvent.
-     * @member {IGameEvent} gameEvent
-     * @memberof ProposedGameEvent
-     * @instance
-     */
-    ProposedGameEvent.prototype.gameEvent = null;
-
-    /**
-     * Creates a new ProposedGameEvent instance using the specified properties.
+     * Creates a new GameEventProposalGroup instance using the specified properties.
      * @function create
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
-     * @param {IProposedGameEvent=} [properties] Properties to set
-     * @returns {ProposedGameEvent} ProposedGameEvent instance
+     * @param {IGameEventProposalGroup=} [properties] Properties to set
+     * @returns {GameEventProposalGroup} GameEventProposalGroup instance
      */
-    ProposedGameEvent.create = function create(properties) {
-        return new ProposedGameEvent(properties);
+    GameEventProposalGroup.create = function create(properties) {
+        return new GameEventProposalGroup(properties);
     };
 
     /**
-     * Encodes the specified ProposedGameEvent message. Does not implicitly {@link ProposedGameEvent.verify|verify} messages.
+     * Encodes the specified GameEventProposalGroup message. Does not implicitly {@link GameEventProposalGroup.verify|verify} messages.
      * @function encode
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
-     * @param {IProposedGameEvent} message ProposedGameEvent message or plain object to encode
+     * @param {IGameEventProposalGroup} message GameEventProposalGroup message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    ProposedGameEvent.encode = function encode(message, writer) {
+    GameEventProposalGroup.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.validUntil);
-        writer.uint32(/* id 2, wireType 2 =*/18).string(message.proposerId);
-        $root.GameEvent.encode(message.gameEvent, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+        if (message.gameEvent != null && message.gameEvent.length)
+            for (let i = 0; i < message.gameEvent.length; ++i)
+                $root.GameEvent.encode(message.gameEvent[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+        if (message.accepted != null && message.hasOwnProperty("accepted"))
+            writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
         return writer;
     };
 
     /**
-     * Encodes the specified ProposedGameEvent message, length delimited. Does not implicitly {@link ProposedGameEvent.verify|verify} messages.
+     * Encodes the specified GameEventProposalGroup message, length delimited. Does not implicitly {@link GameEventProposalGroup.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
-     * @param {IProposedGameEvent} message ProposedGameEvent message or plain object to encode
+     * @param {IGameEventProposalGroup} message GameEventProposalGroup message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    ProposedGameEvent.encodeDelimited = function encodeDelimited(message, writer) {
+    GameEventProposalGroup.encodeDelimited = function encodeDelimited(message, writer) {
         return this.encode(message, writer).ldelim();
     };
 
     /**
-     * Decodes a ProposedGameEvent message from the specified reader or buffer.
+     * Decodes a GameEventProposalGroup message from the specified reader or buffer.
      * @function decode
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {ProposedGameEvent} ProposedGameEvent
+     * @returns {GameEventProposalGroup} GameEventProposalGroup
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    ProposedGameEvent.decode = function decode(reader, length) {
+    GameEventProposalGroup.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ProposedGameEvent();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEventProposalGroup();
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
-                message.validUntil = reader.uint64();
+                if (!(message.gameEvent && message.gameEvent.length))
+                    message.gameEvent = [];
+                message.gameEvent.push($root.GameEvent.decode(reader, reader.uint32()));
                 break;
             case 2:
-                message.proposerId = reader.string();
-                break;
-            case 3:
-                message.gameEvent = $root.GameEvent.decode(reader, reader.uint32());
+                message.accepted = reader.bool();
                 break;
             default:
                 reader.skipType(tag & 7);
                 break;
             }
         }
-        if (!message.hasOwnProperty("validUntil"))
-            throw $util.ProtocolError("missing required 'validUntil'", { instance: message });
-        if (!message.hasOwnProperty("proposerId"))
-            throw $util.ProtocolError("missing required 'proposerId'", { instance: message });
-        if (!message.hasOwnProperty("gameEvent"))
-            throw $util.ProtocolError("missing required 'gameEvent'", { instance: message });
         return message;
     };
 
     /**
-     * Decodes a ProposedGameEvent message from the specified reader or buffer, length delimited.
+     * Decodes a GameEventProposalGroup message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {ProposedGameEvent} ProposedGameEvent
+     * @returns {GameEventProposalGroup} GameEventProposalGroup
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    ProposedGameEvent.decodeDelimited = function decodeDelimited(reader) {
+    GameEventProposalGroup.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a ProposedGameEvent message.
+     * Verifies a GameEventProposalGroup message.
      * @function verify
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    ProposedGameEvent.verify = function verify(message) {
+    GameEventProposalGroup.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (!$util.isInteger(message.validUntil) && !(message.validUntil && $util.isInteger(message.validUntil.low) && $util.isInteger(message.validUntil.high)))
-            return "validUntil: integer|Long expected";
-        if (!$util.isString(message.proposerId))
-            return "proposerId: string expected";
-        {
-            let error = $root.GameEvent.verify(message.gameEvent);
-            if (error)
-                return "gameEvent." + error;
+        if (message.gameEvent != null && message.hasOwnProperty("gameEvent")) {
+            if (!Array.isArray(message.gameEvent))
+                return "gameEvent: array expected";
+            for (let i = 0; i < message.gameEvent.length; ++i) {
+                let error = $root.GameEvent.verify(message.gameEvent[i]);
+                if (error)
+                    return "gameEvent." + error;
+            }
         }
+        if (message.accepted != null && message.hasOwnProperty("accepted"))
+            if (typeof message.accepted !== "boolean")
+                return "accepted: boolean expected";
         return null;
     };
 
     /**
-     * Creates a ProposedGameEvent message from a plain object. Also converts values to their respective internal types.
+     * Creates a GameEventProposalGroup message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {ProposedGameEvent} ProposedGameEvent
+     * @returns {GameEventProposalGroup} GameEventProposalGroup
      */
-    ProposedGameEvent.fromObject = function fromObject(object) {
-        if (object instanceof $root.ProposedGameEvent)
+    GameEventProposalGroup.fromObject = function fromObject(object) {
+        if (object instanceof $root.GameEventProposalGroup)
             return object;
-        let message = new $root.ProposedGameEvent();
-        if (object.validUntil != null)
-            if ($util.Long)
-                (message.validUntil = $util.Long.fromValue(object.validUntil)).unsigned = true;
-            else if (typeof object.validUntil === "string")
-                message.validUntil = parseInt(object.validUntil, 10);
-            else if (typeof object.validUntil === "number")
-                message.validUntil = object.validUntil;
-            else if (typeof object.validUntil === "object")
-                message.validUntil = new $util.LongBits(object.validUntil.low >>> 0, object.validUntil.high >>> 0).toNumber(true);
-        if (object.proposerId != null)
-            message.proposerId = String(object.proposerId);
-        if (object.gameEvent != null) {
-            if (typeof object.gameEvent !== "object")
-                throw TypeError(".ProposedGameEvent.gameEvent: object expected");
-            message.gameEvent = $root.GameEvent.fromObject(object.gameEvent);
+        let message = new $root.GameEventProposalGroup();
+        if (object.gameEvent) {
+            if (!Array.isArray(object.gameEvent))
+                throw TypeError(".GameEventProposalGroup.gameEvent: array expected");
+            message.gameEvent = [];
+            for (let i = 0; i < object.gameEvent.length; ++i) {
+                if (typeof object.gameEvent[i] !== "object")
+                    throw TypeError(".GameEventProposalGroup.gameEvent: object expected");
+                message.gameEvent[i] = $root.GameEvent.fromObject(object.gameEvent[i]);
+            }
         }
+        if (object.accepted != null)
+            message.accepted = Boolean(object.accepted);
         return message;
     };
 
     /**
-     * Creates a plain object from a ProposedGameEvent message. Also converts values to other types if specified.
+     * Creates a plain object from a GameEventProposalGroup message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @static
-     * @param {ProposedGameEvent} message ProposedGameEvent
+     * @param {GameEventProposalGroup} message GameEventProposalGroup
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    ProposedGameEvent.toObject = function toObject(message, options) {
+    GameEventProposalGroup.toObject = function toObject(message, options) {
         if (!options)
             options = {};
         let object = {};
-        if (options.defaults) {
-            if ($util.Long) {
-                let long = new $util.Long(0, 0, true);
-                object.validUntil = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-            } else
-                object.validUntil = options.longs === String ? "0" : 0;
-            object.proposerId = "";
-            object.gameEvent = null;
+        if (options.arrays || options.defaults)
+            object.gameEvent = [];
+        if (options.defaults)
+            object.accepted = false;
+        if (message.gameEvent && message.gameEvent.length) {
+            object.gameEvent = [];
+            for (let j = 0; j < message.gameEvent.length; ++j)
+                object.gameEvent[j] = $root.GameEvent.toObject(message.gameEvent[j], options);
         }
-        if (message.validUntil != null && message.hasOwnProperty("validUntil"))
-            if (typeof message.validUntil === "number")
-                object.validUntil = options.longs === String ? String(message.validUntil) : message.validUntil;
-            else
-                object.validUntil = options.longs === String ? $util.Long.prototype.toString.call(message.validUntil) : options.longs === Number ? new $util.LongBits(message.validUntil.low >>> 0, message.validUntil.high >>> 0).toNumber(true) : message.validUntil;
-        if (message.proposerId != null && message.hasOwnProperty("proposerId"))
-            object.proposerId = message.proposerId;
-        if (message.gameEvent != null && message.hasOwnProperty("gameEvent"))
-            object.gameEvent = $root.GameEvent.toObject(message.gameEvent, options);
+        if (message.accepted != null && message.hasOwnProperty("accepted"))
+            object.accepted = message.accepted;
         return object;
     };
 
     /**
-     * Converts this ProposedGameEvent to JSON.
+     * Converts this GameEventProposalGroup to JSON.
      * @function toJSON
-     * @memberof ProposedGameEvent
+     * @memberof GameEventProposalGroup
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    ProposedGameEvent.prototype.toJSON = function toJSON() {
+    GameEventProposalGroup.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
-    return ProposedGameEvent;
+    return GameEventProposalGroup;
 })();
 
 export { $root as default };
