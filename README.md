@@ -8,24 +8,51 @@
 
 A Status Board for the Small Size League, optimized to show the current game state on a large screen.
 
-## Project setup
+## Usage
+If you just want to use this app, simply download the latest [release binary](https://github.com/RoboCup-SSL/ssl-status-board/releases/latest).
+The binary is self-contained. No dependencies are required.
+
+### Runtime Requirements
+ * No software dependencies (except for development, see below)
+ * 64bit Linux, Windows, OSX (build your 32bit binaries yourself...)
+ * A reasonable Web-Browser (mostly tested on Chrome)
+ 
+## Development
+
+### Requirements
+You need to install following dependencies first: 
+ * Go >= 1.13
+ * Node
+ * Yarn
+
+### Prepare
+Download and install to [GOPATH](https://github.com/golang/go/wiki/GOPATH):
+```bash
+go get -u github.com/RoboCup-SSL/ssl-status-board/...
 ```
+Switch to project root directory
+```bash
+cd $GOPATH/src/github.com/RoboCup-SSL/ssl-status-board/
+```
+Download dependencies for frontend
+```bash
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
+### Run the backend
+```bash
+go run cmd/ssl-status-board/main.go
 ```
 
-### Lints and fixes files
+### Run the UI
+```bash
+# compile and hot-reload
+yarn serve
 ```
-yarn run lint
+
+### Build self-contained release binary
+```
+./install.sh
 ```
 
 ### Rebuild Protobuf code
