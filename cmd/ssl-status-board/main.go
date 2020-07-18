@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-var address = flag.String("address", "localhost:8082", "The address on which the UI and API is served")
-var configFile = flag.String("c", "board-config.yaml", "The config file to use")
+var address = flag.String("address", ":8082", "The address on which the UI and API is served")
+var configFile = flag.String("c", "config/board-config.yaml", "The config file to use")
 
 func main() {
 	flag.Parse()

@@ -21,4 +21,4 @@ yarn-error.log*
 *.sw?
 
 # application specific
-board-config.yaml
+/config

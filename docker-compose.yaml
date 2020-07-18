@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  ssl-status-board:
+    build: .
+    ports:
+      - "8082:8082"
+    volumes:
+      - "./config:/config"

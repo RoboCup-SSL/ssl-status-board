@@ -59,10 +59,16 @@ if (process.env.NODE_ENV === 'development') {
     wsAddress = 'ws://localhost:8082/api/referee';
 } else {
     // UI and backend are served on the same host+port on production builds
-    wsAddress = 'ws://' + window.location.hostname + ':' + window.location.port + '/api/referee';
+    let protocol;
+    if (window.location.protocol === 'http:') {
+        protocol = 'ws:'
+    } else {
+        protocol = 'wss:'
+    }
+    wsAddress = protocol + '//' + window.location.hostname + ':' + window.location.port + '/api/referee';
 }
 
-var ws = new WebSocket(wsAddress);
+const ws = new WebSocket(wsAddress);
 ws.binaryType = "arraybuffer";
 
 // Connect to the backend with a single websocket that communicates with JSON format and is attached to the store

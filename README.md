@@ -12,6 +12,18 @@ A Status Board for the Small Size League, optimized to show the current game sta
 If you just want to use this app, simply download the latest [release binary](https://github.com/RoboCup-SSL/ssl-status-board/releases/latest).
 The binary is self-contained. No dependencies are required.
 
+You can also use pre-build docker images:
+```shell script
+docker pull robocupssl/ssl-status-board
+docker run -p 8082:8082 robocupssl/ssl-status-board
+# if you want to pass in the config file:
+docker run -p 8082:8082 -v "$(pwd)/config:/config" ssl-status-board
+```
+
+By default, the UI is available at http://localhost:8082
+
+A configuration file will be generated to `config/board-config.yaml` and can be tweaked.
+
 ### Runtime Requirements
  * No software dependencies (except for development, see below)
  * 64bit Linux, Windows, OSX (build your 32bit binaries yourself...)
