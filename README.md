@@ -16,8 +16,6 @@ You can also use pre-build docker images:
 ```shell script
 docker pull robocupssl/ssl-status-board
 docker run -p 8082:8082 robocupssl/ssl-status-board
-# if you want to pass in the config file:
-docker run -p 8082:8082 -v "$(pwd)/config:/config" ssl-status-board
 ```
 
 By default, the UI is available at http://localhost:8082
