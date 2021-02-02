@@ -18,4 +18,4 @@ FROM alpine:3.9
 COPY --from=build_go /go/src/github.com/RoboCup-SSL/ssl-status-board/release/ssl-status-board_linux_amd64 /app/ssl-status-board
 EXPOSE 8082
 ENTRYPOINT ["/app/ssl-status-board"]
-CMD ["/app/ssl-status-board"]
+CMD []
