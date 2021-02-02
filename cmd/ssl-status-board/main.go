@@ -6,19 +6,25 @@ import (
 	"github.com/gobuffalo/packr"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func main() {
 	var config = board.DefaultConfig()
 	var address = flag.String("address", config.ListenAddress, "The address on which the UI and API is served")
 	var refereeAddress = flag.String("refereeAddress", config.RefereeConnection.MulticastAddress, "The multicast address of ssl-game-controller")
+	var skipInterfaces = flag.String("skipInterfaces", "", "Comma separated list of interface names to ignore when receiving multicast packets")
 	flag.Parse()
 
 	config.ListenAddress = *address
 	config.RefereeConnection.MulticastAddress = *refereeAddress
+	if skipInterfaces != nil && *skipInterfaces != "" {
+		config.RefereeConnection.SkipInterfaces = parseSkipInterfaces(*skipInterfaces)
+	}
 
 	refereeBoard := board.NewBoard(config.RefereeConnection)
-	go refereeBoard.HandleIncomingMessages()
+	refereeBoard.MulticastReceiver.SkipInterfaces = config.RefereeConnection.SkipInterfaces
+	refereeBoard.Start()
 	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
 
 	setupUi(config.ListenAddress)
@@ -37,4 +43,8 @@ func setupUi(listenAddress string) {
 	} else {
 		log.Print("Backend-only version started. Run the UI separately or get a binary that has the UI included")
 	}
+}
+
+func parseSkipInterfaces(skipInterfaces string) []string {
+	return strings.Split(skipInterfaces, ",")
 }

@@ -10,6 +10,7 @@ type ConnectionConfig struct {
 	SubscribePath    string        `yaml:"SubscribePath"`
 	SendingInterval  time.Duration `yaml:"SendingInterval"`
 	MulticastAddress string        `yaml:"MulticastAddress"`
+	SkipInterfaces   []string      `yaml:"skip-interfaces"`
 }
 
 // RefereeConfig contains referee specific connection parameters
@@ -39,6 +40,7 @@ func DefaultConfig() Config {
 		RefereeConnection: RefereeConfig{
 			ConnectionConfig: ConnectionConfig{
 				MulticastAddress: "224.5.23.1:10003",
+				SkipInterfaces:   []string{},
 				SendingInterval:  time.Millisecond * 100,
 				SubscribePath:    "/api/referee",
 			},
