@@ -23,7 +23,7 @@ func main() {
 	}
 
 	refereeBoard := board.NewBoard(config.RefereeConnection)
-	refereeBoard.MulticastReceiver.SkipInterfaces = config.RefereeConnection.SkipInterfaces
+	refereeBoard.MulticastServer.SkipInterfaces = config.RefereeConnection.SkipInterfaces
 	refereeBoard.Start()
 	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
 

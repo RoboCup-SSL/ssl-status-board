@@ -11,28 +11,28 @@ import (
 
 // Board contains the state of this referee board
 type Board struct {
-	cfg               RefereeConfig
-	refereeData       []byte
-	mutex             sync.Mutex
-	MulticastReceiver *sslnet.MulticastReceiver
+	cfg             RefereeConfig
+	refereeData     []byte
+	mutex           sync.Mutex
+	MulticastServer *sslnet.MulticastServer
 }
 
 // NewBoard creates a new referee board
 func NewBoard(cfg RefereeConfig) (b *Board) {
 	b = new(Board)
 	b.cfg = cfg
-	b.MulticastReceiver = sslnet.NewMulticastReceiver(b.handlingMessage)
+	b.MulticastServer = sslnet.NewMulticastServer(b.handlingMessage)
 	return
 }
 
 // Start listening for messages
 func (b *Board) Start() {
-	b.MulticastReceiver.Start(b.cfg.MulticastAddress)
+	b.MulticastServer.Start(b.cfg.MulticastAddress)
 }
 
 // Stop listening for messages
 func (b *Board) Stop() {
-	b.MulticastReceiver.Stop()
+	b.MulticastServer.Stop()
 }
 
 func (b *Board) handlingMessage(data []byte) {
