@@ -7,25 +7,15 @@
         <img :src="logoUrl" alt="team logo" class="team-logo"/>
 
         <div class="cards">
-            <Card color="red" :num-cards="team.redCards"/>
-            <span class="card-separator"> | </span>
-            <Card color="yellow"
-                  :class="{'marked-card': markYellowCard}"
-                  :num-cards="team.yellowCards"/>
-            <span class="card-separator"> | </span>
-            <span class="botinfo">
-                <img class="boticon" src="bot.png"/>
-                {{team.maxAllowedBots}}
-            </span>
-            <div class="cardTimers">
+            <Card class="card" color="red" :num-cards="team.redCards"/>
+            <Card class="card" color="yellow" :num-cards="team.yellowCards"/>
+            <BotCount class="card" :num-bots="team.maxAllowedBots"/>
+        </div>
+        
+        <div class="cardTimers">
                 <span v-for="(cardTime, index) in team.yellowCardTimes.slice(0,3)" :key="index">
-                <CardTimer 
-                    :cardTimer="cardTime" />
+                <CardTimer :cardTimer="cardTime" />
                 </span>
-
-
-                <div class="additional-cards" v-if="team.yellowCardTimes.length > 3"> + {{ team.yellowCardTimes.length - 3}} more </div>
-            </div>
         </div>
     </div>
 </template>
@@ -35,10 +25,11 @@
     import teamLogoUrl from "@/teamLogoUrl"
     import Card from "./Card";
     import CardTimer from "./CardTimer";
+    import BotCount from "@/components/BotCount";
 
     export default {
         name: "TeamStatus",
-        components: {Card, CardTimer},
+        components: {BotCount, Card, CardTimer},
         props: {
             color: String,
             team: Referee.ITeamInfo,
@@ -46,9 +37,6 @@
         computed: {
             logoUrl() {
                 return teamLogoUrl(this.team.name);
-            },
-            markYellowCard() {
-                return this.team.yellowCards > 0 && this.team.yellowCards % 3 === 0;
             },
             botSubstitutionIntent() {
                 return this.team.botSubstitutionIntent;
@@ -59,9 +47,16 @@
 
 <style scoped>
 
+    .cards {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card {
+    }
+
     .teamStatus {
         transition: background-color 500ms ease;
-
     }
 
     .bot-substitution-intent {
@@ -71,27 +66,14 @@
     .team-name {
         margin-top: 12px;
         margin-bottom: 12px;
-        font-size: 5vh;
+        font-size: 1em;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
     }
 
     .team-logo {
-        max-width: 27vw;
-        max-height: 27vh;
-    }
-
-    .marked-card {
-        background-color: rgba(255, 255, 0, 0.2);
-    }
-
-    .inline {
-        display: inline;
-    }
-
-    .logo-card-separator {
-        margin: 0.2em;
+        max-width: 60%;
     }
 
     .cardTimers {
@@ -99,27 +81,4 @@
         display: block;
     }
 
-
-    .boticon {
-        height: 4.5vmin;
-        vertical-align: baseline;
-    }
-
-    .botinfo {
-        display: inline-block;
-        min-width: 130px;
-        height: 7vmin;
-        line-height: 7vmin;
-        vertical-align: baseline
-    }
-
-    .additional-cards {
-        font-size: 24pt;
-        color: yellow;
-    }
-
-    .card-separator {
-        display: inline-block;
-        padding-right: 2px;
-    }
 </style>

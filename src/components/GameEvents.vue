@@ -5,8 +5,8 @@
             <tr v-for="(gameEvent, index) in gameEvents.slice(0,8)"
                 :key="index"
                 :style="{'font-size': rowHeight}">
-                <td class="autoRefIndicator" v-html="autoRefIndicator(gameEvent)"></td>
                 <td v-html="formatGameEvent(gameEvent)"></td>
+                <td class="autoRefIndicator" v-html="autoRefIndicator(gameEvent)"></td>
             </tr>
             </tbody>
         </table>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import {mapGameEventToText} from "../texts";
+    import {mapGameEventToText} from "@/texts";
 
     const maxUnscaledItems = 5.5;
 
@@ -55,7 +55,7 @@
 
     .game-events {
         text-align: left;
-        font-size: 4.5vh;
+        font-size: 0.7em;
     }
 
     .table-striped {
@@ -74,12 +74,11 @@
 
     .table-striped td {
         vertical-align: baseline;
-        padding: 2px;
-        padding-left: 10px;
+        padding: 2px 2px 2px 10px;
     }
 
     .more-game-events {
-        font-size: 2.5vmin;
+        font-size: 1em;
         text-align: center;
         margin-top: 10px;
         font-weight: bold;

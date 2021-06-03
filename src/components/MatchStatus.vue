@@ -1,7 +1,7 @@
 <template>
-    <div class="match-status full-width">
-        <div class="full-width">
-            <div class="full-width" :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt}">
+    <div class="match-status">
+        <div>
+            <div :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt}">
             <div class="stage">{{stage}}</div>
 
             <span class="score">
@@ -114,14 +114,11 @@
         align-items: center;
     }
 
-    .full-width {
-        width: 100%;
-    }
-
     .time-container {
         border-style: dashed;
         display: inline-block;
-        padding: 8px;
+        padding: 0.1em;
+        margin: 0.1em;
     }
 
     .time-positive {
@@ -137,7 +134,6 @@
 
     .separator {
         margin: 0.2em;
-        width: 100%;
     }
 
     .score {
@@ -157,8 +153,7 @@
     .highlight-command {
         transition: background-color 500ms ease;
         border-radius: .5em;
-        padding: 0.1em;
-        padding-top: 0.2em;
+        padding: 0.2em 0.1em 0.1em;
         margin-top: 0.1em;
     }
 

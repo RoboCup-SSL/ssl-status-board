@@ -35,19 +35,15 @@
 <style scoped>
     .status-board {
         text-align: center;
-        height: 100%;
-        max-height: 100%;
-        font-size: 6vh;
+        font-size: 3.5vw;
     }
 
     .upper-container {
-        width: 100%;
-        align-items: center;
-        height: 62%
+        display: flex;
+        align-items: stretch;
     }
 
     .lower-container {
-        height: 35%;
     }
 
     .upper-lower-separator {
@@ -57,16 +53,13 @@
     }
 
     .match-status-container {
-        align-items: center;
-        display: inline;
-        width: 40%;
-        height: 100%;
-        float: left;
+        flex-grow: 0.4;
+        flex-basis: 40%;
     }
 
     .team-status {
-        width: 30%;
-        float: left;
+        flex-grow: 0.3;
+        flex-basis: 30%;
     }
 
 </style>
