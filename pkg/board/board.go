@@ -48,6 +48,7 @@ func (b *Board) SendToWebSocket(conn *websocket.Conn) {
 		if len(b.refereeData) > 0 {
 			if err := conn.WriteMessage(websocket.BinaryMessage, b.refereeData); err != nil {
 				log.Println("Could not write to referee websocket: ", err)
+				b.mutex.Unlock()
 				return
 			}
 		}
