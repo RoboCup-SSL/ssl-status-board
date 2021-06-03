@@ -5,9 +5,18 @@ import {Referee} from "./sslProto";
 import TimestampFormatter from "./TimestampFormatter";
 import VueNativeSock from 'vue-native-websocket'
 import './assets/css/style.css'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import * as fa from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
 // use a custom timestamp formatter from this project
 Vue.use(TimestampFormatter);
+
+library.add(
+    fa.faVoteYea,
+    fa.faUser,
+);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 
@@ -41,7 +50,7 @@ const store = new Vuex.Store({
                         }
                     },
                     {
-                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                        origin: ['TIGERs AutoRef', 'UI'],
                         botKickedBallTooFast: {
                             byTeam: 2,
                             byBot: 1,
@@ -50,7 +59,7 @@ const store = new Vuex.Store({
                         }
                     },
                     {
-                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                        origin: ['ER-Force'],
                         ballLeftFieldTouchLine: {
                             byTeam: 1,
                             byBot: 1,
