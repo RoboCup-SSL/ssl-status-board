@@ -18,25 +18,58 @@ const store = new Vuex.Store({
             refereeMsg: new Referee({
                 yellow: new Referee.TeamInfo({
                     name: 'Yellow',
-                    score: 0
+                    score: 0,
+                    yellowCards: 10,
+                    yellowCardTimes: [15000000, 61000000, 120000000, 1],
+                    maxAllowedBots: 11,
                 }),
                 blue: new Referee.TeamInfo({
                     name: 'Blue',
-                    score: 1
+                    score: 10,
+                    maxAllowedBots: 6,
                 }),
-                stage: 0,
-                command: 0,
-                stageTimeLeft: 4,
+                stage: 6,
+                command: 3,
+                stageTimeLeft: 140000000,
+                gameEvents: [
+                    {
+                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                        attackerTooCloseToDefenseArea: {
+                            byTeam: 1,
+                            byBot: 1,
+                            distance: 0.2,
+                        }
+                    },
+                    {
+                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                        botKickedBallTooFast: {
+                            byTeam: 2,
+                            byBot: 1,
+                            initialBallSpeed: 42.0,
+                            chipped: true,
+                        }
+                    },
+                    {
+                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                        ballLeftFieldTouchLine: {
+                            byTeam: 1,
+                            byBot: 1,
+                        }
+                    }
+                ]
             })
         },
         mutations: {
             SOCKET_ONOPEN() {
+                // empty
             }
             ,
             SOCKET_ONCLOSE() {
+                // empty
             }
             ,
             SOCKET_ONERROR() {
+                // empty
             }
             ,
             SOCKET_ONMESSAGE(state, message) {
@@ -44,9 +77,11 @@ const store = new Vuex.Store({
             }
             ,
             SOCKET_RECONNECT() {
+                // empty
             }
             ,
             SOCKET_RECONNECT_ERROR() {
+                // empty
             }
             ,
         }
