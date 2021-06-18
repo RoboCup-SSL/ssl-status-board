@@ -22,52 +22,71 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-        state: {
-            refereeMsg: new Referee({
-                yellow: new Referee.TeamInfo({
-                    name: 'Yellow',
-                    score: 0,
-                    yellowCards: 10,
-                    yellowCardTimes: [15000000, 61000000, 120000000, 1],
-                    maxAllowedBots: 11,
-                }),
-                blue: new Referee.TeamInfo({
-                    name: 'Blue',
-                    score: 10,
-                    maxAllowedBots: 6,
-                }),
-                stage: 6,
-                command: 3,
-                stageTimeLeft: 140000000,
-                gameEvents: [
-                    {
-                        origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
-                        attackerTooCloseToDefenseArea: {
-                            byTeam: 1,
-                            byBot: 1,
-                            distance: 0.2,
-                        }
-                    },
-                    {
-                        origin: ['TIGERs AutoRef', 'UI'],
-                        botKickedBallTooFast: {
-                            byTeam: 2,
-                            byBot: 1,
-                            initialBallSpeed: 42.0,
-                            chipped: true,
-                        }
-                    },
-                    {
-                        origin: ['ER-Force'],
-                        ballLeftFieldTouchLine: {
-                            byTeam: 1,
-                            byBot: 1,
-                        }
+let state;
+if (process.env.NODE_ENV === 'development') {
+    state = {
+        refereeMsg: new Referee({
+            yellow: new Referee.TeamInfo({
+                name: 'Yellow',
+                score: 0,
+                yellowCards: 10,
+                yellowCardTimes: [15000000, 61000000, 120000000, 1],
+                maxAllowedBots: 11,
+            }),
+            blue: new Referee.TeamInfo({
+                name: 'Blue',
+                score: 10,
+                maxAllowedBots: 6,
+            }),
+            stage: 6,
+            command: 3,
+            stageTimeLeft: 140000000,
+            gameEvents: [
+                {
+                    origin: ['TIGERs AutoRef', 'ER-Force', 'Majority'],
+                    attackerTooCloseToDefenseArea: {
+                        byTeam: 1,
+                        byBot: 1,
+                        distance: 0.2,
                     }
-                ]
-            })
-        },
+                },
+                {
+                    origin: ['TIGERs AutoRef', 'UI'],
+                    botKickedBallTooFast: {
+                        byTeam: 2,
+                        byBot: 1,
+                        initialBallSpeed: 42.0,
+                        chipped: true,
+                    }
+                },
+                {
+                    origin: ['ER-Force'],
+                    ballLeftFieldTouchLine: {
+                        byTeam: 1,
+                        byBot: 1,
+                    }
+                }
+            ]
+        })
+    };
+} else {
+    state = {
+        refereeMsg: new Referee({
+            yellow: new Referee.TeamInfo({
+                name: 'Yellow',
+            }),
+            blue: new Referee.TeamInfo({
+                name: 'Blue',
+            }),
+            stage: 0,
+            command: 0,
+            stageTimeLeft: 0,
+        })
+    }
+}
+
+const store = new Vuex.Store({
+        state: state,
         mutations: {
             SOCKET_ONOPEN() {
                 // empty
