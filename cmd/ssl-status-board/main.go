@@ -26,6 +26,7 @@ func main() {
 	refereeBoard.MulticastServer.SkipInterfaces = config.RefereeConnection.SkipInterfaces
 	refereeBoard.Start()
 	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
+	http.HandleFunc("/api/clients", refereeBoard.ClientsHandler)
 
 	setupUi(config.ListenAddress)
 
