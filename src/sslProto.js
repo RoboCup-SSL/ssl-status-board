@@ -10,12 +10,12 @@ const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 /**
  * Team enum.
  * @exports Team
- * @enum {string}
+ * @enum {number}
  * @property {number} UNKNOWN=0 UNKNOWN value
  * @property {number} YELLOW=1 YELLOW value
  * @property {number} BLUE=2 BLUE value
  */
-$root.Team = (function() {
+export const Team = $root.Team = (() => {
     const valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "UNKNOWN"] = 0;
     values[valuesById[1] = "YELLOW"] = 1;
@@ -88,9 +88,9 @@ export const RobotId = $root.RobotId = (() => {
     RobotId.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.id != null && message.hasOwnProperty("id"))
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
-        if (message.team != null && message.hasOwnProperty("team"))
+        if (message.team != null && Object.hasOwnProperty.call(message, "team"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.team);
         return writer;
     };
@@ -254,12 +254,12 @@ export const RobotId = $root.RobotId = (() => {
 /**
  * Division enum.
  * @exports Division
- * @enum {string}
+ * @enum {number}
  * @property {number} DIV_UNKNOWN=0 DIV_UNKNOWN value
  * @property {number} DIV_A=1 DIV_A value
  * @property {number} DIV_B=2 DIV_B value
  */
-$root.Division = (function() {
+export const Division = $root.Division = (() => {
     const valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "DIV_UNKNOWN"] = 0;
     values[valuesById[1] = "DIV_A"] = 1;
@@ -743,98 +743,98 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.prepared != null && message.hasOwnProperty("prepared"))
+        if (message.prepared != null && Object.hasOwnProperty.call(message, "prepared"))
             $root.GameEvent.Prepared.encode(message.prepared, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-        if (message.noProgressInGame != null && message.hasOwnProperty("noProgressInGame"))
+        if (message.noProgressInGame != null && Object.hasOwnProperty.call(message, "noProgressInGame"))
             $root.GameEvent.NoProgressInGame.encode(message.noProgressInGame, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-        if (message.placementFailed != null && message.hasOwnProperty("placementFailed"))
+        if (message.placementFailed != null && Object.hasOwnProperty.call(message, "placementFailed"))
             $root.GameEvent.PlacementFailed.encode(message.placementFailed, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-        if (message.placementSucceeded != null && message.hasOwnProperty("placementSucceeded"))
+        if (message.placementSucceeded != null && Object.hasOwnProperty.call(message, "placementSucceeded"))
             $root.GameEvent.PlacementSucceeded.encode(message.placementSucceeded, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-        if (message.ballLeftFieldTouchLine != null && message.hasOwnProperty("ballLeftFieldTouchLine"))
+        if (message.ballLeftFieldTouchLine != null && Object.hasOwnProperty.call(message, "ballLeftFieldTouchLine"))
             $root.GameEvent.BallLeftField.encode(message.ballLeftFieldTouchLine, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-        if (message.ballLeftFieldGoalLine != null && message.hasOwnProperty("ballLeftFieldGoalLine"))
+        if (message.ballLeftFieldGoalLine != null && Object.hasOwnProperty.call(message, "ballLeftFieldGoalLine"))
             $root.GameEvent.BallLeftField.encode(message.ballLeftFieldGoalLine, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-        if (message.goal != null && message.hasOwnProperty("goal"))
+        if (message.goal != null && Object.hasOwnProperty.call(message, "goal"))
             $root.GameEvent.Goal.encode(message.goal, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-        if (message.indirectGoal != null && message.hasOwnProperty("indirectGoal"))
+        if (message.indirectGoal != null && Object.hasOwnProperty.call(message, "indirectGoal"))
             $root.GameEvent.IndirectGoal.encode(message.indirectGoal, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-        if (message.chippedGoal != null && message.hasOwnProperty("chippedGoal"))
+        if (message.chippedGoal != null && Object.hasOwnProperty.call(message, "chippedGoal"))
             $root.GameEvent.ChippedGoal.encode(message.chippedGoal, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
-        if (message.aimlessKick != null && message.hasOwnProperty("aimlessKick"))
+        if (message.aimlessKick != null && Object.hasOwnProperty.call(message, "aimlessKick"))
             $root.GameEvent.AimlessKick.encode(message.aimlessKick, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
-        if (message.kickTimeout != null && message.hasOwnProperty("kickTimeout"))
+        if (message.kickTimeout != null && Object.hasOwnProperty.call(message, "kickTimeout"))
             $root.GameEvent.KickTimeout.encode(message.kickTimeout, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
-        if (message.keeperHeldBall != null && message.hasOwnProperty("keeperHeldBall"))
+        if (message.keeperHeldBall != null && Object.hasOwnProperty.call(message, "keeperHeldBall"))
             $root.GameEvent.KeeperHeldBall.encode(message.keeperHeldBall, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
-        if (message.attackerDoubleTouchedBall != null && message.hasOwnProperty("attackerDoubleTouchedBall"))
+        if (message.attackerDoubleTouchedBall != null && Object.hasOwnProperty.call(message, "attackerDoubleTouchedBall"))
             $root.GameEvent.AttackerDoubleTouchedBall.encode(message.attackerDoubleTouchedBall, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
-        if (message.attackerTouchedBallInDefenseArea != null && message.hasOwnProperty("attackerTouchedBallInDefenseArea"))
+        if (message.attackerTouchedBallInDefenseArea != null && Object.hasOwnProperty.call(message, "attackerTouchedBallInDefenseArea"))
             $root.GameEvent.AttackerTouchedBallInDefenseArea.encode(message.attackerTouchedBallInDefenseArea, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
-        if (message.attackerTouchedOpponentInDefenseArea != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseArea"))
+        if (message.attackerTouchedOpponentInDefenseArea != null && Object.hasOwnProperty.call(message, "attackerTouchedOpponentInDefenseArea"))
             $root.GameEvent.AttackerTouchedOpponentInDefenseArea.encode(message.attackerTouchedOpponentInDefenseArea, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
-        if (message.botDribbledBallTooFar != null && message.hasOwnProperty("botDribbledBallTooFar"))
+        if (message.botDribbledBallTooFar != null && Object.hasOwnProperty.call(message, "botDribbledBallTooFar"))
             $root.GameEvent.BotDribbledBallTooFar.encode(message.botDribbledBallTooFar, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
-        if (message.botKickedBallTooFast != null && message.hasOwnProperty("botKickedBallTooFast"))
+        if (message.botKickedBallTooFast != null && Object.hasOwnProperty.call(message, "botKickedBallTooFast"))
             $root.GameEvent.BotKickedBallTooFast.encode(message.botKickedBallTooFast, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
-        if (message.attackerTooCloseToDefenseArea != null && message.hasOwnProperty("attackerTooCloseToDefenseArea"))
+        if (message.attackerTooCloseToDefenseArea != null && Object.hasOwnProperty.call(message, "attackerTooCloseToDefenseArea"))
             $root.GameEvent.AttackerTooCloseToDefenseArea.encode(message.attackerTooCloseToDefenseArea, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
-        if (message.botInterferedPlacement != null && message.hasOwnProperty("botInterferedPlacement"))
+        if (message.botInterferedPlacement != null && Object.hasOwnProperty.call(message, "botInterferedPlacement"))
             $root.GameEvent.BotInterferedPlacement.encode(message.botInterferedPlacement, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
-        if (message.botCrashDrawn != null && message.hasOwnProperty("botCrashDrawn"))
+        if (message.botCrashDrawn != null && Object.hasOwnProperty.call(message, "botCrashDrawn"))
             $root.GameEvent.BotCrashDrawn.encode(message.botCrashDrawn, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
-        if (message.botCrashUnique != null && message.hasOwnProperty("botCrashUnique"))
+        if (message.botCrashUnique != null && Object.hasOwnProperty.call(message, "botCrashUnique"))
             $root.GameEvent.BotCrashUnique.encode(message.botCrashUnique, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
-        if (message.botCrashUniqueSkipped != null && message.hasOwnProperty("botCrashUniqueSkipped"))
+        if (message.botCrashUniqueSkipped != null && Object.hasOwnProperty.call(message, "botCrashUniqueSkipped"))
             $root.GameEvent.BotCrashUnique.encode(message.botCrashUniqueSkipped, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
-        if (message.botPushedBot != null && message.hasOwnProperty("botPushedBot"))
+        if (message.botPushedBot != null && Object.hasOwnProperty.call(message, "botPushedBot"))
             $root.GameEvent.BotPushedBot.encode(message.botPushedBot, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
-        if (message.botPushedBotSkipped != null && message.hasOwnProperty("botPushedBotSkipped"))
+        if (message.botPushedBotSkipped != null && Object.hasOwnProperty.call(message, "botPushedBotSkipped"))
             $root.GameEvent.BotPushedBot.encode(message.botPushedBotSkipped, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
-        if (message.botHeldBallDeliberately != null && message.hasOwnProperty("botHeldBallDeliberately"))
+        if (message.botHeldBallDeliberately != null && Object.hasOwnProperty.call(message, "botHeldBallDeliberately"))
             $root.GameEvent.BotHeldBallDeliberately.encode(message.botHeldBallDeliberately, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
-        if (message.botTippedOver != null && message.hasOwnProperty("botTippedOver"))
+        if (message.botTippedOver != null && Object.hasOwnProperty.call(message, "botTippedOver"))
             $root.GameEvent.BotTippedOver.encode(message.botTippedOver, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
-        if (message.botTooFastInStop != null && message.hasOwnProperty("botTooFastInStop"))
+        if (message.botTooFastInStop != null && Object.hasOwnProperty.call(message, "botTooFastInStop"))
             $root.GameEvent.BotTooFastInStop.encode(message.botTooFastInStop, writer.uint32(/* id 28, wireType 2 =*/226).fork()).ldelim();
-        if (message.defenderTooCloseToKickPoint != null && message.hasOwnProperty("defenderTooCloseToKickPoint"))
+        if (message.defenderTooCloseToKickPoint != null && Object.hasOwnProperty.call(message, "defenderTooCloseToKickPoint"))
             $root.GameEvent.DefenderTooCloseToKickPoint.encode(message.defenderTooCloseToKickPoint, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
-        if (message.defenderInDefenseAreaPartially != null && message.hasOwnProperty("defenderInDefenseAreaPartially"))
+        if (message.defenderInDefenseAreaPartially != null && Object.hasOwnProperty.call(message, "defenderInDefenseAreaPartially"))
             $root.GameEvent.DefenderInDefenseAreaPartially.encode(message.defenderInDefenseAreaPartially, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
-        if (message.defenderInDefenseArea != null && message.hasOwnProperty("defenderInDefenseArea"))
+        if (message.defenderInDefenseArea != null && Object.hasOwnProperty.call(message, "defenderInDefenseArea"))
             $root.GameEvent.DefenderInDefenseArea.encode(message.defenderInDefenseArea, writer.uint32(/* id 31, wireType 2 =*/250).fork()).ldelim();
-        if (message.multipleCards != null && message.hasOwnProperty("multipleCards"))
+        if (message.multipleCards != null && Object.hasOwnProperty.call(message, "multipleCards"))
             $root.GameEvent.MultipleCards.encode(message.multipleCards, writer.uint32(/* id 32, wireType 2 =*/258).fork()).ldelim();
-        if (message.multiplePlacementFailures != null && message.hasOwnProperty("multiplePlacementFailures"))
+        if (message.multiplePlacementFailures != null && Object.hasOwnProperty.call(message, "multiplePlacementFailures"))
             $root.GameEvent.MultiplePlacementFailures.encode(message.multiplePlacementFailures, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
-        if (message.multipleFouls != null && message.hasOwnProperty("multipleFouls"))
+        if (message.multipleFouls != null && Object.hasOwnProperty.call(message, "multipleFouls"))
             $root.GameEvent.MultipleFouls.encode(message.multipleFouls, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
-        if (message.unsportingBehaviorMinor != null && message.hasOwnProperty("unsportingBehaviorMinor"))
+        if (message.unsportingBehaviorMinor != null && Object.hasOwnProperty.call(message, "unsportingBehaviorMinor"))
             $root.GameEvent.UnsportingBehaviorMinor.encode(message.unsportingBehaviorMinor, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
-        if (message.unsportingBehaviorMajor != null && message.hasOwnProperty("unsportingBehaviorMajor"))
+        if (message.unsportingBehaviorMajor != null && Object.hasOwnProperty.call(message, "unsportingBehaviorMajor"))
             $root.GameEvent.UnsportingBehaviorMajor.encode(message.unsportingBehaviorMajor, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
-        if (message.botSubstitution != null && message.hasOwnProperty("botSubstitution"))
+        if (message.botSubstitution != null && Object.hasOwnProperty.call(message, "botSubstitution"))
             $root.GameEvent.BotSubstitution.encode(message.botSubstitution, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
-        if (message.tooManyRobots != null && message.hasOwnProperty("tooManyRobots"))
+        if (message.tooManyRobots != null && Object.hasOwnProperty.call(message, "tooManyRobots"))
             $root.GameEvent.TooManyRobots.encode(message.tooManyRobots, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
-        if (message.possibleGoal != null && message.hasOwnProperty("possibleGoal"))
+        if (message.possibleGoal != null && Object.hasOwnProperty.call(message, "possibleGoal"))
             $root.GameEvent.Goal.encode(message.possibleGoal, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
-        if (message.type != null && message.hasOwnProperty("type"))
+        if (message.type != null && Object.hasOwnProperty.call(message, "type"))
             writer.uint32(/* id 40, wireType 0 =*/320).int32(message.type);
         if (message.origin != null && message.origin.length)
             for (let i = 0; i < message.origin.length; ++i)
                 writer.uint32(/* id 41, wireType 2 =*/330).string(message.origin[i]);
-        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && message.hasOwnProperty("attackerTouchedOpponentInDefenseAreaSkipped"))
+        if (message.attackerTouchedOpponentInDefenseAreaSkipped != null && Object.hasOwnProperty.call(message, "attackerTouchedOpponentInDefenseAreaSkipped"))
             $root.GameEvent.AttackerTouchedOpponentInDefenseArea.encode(message.attackerTouchedOpponentInDefenseAreaSkipped, writer.uint32(/* id 42, wireType 2 =*/338).fork()).ldelim();
-        if (message.boundaryCrossing != null && message.hasOwnProperty("boundaryCrossing"))
+        if (message.boundaryCrossing != null && Object.hasOwnProperty.call(message, "boundaryCrossing"))
             $root.GameEvent.BoundaryCrossing.encode(message.boundaryCrossing, writer.uint32(/* id 43, wireType 2 =*/346).fork()).ldelim();
-        if (message.invalidGoal != null && message.hasOwnProperty("invalidGoal"))
+        if (message.invalidGoal != null && Object.hasOwnProperty.call(message, "invalidGoal"))
             $root.GameEvent.Goal.encode(message.invalidGoal, writer.uint32(/* id 44, wireType 2 =*/354).fork()).ldelim();
-        if (message.penaltyKickFailed != null && message.hasOwnProperty("penaltyKickFailed"))
+        if (message.penaltyKickFailed != null && Object.hasOwnProperty.call(message, "penaltyKickFailed"))
             $root.GameEvent.PenaltyKickFailed.encode(message.penaltyKickFailed, writer.uint32(/* id 45, wireType 2 =*/362).fork()).ldelim();
-        if (message.challengeFlag != null && message.hasOwnProperty("challengeFlag"))
+        if (message.challengeFlag != null && Object.hasOwnProperty.call(message, "challengeFlag"))
             $root.GameEvent.ChallengeFlag.encode(message.challengeFlag, writer.uint32(/* id 46, wireType 2 =*/370).fork()).ldelim();
-        if (message.emergencyStop != null && message.hasOwnProperty("emergencyStop"))
+        if (message.emergencyStop != null && Object.hasOwnProperty.call(message, "emergencyStop"))
             $root.GameEvent.EmergencyStop.encode(message.emergencyStop, writer.uint32(/* id 47, wireType 2 =*/378).fork()).ldelim();
         return writer;
     };
@@ -2302,9 +2302,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
@@ -2566,11 +2566,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
+            if (message.kickLocation != null && Object.hasOwnProperty.call(message, "kickLocation"))
                 $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
@@ -2893,21 +2893,21 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.kickingBot != null && message.hasOwnProperty("kickingBot"))
+            if (message.kickingBot != null && Object.hasOwnProperty.call(message, "kickingBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.kickingBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
+            if (message.kickLocation != null && Object.hasOwnProperty.call(message, "kickLocation"))
                 $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
+            if (message.maxBallHeight != null && Object.hasOwnProperty.call(message, "maxBallHeight"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.maxBallHeight);
-            if (message.kickingTeam != null && message.hasOwnProperty("kickingTeam"))
+            if (message.kickingTeam != null && Object.hasOwnProperty.call(message, "kickingTeam"))
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.kickingTeam);
-            if (message.numRobotsByTeam != null && message.hasOwnProperty("numRobotsByTeam"))
+            if (message.numRobotsByTeam != null && Object.hasOwnProperty.call(message, "numRobotsByTeam"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.numRobotsByTeam);
-            if (message.lastTouchByTeam != null && message.hasOwnProperty("lastTouchByTeam"))
+            if (message.lastTouchByTeam != null && Object.hasOwnProperty.call(message, "lastTouchByTeam"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint64(message.lastTouchByTeam);
-            if (message.message != null && message.hasOwnProperty("message"))
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 writer.uint32(/* id 9, wireType 2 =*/74).string(message.message);
             return writer;
         };
@@ -3272,11 +3272,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
+            if (message.kickLocation != null && Object.hasOwnProperty.call(message, "kickLocation"))
                 $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
@@ -3563,13 +3563,13 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.kickLocation != null && message.hasOwnProperty("kickLocation"))
+            if (message.kickLocation != null && Object.hasOwnProperty.call(message, "kickLocation"))
                 $root.Vector2.encode(message.kickLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
+            if (message.maxBallHeight != null && Object.hasOwnProperty.call(message, "maxBallHeight"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.maxBallHeight);
             return writer;
         };
@@ -3858,11 +3858,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.speed != null && message.hasOwnProperty("speed"))
+            if (message.speed != null && Object.hasOwnProperty.call(message, "speed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.speed);
             return writer;
         };
@@ -4135,11 +4135,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
         };
@@ -4429,17 +4429,17 @@ export const GameEvent = $root.GameEvent = (() => {
         BotCrashDrawn.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.botYellow != null && message.hasOwnProperty("botYellow"))
+            if (message.botYellow != null && Object.hasOwnProperty.call(message, "botYellow"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.botYellow);
-            if (message.botBlue != null && message.hasOwnProperty("botBlue"))
+            if (message.botBlue != null && Object.hasOwnProperty.call(message, "botBlue"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.botBlue);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
+            if (message.crashSpeed != null && Object.hasOwnProperty.call(message, "crashSpeed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.crashSpeed);
-            if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
+            if (message.speedDiff != null && Object.hasOwnProperty.call(message, "speedDiff"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.speedDiff);
-            if (message.crashAngle != null && message.hasOwnProperty("crashAngle"))
+            if (message.crashAngle != null && Object.hasOwnProperty.call(message, "crashAngle"))
                 writer.uint32(/* id 6, wireType 5 =*/53).float(message.crashAngle);
             return writer;
         };
@@ -4742,17 +4742,17 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.violator != null && message.hasOwnProperty("violator"))
+            if (message.violator != null && Object.hasOwnProperty.call(message, "violator"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.violator);
-            if (message.victim != null && message.hasOwnProperty("victim"))
+            if (message.victim != null && Object.hasOwnProperty.call(message, "victim"))
                 writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.victim);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.crashSpeed != null && message.hasOwnProperty("crashSpeed"))
+            if (message.crashSpeed != null && Object.hasOwnProperty.call(message, "crashSpeed"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.crashSpeed);
-            if (message.speedDiff != null && message.hasOwnProperty("speedDiff"))
+            if (message.speedDiff != null && Object.hasOwnProperty.call(message, "speedDiff"))
                 writer.uint32(/* id 6, wireType 5 =*/53).float(message.speedDiff);
-            if (message.crashAngle != null && message.hasOwnProperty("crashAngle"))
+            if (message.crashAngle != null && Object.hasOwnProperty.call(message, "crashAngle"))
                 writer.uint32(/* id 7, wireType 5 =*/61).float(message.crashAngle);
             return writer;
         };
@@ -5067,13 +5067,13 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.violator != null && message.hasOwnProperty("violator"))
+            if (message.violator != null && Object.hasOwnProperty.call(message, "violator"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.violator);
-            if (message.victim != null && message.hasOwnProperty("victim"))
+            if (message.victim != null && Object.hasOwnProperty.call(message, "victim"))
                 writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.victim);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.pushedDistance != null && message.hasOwnProperty("pushedDistance"))
+            if (message.pushedDistance != null && Object.hasOwnProperty.call(message, "pushedDistance"))
                 writer.uint32(/* id 5, wireType 5 =*/45).float(message.pushedDistance);
             return writer;
         };
@@ -5357,11 +5357,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+            if (message.ballLocation != null && Object.hasOwnProperty.call(message, "ballLocation"))
                 $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
@@ -5639,11 +5639,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
         };
@@ -5925,13 +5925,13 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
-            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+            if (message.ballLocation != null && Object.hasOwnProperty.call(message, "ballLocation"))
                 $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
@@ -6220,11 +6220,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
         };
@@ -6506,13 +6506,13 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.initialBallSpeed != null && message.hasOwnProperty("initialBallSpeed"))
+            if (message.initialBallSpeed != null && Object.hasOwnProperty.call(message, "initialBallSpeed"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.initialBallSpeed);
-            if (message.chipped != null && message.hasOwnProperty("chipped"))
+            if (message.chipped != null && Object.hasOwnProperty.call(message, "chipped"))
                 writer.uint32(/* id 5, wireType 0 =*/40).bool(message.chipped);
             return writer;
         };
@@ -6796,11 +6796,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.start != null && message.hasOwnProperty("start"))
+            if (message.start != null && Object.hasOwnProperty.call(message, "start"))
                 $root.Vector2.encode(message.start, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.end != null && message.hasOwnProperty("end"))
+            if (message.end != null && Object.hasOwnProperty.call(message, "end"))
                 $root.Vector2.encode(message.end, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
@@ -7078,11 +7078,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.victim != null && message.hasOwnProperty("victim"))
+            if (message.victim != null && Object.hasOwnProperty.call(message, "victim"))
                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.victim);
             return writer;
         };
@@ -7346,9 +7346,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
@@ -7619,13 +7619,13 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
-            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+            if (message.ballLocation != null && Object.hasOwnProperty.call(message, "ballLocation"))
                 $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
@@ -7914,11 +7914,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.duration);
             return writer;
         };
@@ -8182,9 +8182,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.byBot != null && message.hasOwnProperty("byBot"))
+            if (message.byBot != null && Object.hasOwnProperty.call(message, "byBot"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.byBot);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
@@ -8574,6 +8574,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @memberof GameEvent
          * @interface IMultipleFouls
          * @property {Team} byTeam MultipleFouls byTeam
+         * @property {Array.<IGameEvent>|null} [causedGameEvents] MultipleFouls causedGameEvents
          */
 
         /**
@@ -8585,6 +8586,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @param {GameEvent.IMultipleFouls=} [properties] Properties to set
          */
         function MultipleFouls(properties) {
+            this.causedGameEvents = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -8598,6 +8600,14 @@ export const GameEvent = $root.GameEvent = (() => {
          * @instance
          */
         MultipleFouls.prototype.byTeam = 0;
+
+        /**
+         * MultipleFouls causedGameEvents.
+         * @member {Array.<IGameEvent>} causedGameEvents
+         * @memberof GameEvent.MultipleFouls
+         * @instance
+         */
+        MultipleFouls.prototype.causedGameEvents = $util.emptyArray;
 
         /**
          * Creates a new MultipleFouls instance using the specified properties.
@@ -8624,6 +8634,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            if (message.causedGameEvents != null && message.causedGameEvents.length)
+                for (let i = 0; i < message.causedGameEvents.length; ++i)
+                    $root.GameEvent.encode(message.causedGameEvents[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -8660,6 +8673,11 @@ export const GameEvent = $root.GameEvent = (() => {
                 switch (tag >>> 3) {
                 case 1:
                     message.byTeam = reader.int32();
+                    break;
+                case 2:
+                    if (!(message.causedGameEvents && message.causedGameEvents.length))
+                        message.causedGameEvents = [];
+                    message.causedGameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8706,6 +8724,15 @@ export const GameEvent = $root.GameEvent = (() => {
             case 2:
                 break;
             }
+            if (message.causedGameEvents != null && message.hasOwnProperty("causedGameEvents")) {
+                if (!Array.isArray(message.causedGameEvents))
+                    return "causedGameEvents: array expected";
+                for (let i = 0; i < message.causedGameEvents.length; ++i) {
+                    let error = $root.GameEvent.verify(message.causedGameEvents[i]);
+                    if (error)
+                        return "causedGameEvents." + error;
+                }
+            }
             return null;
         };
 
@@ -8735,6 +8762,16 @@ export const GameEvent = $root.GameEvent = (() => {
                 message.byTeam = 2;
                 break;
             }
+            if (object.causedGameEvents) {
+                if (!Array.isArray(object.causedGameEvents))
+                    throw TypeError(".GameEvent.MultipleFouls.causedGameEvents: array expected");
+                message.causedGameEvents = [];
+                for (let i = 0; i < object.causedGameEvents.length; ++i) {
+                    if (typeof object.causedGameEvents[i] !== "object")
+                        throw TypeError(".GameEvent.MultipleFouls.causedGameEvents: object expected");
+                    message.causedGameEvents[i] = $root.GameEvent.fromObject(object.causedGameEvents[i]);
+                }
+            }
             return message;
         };
 
@@ -8751,10 +8788,17 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.causedGameEvents = [];
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+            if (message.causedGameEvents && message.causedGameEvents.length) {
+                object.causedGameEvents = [];
+                for (let j = 0; j < message.causedGameEvents.length; ++j)
+                    object.causedGameEvents[j] = $root.GameEvent.toObject(message.causedGameEvents[j], options);
+            }
             return object;
         };
 
@@ -9052,9 +9096,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.time != null && message.hasOwnProperty("time"))
+            if (message.time != null && Object.hasOwnProperty.call(message, "time"))
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.time);
             return writer;
         };
@@ -9297,9 +9341,9 @@ export const GameEvent = $root.GameEvent = (() => {
         NoProgressInGame.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.time != null && message.hasOwnProperty("time"))
+            if (message.time != null && Object.hasOwnProperty.call(message, "time"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.time);
             return writer;
         };
@@ -9513,7 +9557,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.remainingDistance != null && message.hasOwnProperty("remainingDistance"))
+            if (message.remainingDistance != null && Object.hasOwnProperty.call(message, "remainingDistance"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.remainingDistance);
             return writer;
         };
@@ -10206,9 +10250,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.duration);
             return writer;
         };
@@ -10470,11 +10514,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.timeTaken != null && message.hasOwnProperty("timeTaken"))
+            if (message.timeTaken != null && Object.hasOwnProperty.call(message, "timeTaken"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.timeTaken);
-            if (message.precision != null && message.hasOwnProperty("precision"))
+            if (message.precision != null && Object.hasOwnProperty.call(message, "precision"))
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.precision);
-            if (message.distance != null && message.hasOwnProperty("distance"))
+            if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.distance);
             return writer;
         };
@@ -10714,7 +10758,7 @@ export const GameEvent = $root.GameEvent = (() => {
         Prepared.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.timeTaken != null && message.hasOwnProperty("timeTaken"))
+            if (message.timeTaken != null && Object.hasOwnProperty.call(message, "timeTaken"))
                 writer.uint32(/* id 1, wireType 5 =*/13).float(message.timeTaken);
             return writer;
         };
@@ -11544,11 +11588,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.numRobotsAllowed != null && message.hasOwnProperty("numRobotsAllowed"))
+            if (message.numRobotsAllowed != null && Object.hasOwnProperty.call(message, "numRobotsAllowed"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.numRobotsAllowed);
-            if (message.numRobotsOnField != null && message.hasOwnProperty("numRobotsOnField"))
+            if (message.numRobotsOnField != null && Object.hasOwnProperty.call(message, "numRobotsOnField"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.numRobotsOnField);
-            if (message.ballLocation != null && message.hasOwnProperty("ballLocation"))
+            if (message.ballLocation != null && Object.hasOwnProperty.call(message, "ballLocation"))
                 $root.Vector2.encode(message.ballLocation, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
@@ -11803,7 +11847,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
@@ -12036,7 +12080,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
-            if (message.location != null && message.hasOwnProperty("location"))
+            if (message.location != null && Object.hasOwnProperty.call(message, "location"))
                 $root.Vector2.encode(message.location, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
@@ -12206,7 +12250,7 @@ export const GameEvent = $root.GameEvent = (() => {
     /**
      * Type enum.
      * @name GameEvent.Type
-     * @enum {string}
+     * @enum {number}
      * @property {number} UNKNOWN_GAME_EVENT_TYPE=0 UNKNOWN_GAME_EVENT_TYPE value
      * @property {number} BALL_LEFT_FIELD_TOUCH_LINE=6 BALL_LEFT_FIELD_TOUCH_LINE value
      * @property {number} BALL_LEFT_FIELD_GOAL_LINE=7 BALL_LEFT_FIELD_GOAL_LINE value
@@ -12925,20 +12969,20 @@ export const Referee = $root.Referee = (() => {
             writer = $Writer.create();
         writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.packetTimestamp);
         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.stage);
-        if (message.stageTimeLeft != null && message.hasOwnProperty("stageTimeLeft"))
+        if (message.stageTimeLeft != null && Object.hasOwnProperty.call(message, "stageTimeLeft"))
             writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.stageTimeLeft);
         writer.uint32(/* id 4, wireType 0 =*/32).int32(message.command);
         writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.commandCounter);
         writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.commandTimestamp);
         $root.Referee.TeamInfo.encode(message.yellow, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
         $root.Referee.TeamInfo.encode(message.blue, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-        if (message.designatedPosition != null && message.hasOwnProperty("designatedPosition"))
+        if (message.designatedPosition != null && Object.hasOwnProperty.call(message, "designatedPosition"))
             $root.Referee.Point.encode(message.designatedPosition, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-        if (message.blueTeamOnPositiveHalf != null && message.hasOwnProperty("blueTeamOnPositiveHalf"))
+        if (message.blueTeamOnPositiveHalf != null && Object.hasOwnProperty.call(message, "blueTeamOnPositiveHalf"))
             writer.uint32(/* id 10, wireType 0 =*/80).bool(message.blueTeamOnPositiveHalf);
-        if (message.nextCommand != null && message.hasOwnProperty("nextCommand"))
+        if (message.nextCommand != null && Object.hasOwnProperty.call(message, "nextCommand"))
             writer.uint32(/* id 12, wireType 0 =*/96).int32(message.nextCommand);
-        if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
+        if (message.currentActionTimeRemaining != null && Object.hasOwnProperty.call(message, "currentActionTimeRemaining"))
             writer.uint32(/* id 15, wireType 0 =*/120).int32(message.currentActionTimeRemaining);
         if (message.gameEvents != null && message.gameEvents.length)
             for (let i = 0; i < message.gameEvents.length; ++i)
@@ -13570,7 +13614,7 @@ export const Referee = $root.Referee = (() => {
     /**
      * Stage enum.
      * @name Referee.Stage
-     * @enum {string}
+     * @enum {number}
      * @property {number} NORMAL_FIRST_HALF_PRE=0 NORMAL_FIRST_HALF_PRE value
      * @property {number} NORMAL_FIRST_HALF=1 NORMAL_FIRST_HALF value
      * @property {number} NORMAL_HALF_TIME=2 NORMAL_HALF_TIME value
@@ -13608,7 +13652,7 @@ export const Referee = $root.Referee = (() => {
     /**
      * Command enum.
      * @name Referee.Command
-     * @enum {string}
+     * @enum {number}
      * @property {number} HALT=0 HALT value
      * @property {number} STOP=1 STOP value
      * @property {number} NORMAL_START=2 NORMAL_START value
@@ -13838,17 +13882,17 @@ export const Referee = $root.Referee = (() => {
             writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.timeouts);
             writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.timeoutTime);
             writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.goalkeeper);
-            if (message.foulCounter != null && message.hasOwnProperty("foulCounter"))
+            if (message.foulCounter != null && Object.hasOwnProperty.call(message, "foulCounter"))
                 writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.foulCounter);
-            if (message.ballPlacementFailures != null && message.hasOwnProperty("ballPlacementFailures"))
+            if (message.ballPlacementFailures != null && Object.hasOwnProperty.call(message, "ballPlacementFailures"))
                 writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.ballPlacementFailures);
-            if (message.canPlaceBall != null && message.hasOwnProperty("canPlaceBall"))
+            if (message.canPlaceBall != null && Object.hasOwnProperty.call(message, "canPlaceBall"))
                 writer.uint32(/* id 12, wireType 0 =*/96).bool(message.canPlaceBall);
-            if (message.maxAllowedBots != null && message.hasOwnProperty("maxAllowedBots"))
+            if (message.maxAllowedBots != null && Object.hasOwnProperty.call(message, "maxAllowedBots"))
                 writer.uint32(/* id 13, wireType 0 =*/104).uint32(message.maxAllowedBots);
-            if (message.botSubstitutionIntent != null && message.hasOwnProperty("botSubstitutionIntent"))
+            if (message.botSubstitutionIntent != null && Object.hasOwnProperty.call(message, "botSubstitutionIntent"))
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.botSubstitutionIntent);
-            if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
+            if (message.ballPlacementFailuresReached != null && Object.hasOwnProperty.call(message, "ballPlacementFailuresReached"))
                 writer.uint32(/* id 15, wireType 0 =*/120).bool(message.ballPlacementFailuresReached);
             return writer;
         };
@@ -14432,7 +14476,7 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
         if (message.gameEvent != null && message.gameEvent.length)
             for (let i = 0; i < message.gameEvent.length; ++i)
                 $root.GameEvent.encode(message.gameEvent[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-        if (message.accepted != null && message.hasOwnProperty("accepted"))
+        if (message.accepted != null && Object.hasOwnProperty.call(message, "accepted"))
             writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
         return writer;
     };

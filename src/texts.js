@@ -305,7 +305,8 @@ export const mapGameEventToText = function (event) {
         return `${teamAndBot(event.multiplePlacementFailures)} failed ball placement repeatedly`;
     }
     if (event.multipleFouls != null) {
-        return `${teamAndBot(event.multipleFouls)} collected multiple fouls`;
+        return `${teamAndBot(event.multipleFouls)} collected multiple fouls: ` +
+            event.multipleFouls.causedGameEvents.map(cause => mapGameEventToText(cause)).join(", ");
     }
     if (event.unsportingBehaviorMinor != null) {
         return `Unsporting behavior by ${teamAndBot(event.unsportingBehaviorMinor)}: `
