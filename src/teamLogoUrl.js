@@ -20,6 +20,7 @@ const knownLogos = new Map([
     ['ubc-thunderbots', require('@/assets/logos/ubc-thunderbots.png')],
     ['ultron', require('@/assets/logos/ultron.png')],
     ['umass-minutebots', require('@/assets/logos/umass-minutebots.png')],
+    ['uroborus', require('@/assets/logos/uroborus.png')],
     ['yellow', require('@/assets/logos/yellow.png')],
     ['zjunlict', require('@/assets/logos/zjunlict.png')],
 ]);
