@@ -16,6 +16,7 @@ const knownLogos = new Map([
     ['roboime', require('@/assets/logos/roboime.png')],
     ['robojackets', require('@/assets/logos/robojackets.png')],
     ['roboteam-twente', require('@/assets/logos/roboteam-twente.png')],
+    ['src', require('@/assets/logos/src.png')],
     ['tigers-mannheim', require('@/assets/logos/tigers-mannheim.png')],
     ['ubc-thunderbots', require('@/assets/logos/ubc-thunderbots.png')],
     ['ultron', require('@/assets/logos/ultron.png')],
