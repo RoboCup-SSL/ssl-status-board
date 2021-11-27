@@ -1,7 +1,7 @@
 <template>
     <div class="match-status">
         <div>
-            <div :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt}">
+            <div :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt, 'robot-substitution': isRobotSubstitution}">
             <div class="stage">{{stage}}</div>
 
             <span class="score">
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import {Referee} from "@/sslProto"
+    import {Referee, GameEvent} from "@/sslProto"
     import {mapStageToText, mapCommandToText} from "@/texts";
     import PowerPlay from "./PowerPlay";
 
@@ -44,15 +44,29 @@
                 return this.$store.state.refereeMsg;
             },
             isHalt() {
-                return this.refereeMessage.command === Referee.Command.HALT;
+                return !this.isRobotSubstitution && this.refereeMessage.command === Referee.Command.HALT;
             },
             isStop() {
-                return this.refereeMessage.command === Referee.Command.STOP;
+                return !this.isRobotSubstitution && this.refereeMessage.command === Referee.Command.STOP;
+            },
+            isRobotSubstitution() {
+                if (this.refereeMessage.command !== Referee.Command.HALT) {
+                    return false;
+                }
+                for(const gameEvent of this.refereeMessage.gameEvents) {
+                    if (gameEvent.type === GameEvent.Type.BOT_SUBSTITUTION) {
+                        return true;
+                    }
+                }
+                return false;
             },
             stage() {
                 return mapStageToText(this.refereeMessage.stage);
             },
             gameState() {
+                if (this.isRobotSubstitution) {
+                    return "Robot Substitution"
+                }
                 return mapCommandToText(this.refereeMessage.command);
             },
             isBallPlacement() {
@@ -163,6 +177,10 @@
 
     .highlight-command.halt-command {
         background-color: #EE0022;
+    }
+
+    .highlight-command.robot-substitution {
+        background-color: #0053ee;
     }
 
 </style>
