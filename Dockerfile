@@ -4,7 +4,7 @@ COPY . .
 RUN yarn install
 RUN yarn build
 
-FROM golang:1.18-alpine AS build_go
+FROM golang:1.14-alpine AS build_go
 WORKDIR /go/src/github.com/RoboCup-SSL/ssl-status-board
 COPY . .
 COPY --from=build_node /tmp/ssl-status-board/dist dist
