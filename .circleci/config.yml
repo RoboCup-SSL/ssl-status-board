@@ -2,7 +2,7 @@ version: 2
 jobs:
   frontend:
     docker:
-      - image: circleci/node:10.8.0
+      - image: circleci/node:10.24.1
     steps:
       - checkout
       - run:
