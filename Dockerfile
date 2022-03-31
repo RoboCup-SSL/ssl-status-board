@@ -14,7 +14,7 @@ WORKDIR cmd/ssl-status-board
 RUN GOOS=linux GOARCH=amd64 packr build -o ../../release/ssl-status-board_linux_amd64
 
 # Start fresh from a smaller image
-FROM alpine:3.9
+FROM alpine:3.15
 COPY --from=build_go /go/src/github.com/RoboCup-SSL/ssl-status-board/release/ssl-status-board_linux_amd64 /app/ssl-status-board
 EXPOSE 8082
 ENTRYPOINT ["/app/ssl-status-board"]
