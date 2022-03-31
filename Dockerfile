@@ -1,4 +1,4 @@
-FROM node:10.21.0-jessie AS build_node
+FROM node:10.22.0-jessie AS build_node
 WORKDIR /tmp/ssl-status-board
 COPY . .
 RUN yarn install
