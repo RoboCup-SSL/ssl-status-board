@@ -18,7 +18,7 @@ jobs:
 
   backend:
     docker:
-      - image: circleci/golang:1.16
+      - image: circleci/golang:1.17
     working_directory: /go/src/github.com/RoboCup-SSL/ssl-status-board
     steps:
       - checkout
@@ -45,7 +45,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: circleci/golang:1.16
+      - image: circleci/golang:1.17
     steps:
       - attach_workspace:
           at: .
