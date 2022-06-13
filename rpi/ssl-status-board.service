@@ -1,0 +1,12 @@
+[Unit]
+description=Launches SSL Status Board
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/ssl-status-board
+Restart=always
+
+[Install]
+WantedBy=default.target
