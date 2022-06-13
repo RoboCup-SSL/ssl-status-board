@@ -6,6 +6,7 @@ and use the [bootstrap.sh](bootstrap.sh) script to set it up:
 
 ```shell
 # Install Raspberry Pi OS Lite (32bit) (https://www.raspberrypi.com/software/operating-systems/)
+# Use username 'ssl' or change it in autologin.conf
 # Setup username, password, hostname, ssh and autologin (without desktop) with
 sudo raspi-config
 # Download and extract latest bootstrap archive
