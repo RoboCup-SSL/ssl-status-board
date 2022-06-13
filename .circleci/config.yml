@@ -2,7 +2,7 @@ version: 2
 jobs:
   frontend:
     docker:
-      - image: circleci/node:10.24.1
+      - image: cimg/node:16.15
     steps:
       - checkout
       - run:
@@ -10,7 +10,7 @@ jobs:
           command: yarn install
       - run:
           name: "Build"
-          command: yarn run build
+          command: yarn build
       - persist_to_workspace:
           root: .
           paths:
@@ -18,8 +18,7 @@ jobs:
 
   backend:
     docker:
-      - image: circleci/golang:1.17
-    working_directory: /go/src/github.com/RoboCup-SSL/ssl-status-board
+      - image: cimg/go:1.18
     steps:
       - checkout
       - attach_workspace:
@@ -35,6 +34,10 @@ jobs:
             GOOS=linux GOARCH=arm packr build -o ../../release/ssl-status-board_linux_arm
             GOOS=darwin GOARCH=amd64 packr build -o ../../release/ssl-status-board_darwin_amd64
             GOOS=windows GOARCH=amd64 packr build -o ../../release/ssl-status-board_windows_amd64.exe
+      - run:
+          command: |
+            mkdir -p release
+            tar czf release/bootstrap.tar.gz rpi
       - persist_to_workspace:
           root: .
           paths:
@@ -45,7 +48,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: circleci/golang:1.17
+      - image: cimg/go:1.18
     steps:
       - attach_workspace:
           at: .
@@ -60,16 +63,26 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            go get github.com/tcnksm/ghr
+            go install github.com/tcnksm/ghr@v0.14.0
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./release/
 
-  docker:
+  docker-build:
     docker:
-      - image: cimg/base:2022.04
+      - image: cimg/base:2022.06
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.6
+          version: 20.10.11
+      - run: |
+          docker build .
+
+  docker-build-and-push:
+    docker:
+      - image: cimg/base:2022.06
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.11
       - run: |
           TAG=${CIRCLE_TAG:1}
           TAG=${TAG:-latest}
@@ -92,6 +105,7 @@ workflows:
             tags:
               only: /.*/
       - publish-github-release:
+          context: github
           requires:
             - backend
           filters:
@@ -99,7 +113,12 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - docker:
+      - docker-build:
+          context: docker hub
+          filters:
+            branches:
+              ignore: master
+      - docker-build-and-push:
           context: docker hub
           filters:
             branches:
