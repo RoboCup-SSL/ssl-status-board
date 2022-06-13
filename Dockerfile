@@ -1,4 +1,4 @@
-FROM node:18.3.0-alpine3.16 AS build_node
+FROM node:16.14-alpine3.15 AS build_node
 WORKDIR /tmp/ssl-status-board
 COPY . .
 RUN yarn install
