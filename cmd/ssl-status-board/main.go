@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/RoboCup-SSL/ssl-status-board/pkg/board"
-	"github.com/gobuffalo/packr"
+	"github.com/RoboCup-SSL/ssl-status-board/pkg/board/ui"
 	"log"
 	"net/http"
 	"strings"
@@ -28,21 +28,11 @@ func main() {
 	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
 	http.HandleFunc("/api/clients", refereeBoard.ClientsHandler)
 
-	setupUi(config.ListenAddress)
+	ui.HandleUi()
 
 	err := http.ListenAndServe(config.ListenAddress, nil)
 	if err != nil {
 		log.Fatal(err)
-	}
-}
-
-func setupUi(listenAddress string) {
-	box := packr.NewBox("../../dist")
-	http.Handle("/", http.FileServer(box))
-	if box.Has("index.html") {
-		log.Printf("UI is available at http://%v", listenAddress)
-	} else {
-		log.Print("Backend-only version started. Run the UI separately or get a binary that has the UI included")
 	}
 }
 
