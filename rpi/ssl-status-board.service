@@ -1,5 +1,4 @@
 [Unit]
-description=Launches SSL Status Board
 Wants=network-online.target
 After=network-online.target
 
@@ -7,6 +6,8 @@ After=network-online.target
 Type=simple
 ExecStart=%h/.local/bin/ssl-status-board
 Restart=always
+RestartSec=5
+StartLimitInterval=0
 
 [Install]
 WantedBy=default.target

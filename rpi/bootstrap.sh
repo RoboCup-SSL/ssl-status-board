@@ -6,12 +6,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 SRC_VERSION=${1-}
 
+function updateSystem() {
+    sudo apt-get update
+    sudo apt-get -y dist-upgrade
+}
+
 function installService() {
-    if [[ ! -f ~/.local/share/systemd/user/ssl-status-board.service ]]; then
-        mkdir -p ~/.local/share/systemd/user/
-        cp "$SCRIPT_DIR/ssl-status-board.service" ~/.local/share/systemd/user/ssl-status-board.service
-        systemctl --user enable ssl-status-board.service
-    fi
+    mkdir -p ~/.local/share/systemd/user/
+    cp "$SCRIPT_DIR/ssl-status-board.service" ~/.local/share/systemd/user/ssl-status-board.service
+    systemctl --user enable ssl-status-board.service
 }
 
 function installStatusBoard() {
@@ -46,7 +49,13 @@ function installBrowser() {
     cp "${SCRIPT_DIR}/.bash_profile" ~/.bash_profile
 }
 
-sudo apt-get update
+updateSystem
 installService
 installStatusBoard
 installBrowser
+
+echo "You may need to restart the system to apply some settings. Reboot now? (y/n)"
+read -r response
+if [[ "${response}" == "y" ]]; then
+    sudo reboot
+fi

@@ -12,5 +12,5 @@ sudo raspi-config
 # Download and extract latest bootstrap archive
 wget -qO- https://github.com/RoboCup-SSL/ssl-status-board/releases/latest/download/bootstrap.tar.gz | tar xvz
 # Run bootstrap script
-./rpi/bootstrap.sh
+./ssl-status-board/bootstrap.sh
 ```

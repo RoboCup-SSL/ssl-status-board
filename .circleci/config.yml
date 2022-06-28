@@ -39,7 +39,8 @@ jobs:
       - run:
           command: |
             mkdir -p release
-            tar czf release/bootstrap.tar.gz rpi
+            cp -a rpi ssl-status-board
+            tar czf release/bootstrap.tar.gz ssl-status-board
       - persist_to_workspace:
           root: .
           paths:
