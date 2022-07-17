@@ -7,7 +7,7 @@ and use the [bootstrap.sh](bootstrap.sh) script to set it up:
 ```shell
 # Install Raspberry Pi OS Lite (32bit) (https://www.raspberrypi.com/software/operating-systems/)
 # Use username 'ssl' or change it in autologin.conf
-# Setup username, password, hostname and ssh with
+# Setup username, password, hostname and ssh during image creation with rpi-imager or on first start with
 sudo raspi-config
 # Download and extract latest bootstrap archive
 wget -qO- https://github.com/RoboCup-SSL/ssl-status-board/releases/latest/download/bootstrap.tar.gz | tar xvz
