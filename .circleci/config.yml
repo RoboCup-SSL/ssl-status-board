@@ -72,7 +72,7 @@ jobs:
 
   docker-build:
     docker:
-      - image: cimg/base:2022.06
+      - image: cimg/base:2022.07
     steps:
       - checkout
       - setup_remote_docker:
@@ -82,7 +82,7 @@ jobs:
 
   docker-build-and-push:
     docker:
-      - image: cimg/base:2022.06
+      - image: cimg/base:2022.07
     steps:
       - checkout
       - setup_remote_docker:
