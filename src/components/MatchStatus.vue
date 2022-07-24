@@ -1,7 +1,7 @@
 <template>
     <div class="match-status">
         <div>
-            <div :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt, 'robot-substitution': isRobotSubstitution}">
+            <div :class="{'highlight-command': true, 'stop-command': isStop, 'halt-command': isHalt, 'robot-substitution-blue': isRobotSubstitutionBlue, 'robot-substitution-yellow': isRobotSubstitutionYellow, 'robot-substitution-both': isRobotSubstitutionBoth}">
             <div class="stage">{{stage}}</div>
 
             <span class="score">
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import {Referee, GameEvent} from "@/sslProto"
+import {Referee, GameEvent, Team} from "@/sslProto"
     import {mapStageToText, mapCommandToText} from "@/texts";
     import PowerPlay from "./PowerPlay";
 
@@ -44,27 +44,28 @@
                 return this.$store.state.refereeMsg;
             },
             isHalt() {
-                return !this.isRobotSubstitution && this.refereeMessage.command === Referee.Command.HALT;
+                return !this.isRobotSubstitutionAny && this.refereeMessage.command === Referee.Command.HALT;
             },
             isStop() {
-                return !this.isRobotSubstitution && this.refereeMessage.command === Referee.Command.STOP;
+                return !this.isRobotSubstitutionAny && this.refereeMessage.command === Referee.Command.STOP;
             },
-            isRobotSubstitution() {
-                if (this.refereeMessage.command !== Referee.Command.HALT) {
-                    return false;
-                }
-                for(const gameEvent of this.refereeMessage.gameEvents) {
-                    if (gameEvent.type === GameEvent.Type.BOT_SUBSTITUTION) {
-                        return true;
-                    }
-                }
-                return false;
+            isRobotSubstitutionBlue() {
+                return this.isRobotSubstitution(Team.BLUE) && !this.isRobotSubstitution(Team.YELLOW);
+            },
+            isRobotSubstitutionYellow() {
+                return this.isRobotSubstitution(Team.YELLOW) && !this.isRobotSubstitution(Team.BLUE);
+            },
+            isRobotSubstitutionBoth() {
+                return this.isRobotSubstitution(Team.BLUE) && this.isRobotSubstitution(Team.YELLOW);
+            },
+            isRobotSubstitutionAny() {
+                return this.isRobotSubstitution(Team.BLUE) || this.isRobotSubstitution(Team.YELLOW);
             },
             stage() {
                 return mapStageToText(this.refereeMessage.stage);
             },
             gameState() {
-                if (this.isRobotSubstitution) {
+                if (this.isRobotSubstitutionAny) {
                     return "Robot Substitution"
                 }
                 return mapCommandToText(this.refereeMessage.command);
@@ -114,6 +115,20 @@
                 }
                 return false;
             }
+        },
+        methods: {
+            isRobotSubstitution(team) {
+                if (this.refereeMessage.command !== Referee.Command.HALT) {
+                    return false;
+                }
+                for(const gameEvent of this.refereeMessage.gameEvents) {
+                    if (gameEvent.type === GameEvent.Type.BOT_SUBSTITUTION
+                        && gameEvent.botSubstitution.byTeam === team) {
+                        return true;
+                    }
+                }
+                return false;
+            },
         }
     }
 </script>
@@ -179,8 +194,14 @@
         background-color: #EE0022;
     }
 
-    .highlight-command.robot-substitution {
-        background-color: #0053ee;
+    .highlight-command.robot-substitution-blue {
+        background-color: #779fff;
+    }
+    .highlight-command.robot-substitution-yellow {
+        background-color: #fff145;
+    }
+    .highlight-command.robot-substitution-both {
+        background-image: linear-gradient(to right, #fff145 0%, #779fff 100%)
     }
 
 </style>
