@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card-pic" :class="{'red-card': color === 'red', 'yellow-card': color === 'yellow'}">{{ numCards }}
+        <div class="card-pic" :class="{'red-card': color === 'red', 'yellow-card': color === 'yellow', 'foul': color === 'foul'}">{{ numCards }}
         </div>
     </div>
 </template>
@@ -37,6 +37,11 @@ export default {
 
 .red-card {
     background: #ea1a18;
+}
+
+.foul {
+    background: #c7c7c7;
+    color: #2c3e50;
 }
 
 </style>

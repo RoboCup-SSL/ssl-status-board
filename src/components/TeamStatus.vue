@@ -9,9 +9,10 @@
         <div class="cards">
             <Card class="card" color="red" :num-cards="team.redCards"/>
             <Card class="card" color="yellow" :num-cards="team.yellowCards"/>
+            <Card class="card" color="foul" :num-cards="team.foulCounter"/>
             <BotCount class="card" :num-bots="team.maxAllowedBots"/>
         </div>
-        
+
         <div class="cardTimers">
                 <span v-for="(cardTime, index) in team.yellowCardTimes.slice(0,3)" :key="index">
                 <CardTimer :cardTimer="cardTime" />
