@@ -2,17 +2,17 @@
     <div class="game-events">
         <table class="table-striped">
             <tbody>
-            <tr v-for="(gameEvent, index) in gameEvents.slice(0,8)"
-                :key="index"
-                :style="{'font-size': rowHeight}">
+            <tr v-for="(gameEvent, index) in gameEvents"
+                :key="index">
+                <td>{{gameEvents.length - index}}</td>
                 <td v-html="formatGameEvent(gameEvent)"></td>
                 <td class="autoRefIndicator">
-                    <img class="autoref-icon" 
-                         :src="tigers_autoref" 
+                    <img class="autoref-icon"
+                         :src="tigers_autoref"
                          alt="TIGERs"
                          v-if="isOrigin(gameEvent, 'TIGERs AutoRef')"/>
-                    <img class="autoref-icon" 
-                         :src="erforce_autoref" 
+                    <img class="autoref-icon"
+                         :src="erforce_autoref"
                          alt="TIGERs"
                          v-if="isOrigin(gameEvent, 'ER-Force')"/>
                     <font-awesome-icon icon="user" v-if="isOrigin(gameEvent, 'UI')"/>
@@ -21,7 +21,6 @@
             </tr>
             </tbody>
         </table>
-        <div class="more-game-events" v-if="gameEvents.length > 8"> + {{gameEvents.length - 8}} more game events </div>
     </div>
 </template>
 
@@ -29,8 +28,6 @@
     import {mapGameEventToText} from "@/texts";
     import tigers_autoref from "@/assets/icons/tigers-autoref.png"
     import erforce_autoref from "@/assets/icons/erforce-autoref.svg"
-
-    const maxUnscaledItems = 5.5;
 
     export default {
         name: "GameEvents",
@@ -45,29 +42,12 @@
                 return this.$store.state.refereeMsg;
             },
             gameEvents() {
-                return this.refereeMessage.gameEvents;
-            },
-            rowHeight() {
-                let n = Math.min(8, this.gameEvents.length)
-                let rel = 1 - (Math.max(0, n - maxUnscaledItems) / maxUnscaledItems);
-                return rel + 'em';
+                return this.refereeMessage.gameEvents.map((x) => x).reverse();
             },
         },
         methods: {
             formatGameEvent(gameEvent) {
                 return mapGameEventToText(gameEvent);
-            },
-
-            autoRefIndicator(gameEvent) {
-                if(gameEvent.origin === "")
-                {
-                    return "GameController";
-                } else {
-                    return gameEvent.origin.join(', ');
-                }
-            },
-            isMajority(gameEvent) {
-              return gameEvent.origin.includes('Majority');  
             },
             isOrigin(gameEvent, origin) {
                 return gameEvent.origin.includes(origin);
@@ -102,14 +82,6 @@
         padding: 2px 2px 2px 10px;
     }
 
-    .more-game-events {
-        font-size: 1em;
-        text-align: center;
-        margin-top: 10px;
-        font-weight: bold;
-        color: #fff;
-    }
-    
     .autoref-icon {
         object-fit: contain;
         width: 1em;
