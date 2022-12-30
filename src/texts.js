@@ -117,7 +117,7 @@ export const mapGameEventToText = function (event) {
             + `and ${distance(event.placementSucceeded.precision)}`;
     }
     if (event.botSubstitution != null) {
-        return `${teamAndBot(event.botSubstitution)} requests bot substitution`;
+        return `Team ${teamAndBot(event.botSubstitution)} substitutes robots`;
     }
     if (event.tooManyRobots != null) {
         return `${teamAndBot(event.tooManyRobots)} has ${event.tooManyRobots.numRobotsOnField} robots on the field, `
