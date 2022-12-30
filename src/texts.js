@@ -320,7 +320,8 @@ export const mapGameEventToText = function (event) {
         return `${teamAndBot(event.boundaryCrossing)} kicked the ball over the field boundary`;
     }
     if (event.penaltyKickFailed != null) {
-        return `Penalty kick failed by ${teamAndBot(event.penaltyKickFailed)}`;
+        const reason = event.penaltyKickFailed.reason != null ? ": " + event.penaltyKickFailed.reason : "";
+        return `Penalty kick failed by ${teamAndBot(event.penaltyKickFailed)}${reason}`;
     }
     if (event.challengeFlag != null) {
         return `${teamAndBot(event.challengeFlag)} raised a challenge flag`;

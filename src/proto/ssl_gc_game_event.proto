@@ -446,7 +446,7 @@ message GameEvent {
     }
     // A challenge flag, requested by a team previously, is flagged
     message ChallengeFlag {
-        // the team that substitutes robots
+        // the team that requested the challenge flag
         required Team by_team = 1;
     }
     // An emergency stop, requested by team previously, occurred
@@ -478,6 +478,8 @@ message GameEvent {
         required Team by_team = 1;
         // the location of the ball at the moment of this event [m]
         optional Vector2 location = 2;
+        // an explanation of the failure
+        optional string reason = 3;
     }
 
     enum Type {
