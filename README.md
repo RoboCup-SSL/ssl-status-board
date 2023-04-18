@@ -13,7 +13,7 @@ If you just want to use this app, simply download the latest [release binary](ht
 The binary is self-contained. No dependencies are required.
 
 You can also use pre-build docker images:
-```shell script
+```shell
 docker pull robocupssl/ssl-status-board
 docker run -p 8082:8082 robocupssl/ssl-status-board
 ```
@@ -30,42 +30,27 @@ A configuration file will be generated to `config/board-config.yaml` and can be 
 ## Development
 
 ### Requirements
-You need to install following dependencies first: 
- * Go >= 1.13
+You need to install following dependencies first:
+
+ * Go
  * Node
- * Yarn
 
-### Prepare
-Download and install to [GOPATH](https://github.com/golang/go/wiki/GOPATH):
-```bash
-go get -u github.com/RoboCup-SSL/ssl-status-board/...
-```
-Switch to project root directory
-```bash
-cd $GOPATH/src/github.com/RoboCup-SSL/ssl-status-board/
-```
-Download dependencies for frontend
-```bash
-yarn install
+See [.circleci/config.yml](.circleci/config.yml) for compatible versions.
+
+### Frontend
+
+See [frontend/README.md](frontend/README.md)
+
+### Build
+Build and install all binaries:
+
+```shell
+make install
 ```
 
-### Run the backend
-```bash
-go run cmd/ssl-status-board/main.go
-```
+### Run
+Build and run main binary:
 
-### Run the UI
-```bash
-# compile and hot-reload
-yarn serve
-```
-
-### Build self-contained release binary
-```
-./install.sh
-```
-
-### Rebuild Protobuf code
-```
-yarn run genProto
+```shell
+make run
 ```

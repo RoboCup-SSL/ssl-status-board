@@ -1,27 +1,33 @@
-version: 2
+version: 2.1
+parameters:
+  cmds:
+    type: string
+    default: "ssl-status-board"
+
 jobs:
-  frontend:
+  build_node:
+    resource_class: medium
     docker:
-      - image: cimg/node:16.15
+      - image: cimg/node:16.20
     steps:
       - checkout
       - run:
           name: "Install dependencies"
-          command: yarn install
-      - run:
-          name: "Run lint"
-          command: yarn lint
+          working_directory: frontend
+          command: npm install
       - run:
           name: "Build"
-          command: yarn build
+          working_directory: frontend
+          command: npm run build
       - persist_to_workspace:
           root: .
           paths:
-            - pkg/board/ui/dist/*
+            - frontend/dist/*
 
-  backend:
+  test_go:
+    resource_class: medium
     docker:
-      - image: cimg/go:1.18
+      - image: cimg/go:1.20.2
     steps:
       - checkout
       - attach_workspace:
@@ -29,103 +35,103 @@ jobs:
       - run: go get -v -t -d ./...
       - run: go test -v -covermode=count -coverprofile=count.out ./...
       - run: go tool cover -html=count.out -o coverage.html
-      - run:
-          command: |
-            GOOS=linux GOARCH=amd64 go build -o release/ssl-status-board_linux_amd64 ./cmd/ssl-status-board
-            GOOS=linux GOARCH=arm go build -o release/ssl-status-board_linux_arm ./cmd/ssl-status-board
-            GOOS=linux GOARCH=arm64 go build -o release/ssl-status-board_linux_arm64 ./cmd/ssl-status-board
-            GOOS=darwin GOARCH=amd64 go build -o release/ssl-status-board_darwin_amd64 ./cmd/ssl-status-board
-            GOOS=windows GOARCH=amd64 go build -o release/ssl-status-board_windows_amd64.exe ./cmd/ssl-status-board
-      - run:
-          command: |
-            mkdir -p release
-            cp -a rpi ssl-status-board
-            tar czf release/bootstrap.tar.gz ssl-status-board
-      - persist_to_workspace:
-          root: .
-          paths:
-            - release/*
       - store_artifacts:
           path: coverage.html
           destination: coverage
 
-  publish-github-release:
+  build_go:
+    resource_class: large
     docker:
-      - image: cimg/go:1.18
+      - image: cimg/go:1.20.2
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: go get -v -t -d ./...
+      - run: |
+          set -u
+          version=${CIRCLE_TAG:-}
+          for cmd in << pipeline.parameters.cmds >>; do
+            GOOS=linux GOARCH=amd64 go build -o ./release/${cmd}_${version}_linux_amd64 ./cmd/${cmd}
+            GOOS=linux GOARCH=arm64 go build -o ./release/${cmd}_${version}_linux_arm64 ./cmd/${cmd}
+            GOOS=linux GOARCH=arm go build -o ./release/${cmd}_${version}_linux_arm ./cmd/${cmd}
+            GOOS=darwin GOARCH=amd64 go build -o ./release/${cmd}_${version}_darwin_amd64 ./cmd/${cmd}
+            GOOS=darwin GOARCH=arm64 go build -o ./release/${cmd}_${version}_darwin_arm64 ./cmd/${cmd}
+            GOOS=windows GOARCH=amd64 go build -o ./release/${cmd}_${version}_windows_amd64.exe ./cmd/${cmd}
+          done
+      - persist_to_workspace:
+          root: .
+          paths:
+            - release/*
+
+  publish_gh:
+    resource_class: small
+    docker:
+      - image: cimg/go:1.20.2
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: "Prepare artifacts"
-          working_directory: release
-          command: |
-            mv ssl-status-board_linux_amd64 ssl-status-board_${CIRCLE_TAG}_linux_amd64
-            mv ssl-status-board_linux_arm ssl-status-board_${CIRCLE_TAG}_linux_arm
-            mv ssl-status-board_linux_arm64 ssl-status-board_${CIRCLE_TAG}_linux_arm64
-            mv ssl-status-board_darwin_amd64 ssl-status-board_${CIRCLE_TAG}_darwin_amd64
-            mv ssl-status-board_windows_amd64.exe ssl-status-board_${CIRCLE_TAG}_windows_amd64.exe
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            go install github.com/tcnksm/ghr@v0.14.0
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./release/
+      - run: |
+          mkdir -p release
+          cp -a rpi ssl-status-board
+          tar czf release/bootstrap.tar.gz ssl-status-board
+      - run: |
+          set -u
+          go install github.com/tcnksm/ghr@v0.16.0
+          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -generatenotes ${CIRCLE_TAG} ./release
 
-  docker-build:
+  build_docker:
+    resource_class: small
     docker:
-      - image: cimg/base:2022.06
+      - image: cimg/base:2023.04
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.11
+          version: 20.10.18
       - run: |
-          docker build .
+          for cmd in << pipeline.parameters.cmds >>; do
+            docker build --build-arg cmd=${cmd} -t robocupssl/${cmd}:latest .
+          done
 
-  docker-build-and-push:
+  publish_docker:
+    resource_class: small
     docker:
-      - image: cimg/base:2022.06
+      - image: cimg/base:2023.04
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.11
+          version: 20.10.18
       - run: |
+          # Parse version from tag (removing 'v' prefix)
           TAG=${CIRCLE_TAG:1}
           TAG=${TAG:-latest}
-          docker build -t robocupssl/ssl-status-board:$TAG .
-          docker login -u "${DOCKER_HUB_USERNAME}" -p "${DOCKER_HUB_PASSWORD}"
-          docker push robocupssl/ssl-status-board:$TAG
+          for cmd in << pipeline.parameters.cmds >>; do
+            docker build --build-arg cmd=${cmd} -t robocupssl/${cmd}:${TAG} .
+            docker login -u "${DOCKER_HUB_USERNAME}" -p "${DOCKER_HUB_PASSWORD}"
+            docker push robocupssl/${cmd}:${TAG}
+          done
 
 workflows:
   version: 2
-  main:
+  build:
     jobs:
-      - frontend:
-          filters:
-            tags:
-              only: /.*/
-      - backend:
-          requires:
-            - frontend
-          filters:
-            tags:
-              only: /.*/
-      - publish-github-release:
+      - build_node
+      - test_go:
+          requires: [ build_node ]
+  release:
+    jobs:
+      - build_node:
+          filters: { branches: { ignore: /.*/ }, tags: { only: /^v.*/ } }
+      - build_go:
+          requires: [ build_node ]
+          filters: { branches: { ignore: /.*/ }, tags: { only: /^v.*/ } }
+      - publish_gh:
           context: github
-          requires:
-            - backend
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-      - docker-build:
+          requires: [ build_go ]
+          filters: { branches: { ignore: /.*/ }, tags: { only: /^v.*/ } }
+  docker:
+    jobs:
+      - build_docker
+      - publish_docker:
           context: docker hub
-          filters:
-            branches:
-              ignore: master
-      - docker-build-and-push:
-          context: docker hub
-          filters:
-            branches:
-              only: master
-            tags:
-              only: /^v.*/
+          filters: { branches: { only: master }, tags: { only: /^v.*/ } }

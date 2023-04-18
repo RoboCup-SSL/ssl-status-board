@@ -1,19 +1,23 @@
-FROM node:16.15-alpine3.15 AS build_node
-WORKDIR /tmp/ssl-status-board
-COPY . .
-RUN yarn install
-RUN yarn build
+FROM node:16-alpine AS build_node
+COPY frontend frontend
+WORKDIR frontend
+RUN npm install
+RUN npm run build
 
-FROM golang:1.18-alpine AS build_go
-WORKDIR /go/src/github.com/RoboCup-SSL/ssl-status-board
+FROM golang:1.20-alpine AS build_go
+ARG cmd=ssl-status-board
+WORKDIR work
 COPY . .
-COPY --from=build_node /tmp/ssl-status-board/pkg/board/ui/dist pkg/board/ui/dist
-RUN go build -o release/ssl-status-board_linux_amd64 ./cmd/ssl-status-board
+COPY --from=build_node frontend/dist frontend/dist
+RUN go install ./cmd/${cmd}
 
 # Start fresh from a smaller image
-FROM alpine:3.16
-COPY --from=build_go /go/src/github.com/RoboCup-SSL/ssl-status-board/release/ssl-status-board_linux_amd64 /app/ssl-status-board
-EXPOSE 8082
+FROM alpine:3
+ARG cmd
+COPY --from=build_go /go/bin/${cmd} /app/${cmd}
+WORKDIR /data
+RUN chown 1000: /data
 USER 1000
-ENTRYPOINT ["/app/ssl-status-board"]
+ENV COMMAND="/app/${cmd}"
+ENTRYPOINT "${COMMAND}"
 CMD []

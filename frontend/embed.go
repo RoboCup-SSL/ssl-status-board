@@ -1,4 +1,4 @@
-package ui
+package frontend
 
 import (
 	"embed"
@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-//go:embed dist/*
+//go:embed dist
 var content embed.FS
 
 func HandleUi() {

@@ -1,7 +1,14 @@
 .DS_Store
 node_modules
-/dist
-/pkg/board/ui/dist
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
 
 # local env files
 .env.local
@@ -12,11 +19,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Local installations
+/.local
+
+# Make cache
+/.frontend

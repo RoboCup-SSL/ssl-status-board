@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
+	"github.com/RoboCup-SSL/ssl-status-board/frontend"
 	"github.com/RoboCup-SSL/ssl-status-board/pkg/board"
-	"github.com/RoboCup-SSL/ssl-status-board/pkg/board/ui"
 	"log"
 	"net/http"
 	"strings"
@@ -28,7 +28,7 @@ func main() {
 	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
 	http.HandleFunc("/api/clients", refereeBoard.ClientsHandler)
 
-	ui.HandleUi()
+	frontend.HandleUi()
 
 	err := http.ListenAndServe(config.ListenAddress, nil)
 	if err != nil {
