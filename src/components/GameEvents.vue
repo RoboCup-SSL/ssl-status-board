@@ -13,7 +13,7 @@
                          v-if="isOrigin(gameEvent, 'TIGERs AutoRef')"/>
                     <img class="autoref-icon"
                          :src="erforce_autoref"
-                         alt="TIGERs"
+                         alt="ER-Force"
                          v-if="isOrigin(gameEvent, 'ER-Force')"/>
                     <font-awesome-icon icon="user" v-if="isOrigin(gameEvent, 'UI')"/>
                     <font-awesome-icon icon="vote-yea" v-if="isOrigin(gameEvent, 'Majority')"/>
