@@ -59,6 +59,10 @@ jobs:
             GOOS=darwin GOARCH=arm64 go build -o ./release/${cmd}_${version}_darwin_arm64 ./cmd/${cmd}
             GOOS=windows GOARCH=amd64 go build -o ./release/${cmd}_${version}_windows_amd64.exe ./cmd/${cmd}
           done
+      - run: |
+          mkdir -p release
+          cp -a rpi ssl-status-board
+          tar czf release/bootstrap.tar.gz ssl-status-board
       - persist_to_workspace:
           root: .
           paths:
@@ -71,10 +75,6 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: |
-          mkdir -p release
-          cp -a rpi ssl-status-board
-          tar czf release/bootstrap.tar.gz ssl-status-board
       - run: |
           set -u
           go install github.com/tcnksm/ghr@v0.16.0
