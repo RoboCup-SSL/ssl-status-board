@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Vuex from "vuex";
-import {Referee} from "./sslProto";
+import {GameEvent, Referee} from "./sslProto";
 import TimestampFormatter from "./TimestampFormatter";
 import VueNativeSock from 'vue-native-websocket'
 import './assets/css/style.css'
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'development') {
                 maxAllowedBots: 6,
             }),
             stage: 6,
-            command: 3,
+            command: 0,
             stageTimeLeft: 140000000,
             gameEvents: [
                 {
@@ -64,6 +64,13 @@ if (process.env.NODE_ENV === 'development') {
                     ballLeftFieldTouchLine: {
                         byTeam: 1,
                         byBot: 1,
+                    }
+                },
+                {
+                    origin: ['ER-Force'],
+                    type: GameEvent.Type.BOT_SUBSTITUTION,
+                    botSubstitution: {
+                        byTeam: 1,
                     }
                 }
             ]

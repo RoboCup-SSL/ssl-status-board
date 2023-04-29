@@ -196,12 +196,15 @@ import {Referee, GameEvent, Team} from "@/sslProto"
 
     .highlight-command.robot-substitution-blue {
         background-color: #779fff;
+        color: #353535;
     }
     .highlight-command.robot-substitution-yellow {
         background-color: #fff145;
+        color: #353535;
     }
     .highlight-command.robot-substitution-both {
-        background-image: linear-gradient(to right, #fff145 0%, #779fff 100%)
+        background-image: linear-gradient(to right, #fff145 0%, #779fff 100%);
+        color: #353535;
     }
 
 </style>
