@@ -126,12 +126,14 @@ export const RobotId = $root.RobotId = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.id = reader.uint32();
-                break;
-            case 2:
-                message.team = reader.int32();
-                break;
+            case 1: {
+                    message.id = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.team = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -197,6 +199,12 @@ export const RobotId = $root.RobotId = (() => {
         if (object.id != null)
             message.id = object.id >>> 0;
         switch (object.team) {
+        default:
+            if (typeof object.team === "number") {
+                message.team = object.team;
+                break;
+            }
+            break;
         case "UNKNOWN":
         case 0:
             message.team = 0;
@@ -233,7 +241,7 @@ export const RobotId = $root.RobotId = (() => {
         if (message.id != null && message.hasOwnProperty("id"))
             object.id = message.id;
         if (message.team != null && message.hasOwnProperty("team"))
-            object.team = options.enums === String ? $root.Team[message.team] : message.team;
+            object.team = options.enums === String ? $root.Team[message.team] === undefined ? message.team : $root.Team[message.team] : message.team;
         return object;
     };
 
@@ -246,6 +254,21 @@ export const RobotId = $root.RobotId = (() => {
      */
     RobotId.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for RobotId
+     * @function getTypeUrl
+     * @memberof RobotId
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    RobotId.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/RobotId";
     };
 
     return RobotId;
@@ -870,146 +893,192 @@ export const GameEvent = $root.GameEvent = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 40:
-                message.type = reader.int32();
-                break;
-            case 41:
-                if (!(message.origin && message.origin.length))
-                    message.origin = [];
-                message.origin.push(reader.string());
-                break;
-            case 6:
-                message.ballLeftFieldTouchLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
-                break;
-            case 7:
-                message.ballLeftFieldGoalLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
-                break;
-            case 11:
-                message.aimlessKick = $root.GameEvent.AimlessKick.decode(reader, reader.uint32());
-                break;
-            case 19:
-                message.attackerTooCloseToDefenseArea = $root.GameEvent.AttackerTooCloseToDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 31:
-                message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 43:
-                message.boundaryCrossing = $root.GameEvent.BoundaryCrossing.decode(reader, reader.uint32());
-                break;
-            case 13:
-                message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.decode(reader, reader.uint32());
-                break;
-            case 17:
-                message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.decode(reader, reader.uint32());
-                break;
-            case 24:
-                message.botPushedBot = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
-                break;
-            case 26:
-                message.botHeldBallDeliberately = $root.GameEvent.BotHeldBallDeliberately.decode(reader, reader.uint32());
-                break;
-            case 27:
-                message.botTippedOver = $root.GameEvent.BotTippedOver.decode(reader, reader.uint32());
-                break;
-            case 15:
-                message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 18:
-                message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.decode(reader, reader.uint32());
-                break;
-            case 22:
-                message.botCrashUnique = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
-                break;
-            case 21:
-                message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.decode(reader, reader.uint32());
-                break;
-            case 29:
-                message.defenderTooCloseToKickPoint = $root.GameEvent.DefenderTooCloseToKickPoint.decode(reader, reader.uint32());
-                break;
-            case 28:
-                message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.decode(reader, reader.uint32());
-                break;
-            case 20:
-                message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.decode(reader, reader.uint32());
-                break;
-            case 39:
-                message.possibleGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
-                break;
-            case 8:
-                message.goal = $root.GameEvent.Goal.decode(reader, reader.uint32());
-                break;
-            case 44:
-                message.invalidGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
-                break;
-            case 14:
-                message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.decode(reader, reader.uint32());
-                break;
-            case 5:
-                message.placementSucceeded = $root.GameEvent.PlacementSucceeded.decode(reader, reader.uint32());
-                break;
-            case 45:
-                message.penaltyKickFailed = $root.GameEvent.PenaltyKickFailed.decode(reader, reader.uint32());
-                break;
-            case 2:
-                message.noProgressInGame = $root.GameEvent.NoProgressInGame.decode(reader, reader.uint32());
-                break;
-            case 3:
-                message.placementFailed = $root.GameEvent.PlacementFailed.decode(reader, reader.uint32());
-                break;
-            case 32:
-                message.multipleCards = $root.GameEvent.MultipleCards.decode(reader, reader.uint32());
-                break;
-            case 34:
-                message.multipleFouls = $root.GameEvent.MultipleFouls.decode(reader, reader.uint32());
-                break;
-            case 37:
-                message.botSubstitution = $root.GameEvent.BotSubstitution.decode(reader, reader.uint32());
-                break;
-            case 38:
-                message.tooManyRobots = $root.GameEvent.TooManyRobots.decode(reader, reader.uint32());
-                break;
-            case 46:
-                message.challengeFlag = $root.GameEvent.ChallengeFlag.decode(reader, reader.uint32());
-                break;
-            case 47:
-                message.emergencyStop = $root.GameEvent.EmergencyStop.decode(reader, reader.uint32());
-                break;
-            case 35:
-                message.unsportingBehaviorMinor = $root.GameEvent.UnsportingBehaviorMinor.decode(reader, reader.uint32());
-                break;
-            case 36:
-                message.unsportingBehaviorMajor = $root.GameEvent.UnsportingBehaviorMajor.decode(reader, reader.uint32());
-                break;
-            case 1:
-                message.prepared = $root.GameEvent.Prepared.decode(reader, reader.uint32());
-                break;
-            case 9:
-                message.indirectGoal = $root.GameEvent.IndirectGoal.decode(reader, reader.uint32());
-                break;
-            case 10:
-                message.chippedGoal = $root.GameEvent.ChippedGoal.decode(reader, reader.uint32());
-                break;
-            case 12:
-                message.kickTimeout = $root.GameEvent.KickTimeout.decode(reader, reader.uint32());
-                break;
-            case 16:
-                message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 42:
-                message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
-                break;
-            case 23:
-                message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
-                break;
-            case 25:
-                message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
-                break;
-            case 30:
-                message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.decode(reader, reader.uint32());
-                break;
-            case 33:
-                message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.decode(reader, reader.uint32());
-                break;
+            case 40: {
+                    message.type = reader.int32();
+                    break;
+                }
+            case 41: {
+                    if (!(message.origin && message.origin.length))
+                        message.origin = [];
+                    message.origin.push(reader.string());
+                    break;
+                }
+            case 6: {
+                    message.ballLeftFieldTouchLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
+                    break;
+                }
+            case 7: {
+                    message.ballLeftFieldGoalLine = $root.GameEvent.BallLeftField.decode(reader, reader.uint32());
+                    break;
+                }
+            case 11: {
+                    message.aimlessKick = $root.GameEvent.AimlessKick.decode(reader, reader.uint32());
+                    break;
+                }
+            case 19: {
+                    message.attackerTooCloseToDefenseArea = $root.GameEvent.AttackerTooCloseToDefenseArea.decode(reader, reader.uint32());
+                    break;
+                }
+            case 31: {
+                    message.defenderInDefenseArea = $root.GameEvent.DefenderInDefenseArea.decode(reader, reader.uint32());
+                    break;
+                }
+            case 43: {
+                    message.boundaryCrossing = $root.GameEvent.BoundaryCrossing.decode(reader, reader.uint32());
+                    break;
+                }
+            case 13: {
+                    message.keeperHeldBall = $root.GameEvent.KeeperHeldBall.decode(reader, reader.uint32());
+                    break;
+                }
+            case 17: {
+                    message.botDribbledBallTooFar = $root.GameEvent.BotDribbledBallTooFar.decode(reader, reader.uint32());
+                    break;
+                }
+            case 24: {
+                    message.botPushedBot = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
+                    break;
+                }
+            case 26: {
+                    message.botHeldBallDeliberately = $root.GameEvent.BotHeldBallDeliberately.decode(reader, reader.uint32());
+                    break;
+                }
+            case 27: {
+                    message.botTippedOver = $root.GameEvent.BotTippedOver.decode(reader, reader.uint32());
+                    break;
+                }
+            case 15: {
+                    message.attackerTouchedBallInDefenseArea = $root.GameEvent.AttackerTouchedBallInDefenseArea.decode(reader, reader.uint32());
+                    break;
+                }
+            case 18: {
+                    message.botKickedBallTooFast = $root.GameEvent.BotKickedBallTooFast.decode(reader, reader.uint32());
+                    break;
+                }
+            case 22: {
+                    message.botCrashUnique = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+                    break;
+                }
+            case 21: {
+                    message.botCrashDrawn = $root.GameEvent.BotCrashDrawn.decode(reader, reader.uint32());
+                    break;
+                }
+            case 29: {
+                    message.defenderTooCloseToKickPoint = $root.GameEvent.DefenderTooCloseToKickPoint.decode(reader, reader.uint32());
+                    break;
+                }
+            case 28: {
+                    message.botTooFastInStop = $root.GameEvent.BotTooFastInStop.decode(reader, reader.uint32());
+                    break;
+                }
+            case 20: {
+                    message.botInterferedPlacement = $root.GameEvent.BotInterferedPlacement.decode(reader, reader.uint32());
+                    break;
+                }
+            case 39: {
+                    message.possibleGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                    break;
+                }
+            case 8: {
+                    message.goal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                    break;
+                }
+            case 44: {
+                    message.invalidGoal = $root.GameEvent.Goal.decode(reader, reader.uint32());
+                    break;
+                }
+            case 14: {
+                    message.attackerDoubleTouchedBall = $root.GameEvent.AttackerDoubleTouchedBall.decode(reader, reader.uint32());
+                    break;
+                }
+            case 5: {
+                    message.placementSucceeded = $root.GameEvent.PlacementSucceeded.decode(reader, reader.uint32());
+                    break;
+                }
+            case 45: {
+                    message.penaltyKickFailed = $root.GameEvent.PenaltyKickFailed.decode(reader, reader.uint32());
+                    break;
+                }
+            case 2: {
+                    message.noProgressInGame = $root.GameEvent.NoProgressInGame.decode(reader, reader.uint32());
+                    break;
+                }
+            case 3: {
+                    message.placementFailed = $root.GameEvent.PlacementFailed.decode(reader, reader.uint32());
+                    break;
+                }
+            case 32: {
+                    message.multipleCards = $root.GameEvent.MultipleCards.decode(reader, reader.uint32());
+                    break;
+                }
+            case 34: {
+                    message.multipleFouls = $root.GameEvent.MultipleFouls.decode(reader, reader.uint32());
+                    break;
+                }
+            case 37: {
+                    message.botSubstitution = $root.GameEvent.BotSubstitution.decode(reader, reader.uint32());
+                    break;
+                }
+            case 38: {
+                    message.tooManyRobots = $root.GameEvent.TooManyRobots.decode(reader, reader.uint32());
+                    break;
+                }
+            case 46: {
+                    message.challengeFlag = $root.GameEvent.ChallengeFlag.decode(reader, reader.uint32());
+                    break;
+                }
+            case 47: {
+                    message.emergencyStop = $root.GameEvent.EmergencyStop.decode(reader, reader.uint32());
+                    break;
+                }
+            case 35: {
+                    message.unsportingBehaviorMinor = $root.GameEvent.UnsportingBehaviorMinor.decode(reader, reader.uint32());
+                    break;
+                }
+            case 36: {
+                    message.unsportingBehaviorMajor = $root.GameEvent.UnsportingBehaviorMajor.decode(reader, reader.uint32());
+                    break;
+                }
+            case 1: {
+                    message.prepared = $root.GameEvent.Prepared.decode(reader, reader.uint32());
+                    break;
+                }
+            case 9: {
+                    message.indirectGoal = $root.GameEvent.IndirectGoal.decode(reader, reader.uint32());
+                    break;
+                }
+            case 10: {
+                    message.chippedGoal = $root.GameEvent.ChippedGoal.decode(reader, reader.uint32());
+                    break;
+                }
+            case 12: {
+                    message.kickTimeout = $root.GameEvent.KickTimeout.decode(reader, reader.uint32());
+                    break;
+                }
+            case 16: {
+                    message.attackerTouchedOpponentInDefenseArea = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
+                    break;
+                }
+            case 42: {
+                    message.attackerTouchedOpponentInDefenseAreaSkipped = $root.GameEvent.AttackerTouchedOpponentInDefenseArea.decode(reader, reader.uint32());
+                    break;
+                }
+            case 23: {
+                    message.botCrashUniqueSkipped = $root.GameEvent.BotCrashUnique.decode(reader, reader.uint32());
+                    break;
+                }
+            case 25: {
+                    message.botPushedBotSkipped = $root.GameEvent.BotPushedBot.decode(reader, reader.uint32());
+                    break;
+                }
+            case 30: {
+                    message.defenderInDefenseAreaPartially = $root.GameEvent.DefenderInDefenseAreaPartially.decode(reader, reader.uint32());
+                    break;
+                }
+            case 33: {
+                    message.multiplePlacementFailures = $root.GameEvent.MultiplePlacementFailures.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1558,6 +1627,12 @@ export const GameEvent = $root.GameEvent = (() => {
             return object;
         let message = new $root.GameEvent();
         switch (object.type) {
+        default:
+            if (typeof object.type === "number") {
+                message.type = object.type;
+                break;
+            }
+            break;
         case "UNKNOWN_GAME_EVENT_TYPE":
         case 0:
             message.type = 0;
@@ -2177,7 +2252,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.event = "possibleGoal";
         }
         if (message.type != null && message.hasOwnProperty("type"))
-            object.type = options.enums === String ? $root.GameEvent.Type[message.type] : message.type;
+            object.type = options.enums === String ? $root.GameEvent.Type[message.type] === undefined ? message.type : $root.GameEvent.Type[message.type] : message.type;
         if (message.origin && message.origin.length) {
             object.origin = [];
             for (let j = 0; j < message.origin.length; ++j)
@@ -2225,6 +2300,21 @@ export const GameEvent = $root.GameEvent = (() => {
      */
     GameEvent.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for GameEvent
+     * @function getTypeUrl
+     * @memberof GameEvent
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GameEvent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GameEvent";
     };
 
     GameEvent.BallLeftField = (function() {
@@ -2340,15 +2430,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2418,6 +2511,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BallLeftField();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -2460,7 +2559,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.location = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -2477,6 +2576,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BallLeftField.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BallLeftField
+         * @function getTypeUrl
+         * @memberof GameEvent.BallLeftField
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BallLeftField.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BallLeftField";
         };
 
         return BallLeftField;
@@ -2606,18 +2720,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2692,6 +2810,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.AimlessKick();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -2740,7 +2864,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.kickLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -2759,6 +2883,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         AimlessKick.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AimlessKick
+         * @function getTypeUrl
+         * @memberof GameEvent.AimlessKick
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AimlessKick.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.AimlessKick";
         };
 
         return AimlessKick;
@@ -2943,33 +3082,42 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 6:
-                    message.kickingTeam = reader.int32();
-                    break;
-                case 2:
-                    message.kickingBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.maxBallHeight = reader.float();
-                    break;
-                case 7:
-                    message.numRobotsByTeam = reader.uint32();
-                    break;
-                case 8:
-                    message.lastTouchByTeam = reader.uint64();
-                    break;
-                case 9:
-                    message.message = reader.string();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.kickingTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.kickingBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.maxBallHeight = reader.float();
+                        break;
+                    }
+                case 7: {
+                        message.numRobotsByTeam = reader.uint32();
+                        break;
+                    }
+                case 8: {
+                        message.lastTouchByTeam = reader.uint64();
+                        break;
+                    }
+                case 9: {
+                        message.message = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3065,6 +3213,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.Goal();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -3079,6 +3233,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 break;
             }
             switch (object.kickingTeam) {
+            default:
+                if (typeof object.kickingTeam === "number") {
+                    message.kickingTeam = object.kickingTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.kickingTeam = 0;
@@ -3151,7 +3311,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.message = "";
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.kickingBot != null && message.hasOwnProperty("kickingBot"))
                 object.kickingBot = message.kickingBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -3161,7 +3321,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.maxBallHeight != null && message.hasOwnProperty("maxBallHeight"))
                 object.maxBallHeight = options.json && !isFinite(message.maxBallHeight) ? String(message.maxBallHeight) : message.maxBallHeight;
             if (message.kickingTeam != null && message.hasOwnProperty("kickingTeam"))
-                object.kickingTeam = options.enums === String ? $root.Team[message.kickingTeam] : message.kickingTeam;
+                object.kickingTeam = options.enums === String ? $root.Team[message.kickingTeam] === undefined ? message.kickingTeam : $root.Team[message.kickingTeam] : message.kickingTeam;
             if (message.numRobotsByTeam != null && message.hasOwnProperty("numRobotsByTeam"))
                 object.numRobotsByTeam = message.numRobotsByTeam;
             if (message.lastTouchByTeam != null && message.hasOwnProperty("lastTouchByTeam"))
@@ -3183,6 +3343,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         Goal.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Goal
+         * @function getTypeUrl
+         * @memberof GameEvent.Goal
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Goal.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.Goal";
         };
 
         return Goal;
@@ -3312,18 +3487,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3398,6 +3577,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.IndirectGoal();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -3446,7 +3631,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.kickLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -3465,6 +3650,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         IndirectGoal.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for IndirectGoal
+         * @function getTypeUrl
+         * @memberof GameEvent.IndirectGoal
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        IndirectGoal.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.IndirectGoal";
         };
 
         return IndirectGoal;
@@ -3605,21 +3805,26 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.maxBallHeight = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.kickLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.maxBallHeight = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3697,6 +3902,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.ChippedGoal();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -3748,7 +3959,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.maxBallHeight = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -3769,6 +3980,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         ChippedGoal.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ChippedGoal
+         * @function getTypeUrl
+         * @memberof GameEvent.ChippedGoal
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ChippedGoal.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.ChippedGoal";
         };
 
         return ChippedGoal;
@@ -3898,18 +4124,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.speed = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.speed = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3982,6 +4212,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotTooFastInStop();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -4027,7 +4263,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.speed = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -4046,6 +4282,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotTooFastInStop.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotTooFastInStop
+         * @function getTypeUrl
+         * @memberof GameEvent.BotTooFastInStop
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotTooFastInStop.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotTooFastInStop";
         };
 
         return BotTooFastInStop;
@@ -4175,18 +4426,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4259,6 +4514,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.DefenderTooCloseToKickPoint();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -4304,7 +4565,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.distance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -4323,6 +4584,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         DefenderTooCloseToKickPoint.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DefenderTooCloseToKickPoint
+         * @function getTypeUrl
+         * @memberof GameEvent.DefenderTooCloseToKickPoint
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DefenderTooCloseToKickPoint.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.DefenderTooCloseToKickPoint";
         };
 
         return DefenderTooCloseToKickPoint;
@@ -4475,24 +4751,30 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.botYellow = reader.uint32();
-                    break;
-                case 2:
-                    message.botBlue = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.crashSpeed = reader.float();
-                    break;
-                case 5:
-                    message.speedDiff = reader.float();
-                    break;
-                case 6:
-                    message.crashAngle = reader.float();
-                    break;
+                case 1: {
+                        message.botYellow = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.botBlue = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.crashSpeed = reader.float();
+                        break;
+                    }
+                case 5: {
+                        message.speedDiff = reader.float();
+                        break;
+                    }
+                case 6: {
+                        message.crashAngle = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4626,6 +4908,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotCrashDrawn.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotCrashDrawn
+         * @function getTypeUrl
+         * @memberof GameEvent.BotCrashDrawn
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotCrashDrawn.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotCrashDrawn";
         };
 
         return BotCrashDrawn;
@@ -4788,27 +5085,34 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.violator = reader.uint32();
-                    break;
-                case 3:
-                    message.victim = reader.uint32();
-                    break;
-                case 4:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.crashSpeed = reader.float();
-                    break;
-                case 6:
-                    message.speedDiff = reader.float();
-                    break;
-                case 7:
-                    message.crashAngle = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.violator = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.victim = reader.uint32();
+                        break;
+                    }
+                case 4: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.crashSpeed = reader.float();
+                        break;
+                    }
+                case 6: {
+                        message.speedDiff = reader.float();
+                        break;
+                    }
+                case 7: {
+                        message.crashAngle = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4890,6 +5194,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotCrashUnique();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -4944,7 +5254,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.crashAngle = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.violator != null && message.hasOwnProperty("violator"))
                 object.violator = message.violator;
             if (message.victim != null && message.hasOwnProperty("victim"))
@@ -4969,6 +5279,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotCrashUnique.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotCrashUnique
+         * @function getTypeUrl
+         * @memberof GameEvent.BotCrashUnique
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotCrashUnique.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotCrashUnique";
         };
 
         return BotCrashUnique;
@@ -5109,21 +5434,26 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.violator = reader.uint32();
-                    break;
-                case 3:
-                    message.victim = reader.uint32();
-                    break;
-                case 4:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.pushedDistance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.violator = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.victim = reader.uint32();
+                        break;
+                    }
+                case 4: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.pushedDistance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5199,6 +5529,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotPushedBot();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -5247,7 +5583,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.pushedDistance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.violator != null && message.hasOwnProperty("violator"))
                 object.violator = message.violator;
             if (message.victim != null && message.hasOwnProperty("victim"))
@@ -5268,6 +5604,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotPushedBot.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotPushedBot
+         * @function getTypeUrl
+         * @memberof GameEvent.BotPushedBot
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotPushedBot.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotPushedBot";
         };
 
         return BotPushedBot;
@@ -5397,18 +5748,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5483,6 +5838,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotTippedOver();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -5531,7 +5892,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -5550,6 +5911,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotTippedOver.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotTippedOver
+         * @function getTypeUrl
+         * @memberof GameEvent.BotTippedOver
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotTippedOver.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotTippedOver";
         };
 
         return BotTippedOver;
@@ -5679,18 +6055,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5763,6 +6143,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.DefenderInDefenseArea();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -5808,7 +6194,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.distance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -5827,6 +6213,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         DefenderInDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DefenderInDefenseArea
+         * @function getTypeUrl
+         * @memberof GameEvent.DefenderInDefenseArea
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DefenderInDefenseArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.DefenderInDefenseArea";
         };
 
         return DefenderInDefenseArea;
@@ -5967,21 +6368,26 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
-                case 5:
-                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
+                case 5: {
+                        message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6059,6 +6465,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.DefenderInDefenseAreaPartially();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -6110,7 +6522,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -6131,6 +6543,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         DefenderInDefenseAreaPartially.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DefenderInDefenseAreaPartially
+         * @function getTypeUrl
+         * @memberof GameEvent.DefenderInDefenseAreaPartially
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DefenderInDefenseAreaPartially.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.DefenderInDefenseAreaPartially";
         };
 
         return DefenderInDefenseAreaPartially;
@@ -6260,18 +6687,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6344,6 +6775,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.AttackerTouchedBallInDefenseArea();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -6389,7 +6826,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.distance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -6408,6 +6845,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         AttackerTouchedBallInDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AttackerTouchedBallInDefenseArea
+         * @function getTypeUrl
+         * @memberof GameEvent.AttackerTouchedBallInDefenseArea
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AttackerTouchedBallInDefenseArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.AttackerTouchedBallInDefenseArea";
         };
 
         return AttackerTouchedBallInDefenseArea;
@@ -6548,21 +7000,26 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.initialBallSpeed = reader.float();
-                    break;
-                case 5:
-                    message.chipped = reader.bool();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.initialBallSpeed = reader.float();
+                        break;
+                    }
+                case 5: {
+                        message.chipped = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6638,6 +7095,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotKickedBallTooFast();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -6686,7 +7149,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.chipped = false;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -6707,6 +7170,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotKickedBallTooFast.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotKickedBallTooFast
+         * @function getTypeUrl
+         * @memberof GameEvent.BotKickedBallTooFast
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotKickedBallTooFast.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotKickedBallTooFast";
         };
 
         return BotKickedBallTooFast;
@@ -6836,18 +7314,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.start = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.end = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.start = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.end = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6922,6 +7404,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotDribbledBallTooFar();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -6970,7 +7458,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.end = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.start != null && message.hasOwnProperty("start"))
@@ -6989,6 +7477,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotDribbledBallTooFar.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotDribbledBallTooFar
+         * @function getTypeUrl
+         * @memberof GameEvent.BotDribbledBallTooFar
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotDribbledBallTooFar.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotDribbledBallTooFar";
         };
 
         return BotDribbledBallTooFar;
@@ -7118,18 +7621,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 4:
-                    message.victim = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 4: {
+                        message.victim = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7202,6 +7709,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.AttackerTouchedOpponentInDefenseArea();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -7247,7 +7760,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.victim = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -7266,6 +7779,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         AttackerTouchedOpponentInDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AttackerTouchedOpponentInDefenseArea
+         * @function getTypeUrl
+         * @memberof GameEvent.AttackerTouchedOpponentInDefenseArea
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AttackerTouchedOpponentInDefenseArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.AttackerTouchedOpponentInDefenseArea";
         };
 
         return AttackerTouchedOpponentInDefenseArea;
@@ -7384,15 +7912,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7462,6 +7993,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.AttackerDoubleTouchedBall();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -7504,7 +8041,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.location = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -7521,6 +8058,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         AttackerDoubleTouchedBall.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AttackerDoubleTouchedBall
+         * @function getTypeUrl
+         * @memberof GameEvent.AttackerDoubleTouchedBall
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AttackerDoubleTouchedBall.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.AttackerDoubleTouchedBall";
         };
 
         return AttackerDoubleTouchedBall;
@@ -7661,21 +8213,26 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
-                case 5:
-                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
+                case 5: {
+                        message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7753,6 +8310,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.AttackerTooCloseToDefenseArea();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -7804,7 +8367,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -7825,6 +8388,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         AttackerTooCloseToDefenseArea.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AttackerTooCloseToDefenseArea
+         * @function getTypeUrl
+         * @memberof GameEvent.AttackerTooCloseToDefenseArea
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AttackerTooCloseToDefenseArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.AttackerTooCloseToDefenseArea";
         };
 
         return AttackerTooCloseToDefenseArea;
@@ -7954,18 +8532,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    message.duration = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.duration = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8038,6 +8620,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotHeldBallDeliberately();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -8083,7 +8671,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.duration = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -8102,6 +8690,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotHeldBallDeliberately.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotHeldBallDeliberately
+         * @function getTypeUrl
+         * @memberof GameEvent.BotHeldBallDeliberately
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotHeldBallDeliberately.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotHeldBallDeliberately";
         };
 
         return BotHeldBallDeliberately;
@@ -8220,15 +8823,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.byBot = reader.uint32();
-                    break;
-                case 3:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.byBot = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8298,6 +8904,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotInterferedPlacement();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -8340,7 +8952,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.location = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.byBot != null && message.hasOwnProperty("byBot"))
                 object.byBot = message.byBot;
             if (message.location != null && message.hasOwnProperty("location"))
@@ -8357,6 +8969,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotInterferedPlacement.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotInterferedPlacement
+         * @function getTypeUrl
+         * @memberof GameEvent.BotInterferedPlacement
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotInterferedPlacement.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotInterferedPlacement";
         };
 
         return BotInterferedPlacement;
@@ -8453,9 +9080,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8517,6 +9145,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.MultipleCards();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -8549,7 +9183,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             return object;
         };
 
@@ -8562,6 +9196,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         MultipleCards.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MultipleCards
+         * @function getTypeUrl
+         * @memberof GameEvent.MultipleCards
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MultipleCards.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.MultipleCards";
         };
 
         return MultipleCards;
@@ -8671,14 +9320,16 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    if (!(message.causedGameEvents && message.causedGameEvents.length))
-                        message.causedGameEvents = [];
-                    message.causedGameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.causedGameEvents && message.causedGameEvents.length))
+                            message.causedGameEvents = [];
+                        message.causedGameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8749,6 +9400,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.MultipleFouls();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -8793,7 +9450,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.causedGameEvents && message.causedGameEvents.length) {
                 object.causedGameEvents = [];
                 for (let j = 0; j < message.causedGameEvents.length; ++j)
@@ -8811,6 +9468,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         MultipleFouls.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MultipleFouls
+         * @function getTypeUrl
+         * @memberof GameEvent.MultipleFouls
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MultipleFouls.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.MultipleFouls";
         };
 
         return MultipleFouls;
@@ -8907,9 +9579,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8971,6 +9644,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.MultiplePlacementFailures();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -9003,7 +9682,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             return object;
         };
 
@@ -9016,6 +9695,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         MultiplePlacementFailures.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MultiplePlacementFailures
+         * @function getTypeUrl
+         * @memberof GameEvent.MultiplePlacementFailures
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MultiplePlacementFailures.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.MultiplePlacementFailures";
         };
 
         return MultiplePlacementFailures;
@@ -9134,15 +9828,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 3:
-                    message.time = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.time = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9212,6 +9909,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.KickTimeout();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -9254,7 +9957,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.time = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
                 object.location = $root.Vector2.toObject(message.location, options);
             if (message.time != null && message.hasOwnProperty("time"))
@@ -9271,6 +9974,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         KickTimeout.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for KickTimeout
+         * @function getTypeUrl
+         * @memberof GameEvent.KickTimeout
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        KickTimeout.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.KickTimeout";
         };
 
         return KickTimeout;
@@ -9379,12 +10097,14 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    message.time = reader.float();
-                    break;
+                case 1: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.time = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9486,6 +10206,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         NoProgressInGame.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for NoProgressInGame
+         * @function getTypeUrl
+         * @memberof GameEvent.NoProgressInGame
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        NoProgressInGame.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.NoProgressInGame";
         };
 
         return NoProgressInGame;
@@ -9593,12 +10328,14 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.remainingDistance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.remainingDistance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9663,6 +10400,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.PlacementFailed();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -9699,7 +10442,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.remainingDistance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.remainingDistance != null && message.hasOwnProperty("remainingDistance"))
                 object.remainingDistance = options.json && !isFinite(message.remainingDistance) ? String(message.remainingDistance) : message.remainingDistance;
             return object;
@@ -9714,6 +10457,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         PlacementFailed.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PlacementFailed
+         * @function getTypeUrl
+         * @memberof GameEvent.PlacementFailed
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PlacementFailed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.PlacementFailed";
         };
 
         return PlacementFailed;
@@ -9820,12 +10578,14 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.reason = reader.string();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.reason = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9891,6 +10651,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.UnsportingBehaviorMinor();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -9927,7 +10693,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.reason = "";
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.reason != null && message.hasOwnProperty("reason"))
                 object.reason = message.reason;
             return object;
@@ -9942,6 +10708,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         UnsportingBehaviorMinor.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UnsportingBehaviorMinor
+         * @function getTypeUrl
+         * @memberof GameEvent.UnsportingBehaviorMinor
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UnsportingBehaviorMinor.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.UnsportingBehaviorMinor";
         };
 
         return UnsportingBehaviorMinor;
@@ -10048,12 +10829,14 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.reason = reader.string();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.reason = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10119,6 +10902,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.UnsportingBehaviorMajor();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -10155,7 +10944,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.reason = "";
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.reason != null && message.hasOwnProperty("reason"))
                 object.reason = message.reason;
             return object;
@@ -10170,6 +10959,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         UnsportingBehaviorMajor.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UnsportingBehaviorMajor
+         * @function getTypeUrl
+         * @memberof GameEvent.UnsportingBehaviorMajor
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UnsportingBehaviorMajor.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.UnsportingBehaviorMajor";
         };
 
         return UnsportingBehaviorMajor;
@@ -10288,15 +11092,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 3:
-                    message.duration = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.duration = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10366,6 +11173,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.KeeperHeldBall();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -10408,7 +11221,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.duration = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
                 object.location = $root.Vector2.toObject(message.location, options);
             if (message.duration != null && message.hasOwnProperty("duration"))
@@ -10425,6 +11238,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         KeeperHeldBall.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for KeeperHeldBall
+         * @function getTypeUrl
+         * @memberof GameEvent.KeeperHeldBall
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        KeeperHeldBall.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.KeeperHeldBall";
         };
 
         return KeeperHeldBall;
@@ -10554,18 +11382,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.timeTaken = reader.float();
-                    break;
-                case 3:
-                    message.precision = reader.float();
-                    break;
-                case 4:
-                    message.distance = reader.float();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.timeTaken = reader.float();
+                        break;
+                    }
+                case 3: {
+                        message.precision = reader.float();
+                        break;
+                    }
+                case 4: {
+                        message.distance = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10636,6 +11468,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.PlacementSucceeded();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -10678,7 +11516,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.distance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.timeTaken != null && message.hasOwnProperty("timeTaken"))
                 object.timeTaken = options.json && !isFinite(message.timeTaken) ? String(message.timeTaken) : message.timeTaken;
             if (message.precision != null && message.hasOwnProperty("precision"))
@@ -10697,6 +11535,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         PlacementSucceeded.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PlacementSucceeded
+         * @function getTypeUrl
+         * @memberof GameEvent.PlacementSucceeded
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PlacementSucceeded.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.PlacementSucceeded";
         };
 
         return PlacementSucceeded;
@@ -10794,9 +11647,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.timeTaken = reader.float();
-                    break;
+                case 1: {
+                        message.timeTaken = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10884,6 +11738,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         Prepared.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Prepared
+         * @function getTypeUrl
+         * @memberof GameEvent.Prepared
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Prepared.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.Prepared";
         };
 
         return Prepared;
@@ -10980,9 +11849,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11044,6 +11914,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BotSubstitution();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -11076,7 +11952,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             return object;
         };
 
@@ -11089,6 +11965,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BotSubstitution.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotSubstitution
+         * @function getTypeUrl
+         * @memberof GameEvent.BotSubstitution
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotSubstitution.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BotSubstitution";
         };
 
         return BotSubstitution;
@@ -11185,9 +12076,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11249,6 +12141,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.ChallengeFlag();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -11281,7 +12179,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             return object;
         };
 
@@ -11294,6 +12192,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         ChallengeFlag.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ChallengeFlag
+         * @function getTypeUrl
+         * @memberof GameEvent.ChallengeFlag
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ChallengeFlag.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.ChallengeFlag";
         };
 
         return ChallengeFlag;
@@ -11390,9 +12303,10 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11454,6 +12368,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.EmergencyStop();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -11486,7 +12406,7 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults)
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             return object;
         };
 
@@ -11499,6 +12419,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         EmergencyStop.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for EmergencyStop
+         * @function getTypeUrl
+         * @memberof GameEvent.EmergencyStop
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        EmergencyStop.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.EmergencyStop";
         };
 
         return EmergencyStop;
@@ -11628,18 +12563,22 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.numRobotsAllowed = reader.int32();
-                    break;
-                case 3:
-                    message.numRobotsOnField = reader.int32();
-                    break;
-                case 4:
-                    message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.numRobotsAllowed = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.numRobotsOnField = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.ballLocation = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11712,6 +12651,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.TooManyRobots();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -11757,7 +12702,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.ballLocation = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.numRobotsAllowed != null && message.hasOwnProperty("numRobotsAllowed"))
                 object.numRobotsAllowed = message.numRobotsAllowed;
             if (message.numRobotsOnField != null && message.hasOwnProperty("numRobotsOnField"))
@@ -11776,6 +12721,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         TooManyRobots.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for TooManyRobots
+         * @function getTypeUrl
+         * @memberof GameEvent.TooManyRobots
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        TooManyRobots.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.TooManyRobots";
         };
 
         return TooManyRobots;
@@ -11883,12 +12843,14 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11955,6 +12917,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.BoundaryCrossing();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -11994,7 +12962,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.location = null;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
                 object.location = $root.Vector2.toObject(message.location, options);
             return object;
@@ -12009,6 +12977,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         BoundaryCrossing.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BoundaryCrossing
+         * @function getTypeUrl
+         * @memberof GameEvent.BoundaryCrossing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BoundaryCrossing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.BoundaryCrossing";
         };
 
         return BoundaryCrossing;
@@ -12127,15 +13110,18 @@ export const GameEvent = $root.GameEvent = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.byTeam = reader.int32();
-                    break;
-                case 2:
-                    message.location = $root.Vector2.decode(reader, reader.uint32());
-                    break;
-                case 3:
-                    message.reason = reader.string();
-                    break;
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.location = $root.Vector2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.reason = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -12205,6 +13191,12 @@ export const GameEvent = $root.GameEvent = (() => {
                 return object;
             let message = new $root.GameEvent.PenaltyKickFailed();
             switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
             case "UNKNOWN":
             case 0:
                 message.byTeam = 0;
@@ -12247,7 +13239,7 @@ export const GameEvent = $root.GameEvent = (() => {
                 object.reason = "";
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
-                object.byTeam = options.enums === String ? $root.Team[message.byTeam] : message.byTeam;
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.location != null && message.hasOwnProperty("location"))
                 object.location = $root.Vector2.toObject(message.location, options);
             if (message.reason != null && message.hasOwnProperty("reason"))
@@ -12264,6 +13256,21 @@ export const GameEvent = $root.GameEvent = (() => {
          */
         PenaltyKickFailed.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PenaltyKickFailed
+         * @function getTypeUrl
+         * @memberof GameEvent.PenaltyKickFailed
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PenaltyKickFailed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.PenaltyKickFailed";
         };
 
         return PenaltyKickFailed;
@@ -12473,12 +13480,14 @@ export const Vector2 = $root.Vector2 = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.x = reader.float();
-                break;
-            case 2:
-                message.y = reader.float();
-                break;
+            case 1: {
+                    message.x = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.y = reader.float();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -12577,6 +13586,21 @@ export const Vector2 = $root.Vector2 = (() => {
      */
     Vector2.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for Vector2
+     * @function getTypeUrl
+     * @memberof Vector2
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Vector2.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Vector2";
     };
 
     return Vector2;
@@ -12693,15 +13717,18 @@ export const Vector3 = $root.Vector3 = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.x = reader.float();
-                break;
-            case 2:
-                message.y = reader.float();
-                break;
-            case 3:
-                message.z = reader.float();
-                break;
+            case 1: {
+                    message.x = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.y = reader.float();
+                    break;
+                }
+            case 3: {
+                    message.z = reader.float();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -12811,6 +13838,21 @@ export const Vector3 = $root.Vector3 = (() => {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
+    /**
+     * Gets the default type url for Vector3
+     * @function getTypeUrl
+     * @memberof Vector3
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Vector3.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Vector3";
+    };
+
     return Vector3;
 })();
 
@@ -12820,6 +13862,8 @@ export const Referee = $root.Referee = (() => {
      * Properties of a Referee.
      * @exports IReferee
      * @interface IReferee
+     * @property {string|null} [sourceIdentifier] Referee sourceIdentifier
+     * @property {MatchType|null} [matchType] Referee matchType
      * @property {number|Long} packetTimestamp Referee packetTimestamp
      * @property {Referee.Stage} stage Referee stage
      * @property {number|null} [stageTimeLeft] Referee stageTimeLeft
@@ -12852,6 +13896,22 @@ export const Referee = $root.Referee = (() => {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
+
+    /**
+     * Referee sourceIdentifier.
+     * @member {string} sourceIdentifier
+     * @memberof Referee
+     * @instance
+     */
+    Referee.prototype.sourceIdentifier = "";
+
+    /**
+     * Referee matchType.
+     * @member {MatchType} matchType
+     * @memberof Referee
+     * @instance
+     */
+    Referee.prototype.matchType = 0;
 
     /**
      * Referee packetTimestamp.
@@ -13012,6 +14072,10 @@ export const Referee = $root.Referee = (() => {
         if (message.gameEventProposals != null && message.gameEventProposals.length)
             for (let i = 0; i < message.gameEventProposals.length; ++i)
                 $root.GameEventProposalGroup.encode(message.gameEventProposals[i], writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+        if (message.sourceIdentifier != null && Object.hasOwnProperty.call(message, "sourceIdentifier"))
+            writer.uint32(/* id 18, wireType 2 =*/146).string(message.sourceIdentifier);
+        if (message.matchType != null && Object.hasOwnProperty.call(message, "matchType"))
+            writer.uint32(/* id 19, wireType 0 =*/152).int32(message.matchType);
         return writer;
     };
 
@@ -13046,52 +14110,74 @@ export const Referee = $root.Referee = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.packetTimestamp = reader.uint64();
-                break;
-            case 2:
-                message.stage = reader.int32();
-                break;
-            case 3:
-                message.stageTimeLeft = reader.sint32();
-                break;
-            case 4:
-                message.command = reader.int32();
-                break;
-            case 5:
-                message.commandCounter = reader.uint32();
-                break;
-            case 6:
-                message.commandTimestamp = reader.uint64();
-                break;
-            case 7:
-                message.yellow = $root.Referee.TeamInfo.decode(reader, reader.uint32());
-                break;
-            case 8:
-                message.blue = $root.Referee.TeamInfo.decode(reader, reader.uint32());
-                break;
-            case 9:
-                message.designatedPosition = $root.Referee.Point.decode(reader, reader.uint32());
-                break;
-            case 10:
-                message.blueTeamOnPositiveHalf = reader.bool();
-                break;
-            case 12:
-                message.nextCommand = reader.int32();
-                break;
-            case 16:
-                if (!(message.gameEvents && message.gameEvents.length))
-                    message.gameEvents = [];
-                message.gameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
-                break;
-            case 17:
-                if (!(message.gameEventProposals && message.gameEventProposals.length))
-                    message.gameEventProposals = [];
-                message.gameEventProposals.push($root.GameEventProposalGroup.decode(reader, reader.uint32()));
-                break;
-            case 15:
-                message.currentActionTimeRemaining = reader.int32();
-                break;
+            case 18: {
+                    message.sourceIdentifier = reader.string();
+                    break;
+                }
+            case 19: {
+                    message.matchType = reader.int32();
+                    break;
+                }
+            case 1: {
+                    message.packetTimestamp = reader.uint64();
+                    break;
+                }
+            case 2: {
+                    message.stage = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.stageTimeLeft = reader.sint32();
+                    break;
+                }
+            case 4: {
+                    message.command = reader.int32();
+                    break;
+                }
+            case 5: {
+                    message.commandCounter = reader.uint32();
+                    break;
+                }
+            case 6: {
+                    message.commandTimestamp = reader.uint64();
+                    break;
+                }
+            case 7: {
+                    message.yellow = $root.Referee.TeamInfo.decode(reader, reader.uint32());
+                    break;
+                }
+            case 8: {
+                    message.blue = $root.Referee.TeamInfo.decode(reader, reader.uint32());
+                    break;
+                }
+            case 9: {
+                    message.designatedPosition = $root.Referee.Point.decode(reader, reader.uint32());
+                    break;
+                }
+            case 10: {
+                    message.blueTeamOnPositiveHalf = reader.bool();
+                    break;
+                }
+            case 12: {
+                    message.nextCommand = reader.int32();
+                    break;
+                }
+            case 16: {
+                    if (!(message.gameEvents && message.gameEvents.length))
+                        message.gameEvents = [];
+                    message.gameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 17: {
+                    if (!(message.gameEventProposals && message.gameEventProposals.length))
+                        message.gameEventProposals = [];
+                    message.gameEventProposals.push($root.GameEventProposalGroup.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 15: {
+                    message.currentActionTimeRemaining = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -13141,6 +14227,19 @@ export const Referee = $root.Referee = (() => {
     Referee.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
+        if (message.sourceIdentifier != null && message.hasOwnProperty("sourceIdentifier"))
+            if (!$util.isString(message.sourceIdentifier))
+                return "sourceIdentifier: string expected";
+        if (message.matchType != null && message.hasOwnProperty("matchType"))
+            switch (message.matchType) {
+            default:
+                return "matchType: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                break;
+            }
         if (!$util.isInteger(message.packetTimestamp) && !(message.packetTimestamp && $util.isInteger(message.packetTimestamp.low) && $util.isInteger(message.packetTimestamp.high)))
             return "packetTimestamp: integer|Long expected";
         switch (message.stage) {
@@ -13270,6 +14369,32 @@ export const Referee = $root.Referee = (() => {
         if (object instanceof $root.Referee)
             return object;
         let message = new $root.Referee();
+        if (object.sourceIdentifier != null)
+            message.sourceIdentifier = String(object.sourceIdentifier);
+        switch (object.matchType) {
+        default:
+            if (typeof object.matchType === "number") {
+                message.matchType = object.matchType;
+                break;
+            }
+            break;
+        case "UNKNOWN_MATCH":
+        case 0:
+            message.matchType = 0;
+            break;
+        case "GROUP_PHASE":
+        case 1:
+            message.matchType = 1;
+            break;
+        case "ELIMINATION_PHASE":
+        case 2:
+            message.matchType = 2;
+            break;
+        case "FRIENDLY":
+        case 3:
+            message.matchType = 3;
+            break;
+        }
         if (object.packetTimestamp != null)
             if ($util.Long)
                 (message.packetTimestamp = $util.Long.fromValue(object.packetTimestamp)).unsigned = true;
@@ -13280,6 +14405,12 @@ export const Referee = $root.Referee = (() => {
             else if (typeof object.packetTimestamp === "object")
                 message.packetTimestamp = new $util.LongBits(object.packetTimestamp.low >>> 0, object.packetTimestamp.high >>> 0).toNumber(true);
         switch (object.stage) {
+        default:
+            if (typeof object.stage === "number") {
+                message.stage = object.stage;
+                break;
+            }
+            break;
         case "NORMAL_FIRST_HALF_PRE":
         case 0:
             message.stage = 0;
@@ -13340,6 +14471,12 @@ export const Referee = $root.Referee = (() => {
         if (object.stageTimeLeft != null)
             message.stageTimeLeft = object.stageTimeLeft | 0;
         switch (object.command) {
+        default:
+            if (typeof object.command === "number") {
+                message.command = object.command;
+                break;
+            }
+            break;
         case "HALT":
         case 0:
             message.command = 0;
@@ -13442,6 +14579,12 @@ export const Referee = $root.Referee = (() => {
         if (object.blueTeamOnPositiveHalf != null)
             message.blueTeamOnPositiveHalf = Boolean(object.blueTeamOnPositiveHalf);
         switch (object.nextCommand) {
+        default:
+            if (typeof object.nextCommand === "number") {
+                message.nextCommand = object.nextCommand;
+                break;
+            }
+            break;
         case "HALT":
         case 0:
             message.nextCommand = 0;
@@ -13578,6 +14721,8 @@ export const Referee = $root.Referee = (() => {
             object.blueTeamOnPositiveHalf = false;
             object.nextCommand = options.enums === String ? "HALT" : 0;
             object.currentActionTimeRemaining = 0;
+            object.sourceIdentifier = "";
+            object.matchType = options.enums === String ? "UNKNOWN_MATCH" : 0;
         }
         if (message.packetTimestamp != null && message.hasOwnProperty("packetTimestamp"))
             if (typeof message.packetTimestamp === "number")
@@ -13585,11 +14730,11 @@ export const Referee = $root.Referee = (() => {
             else
                 object.packetTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.packetTimestamp) : options.longs === Number ? new $util.LongBits(message.packetTimestamp.low >>> 0, message.packetTimestamp.high >>> 0).toNumber(true) : message.packetTimestamp;
         if (message.stage != null && message.hasOwnProperty("stage"))
-            object.stage = options.enums === String ? $root.Referee.Stage[message.stage] : message.stage;
+            object.stage = options.enums === String ? $root.Referee.Stage[message.stage] === undefined ? message.stage : $root.Referee.Stage[message.stage] : message.stage;
         if (message.stageTimeLeft != null && message.hasOwnProperty("stageTimeLeft"))
             object.stageTimeLeft = message.stageTimeLeft;
         if (message.command != null && message.hasOwnProperty("command"))
-            object.command = options.enums === String ? $root.Referee.Command[message.command] : message.command;
+            object.command = options.enums === String ? $root.Referee.Command[message.command] === undefined ? message.command : $root.Referee.Command[message.command] : message.command;
         if (message.commandCounter != null && message.hasOwnProperty("commandCounter"))
             object.commandCounter = message.commandCounter;
         if (message.commandTimestamp != null && message.hasOwnProperty("commandTimestamp"))
@@ -13606,7 +14751,7 @@ export const Referee = $root.Referee = (() => {
         if (message.blueTeamOnPositiveHalf != null && message.hasOwnProperty("blueTeamOnPositiveHalf"))
             object.blueTeamOnPositiveHalf = message.blueTeamOnPositiveHalf;
         if (message.nextCommand != null && message.hasOwnProperty("nextCommand"))
-            object.nextCommand = options.enums === String ? $root.Referee.Command[message.nextCommand] : message.nextCommand;
+            object.nextCommand = options.enums === String ? $root.Referee.Command[message.nextCommand] === undefined ? message.nextCommand : $root.Referee.Command[message.nextCommand] : message.nextCommand;
         if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
             object.currentActionTimeRemaining = message.currentActionTimeRemaining;
         if (message.gameEvents && message.gameEvents.length) {
@@ -13619,6 +14764,10 @@ export const Referee = $root.Referee = (() => {
             for (let j = 0; j < message.gameEventProposals.length; ++j)
                 object.gameEventProposals[j] = $root.GameEventProposalGroup.toObject(message.gameEventProposals[j], options);
         }
+        if (message.sourceIdentifier != null && message.hasOwnProperty("sourceIdentifier"))
+            object.sourceIdentifier = message.sourceIdentifier;
+        if (message.matchType != null && message.hasOwnProperty("matchType"))
+            object.matchType = options.enums === String ? $root.MatchType[message.matchType] === undefined ? message.matchType : $root.MatchType[message.matchType] : message.matchType;
         return object;
     };
 
@@ -13631,6 +14780,21 @@ export const Referee = $root.Referee = (() => {
      */
     Referee.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for Referee
+     * @function getTypeUrl
+     * @memberof Referee
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Referee.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Referee";
     };
 
     /**
@@ -13737,6 +14901,7 @@ export const Referee = $root.Referee = (() => {
          * @property {number|null} [maxAllowedBots] TeamInfo maxAllowedBots
          * @property {boolean|null} [botSubstitutionIntent] TeamInfo botSubstitutionIntent
          * @property {boolean|null} [ballPlacementFailuresReached] TeamInfo ballPlacementFailuresReached
+         * @property {boolean|null} [botSubstitutionAllowed] TeamInfo botSubstitutionAllowed
          */
 
         /**
@@ -13868,6 +15033,14 @@ export const Referee = $root.Referee = (() => {
         TeamInfo.prototype.ballPlacementFailuresReached = false;
 
         /**
+         * TeamInfo botSubstitutionAllowed.
+         * @member {boolean} botSubstitutionAllowed
+         * @memberof Referee.TeamInfo
+         * @instance
+         */
+        TeamInfo.prototype.botSubstitutionAllowed = false;
+
+        /**
          * Creates a new TeamInfo instance using the specified properties.
          * @function create
          * @memberof Referee.TeamInfo
@@ -13916,6 +15089,8 @@ export const Referee = $root.Referee = (() => {
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.botSubstitutionIntent);
             if (message.ballPlacementFailuresReached != null && Object.hasOwnProperty.call(message, "ballPlacementFailuresReached"))
                 writer.uint32(/* id 15, wireType 0 =*/120).bool(message.ballPlacementFailuresReached);
+            if (message.botSubstitutionAllowed != null && Object.hasOwnProperty.call(message, "botSubstitutionAllowed"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.botSubstitutionAllowed);
             return writer;
         };
 
@@ -13950,55 +15125,73 @@ export const Referee = $root.Referee = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    message.score = reader.uint32();
-                    break;
-                case 3:
-                    message.redCards = reader.uint32();
-                    break;
-                case 4:
-                    if (!(message.yellowCardTimes && message.yellowCardTimes.length))
-                        message.yellowCardTimes = [];
-                    if ((tag & 7) === 2) {
-                        let end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.score = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.redCards = reader.uint32();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.yellowCardTimes && message.yellowCardTimes.length))
+                            message.yellowCardTimes = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.yellowCardTimes.push(reader.uint32());
+                        } else
                             message.yellowCardTimes.push(reader.uint32());
-                    } else
-                        message.yellowCardTimes.push(reader.uint32());
-                    break;
-                case 5:
-                    message.yellowCards = reader.uint32();
-                    break;
-                case 6:
-                    message.timeouts = reader.uint32();
-                    break;
-                case 7:
-                    message.timeoutTime = reader.uint32();
-                    break;
-                case 8:
-                    message.goalkeeper = reader.uint32();
-                    break;
-                case 9:
-                    message.foulCounter = reader.uint32();
-                    break;
-                case 10:
-                    message.ballPlacementFailures = reader.uint32();
-                    break;
-                case 12:
-                    message.canPlaceBall = reader.bool();
-                    break;
-                case 13:
-                    message.maxAllowedBots = reader.uint32();
-                    break;
-                case 14:
-                    message.botSubstitutionIntent = reader.bool();
-                    break;
-                case 15:
-                    message.ballPlacementFailuresReached = reader.bool();
-                    break;
+                        break;
+                    }
+                case 5: {
+                        message.yellowCards = reader.uint32();
+                        break;
+                    }
+                case 6: {
+                        message.timeouts = reader.uint32();
+                        break;
+                    }
+                case 7: {
+                        message.timeoutTime = reader.uint32();
+                        break;
+                    }
+                case 8: {
+                        message.goalkeeper = reader.uint32();
+                        break;
+                    }
+                case 9: {
+                        message.foulCounter = reader.uint32();
+                        break;
+                    }
+                case 10: {
+                        message.ballPlacementFailures = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.canPlaceBall = reader.bool();
+                        break;
+                    }
+                case 13: {
+                        message.maxAllowedBots = reader.uint32();
+                        break;
+                    }
+                case 14: {
+                        message.botSubstitutionIntent = reader.bool();
+                        break;
+                    }
+                case 15: {
+                        message.ballPlacementFailuresReached = reader.bool();
+                        break;
+                    }
+                case 16: {
+                        message.botSubstitutionAllowed = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -14087,6 +15280,9 @@ export const Referee = $root.Referee = (() => {
             if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
                 if (typeof message.ballPlacementFailuresReached !== "boolean")
                     return "ballPlacementFailuresReached: boolean expected";
+            if (message.botSubstitutionAllowed != null && message.hasOwnProperty("botSubstitutionAllowed"))
+                if (typeof message.botSubstitutionAllowed !== "boolean")
+                    return "botSubstitutionAllowed: boolean expected";
             return null;
         };
 
@@ -14135,6 +15331,8 @@ export const Referee = $root.Referee = (() => {
                 message.botSubstitutionIntent = Boolean(object.botSubstitutionIntent);
             if (object.ballPlacementFailuresReached != null)
                 message.ballPlacementFailuresReached = Boolean(object.ballPlacementFailuresReached);
+            if (object.botSubstitutionAllowed != null)
+                message.botSubstitutionAllowed = Boolean(object.botSubstitutionAllowed);
             return message;
         };
 
@@ -14167,6 +15365,7 @@ export const Referee = $root.Referee = (() => {
                 object.maxAllowedBots = 0;
                 object.botSubstitutionIntent = false;
                 object.ballPlacementFailuresReached = false;
+                object.botSubstitutionAllowed = false;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
@@ -14199,6 +15398,8 @@ export const Referee = $root.Referee = (() => {
                 object.botSubstitutionIntent = message.botSubstitutionIntent;
             if (message.ballPlacementFailuresReached != null && message.hasOwnProperty("ballPlacementFailuresReached"))
                 object.ballPlacementFailuresReached = message.ballPlacementFailuresReached;
+            if (message.botSubstitutionAllowed != null && message.hasOwnProperty("botSubstitutionAllowed"))
+                object.botSubstitutionAllowed = message.botSubstitutionAllowed;
             return object;
         };
 
@@ -14211,6 +15412,21 @@ export const Referee = $root.Referee = (() => {
          */
         TeamInfo.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for TeamInfo
+         * @function getTypeUrl
+         * @memberof Referee.TeamInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        TeamInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Referee.TeamInfo";
         };
 
         return TeamInfo;
@@ -14317,12 +15533,14 @@ export const Referee = $root.Referee = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.x = reader.float();
-                    break;
-                case 2:
-                    message.y = reader.float();
-                    break;
+                case 1: {
+                        message.x = reader.float();
+                        break;
+                    }
+                case 2: {
+                        message.y = reader.float();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -14421,6 +15639,21 @@ export const Referee = $root.Referee = (() => {
          */
         Point.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Point
+         * @function getTypeUrl
+         * @memberof Referee.Point
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Point.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Referee.Point";
         };
 
         return Point;
@@ -14534,14 +15767,16 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                if (!(message.gameEvent && message.gameEvent.length))
-                    message.gameEvent = [];
-                message.gameEvent.push($root.GameEvent.decode(reader, reader.uint32()));
-                break;
-            case 2:
-                message.accepted = reader.bool();
-                break;
+            case 1: {
+                    if (!(message.gameEvent && message.gameEvent.length))
+                        message.gameEvent = [];
+                    message.gameEvent.push($root.GameEvent.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 2: {
+                    message.accepted = reader.bool();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -14657,7 +15892,40 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
+    /**
+     * Gets the default type url for GameEventProposalGroup
+     * @function getTypeUrl
+     * @memberof GameEventProposalGroup
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GameEventProposalGroup.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GameEventProposalGroup";
+    };
+
     return GameEventProposalGroup;
+})();
+
+/**
+ * MatchType enum.
+ * @exports MatchType
+ * @enum {number}
+ * @property {number} UNKNOWN_MATCH=0 UNKNOWN_MATCH value
+ * @property {number} GROUP_PHASE=1 GROUP_PHASE value
+ * @property {number} ELIMINATION_PHASE=2 ELIMINATION_PHASE value
+ * @property {number} FRIENDLY=3 FRIENDLY value
+ */
+export const MatchType = $root.MatchType = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "UNKNOWN_MATCH"] = 0;
+    values[valuesById[1] = "GROUP_PHASE"] = 1;
+    values[valuesById[2] = "ELIMINATION_PHASE"] = 2;
+    values[valuesById[3] = "FRIENDLY"] = 3;
+    return values;
 })();
 
 export { $root as default };

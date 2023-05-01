@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {Referee, GameEvent, Team} from "@/sslProto"
+import {Referee, Team} from "@/sslProto"
     import {mapStageToText, mapCommandToText} from "@/texts";
     import PowerPlay from "./PowerPlay";
 
@@ -118,14 +118,10 @@ import {Referee, GameEvent, Team} from "@/sslProto"
         },
         methods: {
             isRobotSubstitution(team) {
-                if (this.refereeMessage.command !== Referee.Command.HALT) {
-                    return false;
-                }
-                for(const gameEvent of this.refereeMessage.gameEvents) {
-                    if (gameEvent.type === GameEvent.Type.BOT_SUBSTITUTION
-                        && gameEvent.botSubstitution.byTeam === team) {
-                        return true;
-                    }
+                if (team === Team.BLUE) {
+                    return this.refereeMessage.blue.botSubstitutionAllowed;
+                } else if (team === Team.YELLOW) {
+                    return this.refereeMessage.yellow.botSubstitutionAllowed;
                 }
                 return false;
             },
