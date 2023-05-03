@@ -8,7 +8,7 @@ jobs:
   build_node:
     resource_class: medium
     docker:
-      - image: cimg/node:16.20
+      - image: cimg/node:20.1
     steps:
       - checkout
       - run:
