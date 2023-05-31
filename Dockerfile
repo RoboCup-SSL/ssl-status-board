@@ -13,10 +13,8 @@ RUN go install ./cmd/${cmd}
 
 # Start fresh from a smaller image
 FROM alpine:3
-ARG cmd
+ARG cmd=ssl-status-board
 COPY --from=build_go /go/bin/${cmd} /app/${cmd}
-WORKDIR /data
-RUN chown 1000: /data
 USER 1000
 ENV COMMAND="/app/${cmd}"
 ENTRYPOINT "${COMMAND}"
