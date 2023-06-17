@@ -8,6 +8,10 @@
 
 A Status Board for the Small Size League, optimized to show the current game state on a large screen.
 
+## Adding your teams logo
+If you would like to see your teams logo on the status-board, add it to [frontend/src/assets/logos](frontend/src/assets/logos) and include it in [frontend/src/teamLogoUrl.js](frontend/src/teamLogoUrl.js).
+The team name must match the one configured in the ssl-game-controller in all lowercase.
+
 ## Usage
 If you just want to use this app, simply download the latest [release binary](https://github.com/RoboCup-SSL/ssl-status-board/releases/latest).
 The binary is self-contained. No dependencies are required.
