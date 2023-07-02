@@ -12,6 +12,7 @@ const knownLogos = new Map([
     ['namec', require('@/assets/logos/namec.png')],
     ['neuislanders', require('@/assets/logos/neuislanders.png')],
     ['op-amp', require('@/assets/logos/op-amp.png')],
+    ['orcabot', require('@/assets/logos/orca-bot.png')],
     ['ri-one', require('@/assets/logos/rione.png')],
     ['robôcin', require('@/assets/logos/robocin.png')],
     ['robodragons', require('@/assets/logos/robodragons.png')],
