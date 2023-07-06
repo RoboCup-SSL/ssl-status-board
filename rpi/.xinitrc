@@ -11,4 +11,7 @@ unclutter -idle 0 &
 xrandr --output HDMI-1 --mode 1024x768
 
 # Start browser in kiosk mode
-chromium-browser http://localhost:8082 --start-fullscreen --kiosk --incognito --noerrdialogs --no-first-run --disk-cache-dir=/dev/null
+#chromium-browser http://localhost:8082 --start-fullscreen --kiosk --incognito --noerrdialogs --no-first-run --disk-cache-dir=/dev/null
+
+# Start nw.js
+nwjs ~/nwjs

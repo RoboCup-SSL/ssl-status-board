@@ -5,3 +5,7 @@ then
     startx
   done
 fi
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
