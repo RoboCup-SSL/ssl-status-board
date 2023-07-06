@@ -1,0 +1,9 @@
+{
+  "name": "ssl-status-board",
+  "main": "http://localhost:8082",
+  "window": {
+    "kiosk": true,
+    "width": 1920,
+    "height": 1080
+  }
+}
