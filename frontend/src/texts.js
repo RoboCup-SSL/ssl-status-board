@@ -280,6 +280,9 @@ export const mapGameEventToText = function (event) {
     if (event.botTippedOver != null) {
         return `${teamAndBot(event.botTippedOver)} tipped over`;
     }
+    if (event.botDroppedParts != null) {
+        return `${teamAndBot(event.botDroppedParts)} dropped parts`;
+    }
     if (event.botTooFastInStop != null) {
         return `${teamAndBot(event.botTooFastInStop)} `
             + `too fast during stop (${velocity(event.botTooFastInStop.speed)})`;
@@ -325,6 +328,12 @@ export const mapGameEventToText = function (event) {
     }
     if (event.challengeFlag != null) {
         return `${teamAndBot(event.challengeFlag)} raised a challenge flag`;
+    }
+    if (event.challengeFlagHandled != null) {
+        if (event.challengeFlagHandled.accepted) {
+            return `Challenge from ${teamAndBot(event.challengeFlagHandled)} accepted`;
+        }
+        return `Challenge from ${teamAndBot(event.challengeFlagHandled)} rejected`;
     }
     if (event.emergencyStop != null) {
         return `Emergency stop for ${teamAndBot(event.emergencyStop)} executed`;
