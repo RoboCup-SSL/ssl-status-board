@@ -330,6 +330,7 @@ export const GameEvent = $root.GameEvent = (() => {
      * @property {GameEvent.IMultipleCards|null} [multipleCards] GameEvent multipleCards
      * @property {GameEvent.IMultipleFouls|null} [multipleFouls] GameEvent multipleFouls
      * @property {GameEvent.IBotSubstitution|null} [botSubstitution] GameEvent botSubstitution
+     * @property {GameEvent.IExcessiveBotSubstitution|null} [excessiveBotSubstitution] GameEvent excessiveBotSubstitution
      * @property {GameEvent.ITooManyRobots|null} [tooManyRobots] GameEvent tooManyRobots
      * @property {GameEvent.IChallengeFlag|null} [challengeFlag] GameEvent challengeFlag
      * @property {GameEvent.IChallengeFlagHandled|null} [challengeFlagHandled] GameEvent challengeFlagHandled
@@ -637,6 +638,14 @@ export const GameEvent = $root.GameEvent = (() => {
     GameEvent.prototype.botSubstitution = null;
 
     /**
+     * GameEvent excessiveBotSubstitution.
+     * @member {GameEvent.IExcessiveBotSubstitution|null|undefined} excessiveBotSubstitution
+     * @memberof GameEvent
+     * @instance
+     */
+    GameEvent.prototype.excessiveBotSubstitution = null;
+
+    /**
      * GameEvent tooManyRobots.
      * @member {GameEvent.ITooManyRobots|null|undefined} tooManyRobots
      * @memberof GameEvent
@@ -769,12 +778,12 @@ export const GameEvent = $root.GameEvent = (() => {
 
     /**
      * GameEvent event.
-     * @member {"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"aimlessKick"|"attackerTooCloseToDefenseArea"|"defenderInDefenseArea"|"boundaryCrossing"|"keeperHeldBall"|"botDribbledBallTooFar"|"botPushedBot"|"botHeldBallDeliberately"|"botTippedOver"|"botDroppedParts"|"attackerTouchedBallInDefenseArea"|"botKickedBallTooFast"|"botCrashUnique"|"botCrashDrawn"|"defenderTooCloseToKickPoint"|"botTooFastInStop"|"botInterferedPlacement"|"possibleGoal"|"goal"|"invalidGoal"|"attackerDoubleTouchedBall"|"placementSucceeded"|"penaltyKickFailed"|"noProgressInGame"|"placementFailed"|"multipleCards"|"multipleFouls"|"botSubstitution"|"tooManyRobots"|"challengeFlag"|"challengeFlagHandled"|"emergencyStop"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|"prepared"|"indirectGoal"|"chippedGoal"|"kickTimeout"|"attackerTouchedOpponentInDefenseArea"|"attackerTouchedOpponentInDefenseAreaSkipped"|"botCrashUniqueSkipped"|"botPushedBotSkipped"|"defenderInDefenseAreaPartially"|"multiplePlacementFailures"|undefined} event
+     * @member {"ballLeftFieldTouchLine"|"ballLeftFieldGoalLine"|"aimlessKick"|"attackerTooCloseToDefenseArea"|"defenderInDefenseArea"|"boundaryCrossing"|"keeperHeldBall"|"botDribbledBallTooFar"|"botPushedBot"|"botHeldBallDeliberately"|"botTippedOver"|"botDroppedParts"|"attackerTouchedBallInDefenseArea"|"botKickedBallTooFast"|"botCrashUnique"|"botCrashDrawn"|"defenderTooCloseToKickPoint"|"botTooFastInStop"|"botInterferedPlacement"|"possibleGoal"|"goal"|"invalidGoal"|"attackerDoubleTouchedBall"|"placementSucceeded"|"penaltyKickFailed"|"noProgressInGame"|"placementFailed"|"multipleCards"|"multipleFouls"|"botSubstitution"|"excessiveBotSubstitution"|"tooManyRobots"|"challengeFlag"|"challengeFlagHandled"|"emergencyStop"|"unsportingBehaviorMinor"|"unsportingBehaviorMajor"|"prepared"|"indirectGoal"|"chippedGoal"|"kickTimeout"|"attackerTouchedOpponentInDefenseArea"|"attackerTouchedOpponentInDefenseAreaSkipped"|"botCrashUniqueSkipped"|"botPushedBotSkipped"|"defenderInDefenseAreaPartially"|"multiplePlacementFailures"|undefined} event
      * @memberof GameEvent
      * @instance
      */
     Object.defineProperty(GameEvent.prototype, "event", {
-        get: $util.oneOfGetter($oneOfFields = ["ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "aimlessKick", "attackerTooCloseToDefenseArea", "defenderInDefenseArea", "boundaryCrossing", "keeperHeldBall", "botDribbledBallTooFar", "botPushedBot", "botHeldBallDeliberately", "botTippedOver", "botDroppedParts", "attackerTouchedBallInDefenseArea", "botKickedBallTooFast", "botCrashUnique", "botCrashDrawn", "defenderTooCloseToKickPoint", "botTooFastInStop", "botInterferedPlacement", "possibleGoal", "goal", "invalidGoal", "attackerDoubleTouchedBall", "placementSucceeded", "penaltyKickFailed", "noProgressInGame", "placementFailed", "multipleCards", "multipleFouls", "botSubstitution", "tooManyRobots", "challengeFlag", "challengeFlagHandled", "emergencyStop", "unsportingBehaviorMinor", "unsportingBehaviorMajor", "prepared", "indirectGoal", "chippedGoal", "kickTimeout", "attackerTouchedOpponentInDefenseArea", "attackerTouchedOpponentInDefenseAreaSkipped", "botCrashUniqueSkipped", "botPushedBotSkipped", "defenderInDefenseAreaPartially", "multiplePlacementFailures"]),
+        get: $util.oneOfGetter($oneOfFields = ["ballLeftFieldTouchLine", "ballLeftFieldGoalLine", "aimlessKick", "attackerTooCloseToDefenseArea", "defenderInDefenseArea", "boundaryCrossing", "keeperHeldBall", "botDribbledBallTooFar", "botPushedBot", "botHeldBallDeliberately", "botTippedOver", "botDroppedParts", "attackerTouchedBallInDefenseArea", "botKickedBallTooFast", "botCrashUnique", "botCrashDrawn", "defenderTooCloseToKickPoint", "botTooFastInStop", "botInterferedPlacement", "possibleGoal", "goal", "invalidGoal", "attackerDoubleTouchedBall", "placementSucceeded", "penaltyKickFailed", "noProgressInGame", "placementFailed", "multipleCards", "multipleFouls", "botSubstitution", "excessiveBotSubstitution", "tooManyRobots", "challengeFlag", "challengeFlagHandled", "emergencyStop", "unsportingBehaviorMinor", "unsportingBehaviorMajor", "prepared", "indirectGoal", "chippedGoal", "kickTimeout", "attackerTouchedOpponentInDefenseArea", "attackerTouchedOpponentInDefenseAreaSkipped", "botCrashUniqueSkipped", "botPushedBotSkipped", "defenderInDefenseAreaPartially", "multiplePlacementFailures"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -903,6 +912,8 @@ export const GameEvent = $root.GameEvent = (() => {
             writer.uint32(/* id 50, wireType 2 =*/402).string(message.id);
         if (message.botDroppedParts != null && Object.hasOwnProperty.call(message, "botDroppedParts"))
             $root.GameEvent.BotDroppedParts.encode(message.botDroppedParts, writer.uint32(/* id 51, wireType 2 =*/410).fork()).ldelim();
+        if (message.excessiveBotSubstitution != null && Object.hasOwnProperty.call(message, "excessiveBotSubstitution"))
+            $root.GameEvent.ExcessiveBotSubstitution.encode(message.excessiveBotSubstitution, writer.uint32(/* id 52, wireType 2 =*/418).fork()).ldelim();
         return writer;
     };
 
@@ -1075,6 +1086,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     message.botSubstitution = $root.GameEvent.BotSubstitution.decode(reader, reader.uint32());
                     break;
                 }
+            case 52: {
+                    message.excessiveBotSubstitution = $root.GameEvent.ExcessiveBotSubstitution.decode(reader, reader.uint32());
+                    break;
+                }
             case 38: {
                     message.tooManyRobots = $root.GameEvent.TooManyRobots.decode(reader, reader.uint32());
                     break;
@@ -1202,6 +1217,7 @@ export const GameEvent = $root.GameEvent = (() => {
             case 29:
             case 28:
             case 20:
+            case 48:
             case 39:
             case 8:
             case 42:
@@ -1539,6 +1555,16 @@ export const GameEvent = $root.GameEvent = (() => {
                     return "botSubstitution." + error;
             }
         }
+        if (message.excessiveBotSubstitution != null && message.hasOwnProperty("excessiveBotSubstitution")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.GameEvent.ExcessiveBotSubstitution.verify(message.excessiveBotSubstitution);
+                if (error)
+                    return "excessiveBotSubstitution." + error;
+            }
+        }
         if (message.tooManyRobots != null && message.hasOwnProperty("tooManyRobots")) {
             if (properties.event === 1)
                 return "event: multiple values";
@@ -1802,6 +1828,10 @@ export const GameEvent = $root.GameEvent = (() => {
         case "BOT_INTERFERED_PLACEMENT":
         case 20:
             message.type = 20;
+            break;
+        case "EXCESSIVE_BOT_SUBSTITUTION":
+        case 48:
+            message.type = 48;
             break;
         case "POSSIBLE_GOAL":
         case 39:
@@ -2077,6 +2107,11 @@ export const GameEvent = $root.GameEvent = (() => {
             if (typeof object.botSubstitution !== "object")
                 throw TypeError(".GameEvent.botSubstitution: object expected");
             message.botSubstitution = $root.GameEvent.BotSubstitution.fromObject(object.botSubstitution);
+        }
+        if (object.excessiveBotSubstitution != null) {
+            if (typeof object.excessiveBotSubstitution !== "object")
+                throw TypeError(".GameEvent.excessiveBotSubstitution: object expected");
+            message.excessiveBotSubstitution = $root.GameEvent.ExcessiveBotSubstitution.fromObject(object.excessiveBotSubstitution);
         }
         if (object.tooManyRobots != null) {
             if (typeof object.tooManyRobots !== "object")
@@ -2428,6 +2463,11 @@ export const GameEvent = $root.GameEvent = (() => {
             object.botDroppedParts = $root.GameEvent.BotDroppedParts.toObject(message.botDroppedParts, options);
             if (options.oneofs)
                 object.event = "botDroppedParts";
+        }
+        if (message.excessiveBotSubstitution != null && message.hasOwnProperty("excessiveBotSubstitution")) {
+            object.excessiveBotSubstitution = $root.GameEvent.ExcessiveBotSubstitution.toObject(message.excessiveBotSubstitution, options);
+            if (options.oneofs)
+                object.event = "excessiveBotSubstitution";
         }
         return object;
     };
@@ -10682,6 +10722,7 @@ export const GameEvent = $root.GameEvent = (() => {
          * @interface IPlacementFailed
          * @property {Team} byTeam PlacementFailed byTeam
          * @property {number|null} [remainingDistance] PlacementFailed remainingDistance
+         * @property {number|null} [nearestOwnBotDistance] PlacementFailed nearestOwnBotDistance
          */
 
         /**
@@ -10716,6 +10757,14 @@ export const GameEvent = $root.GameEvent = (() => {
         PlacementFailed.prototype.remainingDistance = 0;
 
         /**
+         * PlacementFailed nearestOwnBotDistance.
+         * @member {number} nearestOwnBotDistance
+         * @memberof GameEvent.PlacementFailed
+         * @instance
+         */
+        PlacementFailed.prototype.nearestOwnBotDistance = 0;
+
+        /**
          * Creates a new PlacementFailed instance using the specified properties.
          * @function create
          * @memberof GameEvent.PlacementFailed
@@ -10742,6 +10791,8 @@ export const GameEvent = $root.GameEvent = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
             if (message.remainingDistance != null && Object.hasOwnProperty.call(message, "remainingDistance"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.remainingDistance);
+            if (message.nearestOwnBotDistance != null && Object.hasOwnProperty.call(message, "nearestOwnBotDistance"))
+                writer.uint32(/* id 3, wireType 5 =*/29).float(message.nearestOwnBotDistance);
             return writer;
         };
 
@@ -10782,6 +10833,10 @@ export const GameEvent = $root.GameEvent = (() => {
                     }
                 case 2: {
                         message.remainingDistance = reader.float();
+                        break;
+                    }
+                case 3: {
+                        message.nearestOwnBotDistance = reader.float();
                         break;
                     }
                 default:
@@ -10832,6 +10887,9 @@ export const GameEvent = $root.GameEvent = (() => {
             if (message.remainingDistance != null && message.hasOwnProperty("remainingDistance"))
                 if (typeof message.remainingDistance !== "number")
                     return "remainingDistance: number expected";
+            if (message.nearestOwnBotDistance != null && message.hasOwnProperty("nearestOwnBotDistance"))
+                if (typeof message.nearestOwnBotDistance !== "number")
+                    return "nearestOwnBotDistance: number expected";
             return null;
         };
 
@@ -10869,6 +10927,8 @@ export const GameEvent = $root.GameEvent = (() => {
             }
             if (object.remainingDistance != null)
                 message.remainingDistance = Number(object.remainingDistance);
+            if (object.nearestOwnBotDistance != null)
+                message.nearestOwnBotDistance = Number(object.nearestOwnBotDistance);
             return message;
         };
 
@@ -10888,11 +10948,14 @@ export const GameEvent = $root.GameEvent = (() => {
             if (options.defaults) {
                 object.byTeam = options.enums === String ? "UNKNOWN" : 0;
                 object.remainingDistance = 0;
+                object.nearestOwnBotDistance = 0;
             }
             if (message.byTeam != null && message.hasOwnProperty("byTeam"))
                 object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
             if (message.remainingDistance != null && message.hasOwnProperty("remainingDistance"))
                 object.remainingDistance = options.json && !isFinite(message.remainingDistance) ? String(message.remainingDistance) : message.remainingDistance;
+            if (message.nearestOwnBotDistance != null && message.hasOwnProperty("nearestOwnBotDistance"))
+                object.nearestOwnBotDistance = options.json && !isFinite(message.nearestOwnBotDistance) ? String(message.nearestOwnBotDistance) : message.nearestOwnBotDistance;
             return object;
         };
 
@@ -12431,6 +12494,233 @@ export const GameEvent = $root.GameEvent = (() => {
         };
 
         return BotSubstitution;
+    })();
+
+    GameEvent.ExcessiveBotSubstitution = (function() {
+
+        /**
+         * Properties of an ExcessiveBotSubstitution.
+         * @memberof GameEvent
+         * @interface IExcessiveBotSubstitution
+         * @property {Team} byTeam ExcessiveBotSubstitution byTeam
+         */
+
+        /**
+         * Constructs a new ExcessiveBotSubstitution.
+         * @memberof GameEvent
+         * @classdesc Represents an ExcessiveBotSubstitution.
+         * @implements IExcessiveBotSubstitution
+         * @constructor
+         * @param {GameEvent.IExcessiveBotSubstitution=} [properties] Properties to set
+         */
+        function ExcessiveBotSubstitution(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ExcessiveBotSubstitution byTeam.
+         * @member {Team} byTeam
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @instance
+         */
+        ExcessiveBotSubstitution.prototype.byTeam = 0;
+
+        /**
+         * Creates a new ExcessiveBotSubstitution instance using the specified properties.
+         * @function create
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {GameEvent.IExcessiveBotSubstitution=} [properties] Properties to set
+         * @returns {GameEvent.ExcessiveBotSubstitution} ExcessiveBotSubstitution instance
+         */
+        ExcessiveBotSubstitution.create = function create(properties) {
+            return new ExcessiveBotSubstitution(properties);
+        };
+
+        /**
+         * Encodes the specified ExcessiveBotSubstitution message. Does not implicitly {@link GameEvent.ExcessiveBotSubstitution.verify|verify} messages.
+         * @function encode
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {GameEvent.IExcessiveBotSubstitution} message ExcessiveBotSubstitution message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExcessiveBotSubstitution.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.byTeam);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ExcessiveBotSubstitution message, length delimited. Does not implicitly {@link GameEvent.ExcessiveBotSubstitution.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {GameEvent.IExcessiveBotSubstitution} message ExcessiveBotSubstitution message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExcessiveBotSubstitution.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ExcessiveBotSubstitution message from the specified reader or buffer.
+         * @function decode
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GameEvent.ExcessiveBotSubstitution} ExcessiveBotSubstitution
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExcessiveBotSubstitution.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GameEvent.ExcessiveBotSubstitution();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.byTeam = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("byTeam"))
+                throw $util.ProtocolError("missing required 'byTeam'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes an ExcessiveBotSubstitution message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GameEvent.ExcessiveBotSubstitution} ExcessiveBotSubstitution
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExcessiveBotSubstitution.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ExcessiveBotSubstitution message.
+         * @function verify
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ExcessiveBotSubstitution.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            switch (message.byTeam) {
+            default:
+                return "byTeam: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an ExcessiveBotSubstitution message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GameEvent.ExcessiveBotSubstitution} ExcessiveBotSubstitution
+         */
+        ExcessiveBotSubstitution.fromObject = function fromObject(object) {
+            if (object instanceof $root.GameEvent.ExcessiveBotSubstitution)
+                return object;
+            let message = new $root.GameEvent.ExcessiveBotSubstitution();
+            switch (object.byTeam) {
+            default:
+                if (typeof object.byTeam === "number") {
+                    message.byTeam = object.byTeam;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.byTeam = 0;
+                break;
+            case "YELLOW":
+            case 1:
+                message.byTeam = 1;
+                break;
+            case "BLUE":
+            case 2:
+                message.byTeam = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ExcessiveBotSubstitution message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {GameEvent.ExcessiveBotSubstitution} message ExcessiveBotSubstitution
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ExcessiveBotSubstitution.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.byTeam = options.enums === String ? "UNKNOWN" : 0;
+            if (message.byTeam != null && message.hasOwnProperty("byTeam"))
+                object.byTeam = options.enums === String ? $root.Team[message.byTeam] === undefined ? message.byTeam : $root.Team[message.byTeam] : message.byTeam;
+            return object;
+        };
+
+        /**
+         * Converts this ExcessiveBotSubstitution to JSON.
+         * @function toJSON
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ExcessiveBotSubstitution.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ExcessiveBotSubstitution
+         * @function getTypeUrl
+         * @memberof GameEvent.ExcessiveBotSubstitution
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ExcessiveBotSubstitution.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GameEvent.ExcessiveBotSubstitution";
+        };
+
+        return ExcessiveBotSubstitution;
     })();
 
     GameEvent.ChallengeFlag = (function() {
@@ -13999,6 +14289,7 @@ export const GameEvent = $root.GameEvent = (() => {
      * @property {number} DEFENDER_TOO_CLOSE_TO_KICK_POINT=29 DEFENDER_TOO_CLOSE_TO_KICK_POINT value
      * @property {number} BOT_TOO_FAST_IN_STOP=28 BOT_TOO_FAST_IN_STOP value
      * @property {number} BOT_INTERFERED_PLACEMENT=20 BOT_INTERFERED_PLACEMENT value
+     * @property {number} EXCESSIVE_BOT_SUBSTITUTION=48 EXCESSIVE_BOT_SUBSTITUTION value
      * @property {number} POSSIBLE_GOAL=39 POSSIBLE_GOAL value
      * @property {number} GOAL=8 GOAL value
      * @property {number} INVALID_GOAL=42 INVALID_GOAL value
@@ -14049,6 +14340,7 @@ export const GameEvent = $root.GameEvent = (() => {
         values[valuesById[29] = "DEFENDER_TOO_CLOSE_TO_KICK_POINT"] = 29;
         values[valuesById[28] = "BOT_TOO_FAST_IN_STOP"] = 28;
         values[valuesById[20] = "BOT_INTERFERED_PLACEMENT"] = 20;
+        values[valuesById[48] = "EXCESSIVE_BOT_SUBSTITUTION"] = 48;
         values[valuesById[39] = "POSSIBLE_GOAL"] = 39;
         values[valuesById[8] = "GOAL"] = 8;
         values[valuesById[42] = "INVALID_GOAL"] = 42;
@@ -14569,7 +14861,7 @@ export const Referee = $root.Referee = (() => {
      * @property {MatchType|null} [matchType] Referee matchType
      * @property {number|Long} packetTimestamp Referee packetTimestamp
      * @property {Referee.Stage} stage Referee stage
-     * @property {number|null} [stageTimeLeft] Referee stageTimeLeft
+     * @property {number|Long|null} [stageTimeLeft] Referee stageTimeLeft
      * @property {Referee.Command} command Referee command
      * @property {number} commandCounter Referee commandCounter
      * @property {number|Long} commandTimestamp Referee commandTimestamp
@@ -14580,7 +14872,8 @@ export const Referee = $root.Referee = (() => {
      * @property {Referee.Command|null} [nextCommand] Referee nextCommand
      * @property {Array.<IGameEvent>|null} [gameEvents] Referee gameEvents
      * @property {Array.<IGameEventProposalGroup>|null} [gameEventProposals] Referee gameEventProposals
-     * @property {number|null} [currentActionTimeRemaining] Referee currentActionTimeRemaining
+     * @property {number|Long|null} [currentActionTimeRemaining] Referee currentActionTimeRemaining
+     * @property {string|null} [statusMessage] Referee statusMessage
      */
 
     /**
@@ -14634,11 +14927,11 @@ export const Referee = $root.Referee = (() => {
 
     /**
      * Referee stageTimeLeft.
-     * @member {number} stageTimeLeft
+     * @member {number|Long} stageTimeLeft
      * @memberof Referee
      * @instance
      */
-    Referee.prototype.stageTimeLeft = 0;
+    Referee.prototype.stageTimeLeft = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
     /**
      * Referee command.
@@ -14722,11 +15015,19 @@ export const Referee = $root.Referee = (() => {
 
     /**
      * Referee currentActionTimeRemaining.
-     * @member {number} currentActionTimeRemaining
+     * @member {number|Long} currentActionTimeRemaining
      * @memberof Referee
      * @instance
      */
-    Referee.prototype.currentActionTimeRemaining = 0;
+    Referee.prototype.currentActionTimeRemaining = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+    /**
+     * Referee statusMessage.
+     * @member {string} statusMessage
+     * @memberof Referee
+     * @instance
+     */
+    Referee.prototype.statusMessage = "";
 
     /**
      * Creates a new Referee instance using the specified properties.
@@ -14755,7 +15056,7 @@ export const Referee = $root.Referee = (() => {
         writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.packetTimestamp);
         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.stage);
         if (message.stageTimeLeft != null && Object.hasOwnProperty.call(message, "stageTimeLeft"))
-            writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.stageTimeLeft);
+            writer.uint32(/* id 3, wireType 0 =*/24).sint64(message.stageTimeLeft);
         writer.uint32(/* id 4, wireType 0 =*/32).int32(message.command);
         writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.commandCounter);
         writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.commandTimestamp);
@@ -14768,7 +15069,7 @@ export const Referee = $root.Referee = (() => {
         if (message.nextCommand != null && Object.hasOwnProperty.call(message, "nextCommand"))
             writer.uint32(/* id 12, wireType 0 =*/96).int32(message.nextCommand);
         if (message.currentActionTimeRemaining != null && Object.hasOwnProperty.call(message, "currentActionTimeRemaining"))
-            writer.uint32(/* id 15, wireType 0 =*/120).int32(message.currentActionTimeRemaining);
+            writer.uint32(/* id 15, wireType 0 =*/120).int64(message.currentActionTimeRemaining);
         if (message.gameEvents != null && message.gameEvents.length)
             for (let i = 0; i < message.gameEvents.length; ++i)
                 $root.GameEvent.encode(message.gameEvents[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
@@ -14779,6 +15080,8 @@ export const Referee = $root.Referee = (() => {
             writer.uint32(/* id 18, wireType 2 =*/146).string(message.sourceIdentifier);
         if (message.matchType != null && Object.hasOwnProperty.call(message, "matchType"))
             writer.uint32(/* id 19, wireType 0 =*/152).int32(message.matchType);
+        if (message.statusMessage != null && Object.hasOwnProperty.call(message, "statusMessage"))
+            writer.uint32(/* id 20, wireType 2 =*/162).string(message.statusMessage);
         return writer;
     };
 
@@ -14830,7 +15133,7 @@ export const Referee = $root.Referee = (() => {
                     break;
                 }
             case 3: {
-                    message.stageTimeLeft = reader.sint32();
+                    message.stageTimeLeft = reader.sint64();
                     break;
                 }
             case 4: {
@@ -14878,7 +15181,11 @@ export const Referee = $root.Referee = (() => {
                     break;
                 }
             case 15: {
-                    message.currentActionTimeRemaining = reader.int32();
+                    message.currentActionTimeRemaining = reader.int64();
+                    break;
+                }
+            case 20: {
+                    message.statusMessage = reader.string();
                     break;
                 }
             default:
@@ -14965,8 +15272,8 @@ export const Referee = $root.Referee = (() => {
             break;
         }
         if (message.stageTimeLeft != null && message.hasOwnProperty("stageTimeLeft"))
-            if (!$util.isInteger(message.stageTimeLeft))
-                return "stageTimeLeft: integer expected";
+            if (!$util.isInteger(message.stageTimeLeft) && !(message.stageTimeLeft && $util.isInteger(message.stageTimeLeft.low) && $util.isInteger(message.stageTimeLeft.high)))
+                return "stageTimeLeft: integer|Long expected";
         switch (message.command) {
         default:
             return "command: enum value expected";
@@ -15055,8 +15362,11 @@ export const Referee = $root.Referee = (() => {
             }
         }
         if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
-            if (!$util.isInteger(message.currentActionTimeRemaining))
-                return "currentActionTimeRemaining: integer expected";
+            if (!$util.isInteger(message.currentActionTimeRemaining) && !(message.currentActionTimeRemaining && $util.isInteger(message.currentActionTimeRemaining.low) && $util.isInteger(message.currentActionTimeRemaining.high)))
+                return "currentActionTimeRemaining: integer|Long expected";
+        if (message.statusMessage != null && message.hasOwnProperty("statusMessage"))
+            if (!$util.isString(message.statusMessage))
+                return "statusMessage: string expected";
         return null;
     };
 
@@ -15172,7 +15482,14 @@ export const Referee = $root.Referee = (() => {
             break;
         }
         if (object.stageTimeLeft != null)
-            message.stageTimeLeft = object.stageTimeLeft | 0;
+            if ($util.Long)
+                (message.stageTimeLeft = $util.Long.fromValue(object.stageTimeLeft)).unsigned = false;
+            else if (typeof object.stageTimeLeft === "string")
+                message.stageTimeLeft = parseInt(object.stageTimeLeft, 10);
+            else if (typeof object.stageTimeLeft === "number")
+                message.stageTimeLeft = object.stageTimeLeft;
+            else if (typeof object.stageTimeLeft === "object")
+                message.stageTimeLeft = new $util.LongBits(object.stageTimeLeft.low >>> 0, object.stageTimeLeft.high >>> 0).toNumber();
         switch (object.command) {
         default:
             if (typeof object.command === "number") {
@@ -15382,7 +15699,16 @@ export const Referee = $root.Referee = (() => {
             }
         }
         if (object.currentActionTimeRemaining != null)
-            message.currentActionTimeRemaining = object.currentActionTimeRemaining | 0;
+            if ($util.Long)
+                (message.currentActionTimeRemaining = $util.Long.fromValue(object.currentActionTimeRemaining)).unsigned = false;
+            else if (typeof object.currentActionTimeRemaining === "string")
+                message.currentActionTimeRemaining = parseInt(object.currentActionTimeRemaining, 10);
+            else if (typeof object.currentActionTimeRemaining === "number")
+                message.currentActionTimeRemaining = object.currentActionTimeRemaining;
+            else if (typeof object.currentActionTimeRemaining === "object")
+                message.currentActionTimeRemaining = new $util.LongBits(object.currentActionTimeRemaining.low >>> 0, object.currentActionTimeRemaining.high >>> 0).toNumber();
+        if (object.statusMessage != null)
+            message.statusMessage = String(object.statusMessage);
         return message;
     };
 
@@ -15410,7 +15736,11 @@ export const Referee = $root.Referee = (() => {
             } else
                 object.packetTimestamp = options.longs === String ? "0" : 0;
             object.stage = options.enums === String ? "NORMAL_FIRST_HALF_PRE" : 0;
-            object.stageTimeLeft = 0;
+            if ($util.Long) {
+                let long = new $util.Long(0, 0, false);
+                object.stageTimeLeft = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+            } else
+                object.stageTimeLeft = options.longs === String ? "0" : 0;
             object.command = options.enums === String ? "HALT" : 0;
             object.commandCounter = 0;
             if ($util.Long) {
@@ -15423,9 +15753,14 @@ export const Referee = $root.Referee = (() => {
             object.designatedPosition = null;
             object.blueTeamOnPositiveHalf = false;
             object.nextCommand = options.enums === String ? "HALT" : 0;
-            object.currentActionTimeRemaining = 0;
+            if ($util.Long) {
+                let long = new $util.Long(0, 0, false);
+                object.currentActionTimeRemaining = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+            } else
+                object.currentActionTimeRemaining = options.longs === String ? "0" : 0;
             object.sourceIdentifier = "";
             object.matchType = options.enums === String ? "UNKNOWN_MATCH" : 0;
+            object.statusMessage = "";
         }
         if (message.packetTimestamp != null && message.hasOwnProperty("packetTimestamp"))
             if (typeof message.packetTimestamp === "number")
@@ -15435,7 +15770,10 @@ export const Referee = $root.Referee = (() => {
         if (message.stage != null && message.hasOwnProperty("stage"))
             object.stage = options.enums === String ? $root.Referee.Stage[message.stage] === undefined ? message.stage : $root.Referee.Stage[message.stage] : message.stage;
         if (message.stageTimeLeft != null && message.hasOwnProperty("stageTimeLeft"))
-            object.stageTimeLeft = message.stageTimeLeft;
+            if (typeof message.stageTimeLeft === "number")
+                object.stageTimeLeft = options.longs === String ? String(message.stageTimeLeft) : message.stageTimeLeft;
+            else
+                object.stageTimeLeft = options.longs === String ? $util.Long.prototype.toString.call(message.stageTimeLeft) : options.longs === Number ? new $util.LongBits(message.stageTimeLeft.low >>> 0, message.stageTimeLeft.high >>> 0).toNumber() : message.stageTimeLeft;
         if (message.command != null && message.hasOwnProperty("command"))
             object.command = options.enums === String ? $root.Referee.Command[message.command] === undefined ? message.command : $root.Referee.Command[message.command] : message.command;
         if (message.commandCounter != null && message.hasOwnProperty("commandCounter"))
@@ -15456,7 +15794,10 @@ export const Referee = $root.Referee = (() => {
         if (message.nextCommand != null && message.hasOwnProperty("nextCommand"))
             object.nextCommand = options.enums === String ? $root.Referee.Command[message.nextCommand] === undefined ? message.nextCommand : $root.Referee.Command[message.nextCommand] : message.nextCommand;
         if (message.currentActionTimeRemaining != null && message.hasOwnProperty("currentActionTimeRemaining"))
-            object.currentActionTimeRemaining = message.currentActionTimeRemaining;
+            if (typeof message.currentActionTimeRemaining === "number")
+                object.currentActionTimeRemaining = options.longs === String ? String(message.currentActionTimeRemaining) : message.currentActionTimeRemaining;
+            else
+                object.currentActionTimeRemaining = options.longs === String ? $util.Long.prototype.toString.call(message.currentActionTimeRemaining) : options.longs === Number ? new $util.LongBits(message.currentActionTimeRemaining.low >>> 0, message.currentActionTimeRemaining.high >>> 0).toNumber() : message.currentActionTimeRemaining;
         if (message.gameEvents && message.gameEvents.length) {
             object.gameEvents = [];
             for (let j = 0; j < message.gameEvents.length; ++j)
@@ -15471,6 +15812,8 @@ export const Referee = $root.Referee = (() => {
             object.sourceIdentifier = message.sourceIdentifier;
         if (message.matchType != null && message.hasOwnProperty("matchType"))
             object.matchType = options.enums === String ? $root.MatchType[message.matchType] === undefined ? message.matchType : $root.MatchType[message.matchType] : message.matchType;
+        if (message.statusMessage != null && message.hasOwnProperty("statusMessage"))
+            object.statusMessage = message.statusMessage;
         return object;
     };
 
@@ -15605,6 +15948,8 @@ export const Referee = $root.Referee = (() => {
          * @property {boolean|null} [botSubstitutionIntent] TeamInfo botSubstitutionIntent
          * @property {boolean|null} [ballPlacementFailuresReached] TeamInfo ballPlacementFailuresReached
          * @property {boolean|null} [botSubstitutionAllowed] TeamInfo botSubstitutionAllowed
+         * @property {number|null} [botSubstitutionsLeft] TeamInfo botSubstitutionsLeft
+         * @property {number|null} [botSubstitutionTimeLeft] TeamInfo botSubstitutionTimeLeft
          */
 
         /**
@@ -15744,6 +16089,22 @@ export const Referee = $root.Referee = (() => {
         TeamInfo.prototype.botSubstitutionAllowed = false;
 
         /**
+         * TeamInfo botSubstitutionsLeft.
+         * @member {number} botSubstitutionsLeft
+         * @memberof Referee.TeamInfo
+         * @instance
+         */
+        TeamInfo.prototype.botSubstitutionsLeft = 0;
+
+        /**
+         * TeamInfo botSubstitutionTimeLeft.
+         * @member {number} botSubstitutionTimeLeft
+         * @memberof Referee.TeamInfo
+         * @instance
+         */
+        TeamInfo.prototype.botSubstitutionTimeLeft = 0;
+
+        /**
          * Creates a new TeamInfo instance using the specified properties.
          * @function create
          * @memberof Referee.TeamInfo
@@ -15794,6 +16155,10 @@ export const Referee = $root.Referee = (() => {
                 writer.uint32(/* id 15, wireType 0 =*/120).bool(message.ballPlacementFailuresReached);
             if (message.botSubstitutionAllowed != null && Object.hasOwnProperty.call(message, "botSubstitutionAllowed"))
                 writer.uint32(/* id 16, wireType 0 =*/128).bool(message.botSubstitutionAllowed);
+            if (message.botSubstitutionsLeft != null && Object.hasOwnProperty.call(message, "botSubstitutionsLeft"))
+                writer.uint32(/* id 17, wireType 0 =*/136).uint32(message.botSubstitutionsLeft);
+            if (message.botSubstitutionTimeLeft != null && Object.hasOwnProperty.call(message, "botSubstitutionTimeLeft"))
+                writer.uint32(/* id 18, wireType 0 =*/144).uint32(message.botSubstitutionTimeLeft);
             return writer;
         };
 
@@ -15895,6 +16260,14 @@ export const Referee = $root.Referee = (() => {
                         message.botSubstitutionAllowed = reader.bool();
                         break;
                     }
+                case 17: {
+                        message.botSubstitutionsLeft = reader.uint32();
+                        break;
+                    }
+                case 18: {
+                        message.botSubstitutionTimeLeft = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -15986,6 +16359,12 @@ export const Referee = $root.Referee = (() => {
             if (message.botSubstitutionAllowed != null && message.hasOwnProperty("botSubstitutionAllowed"))
                 if (typeof message.botSubstitutionAllowed !== "boolean")
                     return "botSubstitutionAllowed: boolean expected";
+            if (message.botSubstitutionsLeft != null && message.hasOwnProperty("botSubstitutionsLeft"))
+                if (!$util.isInteger(message.botSubstitutionsLeft))
+                    return "botSubstitutionsLeft: integer expected";
+            if (message.botSubstitutionTimeLeft != null && message.hasOwnProperty("botSubstitutionTimeLeft"))
+                if (!$util.isInteger(message.botSubstitutionTimeLeft))
+                    return "botSubstitutionTimeLeft: integer expected";
             return null;
         };
 
@@ -16036,6 +16415,10 @@ export const Referee = $root.Referee = (() => {
                 message.ballPlacementFailuresReached = Boolean(object.ballPlacementFailuresReached);
             if (object.botSubstitutionAllowed != null)
                 message.botSubstitutionAllowed = Boolean(object.botSubstitutionAllowed);
+            if (object.botSubstitutionsLeft != null)
+                message.botSubstitutionsLeft = object.botSubstitutionsLeft >>> 0;
+            if (object.botSubstitutionTimeLeft != null)
+                message.botSubstitutionTimeLeft = object.botSubstitutionTimeLeft >>> 0;
             return message;
         };
 
@@ -16069,6 +16452,8 @@ export const Referee = $root.Referee = (() => {
                 object.botSubstitutionIntent = false;
                 object.ballPlacementFailuresReached = false;
                 object.botSubstitutionAllowed = false;
+                object.botSubstitutionsLeft = 0;
+                object.botSubstitutionTimeLeft = 0;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
@@ -16103,6 +16488,10 @@ export const Referee = $root.Referee = (() => {
                 object.ballPlacementFailuresReached = message.ballPlacementFailuresReached;
             if (message.botSubstitutionAllowed != null && message.hasOwnProperty("botSubstitutionAllowed"))
                 object.botSubstitutionAllowed = message.botSubstitutionAllowed;
+            if (message.botSubstitutionsLeft != null && message.hasOwnProperty("botSubstitutionsLeft"))
+                object.botSubstitutionsLeft = message.botSubstitutionsLeft;
+            if (message.botSubstitutionTimeLeft != null && message.hasOwnProperty("botSubstitutionTimeLeft"))
+                object.botSubstitutionTimeLeft = message.botSubstitutionTimeLeft;
             return object;
         };
 
@@ -16371,7 +16760,8 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
      * Properties of a GameEventProposalGroup.
      * @exports IGameEventProposalGroup
      * @interface IGameEventProposalGroup
-     * @property {Array.<IGameEvent>|null} [gameEvent] GameEventProposalGroup gameEvent
+     * @property {string|null} [id] GameEventProposalGroup id
+     * @property {Array.<IGameEvent>|null} [gameEvents] GameEventProposalGroup gameEvents
      * @property {boolean|null} [accepted] GameEventProposalGroup accepted
      */
 
@@ -16384,7 +16774,7 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
      * @param {IGameEventProposalGroup=} [properties] Properties to set
      */
     function GameEventProposalGroup(properties) {
-        this.gameEvent = [];
+        this.gameEvents = [];
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -16392,12 +16782,20 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
     }
 
     /**
-     * GameEventProposalGroup gameEvent.
-     * @member {Array.<IGameEvent>} gameEvent
+     * GameEventProposalGroup id.
+     * @member {string} id
      * @memberof GameEventProposalGroup
      * @instance
      */
-    GameEventProposalGroup.prototype.gameEvent = $util.emptyArray;
+    GameEventProposalGroup.prototype.id = "";
+
+    /**
+     * GameEventProposalGroup gameEvents.
+     * @member {Array.<IGameEvent>} gameEvents
+     * @memberof GameEventProposalGroup
+     * @instance
+     */
+    GameEventProposalGroup.prototype.gameEvents = $util.emptyArray;
 
     /**
      * GameEventProposalGroup accepted.
@@ -16431,11 +16829,13 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
     GameEventProposalGroup.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.gameEvent != null && message.gameEvent.length)
-            for (let i = 0; i < message.gameEvent.length; ++i)
-                $root.GameEvent.encode(message.gameEvent[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+        if (message.gameEvents != null && message.gameEvents.length)
+            for (let i = 0; i < message.gameEvents.length; ++i)
+                $root.GameEvent.encode(message.gameEvents[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
         if (message.accepted != null && Object.hasOwnProperty.call(message, "accepted"))
             writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
         return writer;
     };
 
@@ -16470,10 +16870,14 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
+            case 3: {
+                    message.id = reader.string();
+                    break;
+                }
             case 1: {
-                    if (!(message.gameEvent && message.gameEvent.length))
-                        message.gameEvent = [];
-                    message.gameEvent.push($root.GameEvent.decode(reader, reader.uint32()));
+                    if (!(message.gameEvents && message.gameEvents.length))
+                        message.gameEvents = [];
+                    message.gameEvents.push($root.GameEvent.decode(reader, reader.uint32()));
                     break;
                 }
             case 2: {
@@ -16515,13 +16919,16 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
     GameEventProposalGroup.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (message.gameEvent != null && message.hasOwnProperty("gameEvent")) {
-            if (!Array.isArray(message.gameEvent))
-                return "gameEvent: array expected";
-            for (let i = 0; i < message.gameEvent.length; ++i) {
-                let error = $root.GameEvent.verify(message.gameEvent[i]);
+        if (message.id != null && message.hasOwnProperty("id"))
+            if (!$util.isString(message.id))
+                return "id: string expected";
+        if (message.gameEvents != null && message.hasOwnProperty("gameEvents")) {
+            if (!Array.isArray(message.gameEvents))
+                return "gameEvents: array expected";
+            for (let i = 0; i < message.gameEvents.length; ++i) {
+                let error = $root.GameEvent.verify(message.gameEvents[i]);
                 if (error)
-                    return "gameEvent." + error;
+                    return "gameEvents." + error;
             }
         }
         if (message.accepted != null && message.hasOwnProperty("accepted"))
@@ -16542,14 +16949,16 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
         if (object instanceof $root.GameEventProposalGroup)
             return object;
         let message = new $root.GameEventProposalGroup();
-        if (object.gameEvent) {
-            if (!Array.isArray(object.gameEvent))
-                throw TypeError(".GameEventProposalGroup.gameEvent: array expected");
-            message.gameEvent = [];
-            for (let i = 0; i < object.gameEvent.length; ++i) {
-                if (typeof object.gameEvent[i] !== "object")
-                    throw TypeError(".GameEventProposalGroup.gameEvent: object expected");
-                message.gameEvent[i] = $root.GameEvent.fromObject(object.gameEvent[i]);
+        if (object.id != null)
+            message.id = String(object.id);
+        if (object.gameEvents) {
+            if (!Array.isArray(object.gameEvents))
+                throw TypeError(".GameEventProposalGroup.gameEvents: array expected");
+            message.gameEvents = [];
+            for (let i = 0; i < object.gameEvents.length; ++i) {
+                if (typeof object.gameEvents[i] !== "object")
+                    throw TypeError(".GameEventProposalGroup.gameEvents: object expected");
+                message.gameEvents[i] = $root.GameEvent.fromObject(object.gameEvents[i]);
             }
         }
         if (object.accepted != null)
@@ -16571,16 +16980,20 @@ export const GameEventProposalGroup = $root.GameEventProposalGroup = (() => {
             options = {};
         let object = {};
         if (options.arrays || options.defaults)
-            object.gameEvent = [];
-        if (options.defaults)
+            object.gameEvents = [];
+        if (options.defaults) {
             object.accepted = false;
-        if (message.gameEvent && message.gameEvent.length) {
-            object.gameEvent = [];
-            for (let j = 0; j < message.gameEvent.length; ++j)
-                object.gameEvent[j] = $root.GameEvent.toObject(message.gameEvent[j], options);
+            object.id = "";
+        }
+        if (message.gameEvents && message.gameEvents.length) {
+            object.gameEvents = [];
+            for (let j = 0; j < message.gameEvents.length; ++j)
+                object.gameEvents[j] = $root.GameEvent.toObject(message.gameEvents[j], options);
         }
         if (message.accepted != null && message.hasOwnProperty("accepted"))
             object.accepted = message.accepted;
+        if (message.id != null && message.hasOwnProperty("id"))
+            object.id = message.id;
         return object;
     };
 

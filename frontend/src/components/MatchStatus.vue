@@ -22,6 +22,7 @@
             <hr class="separator"/>
 
             <PowerPlay/>
+            <StatusMessage/>
 
         </div>
         <div class="time-container"
@@ -35,10 +36,11 @@
 import {Referee, Team} from "@/sslProto"
     import {mapStageToText, mapCommandToText} from "@/texts";
     import PowerPlay from "./PowerPlay";
+    import StatusMessage from "./StatusMessage";
 
     export default {
         name: "MatchStatus",
-        components: {PowerPlay},
+        components: {PowerPlay, StatusMessage},
         computed: {
             refereeMessage() {
                 return this.$store.state.refereeMsg;

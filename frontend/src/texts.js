@@ -107,6 +107,11 @@ export const mapGameEventToText = function (event) {
         return `No progress for ${seconds(event.noProgressInGame.time)}`;
     }
     if (event.placementFailed != null) {
+        if (event.placementFailed.nearestOwnBotDistance != null) {
+            return `${teamAndBot(event.placementFailed)} failed placing ball `
+                + ` (${distance(event.placementFailed.remainingDistance)} remaining, `
+                + `nearest own bot at ${distance(event.placementFailed.nearestOwnBotDistance)})`;
+        }
         return `${teamAndBot(event.placementFailed)} failed placing ball `
             + ` (${distance(event.placementFailed.remainingDistance)} remaining)`;
     }
@@ -118,6 +123,9 @@ export const mapGameEventToText = function (event) {
     }
     if (event.botSubstitution != null) {
         return `Team ${teamAndBot(event.botSubstitution)} substitutes robots`;
+    }
+    if (event.excessiveBotSubstitution != null) {
+        return `Team ${teamAndBot(event.excessiveBotSubstitution)} excessively substituted robots`;
     }
     if (event.tooManyRobots != null) {
         return `${teamAndBot(event.tooManyRobots)} has ${event.tooManyRobots.numRobotsOnField} robots on the field, `
