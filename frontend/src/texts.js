@@ -192,7 +192,7 @@ export const mapGameEventToText = function (event) {
     }
     if (event.attackerTooCloseToDefenseArea != null) {
         return `${teamAndBot(event.attackerTooCloseToDefenseArea)} too close to opponent defense area `
-            + `(${distance(event.attackerTooCloseToDefenseArea.distance)}m)`;
+            + `(${distance(event.attackerTooCloseToDefenseArea.distance)})`;
     }
     if (event.botInterferedPlacement != null) {
         return `${teamAndBot(event.botInterferedPlacement)} interfered placement`;
