@@ -12,7 +12,8 @@ See: [https://www.raspberrypi.com/software/operating-systems/](https://www.raspb
 ```shell
 sudo raspi-config
 ```
-Use username 'ssl'.
+Use username 'ssl'.</br>
+Use hostname 'ssl-status-board-#'.
 
 ## Download and extract latest bootstrap archive
 ```shell
@@ -21,4 +22,12 @@ wget -qO- https://github.com/RoboCup-SSL/ssl-status-board/releases/latest/downlo
 ## Run bootstrap script
 ```shell
 ./ssl-status-board/bootstrap.sh
+```
+
+## Change hostname afterwards
+```shell
+sudo raspi-config # change hostname but don´t reboot
+rm rf ./.config/nwjs/
+rm -rf./.config/ssl-status-board
+# reboot now
 ```
