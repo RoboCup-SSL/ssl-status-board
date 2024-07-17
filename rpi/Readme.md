@@ -35,7 +35,7 @@ wget -qO- https://github.com/RoboCup-SSL/ssl-status-board/releases/latest/downlo
 Change hostname after cloning from a working SD-Card to avoid name resolution collisions with the old system.
 ```shell
 sudo raspi-config # change hostname but don´t reboot
-rm rf ./.config/nwjs/
-rm -rf./.config/ssl-status-board
+rm -rf ./.config/nwjs/
+rm -rf ./.config/ssl-status-board/
 # reboot now
 ```
