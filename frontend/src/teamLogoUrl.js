@@ -23,6 +23,7 @@ const knownLogos = new Map([
     ['roboime', require('@/assets/logos/roboime.png')],
     ['robojackets', require('@/assets/logos/robojackets.png')],
     ['roboteam-twente', require('@/assets/logos/roboteam-twente.png')],
+    ['spbunited', require('@/assets/logos/spbunited.png')],
     ['src', require('@/assets/logos/src.png')],
     ['taurabots', require('@/assets/logos/taurabots.png')],
     ['tigers-mannheim', require('@/assets/logos/tigers-mannheim.png')],
