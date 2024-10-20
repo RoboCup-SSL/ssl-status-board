@@ -2,6 +2,7 @@ const knownLogos = new Map([
     ['a-team', require('@/assets/logos/a-team.png')],
     ['ais', require('@/assets/logos/ais.png')],
     ['blue', require('@/assets/logos/blue.png')],
+    ['cerberus', require('@/assets/logos/cerberus.png')],
     ['cmμs', require('@/assets/logos/cmμs.png')],
     ['delft-mercurians', require('@/assets/logos/delft-mercurians.png')],
     ['er-force', require('@/assets/logos/er-force.png')],
