@@ -17,7 +17,6 @@ const knownLogos = new Map([
     ['mct-susano-logics', require('@/assets/logos/mct-susano-logics.png')],
     ['mrl', require('@/assets/logos/mrl.png')],
     ['namec', require('@/assets/logos/namec.png')],
-    ['neon', require('@/assets/logos/neon.png')],
     ['neuislanders', require('@/assets/logos/neuislanders.png')],
     ['op-amp', require('@/assets/logos/op-amp.png')],
     ['orcabot', require('@/assets/logos/orca-bot.png')],
