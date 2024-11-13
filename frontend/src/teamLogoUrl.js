@@ -32,7 +32,7 @@ const knownLogos = new Map([
     ['roboteam-twente', require('@/assets/logos/roboteam-twente.png')],
     ['spbunited', require('@/assets/logos/spbunited.png')],
     ['src', require('@/assets/logos/src.png')],
-    ['taurabots', require('@/assets/logos/taurabots.png')],
+    ['taurabots', require('@/assets/logos/taura-bots.png')],
     ['tigers-mannheim', require('@/assets/logos/tigers-mannheim.png')],
     ['turtlerabbit', require('@/assets/logos/turtlerabbit.png')],
     ['titans', require('@/assets/logos/titans.png')],
