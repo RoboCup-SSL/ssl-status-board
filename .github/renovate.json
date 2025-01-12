@@ -1,12 +1,5 @@
 {
   "extends": [
-    "config:base",
-    "schedule:yearly"
-  ],
-  "labels": [
-    "dependencies"
-  ],
-  "npm": {
-    "enabled": false
-  }
+    "github>RoboCup-SSL/renovate-config"
+  ]
 }

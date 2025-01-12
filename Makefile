@@ -28,3 +28,12 @@ run: frontend
 
 proto: frontend
 	cd frontend && npm run genProto
+
+update-backend:
+	go get -v -u all
+
+update-frontend:
+	cd frontend && \
+	npm update --save
+
+update: update-backend update-frontend proto
