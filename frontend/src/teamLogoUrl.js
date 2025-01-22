@@ -10,6 +10,7 @@ const knownLogos = new Map([
     ['eagles', require('@/assets/logos/eagles.png')],
     ['er-force', require('@/assets/logos/er-force.png')],
     ['greentea', require('@/assets/logos/greentea.png')],
+    ['ibis', require('@/assets/logos/ibis.png')],
     ['immortals', require('@/assets/logos/immortals.png')],
     ['itandroids', require('@/assets/logos/itandroids.png')],
     ['kiks', require('@/assets/logos/kiks.png')],
