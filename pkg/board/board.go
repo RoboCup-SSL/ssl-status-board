@@ -2,9 +2,10 @@ package board
 
 import (
 	"fmt"
-	"github.com/RoboCup-SSL/ssl-status-board/pkg/sslnet"
+	"github.com/RoboCup-SSL/ssl-go-tools/pkg/sslnet"
 	"github.com/gorilla/websocket"
 	"log"
+	"net"
 	"net/http"
 	"sync"
 	"time"
@@ -23,13 +24,14 @@ type Board struct {
 func NewBoard(cfg RefereeConfig) (b *Board) {
 	b = new(Board)
 	b.cfg = cfg
-	b.MulticastServer = sslnet.NewMulticastServer(b.handlingMessage)
+	b.MulticastServer = sslnet.NewMulticastServer(b.cfg.MulticastAddress)
+	b.MulticastServer.Consumer = b.handlingMessage
 	return
 }
 
 // Start listening for messages
 func (b *Board) Start() {
-	b.MulticastServer.Start(b.cfg.MulticastAddress)
+	b.MulticastServer.Start()
 }
 
 // Stop listening for messages
@@ -37,7 +39,7 @@ func (b *Board) Stop() {
 	b.MulticastServer.Stop()
 }
 
-func (b *Board) handlingMessage(data []byte) {
+func (b *Board) handlingMessage(data []byte, _ *net.UDPAddr) {
 	b.mutex.Lock()
 	defer b.mutex.Unlock()
 	b.refereeData = data
