@@ -1,23 +1,24 @@
-import {Referee} from "./sslProto"
-import sslProto from "./sslProto"
+import {Referee_Command, Referee_Stage} from "@/proto/ssl_gc_referee_message_pb";
+import {TeamJson} from "@/proto/ssl_gc_common_pb";
+import {GameEventJson} from "@/proto/ssl_gc_game_event_pb";
 
 const stageToText = new Map();
-stageToText.set(Referee.Stage.NORMAL_FIRST_HALF_PRE, 'Match to be started');
-stageToText.set(Referee.Stage.NORMAL_FIRST_HALF, '1st Half');
-stageToText.set(Referee.Stage.NORMAL_HALF_TIME, 'Half Time');
-stageToText.set(Referee.Stage.NORMAL_SECOND_HALF_PRE, '2nd Half');
-stageToText.set(Referee.Stage.NORMAL_SECOND_HALF, '2nd Half');
-stageToText.set(Referee.Stage.EXTRA_TIME_BREAK, 'Game goes into Overtime');
-stageToText.set(Referee.Stage.EXTRA_FIRST_HALF_PRE, '1st Half (Overtime)');
-stageToText.set(Referee.Stage.EXTRA_FIRST_HALF, '1st Half (Overtime)');
-stageToText.set(Referee.Stage.EXTRA_HALF_TIME, 'Half Time (Overtime)');
-stageToText.set(Referee.Stage.EXTRA_SECOND_HALF_PRE, '2nd Half (Overtime)');
-stageToText.set(Referee.Stage.EXTRA_SECOND_HALF, '2nd Half (Overtime)');
-stageToText.set(Referee.Stage.PENALTY_SHOOTOUT_BREAK, 'Prepare for Penalty Shootout');
-stageToText.set(Referee.Stage.PENALTY_SHOOTOUT, 'Penalty Shootout');
-stageToText.set(Referee.Stage.POST_GAME, 'Match finished');
+stageToText.set(Referee_Stage.NORMAL_FIRST_HALF_PRE, 'Match to be started');
+stageToText.set(Referee_Stage.NORMAL_FIRST_HALF, '1st Half');
+stageToText.set(Referee_Stage.NORMAL_HALF_TIME, 'Half Time');
+stageToText.set(Referee_Stage.NORMAL_SECOND_HALF_PRE, '2nd Half');
+stageToText.set(Referee_Stage.NORMAL_SECOND_HALF, '2nd Half');
+stageToText.set(Referee_Stage.EXTRA_TIME_BREAK, 'Game goes into Overtime');
+stageToText.set(Referee_Stage.EXTRA_FIRST_HALF_PRE, '1st Half (Overtime)');
+stageToText.set(Referee_Stage.EXTRA_FIRST_HALF, '1st Half (Overtime)');
+stageToText.set(Referee_Stage.EXTRA_HALF_TIME, 'Half Time (Overtime)');
+stageToText.set(Referee_Stage.EXTRA_SECOND_HALF_PRE, '2nd Half (Overtime)');
+stageToText.set(Referee_Stage.EXTRA_SECOND_HALF, '2nd Half (Overtime)');
+stageToText.set(Referee_Stage.PENALTY_SHOOTOUT_BREAK, 'Prepare for Penalty Shootout');
+stageToText.set(Referee_Stage.PENALTY_SHOOTOUT, 'Penalty Shootout');
+stageToText.set(Referee_Stage.POST_GAME, 'Match finished');
 
-export const mapStageToText = function (stage) {
+export const mapStageToText = (stage: Referee_Stage) => {
     const text = stageToText.get(stage);
     if (text !== undefined) {
         return text;
@@ -27,26 +28,22 @@ export const mapStageToText = function (stage) {
 
 
 const commandToText = new Map();
-commandToText.set(Referee.Command.HALT, 'Game is Halted');
-commandToText.set(Referee.Command.STOP, 'Game is Stopped');
-commandToText.set(Referee.Command.NORMAL_START, 'Game is Running');
-commandToText.set(Referee.Command.FORCE_START, 'Game is Running');
-commandToText.set(Referee.Command.PREPARE_KICKOFF_YELLOW, 'Kickoff');
-commandToText.set(Referee.Command.PREPARE_KICKOFF_BLUE, 'Kickoff');
-commandToText.set(Referee.Command.PREPARE_PENALTY_YELLOW, 'Penalty Kick');
-commandToText.set(Referee.Command.PREPARE_PENALTY_BLUE, 'Penalty Kick');
-commandToText.set(Referee.Command.DIRECT_FREE_YELLOW, 'Game is Running');
-commandToText.set(Referee.Command.DIRECT_FREE_BLUE, 'Game is Running');
-commandToText.set(Referee.Command.INDIRECT_FREE_YELLOW, 'Game is Running');
-commandToText.set(Referee.Command.INDIRECT_FREE_BLUE, 'Game is Running');
-commandToText.set(Referee.Command.TIMEOUT_YELLOW, 'Timeout');
-commandToText.set(Referee.Command.TIMEOUT_BLUE, 'Timeout');
-commandToText.set(Referee.Command.GOAL_YELLOW, 'Goal');
-commandToText.set(Referee.Command.GOAL_BLUE, 'Goal');
-commandToText.set(Referee.Command.BALL_PLACEMENT_YELLOW, 'Ball Placement');
-commandToText.set(Referee.Command.BALL_PLACEMENT_BLUE, 'Ball Placement');
+commandToText.set(Referee_Command.HALT, 'Game is Halted');
+commandToText.set(Referee_Command.STOP, 'Game is Stopped');
+commandToText.set(Referee_Command.NORMAL_START, 'Game is Running');
+commandToText.set(Referee_Command.FORCE_START, 'Game is Running');
+commandToText.set(Referee_Command.PREPARE_KICKOFF_YELLOW, 'Kickoff');
+commandToText.set(Referee_Command.PREPARE_KICKOFF_BLUE, 'Kickoff');
+commandToText.set(Referee_Command.PREPARE_PENALTY_YELLOW, 'Penalty Kick');
+commandToText.set(Referee_Command.PREPARE_PENALTY_BLUE, 'Penalty Kick');
+commandToText.set(Referee_Command.DIRECT_FREE_YELLOW, 'Game is Running');
+commandToText.set(Referee_Command.DIRECT_FREE_BLUE, 'Game is Running');
+commandToText.set(Referee_Command.TIMEOUT_YELLOW, 'Timeout');
+commandToText.set(Referee_Command.TIMEOUT_BLUE, 'Timeout');
+commandToText.set(Referee_Command.BALL_PLACEMENT_YELLOW, 'Ball Placement');
+commandToText.set(Referee_Command.BALL_PLACEMENT_BLUE, 'Ball Placement');
 
-export const mapCommandToText = function (command) {
+export const mapCommandToText = (command: Referee_Command) => {
     const text = commandToText.get(command);
     if (text !== undefined) {
         return text;
@@ -55,60 +52,88 @@ export const mapCommandToText = function (command) {
 };
 
 
-const oppositeTeam = function (team) {
-    if (team === sslProto.Team.BLUE) {
-        return sslProto.Team.YELLOW;
-    } else if (team === sslProto.Team.YELLOW) {
-        return sslProto.Team.BLUE;
+const oppositeTeam = (team: TeamJson): TeamJson => {
+    if (team === 'BLUE') {
+        return 'YELLOW';
+    } else if (team === 'YELLOW') {
+        return 'BLUE';
     }
-    return 'Unknown;';
+    return 'UNKNOWN';
 };
 
-const formatTeam = function (team) {
-    if (team === sslProto.Team.BLUE) {
+const formatTeam = (team: TeamJson) => {
+    if (team === 'BLUE') {
         return '<span class="team-blue">Blue</span>';
-    } else if (team === sslProto.Team.YELLOW) {
+    } else if (team === 'YELLOW') {
         return '<span class="team-yellow">Yellow</span>';
     }
     return 'Unknown;';
 };
 
-const teamAndBot = function (event) {
-    if (event.byTeam === undefined) {
+const gameEventForTeam = (gameEvent: GameEventJson): TeamJson => {
+    for (const value of Object.values(gameEvent)) {
+        if (typeof value === 'object') {
+            const attr = value as { [key: string]: any }
+            for (const key of Object.keys(attr)) {
+                if (key === 'byTeam') {
+                    return attr['byTeam'] as TeamJson
+                }
+            }
+        }
+    }
+    return 'UNKNOWN' as TeamJson
+};
+
+const gameEventByBot = (gameEvent: GameEventJson): number | undefined => {
+    for (const value of Object.values(gameEvent)) {
+        if (typeof value === 'object') {
+            const attr = value as { [key: string]: any }
+            for (const key of Object.keys(attr)) {
+                if (key === 'byBot') {
+                    return attr['byBot'] as number
+                }
+            }
+        }
+    }
+    return undefined
+};
+
+const teamAndBot = (event: GameEventJson) => {
+    const byTeam = gameEventForTeam(event)
+    if (byTeam === "UNKNOWN") {
         return '';
     }
-    if (event.byBot === undefined || !event.hasOwnProperty('byBot')) {
-        return formatTeam(event.byTeam);
+    const byBot = gameEventByBot(event)
+    if (byBot === undefined) {
+        return formatTeam(byTeam);
     }
-    return formatTeam(event.byTeam) + ' ' + event.byBot;
+    return formatTeam(byTeam) + ' ' + byBot;
 };
 
-const radToDeg = function (rad) {
-    return Math.ceil(rad * 180 / Math.PI) + '°';
-};
+const radToDeg = (rad: number) => Math.ceil(rad * 180 / Math.PI) + '°';
 
-const velocity = function (v) {
-    return Number(Math.ceil(v * 10) / 10).toFixed(1) + 'm/s';
-};
+const velocity = (v: number) => Number(Math.ceil(v * 10) / 10).toFixed(1) + 'm/s';
 
-const distance = function (v) {
-    return Number(Math.ceil(v * 100) / 100).toFixed(2) + 'm';
-};
+const distance = (v: number) => Number(Math.ceil(v * 100) / 100).toFixed(2) + 'm';
 
-const seconds = function (v) {
+const seconds = (v: number | "NaN" | "Infinity" | "-Infinity") => {
+    if (v === "NaN" || v === "Infinity" || v === "-Infinity") {
+        return v;
+    }
     return Number(Math.ceil(v * 10) / 10).toFixed(1) + 's';
-};
+}
 
-export const mapGameEventToText = function (event) {
-    if (event.prepared != null) {
-        return `Prepared after ${seconds(event.prepared.timeTaken)}`;
-    }
+export const mapGameEventToText = (event: GameEventJson): string => {
     if (event.noProgressInGame != null) {
-        return `No progress for ${seconds(event.noProgressInGame.time)}`;
+        if (event.noProgressInGame.time) {
+            return `No progress for ${seconds(event.noProgressInGame.time)}`;
+        } else {
+            return `No progress`;
+        }
     }
     if (event.placementFailed != null) {
         if (event.placementFailed.nearestOwnBotDistance != null) {
-            return `${teamAndBot(event.placementFailed)} failed placing ball `
+            return `${teamAndBot(event)} failed placing ball `
                 + ` (${distance(event.placementFailed.remainingDistance)} remaining, `
                 + `nearest own bot at ${distance(event.placementFailed.nearestOwnBotDistance)})`;
         }
@@ -143,21 +168,11 @@ export const mapGameEventToText = function (event) {
     if (event.goal != null) {
         return `${teamAndBot(event.goal)} has scored a goal`;
     }
-    if (event.indirectGoal != null) {
-        return `${teamAndBot(event.indirectGoal)} performed an illegal indirect goal`;
-    }
-    if (event.chippedGoal != null) {
-        return `${teamAndBot(event.chippedGoal)} chipped on goal`;
-    }
     if (event.invalidGoal != null) {
         return `Scored goal by ${teamAndBot(event.invalidGoal)} is invalid: ${event.invalidGoal.message}`;
     }
     if (event.aimlessKick != null) {
         return `${teamAndBot(event.aimlessKick)} kicked aimlessly`;
-    }
-    if (event.kickTimeout != null) {
-        return `${teamAndBot(event.kickTimeout)} `
-            + `has not kicked within ${seconds(event.kickTimeout.time)}`;
     }
     if (event.keeperHeldBall != null) {
         return `${teamAndBot(event.keeperHeldBall)}'s keeper `
@@ -168,20 +183,6 @@ export const mapGameEventToText = function (event) {
     }
     if (event.attackerTouchedBallInDefenseArea != null) {
         return `${teamAndBot(event.attackerTouchedBallInDefenseArea)} touched ball in opponent defense area`;
-    }
-    if (event.attackerTouchedOpponentInDefenseArea != null) {
-        let byTeam = event.attackerTouchedOpponentInDefenseArea.byTeam;
-        let otherTeam = oppositeTeam(byTeam);
-        let violator = event.attackerTouchedOpponentInDefenseArea.byBot;
-        let victim = event.attackerTouchedOpponentInDefenseArea.victim;
-        return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`;
-    }
-    if (event.attackerTouchedOpponentInDefenseAreaSkipped != null) {
-        let byTeam = event.attackerTouchedOpponentInDefenseAreaSkipped.byTeam;
-        let otherTeam = oppositeTeam(byTeam);
-        let violator = event.attackerTouchedOpponentInDefenseAreaSkipped.byBot;
-        let victim = event.attackerTouchedOpponentInDefenseAreaSkipped.victim;
-        return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`;
     }
     if (event.botDribbledBallTooFar != null) {
         return `${teamAndBot(event.botDribbledBallTooFar)} dribbled ball too far`;
@@ -234,27 +235,6 @@ export const mapGameEventToText = function (event) {
         }
         return text;
     }
-    if (event.botCrashUniqueSkipped != null) {
-        let byTeam = event.botCrashUniqueSkipped.byTeam;
-        let otherTeam = oppositeTeam(byTeam);
-        let violator = event.botCrashUniqueSkipped.violator;
-        let victim = event.botCrashUniqueSkipped.victim;
-        let crashSpeed = event.botCrashUniqueSkipped.crashSpeed;
-        let crashAngle = event.botCrashUniqueSkipped.crashAngle;
-        let speedDiff = event.botCrashUniqueSkipped.speedDiff;
-        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
-            + ` crashed into ${formatTeam(otherTeam)} ${victim}`;
-        if (crashSpeed > 0) {
-            text += ` with ${velocity(crashSpeed)}`
-        }
-        if (crashAngle > 0) {
-            text += ` @ ${radToDeg(crashAngle)}`
-        }
-        if (speedDiff > 0) {
-            text += ` (Δ ${velocity(speedDiff)})`
-        }
-        return text;
-    }
     if (event.botPushedBot != null) {
         let byTeam = event.botPushedBot.byTeam;
         let otherTeam = oppositeTeam(byTeam);
@@ -262,19 +242,6 @@ export const mapGameEventToText = function (event) {
         let victim = event.botPushedBot.victim;
         let dist = event.botPushedBot.pushedDistance;
         let text = `${formatTeam(byTeam)} ${violator}`
-            + ` pushed ${formatTeam(otherTeam)} ${victim}`;
-        if (dist > 0) {
-            text += ` over ${distance(dist)}`
-        }
-        return text;
-    }
-    if (event.botPushedBotSkipped != null) {
-        let byTeam = event.botPushedBotSkipped.byTeam;
-        let otherTeam = oppositeTeam(byTeam);
-        let violator = event.botPushedBotSkipped.violator;
-        let victim = event.botPushedBotSkipped.victim;
-        let dist = event.botPushedBotSkipped.pushedDistance;
-        let text = `Skipped: ${formatTeam(byTeam)} ${violator}`
             + ` pushed ${formatTeam(otherTeam)} ${victim}`;
         if (dist > 0) {
             text += ` over ${distance(dist)}`
@@ -299,11 +266,6 @@ export const mapGameEventToText = function (event) {
         return `${teamAndBot(event.defenderTooCloseToKickPoint)} `
             + `too close to kick point (${distance(event.defenderTooCloseToKickPoint.distance)})`;
     }
-    if (event.defenderInDefenseAreaPartially != null) {
-        return `${teamAndBot(event.defenderInDefenseAreaPartially)} `
-            + `touched ball while partially inside own defense area `
-            + `(${distance(event.defenderInDefenseAreaPartially.distance)})`;
-    }
     if (event.defenderInDefenseArea != null) {
         return `${teamAndBot(event.defenderInDefenseArea)} `
             + `touched ball while fully inside own defense area `
@@ -312,12 +274,9 @@ export const mapGameEventToText = function (event) {
     if (event.multipleCards != null) {
         return `${teamAndBot(event.multipleCards)} collected multiple cards`;
     }
-    if (event.multiplePlacementFailures != null) {
-        return `${teamAndBot(event.multiplePlacementFailures)} failed ball placement repeatedly`;
-    }
     if (event.multipleFouls != null) {
         return `${teamAndBot(event.multipleFouls)} collected multiple fouls: ` +
-            event.multipleFouls.causedGameEvents.map(cause => mapGameEventToText(cause)).join(", ");
+            event.multipleFouls.causedGameEvents.map((cause: GameEventJson) => mapGameEventToText(cause)).join(", ");
     }
     if (event.unsportingBehaviorMinor != null) {
         return `Unsporting behavior by ${teamAndBot(event.unsportingBehaviorMinor)}: `

@@ -1,22 +1,21 @@
 <template>
     <div class="bot-count">
         <div class="element">
-            <img class="bot-pic" alt="bot" src="bot.png"/>
+            <img class="bot-pic" alt="bot" :src="icon_bot"/>
         </div>
         <div class="element bot-number">
-            {{ numBots }}    
+            {{ numBots }}
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: "BotCount",
-    props: {
-        color: String,
-        numBots: Number,
-    }
-}
+<script setup lang="ts">
+import icon_bot from "@/assets/icons/bot.png"
+
+defineProps<{
+    color: string,
+    numBots: number,
+}>()
 </script>
 
 <style scoped>

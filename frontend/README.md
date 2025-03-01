@@ -2,27 +2,18 @@
 
 ## Project Setup
 
-```shell
+```sh
 npm install
 ```
 
 ## Compile and Hot-Reload for Development
 
-```shell
-# When running node 18
-export NODE_OPTIONS=--openssl-legacy-provider
-npm run serve
+```sh
+npm run dev
 ```
 
-## Compile and Minify for Production
+## Type-Check, Compile and Minify for Production
 
-```shell
-# When running node 18
-export NODE_OPTIONS=--openssl-legacy-provider
+```sh
 npm run build
-```
-
-## Rebuild Protobuf code
-```shell
-npm run genProto
 ```

@@ -1,0 +1,14 @@
+version: v2
+inputs:
+  - directory: proto
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/RoboCup-SSL/ssl-game-controller/internal/app
+plugins:
+  - remote: buf.build/bufbuild/es:v2.2.3
+    out: frontend/src/proto
+    opt:
+      - target=ts
+      - json_types=true

@@ -51,7 +51,7 @@ const knownLogos = new Map([
 
 import defaultLogo from '@/assets/logos/no-logo.png';
 
-const teamLogoUrl = function (teamName) {
+const teamLogoUrl = function (teamName: string) {
     const logoBaseName = teamName.toLowerCase().replace(' ', '-');
     const logoPath = knownLogos.get(logoBaseName);
     if (logoPath !== undefined) {
