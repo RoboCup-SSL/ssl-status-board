@@ -38,6 +38,7 @@ const knownLogos = new Map([
     ['tigers-mannheim', require('@/assets/logos/tigers-mannheim.png')],
     ['turtlerabbit', require('@/assets/logos/turtlerabbit.png')],
     ['titans', require('@/assets/logos/titans.png')],
+    ['traps', require('@/assets/logos/traps.png')],
     ['ubc-thunderbots', require('@/assets/logos/ubc-thunderbots.png')],
     ['unball', require('@/assets/logos/unball.png')],
     ['ultron', require('@/assets/logos/ultron.png')],
