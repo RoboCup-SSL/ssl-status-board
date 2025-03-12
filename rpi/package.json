@@ -1,6 +1,6 @@
 {
   "name": "ssl-status-board",
-  "main": "http://localhost:8082",
+  "main": "http://localhost:8082?showVideoAfter=300",
   "window": {
     "kiosk": true,
     "width": 1920,
