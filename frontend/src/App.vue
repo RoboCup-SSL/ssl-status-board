@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <iframe
-            src="https://www.youtube.com/embed/364zEAsOclU?start=0&autoplay=1&mute=1&loop=1&playlist=364zEAsOclU"
+            :src="url"
             title="Video"
             :width="showVideo ? '100%' : '0'"
             :height="showVideo ? '100%' : '0'"
@@ -25,7 +25,7 @@
                 return packetTimestamp / 1000 / 1000
             },
             showVideo() {
-                if (this.showVideoAfter) {
+                if (this.showVideoAfter && this.url) {
                     const packetTimestamp = this.$store.state.refereeMsg.packetTimestamp;
                     const commandTimestamp = this.$store.state.refereeMsg.commandTimestamp;
                     const timeSinceLastCommand = (packetTimestamp - commandTimestamp) / 1000 / 1000;
@@ -37,6 +37,10 @@
                 let urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get('showVideoAfter')
             },
+            url() {
+                let urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('url')
+            }
         }
     }
 </script>
