@@ -2,5 +2,7 @@ github.com/RoboCup-SSL/ssl-go-tools v1.8.1 h1:6EAIeJdgr2BO1lfQNrt1vNFFKiKScqjd1H
 github.com/RoboCup-SSL/ssl-go-tools v1.8.1/go.mod h1:FuTw472klW5wAMg09gxQqPCzu6ygxOdMA8D22fDOUfM=
 github.com/RoboCup-SSL/ssl-go-tools v1.8.3 h1:XpYf54zsgqSX2Izg1/mNljzCQxS0lcP3oi5Igi4sQQQ=
 github.com/RoboCup-SSL/ssl-go-tools v1.8.3/go.mod h1:FuTw472klW5wAMg09gxQqPCzu6ygxOdMA8D22fDOUfM=
+github.com/RoboCup-SSL/ssl-go-tools v1.8.4 h1:elTwW3bnQkG18cbdlbZvPA1/mFFcAvHTyE3HWHU0Jw8=
+github.com/RoboCup-SSL/ssl-go-tools v1.8.4/go.mod h1:6o2pvRBsIaz548hvpClat6hwwoXRpJBRel1kUM6YCB4=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
 github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
