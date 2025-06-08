@@ -1,4 +1,4 @@
-package frontend
+package frontend_old
 
 import (
 	"embed"
