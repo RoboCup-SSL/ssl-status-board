@@ -24,12 +24,14 @@ const events = computed(() => {
   return refereeStore.refereeMsg.gameEvents || []
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getEventTypeName = (event: GameEvent): string => {
   // This would need to be implemented based on the GameEvent structure
   // For now, return a placeholder
   return 'Game Event'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getEventDetails = (event: GameEvent): string => {
   // This would need to be implemented based on the GameEvent structure
   // For now, return a placeholder

@@ -79,12 +79,13 @@ export const useRefereeStore = defineStore('referee', () => {
     })
   }
 
-  // Get the current referee message, falling back to default/dev state
+  // Get the current referee message, using WebSocket data or fallback to default state
   const refereeMsg = computed(() => {
+    // Always prefer WebSocket data when available
     if (referee.value) {
       return referee.value
     }
-    // In development, show sample data; in production, show default empty state
+    // Fallback: In development, show sample data; in production, show empty state
     return import.meta.env.DEV ? createDevelopmentState() : createDefaultReferee()
   })
 
