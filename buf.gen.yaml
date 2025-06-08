@@ -1,0 +1,7 @@
+version: v2
+plugins:
+  - remote: buf.build/bufbuild/es:v2.2.5
+    out: frontend/src/proto
+    opt:
+      - target=ts
+      - json_types=true
