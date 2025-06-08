@@ -7,16 +7,18 @@
     <img :src="logoUrl" alt="team logo" class="team-logo" />
 
     <div class="cards">
-      <div class="card">Red: {{ team?.redCards || 0 }}</div>
-      <div class="card">Yellow: {{ team?.yellowCards || 0 }}</div>
-      <div class="card">Fouls: {{ team?.foulCounter || 0 }}</div>
-      <div class="card">Bots: {{ team?.maxAllowedBots || 0 }}</div>
+      <StatusCard color="red" :num-cards="team?.redCards || 0" />
+      <StatusCard color="yellow" :num-cards="team?.yellowCards || 0" />
+      <StatusCard color="foul" :num-cards="team?.foulCounter || 0" />
+      <BotCount :num-bots="team?.maxAllowedBots || 0" />
     </div>
 
     <div class="cardTimers">
-      <span v-for="(cardTime, index) in (team?.yellowCardTimes || []).slice(0, 3)" :key="index">
-        {{ formatTimestamp(cardTime) }}
-      </span>
+      <CardTimer 
+        v-for="(cardTime, index) in (team?.yellowCardTimes || []).slice(0, 3)" 
+        :key="index"
+        :card-timer="cardTime"
+      />
     </div>
   </div>
 </template>
@@ -25,7 +27,9 @@
 import { computed } from 'vue'
 import type { Referee_TeamInfo } from '@/proto/ssl_gc_referee_message_pb'
 import { getTeamLogoUrl } from '@/helpers/teamLogo'
-import { formatTimestamp } from '@/helpers/timestamp'
+import StatusCard from './StatusCard.vue'
+import BotCount from './BotCount.vue'
+import CardTimer from './CardTimer.vue'
 
 interface Props {
   color: 'yellow' | 'blue'
@@ -44,10 +48,6 @@ const logoUrl = computed(() => {
   display: flex;
   justify-content: center;
   gap: 0.5em;
-}
-
-.card {
-  font-size: 0.8em;
 }
 
 .team-status {
