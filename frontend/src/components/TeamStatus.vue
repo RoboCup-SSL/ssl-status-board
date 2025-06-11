@@ -7,10 +7,10 @@
     <img :src="logoUrl" alt="team logo" class="team-logo" />
 
     <div class="cards">
-      <StatusCard color="red" :num-cards="team?.redCards || 0" />
-      <StatusCard color="yellow" :num-cards="team?.yellowCards || 0" />
-      <StatusCard color="foul" :num-cards="team?.foulCounter || 0" />
-      <BotCount :num-bots="team?.maxAllowedBots || 0" />
+      <StatusCard class="card" color="red" :num-cards="team?.redCards || 0" />
+      <StatusCard class="card" color="yellow" :num-cards="team?.yellowCards || 0" />
+      <StatusCard class="card" color="foul" :num-cards="team?.foulCounter || 0" />
+      <BotCount class="card" :num-bots="team?.maxAllowedBots || 0" />
     </div>
 
     <div class="cardTimers">
@@ -31,12 +31,10 @@ import StatusCard from './StatusCard.vue'
 import BotCount from './BotCount.vue'
 import CardTimer from './CardTimer.vue'
 
-interface Props {
+const props = defineProps<{
   color: 'yellow' | 'blue'
   team?: Referee_TeamInfo
-}
-
-const props = defineProps<Props>()
+}>()
 
 const logoUrl = computed(() => {
   return getTeamLogoUrl(props.team?.name || '')
@@ -47,7 +45,9 @@ const logoUrl = computed(() => {
 .cards {
   display: flex;
   justify-content: center;
-  gap: 0.5em;
+}
+
+.card {
 }
 
 .team-status {
@@ -65,14 +65,6 @@ const logoUrl = computed(() => {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-}
-
-.team-yellow {
-  color: #ffcc00;
-}
-
-.team-blue {
-  color: #0066cc;
 }
 
 .team-logo {

@@ -1,38 +1,39 @@
 <template>
   <div class="bot-count">
-    <div class="bot-icon">🤖</div>
-    <div class="bot-number">{{ numBots }}</div>
+    <div class="element">
+      <img class="bot-pic" alt="bot" src="/bot.png"/>
+    </div>
+    <div class="element bot-number">
+      {{ numBots }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-interface Props {
+defineProps<{
+  color?: string
   numBots: number
-}
-
-defineProps<Props>()
+}>()
 </script>
 
 <style scoped>
 .bot-count {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.25em;
   margin: 0.1em;
-  border-radius: 3px;
-  min-width: 2em;
-  background-color: #e8f5e8;
-  border: 1px solid #4caf50;
+  font-size: 0.6em;
 }
 
-.bot-icon {
-  font-size: 1em;
+.element {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .bot-number {
-  font-size: 0.8em;
-  font-weight: bold;
-  margin-top: 0.2em;
+  padding-left: 0.2em;
+}
+
+.bot-pic {
+  object-fit: contain;
+  width: 1.5em;
+  height: 2em;
 }
 </style>

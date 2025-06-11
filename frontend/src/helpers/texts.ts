@@ -53,3 +53,84 @@ export const mapCommandToText = (command: Referee_Command): string => {
   }
   return `unknown command: ${command}`
 }
+
+// Add the mapGameEventToText function from the old frontend
+import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
+import { Team } from '@/proto/ssl_gc_common_pb'
+
+const oppositeTeam = (team: Team): Team => {
+  if (team === Team.BLUE) {
+    return Team.YELLOW
+  } else if (team === Team.YELLOW) {
+    return Team.BLUE
+  }
+  return Team.UNKNOWN
+}
+
+const formatTeam = (team: Team): string => {
+  if (team === Team.BLUE) {
+    return '<span class="team-blue">Blue</span>'
+  } else if (team === Team.YELLOW) {
+    return '<span class="team-yellow">Yellow</span>'
+  }
+  return 'Unknown'
+}
+
+const teamAndBot = (event: any): string => {
+  if (event.byTeam === undefined) {
+    return ''
+  }
+  if (event.byBot === undefined || !event.hasOwnProperty('byBot')) {
+    return formatTeam(event.byTeam)
+  }
+  return formatTeam(event.byTeam) + ' ' + event.byBot
+}
+
+const radToDeg = (rad: number): string => {
+  return Math.ceil(rad * 180 / Math.PI) + '°'
+}
+
+const velocity = (v: number): string => {
+  return Number(Math.ceil(v * 10) / 10).toFixed(1) + 'm/s'
+}
+
+const distance = (v: number): string => {
+  return Number(Math.ceil(v * 100) / 100).toFixed(2) + 'm'
+}
+
+const seconds = (v: number): string => {
+  return Number(Math.ceil(v * 10) / 10).toFixed(1) + 's'
+}
+
+export const mapGameEventToText = (event: any): string => {
+  // This is a simplified version - the full implementation would need
+  // proper TypeScript typing for all the game event types
+  if (event.prepared != null) {
+    return `Prepared after ${seconds(event.prepared.timeTaken)}`
+  }
+  if (event.noProgressInGame != null) {
+    return `No progress for ${seconds(event.noProgressInGame.time)}`
+  }
+  if (event.botSubstitution != null) {
+    return `Team ${teamAndBot(event.botSubstitution)} substitutes robots`
+  }
+  if (event.ballLeftFieldTouchLine != null) {
+    return `${teamAndBot(event.ballLeftFieldTouchLine)} kicked ball out via touch line`
+  }
+  if (event.ballLeftFieldGoalLine != null) {
+    return `${teamAndBot(event.ballLeftFieldGoalLine)} kicked ball out via goal line`
+  }
+  if (event.goal != null) {
+    return `${teamAndBot(event.goal)} has scored a goal`
+  }
+  if (event.botKickedBallTooFast != null) {
+    return `${teamAndBot(event.botKickedBallTooFast)} kicked ball too fast` +
+      `(${velocity(event.botKickedBallTooFast.initialBallSpeed)})`
+  }
+  if (event.attackerTooCloseToDefenseArea != null) {
+    return `${teamAndBot(event.attackerTooCloseToDefenseArea)} too close to opponent defense area ` +
+      `(${distance(event.attackerTooCloseToDefenseArea.distance)})`
+  }
+  // Add more cases as needed - this is a simplified version
+  return 'Game event'
+}
