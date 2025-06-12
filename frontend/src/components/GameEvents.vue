@@ -34,6 +34,7 @@ import { mapGameEventToText } from '@/helpers/texts'
 import tigers_autoref from '@/assets/icons/tigers-autoref.png'
 import erforce_autoref from '@/assets/icons/erforce-autoref.svg'
 import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const refereeStore = useRefereeStore()
 
