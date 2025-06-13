@@ -4,6 +4,7 @@ import { create } from '@bufbuild/protobuf'
 import type { Referee, Referee_TeamInfo } from '../proto/ssl_gc_referee_message_pb'
 import { RefereeSchema, Referee_TeamInfoSchema } from '../proto/ssl_gc_referee_message_pb'
 import { useReferee } from '@/composables/referee'
+import {Team} from "@/proto/ssl_gc_common_pb.ts";
 
 export const useRefereeStore = defineStore('referee', () => {
   // Use the referee composable for WebSocket connection and protobuf decoding
@@ -71,7 +72,20 @@ export const useRefereeStore = defineStore('referee', () => {
       stage: 6,
       command: 0,
       stageTimeLeft: 140000000n,
-      gameEvents: [],
+      gameEvents: [
+        {
+          type: 1,
+          origin: ['TIGERs AutoRef', 'ER-Force'],
+          createdTimestamp: 100000000n,
+          event: {
+            case: 'ballLeftFieldGoalLine',
+            value: {
+              byTeam: Team.YELLOW,
+              byBot: 1,
+            }
+          }
+        },
+      ],
       packetTimestamp: 0n,
       commandTimestamp: 0n,
       commandCounter: 0,
