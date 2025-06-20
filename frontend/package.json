@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.2.5",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@vueuse/core": "^13.3.0",
     "pinia": "^3.0.1",

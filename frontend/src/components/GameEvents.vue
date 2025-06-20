@@ -2,39 +2,40 @@
   <div class="game-events">
     <table class="table-striped">
       <tbody>
-        <tr v-for="(gameEvent, index) in gameEvents" :key="index">
-          <td>{{ gameEvents.length - index }}</td>
-          <td v-html="formatGameEvent(gameEvent)"></td>
-          <td class="autoRefIndicator">
-            <img
-              class="autoref-icon"
-              :src="tigers_autoref"
-              alt="TIGERs"
-              v-if="isOrigin(gameEvent, 'TIGERs AutoRef')"
-            />
-            <img
-              class="autoref-icon"
-              :src="erforce_autoref"
-              alt="ER-Force"
-              v-if="isOrigin(gameEvent, 'ER-Force')"
-            />
-            <font-awesome-icon icon="user" v-if="isOrigin(gameEvent, 'UI')"/>
-            <font-awesome-icon icon="vote-yea" v-if="isOrigin(gameEvent, 'Majority')"/>
-          </td>
-        </tr>
+      <tr v-for="(gameEvent, index) in gameEvents" :key="index">
+        <td>{{ gameEvents.length - index }}</td>
+        <td v-html="formatGameEvent(gameEvent)"></td>
+        <td class="autoRefIndicator">
+          <img
+            class="autoref-icon"
+            :src="tigers_autoref"
+            alt="TIGERs"
+            v-if="isOrigin(gameEvent, 'TIGERs AutoRef')"
+          />
+          <img
+            class="autoref-icon"
+            :src="erforce_autoref"
+            alt="ER-Force"
+            v-if="isOrigin(gameEvent, 'ER-Force')"
+          />
+          <font-awesome-icon :icon="faUser" v-if="isOrigin(gameEvent, 'UI')"/>
+          <font-awesome-icon :icon="faVoteYea" v-if="isOrigin(gameEvent, 'Majority')"/>
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRefereeStore } from '@/stores/referee'
-import { mapGameEventToText } from '@/helpers/texts'
+import {computed} from 'vue'
+import {useRefereeStore} from '@/stores/referee'
+import {mapGameEventToText} from '@/helpers/texts'
 import tigers_autoref from '@/assets/icons/tigers-autoref.png'
 import erforce_autoref from '@/assets/icons/erforce-autoref.svg'
-import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import type {GameEvent} from '@/proto/ssl_gc_game_event_pb'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import {faUser, faVoteYea} from "@fortawesome/free-solid-svg-icons";
 
 const refereeStore = useRefereeStore()
 

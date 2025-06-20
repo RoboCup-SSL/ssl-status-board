@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <iframe
+            v-if="showVideo"
             :src="url"
             title="Video"
             :width="showVideo ? '100%' : '0'"
