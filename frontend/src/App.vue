@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRefereeStore } from '@/stores/referee'
+import {computed} from 'vue'
+import {useRefereeStore} from '@/stores/referee'
 import StatusBoard from '@/components/StatusBoard.vue'
 
 const refereeStore = useRefereeStore()
@@ -30,25 +30,36 @@ const showVideo = computed(() => {
 <template>
   <div id="app">
     <iframe
-      v-if="showVideo"
+      :class="{hidden: !showVideo}"
       :src="url || ''"
       title="Video"
       :width="showVideo ? '100%' : '0'"
       :height="showVideo ? '100%' : '0'"
       allow="autoplay"
     />
-    <StatusBoard v-if="!showVideo" />
+    <StatusBoard :class="{hidden: showVideo}"/>
   </div>
 </template>
 
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: aliceblue;
-        height: 100%;
-        background-color: #353535;
-    }
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: aliceblue;
+  height: 100%;
+  background-color: #353535;
+}
+
+iframe {
+  border: 0;
+  overflow:hidden;
+  display:block;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
 </style>

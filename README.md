@@ -26,6 +26,9 @@ By default, the UI is available at http://localhost:8082
 
 A configuration file will be generated to `config/board-config.yaml` and can be tweaked.
 
+A website (like Youtube) can be displayed when there is no activity.
+Pass the URL like this: `http://localhost:8082??showVideoAfter=420&url=https%3A%2F%2Fwww.youtube.com%2Fembed%2F364zEAsOclU%3Fstart%3D0%26autoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3D364zEAsOclU`
+
 ### Runtime Requirements
  * No software dependencies (except for development, see below)
  * 64bit Linux, Windows, OSX (build your 32bit binaries yourself...)

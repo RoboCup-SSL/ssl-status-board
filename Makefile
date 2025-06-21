@@ -24,7 +24,7 @@ test: frontend
 	go test ./...
 
 run: frontend
-	go run ./cmd/$(word 1,$(CMDS))
+	go run ./cmd/$(word 1,$(CMDS)) -refereeAddress 224.5.24.1:11003
 
 proto: frontend
 	cd frontend && npm run genProto
