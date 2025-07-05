@@ -41,7 +41,7 @@ function installBrowser() {
         chromium-browser
 
     # Enable Auto-Login on console
-    mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
     sudo cp "${SCRIPT_DIR}/autologin.conf" /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
     # Configure to run browser when X starts
