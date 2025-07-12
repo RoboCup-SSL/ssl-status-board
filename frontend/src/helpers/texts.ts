@@ -1,6 +1,10 @@
 import { Referee_Stage, Referee_Command } from '@/proto/ssl_gc_referee_message_pb'
 import { Team } from '@/proto/ssl_gc_common_pb'
-import { type GameEvent } from '@/proto/ssl_gc_game_event_pb'
+import {
+  type GameEvent,
+  type GameEvent_BotCrashDrawn,
+  type GameEvent_BotCrashUnique,
+} from '@/proto/ssl_gc_game_event_pb'
 
 const stageToText = new Map<Referee_Stage, string>([
   [Referee_Stage.NORMAL_FIRST_HALF_PRE, 'Match to be started'],
@@ -100,14 +104,31 @@ const seconds = (v: number): string => {
   return Number(Math.ceil(v * 10) / 10).toFixed(1) + 's'
 }
 
+function appendCrashDetails(
+  event: GameEvent_BotCrashDrawn | GameEvent_BotCrashUnique,
+  text: string,
+) {
+  const crashSpeed = event.crashSpeed
+  const crashAngle = event.crashAngle
+  const speedDiff = event.speedDiff
+  if (crashSpeed > 0) {
+    text += ` with ${velocity(crashSpeed)}`
+  }
+  if (crashAngle > 0) {
+    text += ` @ ${radToDeg(crashAngle)}`
+  }
+  if (speedDiff > 0) {
+    text += ` (Δ ${velocity(speedDiff)})`
+  }
+  return text
+}
+
 export const mapGameEventToText = (gameEvent: GameEvent): string => {
   if (!gameEvent.event) {
     return 'unknown game event'
   }
 
   switch (gameEvent.event.case) {
-    case 'prepared':
-      return `Prepared after ${seconds(gameEvent.event.value.timeTaken)}`
     case 'noProgressInGame':
       return `No progress for ${seconds(gameEvent.event.value.time)}`
     case 'placementFailed': {
@@ -152,20 +173,12 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `${teamAndBot(gameEvent.event.value)} might have scored a goal`
     case 'goal':
       return `${teamAndBot(gameEvent.event.value)} has scored a goal`
-    case 'indirectGoal':
-      return `${teamAndBot(gameEvent.event.value)} performed an illegal indirect goal`
-    case 'chippedGoal':
-      return `${teamAndBot(gameEvent.event.value)} chipped on goal`
     case 'invalidGoal': {
       const event = gameEvent.event.value
       return `Scored goal by ${teamAndBot(event)} is invalid: ${event.message}`
     }
     case 'aimlessKick':
       return `${teamAndBot(gameEvent.event.value)} kicked aimlessly`
-    case 'kickTimeout': {
-      const event = gameEvent.event.value
-      return `${teamAndBot(event)} has not kicked within ${seconds(event.time)}`
-    }
     case 'keeperHeldBall': {
       const event = gameEvent.event.value
       return `${teamAndBot(event)}'s keeper held the ball for ${seconds(event.duration)}`
@@ -174,22 +187,6 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `${teamAndBot(gameEvent.event.value)} touched ball twice`
     case 'attackerTouchedBallInDefenseArea':
       return `${teamAndBot(gameEvent.event.value)} touched ball in opponent defense area`
-    case 'attackerTouchedOpponentInDefenseArea': {
-      const event = gameEvent.event.value
-      const byTeam = event.byTeam
-      const otherTeam = oppositeTeam(byTeam)
-      const violator = event.byBot
-      const victim = event.victim
-      return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`
-    }
-    case 'attackerTouchedOpponentInDefenseAreaSkipped': {
-      const event = gameEvent.event.value
-      const byTeam = event.byTeam
-      const otherTeam = oppositeTeam(byTeam)
-      const violator = event.byBot
-      const victim = event.victim
-      return `${formatTeam(byTeam)} ${violator} touched ${formatTeam(otherTeam)} ${victim} in defense area`
-    }
     case 'botDribbledBallTooFar':
       return `${teamAndBot(gameEvent.event.value)} dribbled ball too far`
     case 'botKickedBallTooFast': {
@@ -204,20 +201,8 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `${teamAndBot(gameEvent.event.value)} interfered placement`
     case 'botCrashDrawn': {
       const event = gameEvent.event.value
-      const crashSpeed = event.crashSpeed
-      const crashAngle = event.crashAngle
-      const speedDiff = event.speedDiff
-      let text = `Bot Blue ${event.botBlue} and Yellow ${event.botYellow} crashed`
-      if (crashSpeed > 0) {
-        text += ` with ${velocity(crashSpeed)}`
-      }
-      if (crashAngle > 0) {
-        text += ` @ ${radToDeg(crashAngle)}`
-      }
-      if (speedDiff > 0) {
-        text += ` (Δ ${velocity(speedDiff)})`
-      }
-      return text
+      const text = `Bot Blue ${event.botBlue} and Yellow ${event.botYellow} crashed`
+      return appendCrashDetails(event, text)
     }
     case 'botCrashUnique': {
       const event = gameEvent.event.value
@@ -225,41 +210,8 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       const otherTeam = oppositeTeam(byTeam)
       const violator = event.violator
       const victim = event.victim
-      const crashSpeed = event.crashSpeed
-      const crashAngle = event.crashAngle
-      const speedDiff = event.speedDiff
-      let text = `${formatTeam(byTeam)} ${violator} crashed into ${formatTeam(otherTeam)} ${victim}`
-      if (crashSpeed > 0) {
-        text += ` with ${velocity(crashSpeed)}`
-      }
-      if (crashAngle > 0) {
-        text += ` @ ${radToDeg(crashAngle)}`
-      }
-      if (speedDiff > 0) {
-        text += ` (Δ ${velocity(speedDiff)})`
-      }
-      return text
-    }
-    case 'botCrashUniqueSkipped': {
-      const event = gameEvent.event.value
-      const byTeam = event.byTeam
-      const otherTeam = oppositeTeam(byTeam)
-      const violator = event.violator
-      const victim = event.victim
-      const crashSpeed = event.crashSpeed
-      const crashAngle = event.crashAngle
-      const speedDiff = event.speedDiff
-      let text = `Skipped: ${formatTeam(byTeam)} ${violator} crashed into ${formatTeam(otherTeam)} ${victim}`
-      if (crashSpeed > 0) {
-        text += ` with ${velocity(crashSpeed)}`
-      }
-      if (crashAngle > 0) {
-        text += ` @ ${radToDeg(crashAngle)}`
-      }
-      if (speedDiff > 0) {
-        text += ` (Δ ${velocity(speedDiff)})`
-      }
-      return text
+      const text = `${formatTeam(byTeam)} ${violator} crashed into ${formatTeam(otherTeam)} ${victim}`
+      return appendCrashDetails(event, text)
     }
     case 'botPushedBot': {
       const event = gameEvent.event.value
@@ -269,19 +221,6 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       const victim = event.victim
       const dist = event.pushedDistance
       let text = `${formatTeam(byTeam)} ${violator} pushed ${formatTeam(otherTeam)} ${victim}`
-      if (dist > 0) {
-        text += ` over ${distance(dist)}`
-      }
-      return text
-    }
-    case 'botPushedBotSkipped': {
-      const event = gameEvent.event.value
-      const byTeam = event.byTeam
-      const otherTeam = oppositeTeam(byTeam)
-      const violator = event.violator
-      const victim = event.victim
-      const dist = event.pushedDistance
-      let text = `Skipped: ${formatTeam(byTeam)} ${violator} pushed ${formatTeam(otherTeam)} ${victim}`
       if (dist > 0) {
         text += ` over ${distance(dist)}`
       }
@@ -303,18 +242,12 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       const event = gameEvent.event.value
       return `${teamAndBot(event)} too close to kick point (${distance(event.distance)})`
     }
-    case 'defenderInDefenseAreaPartially': {
-      const event = gameEvent.event.value
-      return `${teamAndBot(event)} touched ball while partially inside own defense area (${distance(event.distance)})`
-    }
     case 'defenderInDefenseArea': {
       const event = gameEvent.event.value
       return `${teamAndBot(event)} touched ball while fully inside own defense area (${distance(event.distance)})`
     }
     case 'multipleCards':
       return `${teamAndBot(gameEvent.event.value)} collected multiple cards`
-    case 'multiplePlacementFailures':
-      return `${teamAndBot(gameEvent.event.value)} failed ball placement repeatedly`
     case 'multipleFouls': {
       const event = gameEvent.event.value
       return (
