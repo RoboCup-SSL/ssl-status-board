@@ -9,7 +9,7 @@
 A Status Board for the Small Size League, optimized to show the current game state on a large screen.
 
 ## Adding your teams logo
-If you would like to see your teams logo on the status-board, add it to [frontend/src/assets/logos](frontend/src/assets/logos) and include it in [frontend/src/teamLogoUrl.js](frontend/src/teamLogoUrl.js).
+If you would like to see your teams logo on the status-board, add it to [frontend/src/assets/logos](frontend/src/assets/logos) and include it in [frontend/src/helpers/teamLogo.ts](frontend/src/helpers/teamLogo.ts).
 The team name must match the one configured in the ssl-game-controller in all lowercase.
 
 ## Usage
