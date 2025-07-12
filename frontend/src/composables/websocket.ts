@@ -36,4 +36,3 @@ export const useWebSocketProtobuf = <T extends Message>(
 
   return { message }
 }
-

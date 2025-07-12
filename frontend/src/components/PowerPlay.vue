@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span 
+    <span
       v-if="showPowerplay"
       :class="{ 'team-yellow': powerPlayTeam === 'Yellow', 'team-blue': powerPlayTeam === 'Blue' }"
     >
@@ -37,7 +37,7 @@ const showPowerplay = computed(() => {
   if (powerPlayTeam.value === null) {
     return false
   }
-  
+
   switch (refereeStore.refereeMsg.command) {
     case Referee_Command.NORMAL_START:
     case Referee_Command.FORCE_START:

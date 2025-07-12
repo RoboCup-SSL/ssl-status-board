@@ -1,6 +1,9 @@
 <template>
   <div class="team-status" :class="{ 'bot-substitution-intent': team?.botSubstitutionIntent }">
-    <div :class="{ 'team-yellow': color === 'yellow', 'team-blue': color === 'blue' }" class="team-name">
+    <div
+      :class="{ 'team-yellow': color === 'yellow', 'team-blue': color === 'blue' }"
+      class="team-name"
+    >
       <div class="team-name-text">{{ team?.name || 'Team' }}</div>
     </div>
 
@@ -14,8 +17,8 @@
     </div>
 
     <div class="cardTimers">
-      <CardTimer 
-        v-for="(cardTime, index) in (team?.yellowCardTimes || []).slice(0, 3)" 
+      <CardTimer
+        v-for="(cardTime, index) in (team?.yellowCardTimes || []).slice(0, 3)"
         :key="index"
         :card-timer="cardTime"
       />

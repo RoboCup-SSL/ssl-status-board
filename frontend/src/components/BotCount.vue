@@ -1,7 +1,7 @@
 <template>
   <div class="bot-count">
     <div class="element">
-      <img class="bot-pic" alt="bot" src="/bot.png"/>
+      <img class="bot-pic" alt="bot" src="/bot.png" />
     </div>
     <div class="element bot-number">
       {{ numBots }}

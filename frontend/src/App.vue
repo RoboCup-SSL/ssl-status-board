@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {computed} from 'vue'
-import {useRefereeStore} from '@/stores/referee'
+import { computed } from 'vue'
+import { useRefereeStore } from '@/stores/referee'
 import StatusBoard from '@/components/StatusBoard.vue'
 
 const refereeStore = useRefereeStore()
@@ -14,7 +14,6 @@ const url = computed(() => {
   const urlParams = new URLSearchParams(window.location.search)
   return urlParams.get('url')
 })
-
 
 const showVideo = computed(() => {
   if (showVideoAfter.value && url.value) {
@@ -30,14 +29,14 @@ const showVideo = computed(() => {
 <template>
   <div id="app">
     <iframe
-      :class="{hidden: !showVideo}"
+      :class="{ hidden: !showVideo }"
       :src="url || ''"
       title="Video"
       :width="showVideo ? '100%' : '0'"
       :height="showVideo ? '100%' : '0'"
       allow="autoplay"
     />
-    <StatusBoard :class="{hidden: showVideo}"/>
+    <StatusBoard :class="{ hidden: showVideo }" />
   </div>
 </template>
 
@@ -54,8 +53,8 @@ const showVideo = computed(() => {
 
 iframe {
   border: 0;
-  overflow:hidden;
-  display:block;
+  overflow: hidden;
+  display: block;
   position: absolute;
 }
 

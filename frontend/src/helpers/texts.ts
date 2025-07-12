@@ -56,7 +56,6 @@ export const mapCommandToText = (command: Referee_Command): string => {
   return `unknown command: ${command}`
 }
 
-
 const oppositeTeam = (team: Team): Team => {
   if (team === Team.BLUE) {
     return Team.YELLOW
@@ -86,7 +85,7 @@ const teamAndBot = (event: { byTeam?: Team; byBot?: number }): string => {
 }
 
 const radToDeg = (rad: number): string => {
-  return Math.ceil(rad * 180 / Math.PI) + '°'
+  return Math.ceil((rad * 180) / Math.PI) + '°'
 }
 
 const velocity = (v: number): string => {
@@ -114,19 +113,25 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
     case 'placementFailed': {
       const event = gameEvent.event.value
       if (event.nearestOwnBotDistance != null) {
-        return `${teamAndBot(event)} failed placing ball ` +
+        return (
+          `${teamAndBot(event)} failed placing ball ` +
           ` (${distance(event.remainingDistance)} remaining, ` +
           `nearest own bot at ${distance(event.nearestOwnBotDistance)})`
+        )
       }
-      return `${teamAndBot(event)} failed placing ball ` +
+      return (
+        `${teamAndBot(event)} failed placing ball ` +
         ` (${distance(event.remainingDistance)} remaining)`
+      )
     }
     case 'placementSucceeded': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} placed ball successfully ` +
+      return (
+        `${teamAndBot(event)} placed ball successfully ` +
         `over ${distance(event.distance)} ` +
         `within ${seconds(event.timeTaken)} ` +
         `and ${distance(event.precision)}`
+      )
     }
     case 'botSubstitution':
       return `Team ${teamAndBot(gameEvent.event.value)} substitutes robots`
@@ -134,8 +139,10 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `Team ${teamAndBot(gameEvent.event.value)} excessively substituted robots`
     case 'tooManyRobots': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} has ${event.numRobotsOnField} robots on the field, ` +
+      return (
+        `${teamAndBot(event)} has ${event.numRobotsOnField} robots on the field, ` +
         `but only ${event.numRobotsAllowed} are allowed`
+      )
     }
     case 'ballLeftFieldTouchLine':
       return `${teamAndBot(gameEvent.event.value)} kicked ball out via touch line`
@@ -310,8 +317,10 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `${teamAndBot(gameEvent.event.value)} failed ball placement repeatedly`
     case 'multipleFouls': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} collected multiple fouls: ` +
+      return (
+        `${teamAndBot(event)} collected multiple fouls: ` +
         event.causedGameEvents.map((cause: GameEvent) => mapGameEventToText(cause)).join(', ')
+      )
     }
     case 'unsportingBehaviorMinor': {
       const event = gameEvent.event.value

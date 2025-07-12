@@ -1,43 +1,41 @@
 <template>
   <div class="match-status">
     <div>
-      <div 
+      <div
         :class="{
-          'highlight-command': true, 
-          'stop-command': isStop, 
-          'halt-command': isHalt, 
-          'robot-substitution-blue': isRobotSubstitutionBlue, 
-          'robot-substitution-yellow': isRobotSubstitutionYellow, 
-          'robot-substitution-both': isRobotSubstitutionBoth
+          'highlight-command': true,
+          'stop-command': isStop,
+          'halt-command': isHalt,
+          'robot-substitution-blue': isRobotSubstitutionBlue,
+          'robot-substitution-yellow': isRobotSubstitutionYellow,
+          'robot-substitution-both': isRobotSubstitutionBoth,
         }"
       >
         <div class="stage">{{ stage }}</div>
 
         <span class="score">
-          {{ refereeStore.refereeMsg.yellow?.score || 0 }} : {{ refereeStore.refereeMsg.blue?.score || 0 }}
+          {{ refereeStore.refereeMsg.yellow?.score || 0 }} :
+          {{ refereeStore.refereeMsg.blue?.score || 0 }}
         </span>
 
-        <div 
-          class="command" 
+        <div
+          class="command"
           :class="{ 'team-yellow': commandForYellow, 'team-blue': commandForBlue }"
         >
           {{ gameState }}
           <span v-if="isBallPlacement && remainingTime >= 0">
             ({{ formatDuration(Number(remainingTime)) }})
           </span>
-          <span v-if="isTimeout">
-            ({{ formatDuration(timeoutTime) }})
-          </span>
+          <span v-if="isTimeout"> ({{ formatDuration(timeoutTime) }}) </span>
         </div>
       </div>
 
-      <hr class="separator"/>
+      <hr class="separator" />
 
       <PowerPlay />
       <StatusMessage />
-
     </div>
-    <div 
+    <div
       class="time-container"
       :class="{ 'time-positive': stageTimeLeft >= 0, 'time-negative': stageTimeLeft < 0 }"
     >
@@ -97,14 +95,16 @@ const stage = computed(() => {
 
 const gameState = computed(() => {
   if (isRobotSubstitutionAny.value) {
-    return "Robot Substitution"
+    return 'Robot Substitution'
   }
   return mapCommandToText(refereeStore.refereeMsg.command)
 })
 
 const isBallPlacement = computed(() => {
-  return refereeStore.refereeMsg.command === Referee_Command.BALL_PLACEMENT_BLUE ||
-         refereeStore.refereeMsg.command === Referee_Command.BALL_PLACEMENT_YELLOW
+  return (
+    refereeStore.refereeMsg.command === Referee_Command.BALL_PLACEMENT_BLUE ||
+    refereeStore.refereeMsg.command === Referee_Command.BALL_PLACEMENT_YELLOW
+  )
 })
 
 const remainingTime = computed(() => {
@@ -112,8 +112,10 @@ const remainingTime = computed(() => {
 })
 
 const isTimeout = computed(() => {
-  return refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_BLUE ||
-         refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_YELLOW
+  return (
+    refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_BLUE ||
+    refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_YELLOW
+  )
 })
 
 const timeoutTime = computed(() => {
@@ -204,17 +206,17 @@ const stageTimeLeft = computed(() => {
 
 .highlight-command {
   transition: background-color 500ms ease;
-  border-radius: .5em;
+  border-radius: 0.5em;
   padding: 0.2em 0.1em 0.1em;
   margin-top: 0.1em;
 }
 
 .highlight-command.stop-command {
-  background-color: #FF7000
+  background-color: #ff7000;
 }
 
 .highlight-command.halt-command {
-  background-color: #EE0022;
+  background-color: #ee0022;
 }
 
 .highlight-command.robot-substitution-blue {

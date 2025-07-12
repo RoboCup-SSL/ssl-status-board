@@ -1,6 +1,6 @@
 <template>
   <div class="card-timer">
-    <div class="progressBar" :style="{ 'width': `${percentage}%` }"></div>
+    <div class="progressBar" :style="{ width: `${percentage}%` }"></div>
   </div>
 </template>
 

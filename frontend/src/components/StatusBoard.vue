@@ -1,24 +1,16 @@
 <template>
   <div class="status-board">
     <div class="upper-container">
-      <TeamStatus 
-        class="team-status" 
-        color="yellow" 
-        :team="refereeStore.refereeMsg.yellow" 
-      />
+      <TeamStatus class="team-status" color="yellow" :team="refereeStore.refereeMsg.yellow" />
 
       <div class="match-status-container">
         <MatchStatus />
       </div>
 
-      <TeamStatus 
-        class="team-status" 
-        color="blue" 
-        :team="refereeStore.refereeMsg.blue" 
-      />
+      <TeamStatus class="team-status" color="blue" :team="refereeStore.refereeMsg.blue" />
     </div>
 
-    <hr class="upper-lower-separator">
+    <hr class="upper-lower-separator" />
 
     <GameEvents class="lower-container" />
   </div>

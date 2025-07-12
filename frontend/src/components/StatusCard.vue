@@ -1,6 +1,13 @@
 <template>
   <div class="card">
-    <div class="card-pic" :class="{'red-card': color === 'red', 'yellow-card': color === 'yellow', 'foul': color === 'foul'}">
+    <div
+      class="card-pic"
+      :class="{
+        'red-card': color === 'red',
+        'yellow-card': color === 'yellow',
+        foul: color === 'foul',
+      }"
+    >
       {{ numCards }}
     </div>
   </div>
