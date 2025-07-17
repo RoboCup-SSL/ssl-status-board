@@ -14,6 +14,7 @@ const knownLogos = new Set([
   'ibis',
   'immortals',
   'itandroids',
+  'junior-superteam',
   'kiks',
   'luhbots',
   'maracatronics',
