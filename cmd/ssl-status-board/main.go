@@ -30,6 +30,15 @@ func main() {
 
 	frontend.HandleUi()
 
+	var formattedAddress = func() string {
+		if strings.HasPrefix(*address, ":") {
+			return "http://localhost" + *address
+		}
+		return "http://" + *address
+	}
+
+	log.Printf("UI is available at %v", formattedAddress())
+
 	err := http.ListenAndServe(config.ListenAddress, nil)
 	if err != nil {
 		log.Fatal(err)
