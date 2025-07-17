@@ -120,9 +120,9 @@ const isTimeout = computed(() => {
 
 const timeoutTime = computed(() => {
   if (refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_BLUE) {
-    return (refereeStore.refereeMsg.blue?.timeoutTime || 0) * 1000 // Convert to microseconds
+    return refereeStore.refereeMsg.blue?.timeoutTime || 0
   } else if (refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_YELLOW) {
-    return (refereeStore.refereeMsg.yellow?.timeoutTime || 0) * 1000 // Convert to microseconds
+    return refereeStore.refereeMsg.yellow?.timeoutTime || 0
   }
   return 0
 })
