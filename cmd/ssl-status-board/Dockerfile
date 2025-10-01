@@ -4,7 +4,7 @@ WORKDIR frontend
 RUN npm install
 RUN npm run build
 
-FROM golang:1.24-alpine@sha256:b4f875e650466fa0fe62c6fd3f02517a392123eea85f1d7e69d85f780e4db1c1 AS build_go
+FROM golang:1.24-alpine@sha256:fc2cff6625f3c1c92e6c85938ac5bd09034ad0d4bc2dfb08278020b68540dbb5 AS build_go
 ARG cmd=ssl-status-board
 WORKDIR work
 COPY . .
