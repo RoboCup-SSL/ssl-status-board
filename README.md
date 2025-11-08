@@ -70,4 +70,8 @@ You can find all published releases on the Releases page
 
 2. Find the version you want and download the asset labelled something like ssl-status-board-<version>-<os-arch>
 
-3. On Linux/MacOS/Windows, open a terminal and run the binary (you might need to mark it executable on Linux/Mac: ´´´chmod +x ssl-status-board´´´)
+3. On Linux/MacOS/Windows, open a terminal and run the binary 
+You might need to mark it executable on Linux/Mac: 
+```shell
+chmod +x <file>
+```
