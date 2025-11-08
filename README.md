@@ -61,3 +61,17 @@ Build and run main binary:
 ```shell
 make run
 ```
+
+### Releases
+You can find all published releases on the Releases page
+ of this repository. Each release contains pre-built binaries (for major platforms). To get up and running quickly, follow the steps below:
+
+1. Navigate to Releases at https://github.com/RoboCup-SSL/ssl-status-board/releases.
+
+2. Find the version you want and download the asset labelled something like ssl-status-board_`<version>`_`<os-arch>`
+
+3. On Linux/MacOS/Windows, open a terminal and run the binary 
+You might need to mark it executable on Linux/Mac: 
+```shell
+chmod +x <file>
+```
