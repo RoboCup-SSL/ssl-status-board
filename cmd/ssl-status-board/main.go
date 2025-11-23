@@ -1,12 +1,19 @@
 package main
 
 import (
+	"context"
+	"errors"
 	"flag"
-	"github.com/RoboCup-SSL/ssl-status-board/frontend"
-	"github.com/RoboCup-SSL/ssl-status-board/pkg/board"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
 	"strings"
+	"syscall"
+	"time"
+
+	"github.com/RoboCup-SSL/ssl-status-board/internal/api"
+	"github.com/RoboCup-SSL/ssl-status-board/pkg/board"
 )
 
 func main() {
@@ -24,25 +31,31 @@ func main() {
 
 	refereeBoard := board.NewBoard(config.RefereeConnection)
 	refereeBoard.MulticastServer.SkipInterfaces = config.RefereeConnection.SkipInterfaces
-	refereeBoard.Start()
-	http.HandleFunc(config.RefereeConnection.SubscribePath, refereeBoard.WsHandler)
-	http.HandleFunc("/api/clients", refereeBoard.ClientsHandler)
 
-	frontend.HandleUi()
+	apiServer := api.NewServer(refereeBoard, config)
 
-	var formattedAddress = func() string {
-		if strings.HasPrefix(*address, ":") {
-			return "http://localhost" + *address
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5) // Allow connected clients 5 seconds to shutdown gracefully
+	defer cancel()
+
+	defer apiServer.Stop(ctx)
+
+	log.Printf("UI is available at %s", apiServer.Url())
+
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		if err := apiServer.Serve(); err != nil {
+			if errors.Is(err, http.ErrServerClosed) {
+				return
+			}
+
+			log.Fatalf("API server exited with error: %v", err)
 		}
-		return "http://" + *address
-	}
+	}()
 
-	log.Printf("UI is available at %v", formattedAddress())
-
-	err := http.ListenAndServe(config.ListenAddress, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	sig := <-sigs
+	log.Printf("Shutting down: %s", sig)
 }
 
 func parseSkipInterfaces(skipInterfaces string) []string {
