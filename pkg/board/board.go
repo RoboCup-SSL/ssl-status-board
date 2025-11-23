@@ -1,14 +1,10 @@
 package board
 
 import (
-	"fmt"
-	"github.com/RoboCup-SSL/ssl-go-tools/pkg/sslnet"
-	"github.com/gorilla/websocket"
-	"log"
 	"net"
-	"net/http"
 	"sync"
-	"time"
+
+	"github.com/RoboCup-SSL/ssl-go-tools/pkg/sslnet"
 )
 
 // Board contains the state of this referee board
@@ -45,50 +41,10 @@ func (b *Board) handlingMessage(data []byte, _ *net.UDPAddr) {
 	b.refereeData = data
 }
 
-// SendToWebSocket sends latest data to the given websocket
-func (b *Board) SendToWebSocket(conn *websocket.Conn) {
-	b.mutex.Lock()
-	b.numClients++
-	b.mutex.Unlock()
-	for b.SendRefereeData(conn) {
-		time.Sleep(b.cfg.SendingInterval)
-	}
-	b.mutex.Lock()
-	b.numClients--
-	b.mutex.Unlock()
+func (b *Board) RefereeData() []byte {
+	return b.refereeData
 }
 
-func (b *Board) SendRefereeData(conn *websocket.Conn) bool {
-	b.mutex.Lock()
-	data := b.refereeData
-	b.mutex.Unlock()
-
-	if len(data) == 0 {
-		return true
-	}
-
-	if err := conn.SetWriteDeadline(time.Now().Add(time.Second)); err != nil {
-		log.Println("Failed to set write deadline:", err)
-		return false
-	}
-	if err := conn.WriteMessage(websocket.BinaryMessage, data); err != nil {
-		log.Println("Could not write to referee websocket: ", err)
-		return false
-	}
-	return true
-}
-
-// WsHandler handles referee websocket connections
-func (b *Board) WsHandler(w http.ResponseWriter, r *http.Request) {
-	WsHandler(w, r, b.SendToWebSocket)
-}
-
-// ClientsHandler handles clients api
-func (b *Board) ClientsHandler(w http.ResponseWriter, _ *http.Request) {
-	b.mutex.Lock()
-	numClients := b.numClients
-	b.mutex.Unlock()
-	if _, err := fmt.Fprintf(w, "Connected clients: %v", numClients); err != nil {
-		w.WriteHeader(500)
-	}
+func (b *Board) RefereeConfig() RefereeConfig {
+	return b.cfg
 }
