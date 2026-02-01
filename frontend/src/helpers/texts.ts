@@ -1,10 +1,6 @@
 import { Referee_Stage, Referee_Command } from '@/proto/ssl_gc_referee_message_pb'
 import { Team } from '@/proto/ssl_gc_common_pb'
-import {
-  type GameEvent,
-  type GameEvent_BotCrashDrawn,
-  type GameEvent_BotCrashUnique,
-} from '@/proto/ssl_gc_game_event_pb'
+import { type GameEvent } from '@/proto/ssl_gc_game_event_pb'
 
 const stageToText = new Map<Referee_Stage, string>([
   [Referee_Stage.NORMAL_FIRST_HALF_PRE, 'Match to be started'],
@@ -88,10 +84,6 @@ const teamAndBot = (event: { byTeam?: Team; byBot?: number }): string => {
   return formatTeam(event.byTeam) + ' ' + event.byBot
 }
 
-const radToDeg = (rad: number): string => {
-  return Math.ceil((rad * 180) / Math.PI) + '°'
-}
-
 const velocity = (v: number): string => {
   return Number(Math.ceil(v * 10) / 10).toFixed(1) + 'm/s'
 }
@@ -100,28 +92,6 @@ const distance = (v: number): string => {
   return Number(Math.ceil(v * 100) / 100).toFixed(2) + 'm'
 }
 
-const seconds = (v: number): string => {
-  return Number(Math.ceil(v * 10) / 10).toFixed(1) + 's'
-}
-
-function appendCrashDetails(
-  event: GameEvent_BotCrashDrawn | GameEvent_BotCrashUnique,
-  text: string,
-) {
-  const crashSpeed = event.crashSpeed
-  const crashAngle = event.crashAngle
-  const speedDiff = event.speedDiff
-  if (crashSpeed > 0) {
-    text += ` with ${velocity(crashSpeed)}`
-  }
-  if (crashAngle > 0) {
-    text += ` @ ${radToDeg(crashAngle)}`
-  }
-  if (speedDiff > 0) {
-    text += ` (Δ ${velocity(speedDiff)})`
-  }
-  return text
-}
 
 export const mapGameEventToText = (gameEvent: GameEvent): string => {
   if (!gameEvent.event) {
@@ -130,157 +100,140 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
 
   switch (gameEvent.event.case) {
     case 'noProgressInGame':
-      return `No progress for ${seconds(gameEvent.event.value.time)}`
+      return `No Progress In Game`
     case 'placementFailed': {
       const event = gameEvent.event.value
-      if (event.nearestOwnBotDistance != null) {
-        return (
-          `${teamAndBot(event)} failed placing ball ` +
-          ` (${distance(event.remainingDistance)} remaining, ` +
-          `nearest own bot at ${distance(event.nearestOwnBotDistance)})`
-        )
-      }
-      return (
-        `${teamAndBot(event)} failed placing ball ` +
-        ` (${distance(event.remainingDistance)} remaining)`
-      )
+      return `Ball Placement Failed by ${teamAndBot(event)}`
     }
     case 'placementSucceeded': {
       const event = gameEvent.event.value
-      return (
-        `${teamAndBot(event)} placed ball successfully ` +
-        `over ${distance(event.distance)} ` +
-        `within ${seconds(event.timeTaken)} ` +
-        `and ${distance(event.precision)}`
-      )
+      return `Ball Placement Succeeded by ${teamAndBot(event)}`
     }
     case 'botSubstitution':
-      return `Team ${teamAndBot(gameEvent.event.value)} substitutes robots`
+      return `Robot Substitution by ${teamAndBot(gameEvent.event.value)}`
     case 'excessiveBotSubstitution':
-      return `Team ${teamAndBot(gameEvent.event.value)} excessively substituted robots`
+      return `Excessive Robot Substitution by ${teamAndBot(gameEvent.event.value)}`
     case 'tooManyRobots': {
       const event = gameEvent.event.value
-      return (
-        `${teamAndBot(event)} has ${event.numRobotsOnField} robots on the field, ` +
-        `but only ${event.numRobotsAllowed} are allowed`
-      )
+      return `Too Many Robots by ${teamAndBot(event)} (${event.numRobotsOnField} of ${event.numRobotsAllowed})`
     }
     case 'ballLeftFieldTouchLine':
-      return `${teamAndBot(gameEvent.event.value)} kicked ball out via touch line`
+      return `Ball out over touch line by ${teamAndBot(gameEvent.event.value)}`
     case 'ballLeftFieldGoalLine':
-      return `${teamAndBot(gameEvent.event.value)} kicked ball out via goal line`
+      return `Ball out over goal line by ${teamAndBot(gameEvent.event.value)}`
     case 'possibleGoal':
-      return `${teamAndBot(gameEvent.event.value)} might have scored a goal`
+      return `Possible Goal by ${teamAndBot(gameEvent.event.value)}`
     case 'goal':
-      return `${teamAndBot(gameEvent.event.value)} has scored a goal`
+      return `Goal scored by ${teamAndBot(gameEvent.event.value)}`
     case 'invalidGoal': {
       const event = gameEvent.event.value
-      return `Scored goal by ${teamAndBot(event)} is invalid: ${event.message}`
+      return `Invalid Goal by ${teamAndBot(event)}: ${event.message}`
     }
     case 'aimlessKick':
-      return `${teamAndBot(gameEvent.event.value)} kicked aimlessly`
+      return `Aimless Kick by ${teamAndBot(gameEvent.event.value)}`
     case 'keeperHeldBall': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)}'s keeper held the ball for ${seconds(event.duration)}`
+      return `Keeper Held Ball by ${teamAndBot(event)}`
     }
     case 'attackerDoubleTouchedBall':
-      return `${teamAndBot(gameEvent.event.value)} touched ball twice`
+      return `Double Touch by ${teamAndBot(gameEvent.event.value)}`
     case 'attackerTouchedBallInDefenseArea':
-      return `${teamAndBot(gameEvent.event.value)} touched ball in opponent defense area`
+      return `Attacker Touched Ball In Defense Area by ${teamAndBot(gameEvent.event.value)}`
     case 'botDribbledBallTooFar':
-      return `${teamAndBot(gameEvent.event.value)} dribbled ball too far`
+      return `Excessive Dribbling by ${teamAndBot(gameEvent.event.value)}`
     case 'botKickedBallTooFast': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} kicked ball too fast(${velocity(event.initialBallSpeed)})`
+      return `Ball Kicked Too Fast by ${teamAndBot(event)} (${velocity(event.initialBallSpeed)})`
     }
     case 'attackerTooCloseToDefenseArea': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} too close to opponent defense area (${distance(event.distance)})`
+      return `Robot Too Close To Defense Area by ${teamAndBot(event)} (${distance(event.distance)})`
     }
     case 'botInterferedPlacement':
-      return `${teamAndBot(gameEvent.event.value)} interfered placement`
+      return `Ball Placement Interference by ${teamAndBot(gameEvent.event.value)}`
     case 'botCrashDrawn': {
       const event = gameEvent.event.value
-      const text = `Bot Blue ${event.botBlue} and Yellow ${event.botYellow} crashed`
-      return appendCrashDetails(event, text)
+      let text = `Robot Crash: Blue ${event.botBlue} and Yellow ${event.botYellow}`
+      if (event.crashSpeed > 0) {
+        text += ` (${velocity(event.crashSpeed)})`
+      }
+      return text
     }
     case 'botCrashUnique': {
       const event = gameEvent.event.value
       const byTeam = event.byTeam
       const otherTeam = oppositeTeam(byTeam)
-      const violator = event.violator
-      const victim = event.victim
-      const text = `${formatTeam(byTeam)} ${violator} crashed into ${formatTeam(otherTeam)} ${victim}`
-      return appendCrashDetails(event, text)
+      let text = `Robot Crash: ${formatTeam(byTeam)} ${event.violator} into ${formatTeam(otherTeam)} ${event.victim}`
+      if (event.crashSpeed > 0) {
+        text += ` (${velocity(event.crashSpeed)})`
+      }
+      return text
     }
     case 'botPushedBot': {
       const event = gameEvent.event.value
       const byTeam = event.byTeam
       const otherTeam = oppositeTeam(byTeam)
-      const violator = event.violator
-      const victim = event.victim
-      const dist = event.pushedDistance
-      let text = `${formatTeam(byTeam)} ${violator} pushed ${formatTeam(otherTeam)} ${victim}`
-      if (dist > 0) {
-        text += ` over ${distance(dist)}`
+      let text = `Pushing: ${formatTeam(byTeam)} ${event.violator} pushed ${formatTeam(otherTeam)} ${event.victim}`
+      if (event.pushedDistance > 0) {
+        text += ` (${distance(event.pushedDistance)})`
       }
       return text
     }
     case 'botHeldBallDeliberately': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} held ball deliberately for ${event.duration}`
+      return `Ball Holding by ${teamAndBot(event)}`
     }
     case 'botTippedOver':
-      return `${teamAndBot(gameEvent.event.value)} tipped over`
+      return `Robot Tipped Over by ${teamAndBot(gameEvent.event.value)}`
     case 'botDroppedParts':
-      return `${teamAndBot(gameEvent.event.value)} dropped parts`
+      return `Robot Dropped Parts by ${teamAndBot(gameEvent.event.value)}`
     case 'botTooFastInStop': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} too fast during stop (${velocity(event.speed)})`
+      return `Robot Stop Speed exceeded by ${teamAndBot(event)} (${velocity(event.speed)})`
     }
     case 'defenderTooCloseToKickPoint': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} too close to kick point (${distance(event.distance)})`
+      return `Defender Too Close To Ball by ${teamAndBot(event)} (${distance(event.distance)})`
     }
     case 'defenderInDefenseArea': {
       const event = gameEvent.event.value
-      return `${teamAndBot(event)} touched ball while fully inside own defense area (${distance(event.distance)})`
+      return `Defender In Defense Area by ${teamAndBot(event)} (${distance(event.distance)})`
     }
     case 'multipleCards':
-      return `${teamAndBot(gameEvent.event.value)} collected multiple cards`
+      return `Multiple Cards by ${teamAndBot(gameEvent.event.value)}`
     case 'multipleFouls': {
       const event = gameEvent.event.value
       return (
-        `${teamAndBot(event)} collected multiple fouls: ` +
+        `Multiple Fouls by ${teamAndBot(event)}: ` +
         event.causedGameEvents.map((cause: GameEvent) => mapGameEventToText(cause)).join(', ')
       )
     }
     case 'unsportingBehaviorMinor': {
       const event = gameEvent.event.value
-      return `Unsporting behavior by ${teamAndBot(event)}: ${event.reason}`
+      return `Unsporting Behavior (Minor) by ${teamAndBot(event)}: ${event.reason}`
     }
     case 'unsportingBehaviorMajor': {
       const event = gameEvent.event.value
-      return `Major unsporting behavior by ${teamAndBot(event)}: ${event.reason}`
+      return `Unsporting Behavior (Major) by ${teamAndBot(event)}: ${event.reason}`
     }
     case 'boundaryCrossing':
-      return `${teamAndBot(gameEvent.event.value)} kicked the ball over the field boundary`
+      return `Boundary Crossing by ${teamAndBot(gameEvent.event.value)}`
     case 'penaltyKickFailed': {
       const event = gameEvent.event.value
       const reason = event.reason != null ? ': ' + event.reason : ''
-      return `Penalty kick failed by ${teamAndBot(event)}${reason}`
+      return `Penalty Kick Failed by ${teamAndBot(event)}${reason}`
     }
     case 'challengeFlag':
-      return `${teamAndBot(gameEvent.event.value)} raised a challenge flag`
+      return `Challenge Flag raised by ${teamAndBot(gameEvent.event.value)}`
     case 'challengeFlagHandled': {
       const event = gameEvent.event.value
       if (event.accepted) {
-        return `Challenge from ${teamAndBot(event)} accepted`
+        return `Challenge Accepted by ${teamAndBot(event)}`
       }
-      return `Challenge from ${teamAndBot(event)} rejected`
+      return `Challenge Rejected by ${teamAndBot(event)}`
     }
     case 'emergencyStop':
-      return `Emergency stop for ${teamAndBot(gameEvent.event.value)} executed`
+      return `Emergency Stop executed by ${teamAndBot(gameEvent.event.value)}`
     default:
       return 'unknown game event'
   }
