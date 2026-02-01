@@ -7,7 +7,7 @@ all: install docker
 docker: $(DOCKER_TARGETS)
 
 $(DOCKER_TARGETS): docker-%:
-	docker build -f ./cmd/$*/Dockerfile -t $*:latest .
+	docker build -f ./cmd/$*/Dockerfile --build-arg BINARY_NAME=$* -t $*:latest .
 
 .frontend: $(shell find frontend/ -type f -not -path "frontend/node_modules/*")
 	cd frontend && \
