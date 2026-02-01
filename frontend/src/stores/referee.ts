@@ -1,10 +1,12 @@
-import { defineStore } from 'pinia'
-import { computed } from 'vue'
-import { create } from '@bufbuild/protobuf'
-import type { Referee, Referee_TeamInfo } from '../proto/ssl_gc_referee_message_pb'
-import { RefereeSchema, Referee_TeamInfoSchema } from '../proto/ssl_gc_referee_message_pb'
-import { useReferee } from '@/composables/referee'
-import { Team } from '@/proto/ssl_gc_common_pb.ts'
+import {defineStore} from 'pinia'
+import {computed} from 'vue'
+import {create} from '@bufbuild/protobuf'
+import type {Referee, Referee_TeamInfo} from '../proto/ssl_gc_referee_message_pb'
+import {Referee_TeamInfoSchema, RefereeSchema} from '../proto/ssl_gc_referee_message_pb'
+import {useReferee} from '@/composables/referee'
+import {Team} from '@/proto/ssl_gc_common_pb.ts'
+import {GameEvent_Type} from "@/proto/ssl_gc_game_event_pb.ts";
+import {ORIGIN_ERFORCE, ORIGIN_TIGERS} from "@/helpers/constants.ts";
 
 export const useRefereeStore = defineStore('referee', () => {
   // Use the referee composable for WebSocket connection and protobuf decoding
@@ -74,8 +76,8 @@ export const useRefereeStore = defineStore('referee', () => {
       stageTimeLeft: 140000000n,
       gameEvents: [
         {
-          type: 1,
-          origin: ['TIGERs AutoRef', 'ER-Force'],
+          type: GameEvent_Type.BALL_LEFT_FIELD_GOAL_LINE,
+          origin: [ORIGIN_TIGERS, ORIGIN_ERFORCE],
           createdTimestamp: 100000000n,
           event: {
             case: 'ballLeftFieldGoalLine',
