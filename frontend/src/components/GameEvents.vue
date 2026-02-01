@@ -10,16 +10,16 @@
               class="autoref-icon"
               :src="tigers_autoref"
               alt="TIGERs"
-              v-if="isOrigin(gameEvent, 'TIGERs AutoRef')"
+              v-if="isOrigin(gameEvent, ORIGIN_TIGERS)"
             />
             <img
               class="autoref-icon"
               :src="erforce_autoref"
               alt="ER-Force"
-              v-if="isOrigin(gameEvent, 'ER-Force')"
+              v-if="isOrigin(gameEvent, ORIGIN_ERFORCE)"
             />
-            <font-awesome-icon :icon="faUser" v-if="isOrigin(gameEvent, 'UI')" />
-            <font-awesome-icon :icon="faVoteYea" v-if="isOrigin(gameEvent, 'Majority')" />
+            <font-awesome-icon :icon="faUser" v-if="isOrigin(gameEvent, ORIGIN_UI)" />
+            <font-awesome-icon :icon="faVoteYea" v-if="isOrigin(gameEvent, ORIGIN_MAJORITY)" />
           </td>
         </tr>
       </tbody>
@@ -36,6 +36,7 @@ import erforce_autoref from '@/assets/icons/erforce-autoref.svg'
 import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUser, faVoteYea } from '@fortawesome/free-solid-svg-icons'
+import {ORIGIN_ERFORCE, ORIGIN_MAJORITY, ORIGIN_TIGERS, ORIGIN_UI} from "@/helpers/constants.ts";
 
 const refereeStore = useRefereeStore()
 
