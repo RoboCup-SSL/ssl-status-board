@@ -54,16 +54,19 @@ export const useRefereeStore = defineStore('referee', () => {
   // Development state for testing
   const createDevelopmentState = (): Referee => {
     const yellow = create(Referee_TeamInfoSchema, {
-      name: 'Yellow',
-      score: 0,
+      // long name
+      name: 'TIGERs Mannheim',
+      score: 10,
       yellowCards: 10,
       yellowCardTimes: [15000000, 61000000, 120000000, 1],
       maxAllowedBots: 11,
     })
 
     const blue = create(Referee_TeamInfoSchema, {
-      name: 'Blue',
-      score: 10,
+      // short name
+      name: 'SRC',
+      score: 0,
+      redCards: 5,
       maxAllowedBots: 6,
     })
 
