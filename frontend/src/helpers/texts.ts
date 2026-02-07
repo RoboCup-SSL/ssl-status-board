@@ -168,7 +168,7 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
       return `Ball Placement Interference by ${teamAndBot(gameEvent.event.value)}`
     case 'botCrashDrawn': {
       const event = gameEvent.event.value
-      let text = `Robot Crash: Blue ${event.botBlue} and Yellow ${event.botYellow}`
+      let text = `Robot Crash: ${formatTeam(Team.BLUE)} ${event.botBlue} and ${formatTeam(Team.YELLOW)} ${event.botYellow}`
       if (event.crashSpeed > 0) {
         text += ` (${velocity(event.crashSpeed)})`
       }
