@@ -3,7 +3,8 @@
     <table class="table-striped">
       <tbody>
         <tr v-for="(gameEvent, index) in gameEvents" :key="index">
-          <td>{{ gameEvents.length - index }}</td>
+          <td>{{ formatTimestamp(gameEvent.createdTimestamp) }}</td>
+          <td v-html="formatTeamFromGameEvent(gameEvent)"></td>
           <td v-html="formatGameEvent(gameEvent)"></td>
           <td class="autoRefIndicator">
             <img
@@ -30,7 +31,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRefereeStore } from '@/stores/referee'
-import { mapGameEventToText } from '@/helpers/texts'
+import {formatTeamFromGameEvent, mapGameEventToText} from '@/helpers/texts'
 import tigers_autoref from '@/assets/icons/tigers-autoref.png'
 import erforce_autoref from '@/assets/icons/erforce-autoref.svg'
 import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
@@ -43,6 +44,16 @@ const refereeStore = useRefereeStore()
 const gameEvents = computed(() => {
   return refereeStore.refereeMsg.gameEvents?.map((x) => x).reverse() || []
 })
+
+const formatTimestamp = (timestamp: bigint): string => {
+  if (!timestamp) return ''
+  // Convert microseconds to milliseconds
+  const date = new Date(Number(timestamp) / 1000)
+  const hours = date.getHours().toString().padStart(2, '0')
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  const seconds = date.getSeconds().toString().padStart(2, '0')
+  return `${hours}:${minutes}:${seconds}`
+}
 
 const formatGameEvent = (gameEvent: GameEvent): string => {
   return mapGameEventToText(gameEvent)

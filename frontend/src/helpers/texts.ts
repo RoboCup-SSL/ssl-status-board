@@ -71,7 +71,22 @@ const formatTeam = (team: Team): string => {
   } else if (team === Team.YELLOW) {
     return '<span class="team-yellow">Yellow</span>'
   }
-  return 'Unknown'
+  return ''
+}
+
+export const formatTeamFromGameEvent = (gameEvent: GameEvent): string => {
+  if (!gameEvent.event) return ''
+
+  const event = gameEvent.event.value
+  if (!event || typeof event !== 'object') return ''
+
+  // Check if the event has a byTeam property
+  const byTeam = 'byTeam' in event ? (event.byTeam as Team) : undefined
+
+  if (byTeam === undefined) {
+    return ''
+  }
+  return formatTeam(byTeam)
 }
 
 const teamAndBot = (event: { byTeam?: Team; byBot?: number }): string => {
