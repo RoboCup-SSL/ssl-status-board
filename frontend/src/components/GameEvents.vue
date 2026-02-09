@@ -11,16 +11,14 @@
               class="origin-icon"
               :src="tigers_autoref"
               alt="TIGERs"
-              v-if="isOrigin(gameEvent, ORIGIN_TIGERS)"
+              :style="{ visibility: isOrigin(gameEvent, ORIGIN_TIGERS) ? 'visible' : 'hidden' }"
             />
             <img
               class="origin-icon"
               :src="erforce_autoref"
               alt="ER-Force"
-              v-if="isOrigin(gameEvent, ORIGIN_ERFORCE)"
+              :style="{ visibility: isOrigin(gameEvent, ORIGIN_ERFORCE) ? 'visible' : 'hidden' }"
             />
-            <font-awesome-icon class="origin-icon" :icon="faUser" v-if="isOrigin(gameEvent, ORIGIN_UI)" />
-            <font-awesome-icon class="origin-icon" :icon="faVoteYea" v-if="isOrigin(gameEvent, ORIGIN_MAJORITY)" />
           </td>
         </tr>
       </tbody>
@@ -35,9 +33,7 @@ import {formatTeamFromGameEvent, mapGameEventToText} from '@/helpers/texts'
 import tigers_autoref from '@/assets/icons/tigers-autoref.png'
 import erforce_autoref from '@/assets/icons/erforce-autoref.svg'
 import type { GameEvent } from '@/proto/ssl_gc_game_event_pb'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faUser, faVoteYea } from '@fortawesome/free-solid-svg-icons'
-import {ORIGIN_ERFORCE, ORIGIN_MAJORITY, ORIGIN_TIGERS, ORIGIN_UI} from "@/helpers/constants.ts";
+import {ORIGIN_ERFORCE, ORIGIN_TIGERS} from "@/helpers/constants.ts";
 
 const refereeStore = useRefereeStore()
 
