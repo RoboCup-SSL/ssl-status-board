@@ -6,21 +6,21 @@
           <td>{{ formatTimestamp(gameEvent.createdTimestamp) }}</td>
           <td v-html="formatTeamFromGameEvent(gameEvent)"></td>
           <td v-html="formatGameEvent(gameEvent)"></td>
-          <td class="autoRefIndicator">
+          <td class="originIndicator">
             <img
-              class="autoref-icon"
+              class="origin-icon"
               :src="tigers_autoref"
               alt="TIGERs"
               v-if="isOrigin(gameEvent, ORIGIN_TIGERS)"
             />
             <img
-              class="autoref-icon"
+              class="origin-icon"
               :src="erforce_autoref"
               alt="ER-Force"
               v-if="isOrigin(gameEvent, ORIGIN_ERFORCE)"
             />
-            <font-awesome-icon :icon="faUser" v-if="isOrigin(gameEvent, ORIGIN_UI)" />
-            <font-awesome-icon :icon="faVoteYea" v-if="isOrigin(gameEvent, ORIGIN_MAJORITY)" />
+            <font-awesome-icon class="origin-icon" :icon="faUser" v-if="isOrigin(gameEvent, ORIGIN_UI)" />
+            <font-awesome-icon class="origin-icon" :icon="faVoteYea" v-if="isOrigin(gameEvent, ORIGIN_MAJORITY)" />
           </td>
         </tr>
       </tbody>
@@ -72,8 +72,6 @@ const isOrigin = (gameEvent: GameEvent, origin: string): boolean => {
 
 .table-striped {
   width: 100%;
-  padding-left: 0.1em;
-  padding-right: 0.1em;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -86,11 +84,26 @@ const isOrigin = (gameEvent: GameEvent, origin: string): boolean => {
 
 .table-striped td {
   vertical-align: baseline;
-  padding: 2px 2px 2px 10px;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  white-space: nowrap;
+  width: 1%;
 }
 
-.autoref-icon {
-  object-fit: contain;
-  width: 1em;
+.table-striped td:nth-child(3) {
+  width: auto;
+  white-space: normal;
+}
+
+.originIndicator {
+  text-align: right;
+  vertical-align: middle;
+}
+
+.origin-icon {
+  height: 0.7em;
+  width: auto;
+  vertical-align: middle;
+  margin: 0 0.05em;
 }
 </style>
