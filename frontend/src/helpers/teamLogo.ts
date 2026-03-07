@@ -23,6 +23,7 @@ const knownLogos = new Set([
   'namec',
   'neon',
   'neuislanders',
+  'n-r-g',
   'op-amp',
   'orcabot',
   'pequi-mecânico',
