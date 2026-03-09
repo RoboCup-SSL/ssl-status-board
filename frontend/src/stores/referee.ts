@@ -616,6 +616,7 @@ export const useRefereeStore = defineStore('referee', () => {
 
     return create(RefereeSchema, {
       sourceIdentifier: 'dev',
+      statusMessage: 'Vision Problems',
       yellow,
       blue,
       stage: 3,
