@@ -1,6 +1,9 @@
 <template>
   <div class="card-timer">
-    <div class="progressBar" :style="{ width: `${percentage}%` }"></div>
+    <span class="timer-text">{{ seconds }}s</span>
+    <div class="bar">
+      <div class="bar-fill" :style="{ width: `${percentage}%` }"></div>
+    </div>
   </div>
 </template>
 
@@ -14,23 +17,41 @@ const props = defineProps<{
 const percentage = computed(() => {
   return props.cardTimer / 1200000
 })
+
+const seconds = computed(() => {
+  return Math.ceil(props.cardTimer / 1000000)
+})
 </script>
 
 <style scoped>
 .card-timer {
-  width: 90%;
-  height: 16px;
-  display: block;
-  border: 1px yellow solid;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05em;
 }
 
-.card-timer .progressBar {
+.timer-text {
+  color: yellow;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.bar {
+  width: 100%;
+  height: 0.2em;
+  background: #6a6965;
+  position: relative;
+}
+
+.bar-fill {
   background: yellow;
-  display: inline-block;
   height: 100%;
-  vertical-align: top;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

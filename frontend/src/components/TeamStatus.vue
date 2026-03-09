@@ -7,31 +7,35 @@
       <div class="team-name-text">{{ team?.name || 'Team' }}</div>
     </div>
 
-    <img :src="logoUrl" alt="team logo" class="team-logo" />
+    <div class="logo-and-cards" :class="{ 'cards-left': color === 'blue' }">
+      <img :src="logoUrl" alt="team logo" class="team-logo"/>
 
-    <div class="cards">
-      <StatusCard class="card" color="red" :num-cards="team?.redCards || 0" />
-      <StatusCard class="card" color="yellow" :num-cards="team?.yellowCards || 0" />
-      <StatusCard class="card" color="foul" :num-cards="team?.foulCounter || 0" />
-      <BotCount class="card" :num-bots="team?.maxAllowedBots || 0" />
+      <div class="cards">
+        <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
+        <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
+        <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
+        <!-- max bot count is not so important for sepectators and ref, so we do not show it -->
+        <!--        <StatusCard :value="team?.maxAllowedBots || 0" border-color="#c7c7c7" icon="/bot.png" icon-alt="bot" />-->
+      </div>
     </div>
 
     <div class="cardTimers">
-      <CardTimer
-        v-for="(cardTime, index) in (team?.yellowCardTimes || []).slice(0, 3)"
-        :key="index"
-        :card-timer="cardTime"
-      />
+      <template v-for="i in 2" :key="i">
+        <CardTimer
+          v-if="i <= (team?.yellowCardTimes || []).length"
+          :card-timer="(team?.yellowCardTimes || [])[i - 1]!"
+        />
+        <div v-else class="card-timer-placeholder"/>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { Referee_TeamInfo } from '@/proto/ssl_gc_referee_message_pb'
-import { getTeamLogoUrl } from '@/helpers/teamLogo'
+import {computed} from 'vue'
+import type {Referee_TeamInfo} from '@/proto/ssl_gc_referee_message_pb'
+import {getTeamLogoUrl} from '@/helpers/teamLogo'
 import StatusCard from './StatusCard.vue'
-import BotCount from './BotCount.vue'
 import CardTimer from './CardTimer.vue'
 
 const props = defineProps<{
@@ -45,15 +49,6 @@ const logoUrl = computed(() => {
 </script>
 
 <style scoped>
-.cards {
-  display: flex;
-  justify-content: center;
-  align-self: stretch;
-}
-
-.card {
-}
-
 .team-status {
   transition: background-color 500ms ease;
   display: flex;
@@ -76,6 +71,20 @@ const logoUrl = computed(() => {
   justify-content: flex-end;
 }
 
+.logo-and-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  min-height: 0;
+  width: 100%;
+  gap: 0.8em;
+}
+
+.logo-and-cards.cards-left {
+  flex-direction: row-reverse;
+}
+
 .team-logo {
   max-width: 60%;
   max-height: 100%;
@@ -84,10 +93,24 @@ const logoUrl = computed(() => {
   min-height: 0;
 }
 
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  flex-shrink: 0;
+}
+
 .cardTimers {
-  margin-top: 6px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  width: 90%;
+  margin-top: 0.3em;
+}
+
+.card-timer-placeholder {
   width: 100%;
-  align-self: stretch;
+  height: calc(0.5em + 0.25em);
 }
 </style>
