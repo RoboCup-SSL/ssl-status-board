@@ -32,7 +32,6 @@
 
       <hr class="separator" />
 
-      <PowerPlay />
       <StatusMessage />
     </div>
     <div
@@ -51,7 +50,6 @@ import { formatDuration } from '@/helpers/timestamp'
 import { Referee_Command } from '@/proto/ssl_gc_referee_message_pb'
 import { Team } from '@/proto/ssl_gc_common_pb'
 import { mapStageToText, mapCommandToText } from '@/helpers/texts'
-import PowerPlay from './PowerPlay.vue'
 import StatusMessage from './StatusMessage.vue'
 
 const refereeStore = useRefereeStore()
