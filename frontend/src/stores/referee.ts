@@ -620,7 +620,7 @@ export const useRefereeStore = defineStore('referee', () => {
       yellow,
       blue,
       stage: 3,
-      stageTimeLeft: 300000000n,
+      stageTimeLeft: -250000000n,
       gameEvents: [
         {
           type: GameEvent_Type.GOAL,
