@@ -28,15 +28,22 @@ const refereeStore = useRefereeStore()
 <style scoped>
 .status-board {
   text-align: center;
-  font-size: 3.5vw;
+  font-size: 2.5vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .upper-container {
   display: flex;
   align-items: stretch;
+  height: 50%;
+  flex-shrink: 0;
 }
 
 .lower-container {
+  flex: 1;
+  overflow: auto;
 }
 
 .upper-lower-separator {

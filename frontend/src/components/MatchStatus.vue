@@ -193,7 +193,7 @@ const stageTimeLeft = computed(() => {
 .score {
   white-space: nowrap;
   width: 100%;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .stage {

@@ -48,6 +48,7 @@ const logoUrl = computed(() => {
 .cards {
   display: flex;
   justify-content: center;
+  align-self: stretch;
 }
 
 .card {
@@ -55,6 +56,11 @@ const logoUrl = computed(() => {
 
 .team-status {
   transition: background-color 500ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .bot-substitution-intent {
@@ -62,9 +68,9 @@ const logoUrl = computed(() => {
 }
 
 .team-name {
-  margin-top: 12px;
-  margin-bottom: 12px;
-  font-size: 1em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 0.85em;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -72,10 +78,16 @@ const logoUrl = computed(() => {
 
 .team-logo {
   max-width: 60%;
+  max-height: 100%;
+  object-fit: contain;
+  flex-shrink: 1;
+  min-height: 0;
 }
 
 .cardTimers {
   margin-top: 6px;
   display: block;
+  width: 100%;
+  align-self: stretch;
 }
 </style>
