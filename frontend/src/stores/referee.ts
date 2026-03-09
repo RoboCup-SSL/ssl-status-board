@@ -67,6 +67,7 @@ export const useRefereeStore = defineStore('referee', () => {
       name: 'SRC',
       score: 0,
       redCards: 5,
+      yellowCardTimes: [1000000],
       maxAllowedBots: 6,
     })
 
