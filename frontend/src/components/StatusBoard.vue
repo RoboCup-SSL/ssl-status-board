@@ -47,9 +47,7 @@ const refereeStore = useRefereeStore()
 }
 
 .upper-lower-separator {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-  display: block;
+  margin: 0.2em;
 }
 
 .match-status-container {
