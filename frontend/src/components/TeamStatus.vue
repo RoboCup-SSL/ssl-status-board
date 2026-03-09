@@ -9,21 +9,20 @@
 
     <img :src="logoUrl" alt="team logo" class="team-logo"/>
 
-    <div class="cards-and-timers">
-      <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
-      <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
-      <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
-      <template v-for="i in 2" :key="i">
-        <CardTimer
-          v-if="i <= (team?.yellowCardTimes || []).length"
-          :card-timer="(team?.yellowCardTimes || [])[i - 1]!"
-        />
-        <div v-else class="card-timer-placeholder">
-          <svg class="placeholder-circle" viewBox="0 0 36 36">
-            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#6a6965" stroke-width="3"/>
-          </svg>
-        </div>
-      </template>
+    <div class="cards-section">
+      <div class="status-cards">
+        <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
+        <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
+        <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
+      </div>
+      <div class="card-timers">
+        <template v-for="i in 2" :key="i">
+          <CardTimer
+            v-if="i <= activeTimers.length"
+            :card-timer="activeTimers[i - 1]!"
+          />
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -42,6 +41,10 @@ const props = defineProps<{
 
 const logoUrl = computed(() => {
   return getTeamLogoUrl(props.team?.name || '')
+})
+
+const activeTimers = computed(() => {
+  return (props.team?.yellowCardTimes || []).filter(t => Math.ceil(t / 1000000) > 0)
 })
 </script>
 
@@ -76,27 +79,29 @@ const logoUrl = computed(() => {
   min-height: 0;
 }
 
-.cards-and-timers {
+.cards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0.3em;
+  gap: 0.3em;
+}
+
+.status-cards {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 0.15em;
-  flex-shrink: 0;
-  margin: 0.3em;
 }
 
-.team-blue ~ .cards-and-timers {
-  flex-direction: row-reverse;
-}
-
-.card-timer-placeholder {
-  width: 1.2em;
-  height: 1.2em;
-}
-
-.placeholder-circle {
-  width: 100%;
-  height: 100%;
+.card-timers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em;
+  min-height: 1.2em;
 }
 </style>
