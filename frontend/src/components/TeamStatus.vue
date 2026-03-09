@@ -18,7 +18,11 @@
           v-if="i <= (team?.yellowCardTimes || []).length"
           :card-timer="(team?.yellowCardTimes || [])[i - 1]!"
         />
-        <div v-else class="card-timer-placeholder"/>
+        <div v-else class="card-timer-placeholder">
+          <svg class="placeholder-circle" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#6a6965" stroke-width="3"/>
+          </svg>
+        </div>
       </template>
     </div>
   </div>
@@ -82,8 +86,17 @@ const logoUrl = computed(() => {
   margin: 0.3em;
 }
 
+.team-blue ~ .cards-and-timers {
+  flex-direction: row-reverse;
+}
+
 .card-timer-placeholder {
   width: 1.2em;
   height: 1.2em;
+}
+
+.placeholder-circle {
+  width: 100%;
+  height: 100%;
 }
 </style>
