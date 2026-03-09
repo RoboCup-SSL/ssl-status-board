@@ -52,7 +52,7 @@ export const useRefereeStore = defineStore('referee', () => {
   }
 
   // Development state for testing
-  const createDevelopmentState = (): Referee => {
+  const createFullGameState = (): Referee => {
     const yellow = create(Referee_TeamInfoSchema, {
       // long name
       name: 'TIGERs Mannheim',
@@ -561,6 +561,120 @@ export const useRefereeStore = defineStore('referee', () => {
     })
   }
 
+  const createMinimalState = (): Referee => {
+    const yellow = create(Referee_TeamInfoSchema, {
+      name: 'RoboDragons',
+      score: 2,
+      yellowCards: 0,
+      yellowCardTimes: [],
+      redCards: 0,
+      maxAllowedBots: 11,
+    })
+
+    const blue = create(Referee_TeamInfoSchema, {
+      name: 'ZJUNlict',
+      score: 1,
+      yellowCards: 0,
+      yellowCardTimes: [],
+      redCards: 0,
+      maxAllowedBots: 11,
+    })
+
+    return create(RefereeSchema, {
+      sourceIdentifier: 'dev',
+      yellow,
+      blue,
+      stage: 2,
+      stageTimeLeft: 300000000n,
+      gameEvents: [],
+      packetTimestamp: 0n,
+      commandTimestamp: 0n,
+      commandCounter: 0,
+      matchType: 0,
+    })
+  }
+
+  const createHalftimeState = (): Referee => {
+    const yellow = create(Referee_TeamInfoSchema, {
+      name: 'ER-Force',
+      score: 3,
+      yellowCards: 1,
+      yellowCardTimes: [45000000],
+      redCards: 0,
+      maxAllowedBots: 11,
+    })
+
+    const blue = create(Referee_TeamInfoSchema, {
+      name: 'RoboTeam Twente',
+      score: 2,
+      yellowCards: 0,
+      yellowCardTimes: [],
+      redCards: 0,
+      maxAllowedBots: 11,
+    })
+
+    return create(RefereeSchema, {
+      sourceIdentifier: 'dev',
+      yellow,
+      blue,
+      stage: 3,
+      stageTimeLeft: 300000000n,
+      gameEvents: [
+        {
+          type: GameEvent_Type.GOAL,
+          origin: [ORIGIN_UI],
+          createdTimestamp: 100000000n,
+          event: {
+            case: 'goal',
+            value: {
+              byTeam: Team.YELLOW,
+              kickingBot: 3,
+              kickingTeam: Team.YELLOW,
+            },
+          },
+        },
+        {
+          type: GameEvent_Type.GOAL,
+          origin: [ORIGIN_UI],
+          createdTimestamp: 200000000n,
+          event: {
+            case: 'goal',
+            value: {
+              byTeam: Team.BLUE,
+              kickingBot: 7,
+              kickingTeam: Team.BLUE,
+            },
+          },
+        },
+        {
+          type: GameEvent_Type.BOT_CRASH_UNIQUE,
+          origin: [ORIGIN_ERFORCE],
+          createdTimestamp: 300000000n,
+          event: {
+            case: 'botCrashUnique',
+            value: {
+              byTeam: Team.BLUE,
+              violator: 2,
+              victim: 5,
+              crashSpeed: 3.1,
+            },
+          },
+        },
+      ],
+      packetTimestamp: 0n,
+      commandTimestamp: 0n,
+      commandCounter: 0,
+      matchType: 0,
+    })
+  }
+
+  type DevScenario = 'full' | 'minimal' | 'halftime'
+  const devScenarios: Record<DevScenario, () => Referee> = {
+    full: createFullGameState,
+    minimal: createMinimalState,
+    halftime: createHalftimeState,
+  }
+
   // Get the current referee message, using WebSocket data or fallback to default state
   const refereeMsg = computed(() => {
     // Always prefer WebSocket data when available
@@ -568,7 +682,12 @@ export const useRefereeStore = defineStore('referee', () => {
       return referee.value
     }
     // Fallback: In development, show sample data; in production, show empty state
-    return import.meta.env.DEV ? createDevelopmentState() : createDefaultReferee()
+    if (import.meta.env.DEV) {
+      const param = new URLSearchParams(window.location.search).get('scenario') as DevScenario | null
+      const scenario: DevScenario = param && param in devScenarios ? param : 'full'
+      return devScenarios[scenario]()
+    }
+    return createDefaultReferee()
   })
 
   return {
