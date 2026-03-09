@@ -29,15 +29,8 @@
           <span v-if="isTimeout"> ({{ formatDuration(timeoutTime) }}) </span>
         </div>
       </div>
-
-      <hr class="separator" />
     </div>
-    <div
-      class="time-container"
-      :class="{ 'time-positive': stageTimeLeft >= 0, 'time-negative': stageTimeLeft < 0 }"
-    >
-      {{ formatDuration(Math.abs(Number(stageTimeLeft))) }}
-    </div>
+    <MatchTime :stageTimeLeft="Number(stageTimeLeft)" />
   </div>
 </template>
 
@@ -45,6 +38,7 @@
 import { computed } from 'vue'
 import { useRefereeStore } from '@/stores/referee'
 import { formatDuration } from '@/helpers/timestamp'
+import MatchTime from '@/components/MatchTime.vue'
 import { Referee_Command } from '@/proto/ssl_gc_referee_message_pb'
 import { Team } from '@/proto/ssl_gc_common_pb'
 import { mapStageToText, mapCommandToText } from '@/helpers/texts'
@@ -162,27 +156,6 @@ const stageTimeLeft = computed(() => {
   justify-content: space-between;
   height: 100%;
   align-items: center;
-}
-
-.time-container {
-  border-style: dashed;
-  display: inline-block;
-  padding: 0.1em;
-  margin: 0.1em;
-}
-
-.time-positive {
-  border-color: green;
-  background-color: rgba(0, 255, 0, 0.1);
-}
-
-.time-negative {
-  border-color: red;
-  background-color: rgba(255, 0, 0, 0.1);
-}
-
-.separator {
-  margin: 0.2em;
 }
 
 .score {
