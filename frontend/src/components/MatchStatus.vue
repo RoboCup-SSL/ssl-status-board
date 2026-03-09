@@ -1,36 +1,34 @@
 <template>
   <div class="match-status">
-    <div>
-      <div
-        :class="{
-          'highlight-command': true,
-          'stop-command': isStop,
-          'halt-command': isHalt,
-          'robot-substitution-blue': isRobotSubstitutionBlue,
-          'robot-substitution-yellow': isRobotSubstitutionYellow,
-          'robot-substitution-both': isRobotSubstitutionBoth,
-        }"
-      >
-        <div class="stage">{{ stage }}</div>
+    <div
+      :class="{
+        'highlight-command': true,
+        'stop-command': isStop,
+        'halt-command': isHalt,
+        'robot-substitution-blue': isRobotSubstitutionBlue,
+        'robot-substitution-yellow': isRobotSubstitutionYellow,
+        'robot-substitution-both': isRobotSubstitutionBoth,
+      }"
+    >
+      <div class="stage">{{ stage }}</div>
 
         <span class="score">
           {{ refereeStore.refereeMsg.yellow?.score || 0 }} :
           {{ refereeStore.refereeMsg.blue?.score || 0 }}
         </span>
 
-        <div
-          class="command"
-          :class="{ 'team-yellow': commandForYellow, 'team-blue': commandForBlue }"
-        >
-          {{ gameState }}
-          <span v-if="isBallPlacement && remainingTime >= 0">
-            ({{ formatDuration(Number(remainingTime)) }})
-          </span>
-          <span v-if="isTimeout"> ({{ formatDuration(timeoutTime) }}) </span>
-        </div>
+      <div
+        class="command"
+        :class="{ 'team-yellow': commandForYellow, 'team-blue': commandForBlue }"
+      >
+        {{ gameState }}
+        <span v-if="isBallPlacement && remainingTime >= 0">
+          ({{ formatDuration(Number(remainingTime)) }})
+        </span>
+        <span v-if="isTimeout"> ({{ formatDuration(timeoutTime) }}) </span>
       </div>
     </div>
-    <MatchTime :stageTimeLeft="Number(stageTimeLeft)" />
+    <MatchTime class="match-time" :stageTimeLeft="Number(stageTimeLeft)" />
   </div>
 </template>
 
@@ -153,30 +151,45 @@ const stageTimeLeft = computed(() => {
 .match-status {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  width: 100%;
   align-items: center;
+  justify-content: center;
 }
 
 .score {
   white-space: nowrap;
   width: 100%;
   font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.match-time {
+  flex-shrink: 0;
+  margin: 0.3em;
 }
 
 .stage {
-  margin-top: 1vh;
+  margin-bottom: 0.3em;
 }
 
 .command {
-  margin-top: 3vmin;
+  margin-top: 0.3em;
 }
 
 .highlight-command {
   transition: background-color 500ms ease;
   border-radius: 0.5em;
-  padding: 0.2em 0.1em 0.1em;
-  margin-top: 0.1em;
+  padding: 0.3em;
+  margin: 0.3em 1em;
+  align-self: stretch;
+  flex-shrink: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .highlight-command.stop-command {
