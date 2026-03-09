@@ -612,6 +612,7 @@ export const useRefereeStore = defineStore('referee', () => {
       yellowCardTimes: [],
       redCards: 0,
       maxAllowedBots: 11,
+      botSubstitutionIntent: true,
     })
 
     return create(RefereeSchema, {
