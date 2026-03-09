@@ -57,6 +57,6 @@ const refereeStore = useRefereeStore()
 
 .team-status {
   flex-grow: 0.3;
-  flex-basis: 30%;
+  flex-basis: 40%;
 }
 </style>

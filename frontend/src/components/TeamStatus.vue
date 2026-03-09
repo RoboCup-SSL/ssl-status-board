@@ -7,19 +7,12 @@
       <div class="team-name-text">{{ team?.name || 'Team' }}</div>
     </div>
 
-    <div class="logo-and-cards" :class="{ 'cards-left': color === 'blue' }">
-      <img :src="logoUrl" alt="team logo" class="team-logo"/>
+    <img :src="logoUrl" alt="team logo" class="team-logo"/>
 
-      <div class="cards">
-        <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
-        <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
-        <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
-        <!-- max bot count is not so important for sepectators and ref, so we do not show it -->
-        <!--        <StatusCard :value="team?.maxAllowedBots || 0" border-color="#c7c7c7" icon="/bot.png" icon-alt="bot" />-->
-      </div>
-    </div>
-
-    <div class="cardTimers">
+    <div class="cards-and-timers">
+      <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
+      <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
+      <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
       <template v-for="i in 2" :key="i">
         <CardTimer
           v-if="i <= (team?.yellowCardTimes || []).length"
@@ -71,20 +64,6 @@ const logoUrl = computed(() => {
   justify-content: flex-end;
 }
 
-.logo-and-cards {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 1;
-  min-height: 0;
-  width: 100%;
-  gap: 0.8em;
-}
-
-.logo-and-cards.cards-left {
-  flex-direction: row-reverse;
-}
-
 .team-logo {
   max-width: 60%;
   max-height: 100%;
@@ -93,24 +72,18 @@ const logoUrl = computed(() => {
   min-height: 0;
 }
 
-.cards {
+.cards-and-timers {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 0.15em;
   flex-shrink: 0;
-}
-
-.cardTimers {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  width: 90%;
-  margin-top: 0.3em;
+  margin: 0.3em;
 }
 
 .card-timer-placeholder {
-  width: 100%;
-  height: calc(0.5em + 0.25em);
+  width: 1.2em;
+  height: 1.2em;
 }
 </style>

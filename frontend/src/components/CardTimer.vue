@@ -1,9 +1,16 @@
 <template>
   <div class="card-timer">
-    <span class="timer-text">{{ seconds }}s</span>
-    <div class="bar">
-      <div class="bar-fill" :style="{ width: `${percentage}%` }"></div>
-    </div>
+    <svg class="circle" viewBox="0 0 36 36">
+      <circle class="circle-bg" cx="18" cy="18" r="15.9" />
+      <circle
+        class="circle-fill"
+        cx="18"
+        cy="18"
+        r="15.9"
+        :stroke-dasharray="`${percentage} 100`"
+      />
+    </svg>
+    <span class="timer-text">{{ seconds }}</span>
   </div>
 </template>
 
@@ -25,33 +32,38 @@ const seconds = computed(() => {
 
 <style scoped>
 .card-timer {
-  width: 100%;
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.05em;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #6a6965;
+  stroke-width: 3;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: yellow;
+  stroke-width: 3;
+  stroke-linecap: round;
 }
 
 .timer-text {
+  position: absolute;
   color: yellow;
-  font-size: 0.5em;
+  font-size: 0.4em;
   font-weight: bold;
   line-height: 1;
-}
-
-.bar {
-  width: 100%;
-  height: 0.2em;
-  background: #6a6965;
-  position: relative;
-}
-
-.bar-fill {
-  background: yellow;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
 }
 </style>
