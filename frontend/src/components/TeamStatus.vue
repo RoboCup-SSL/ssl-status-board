@@ -95,6 +95,6 @@ const activeTimers = computed(() => {
   align-items: center;
   justify-content: center;
   gap: 0.15em;
-  min-height: 1.2em;
+  height: 1.5em;
 }
 </style>

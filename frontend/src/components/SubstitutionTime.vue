@@ -10,11 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { formatDuration } from '@/helpers/timestamp'
+import {computed} from 'vue'
 import TimerCircle from './TimerCircle.vue'
-import type { Referee_TeamInfo } from '@/proto/ssl_gc_referee_message_pb'
-import { Team } from '@/proto/ssl_gc_common_pb'
+import type {Referee_TeamInfo} from '@/proto/ssl_gc_referee_message_pb'
+import {Team} from '@/proto/ssl_gc_common_pb'
 
 const TOTAL_SUBSTITUTION_TIME = 20000000
 
@@ -45,7 +44,7 @@ const percentage = computed(() => {
   return Math.min(100, Math.max(0, ratio * 100))
 })
 
-const timeText = computed(() => formatDuration(timeLeft.value))
+const timeText = computed(() => timeLeft.value / 1000000)
 </script>
 
 <style scoped>
@@ -57,7 +56,6 @@ const timeText = computed(() => formatDuration(timeLeft.value))
 }
 
 .substitution-label {
-  font-size: 0.8em;
   margin-bottom: 0.2em;
 }
 
