@@ -14,6 +14,8 @@
 
     <div v-if="statusMessage" class="status-message-between" v-html="statusMessageHtml">
     </div>
+    <div class="next-command-between" v-html="nextCommandHtml">
+    </div>
 
     <hr class="upper-lower-separator" />
 
@@ -27,11 +29,18 @@ import { useRefereeStore } from '@/stores/referee'
 import TeamStatus from './TeamStatus.vue'
 import MatchStatus from './MatchStatus.vue'
 import GameEvents from './GameEvents.vue'
+import { mapCommandWithTeamToText } from '@/helpers/texts'
 
 const refereeStore = useRefereeStore()
 
 const statusMessage = computed(() => {
   return refereeStore.refereeMsg.statusMessage || null
+})
+
+const nextCommandHtml = computed(() => {
+  const cmd = refereeStore.refereeMsg.nextCommand
+  if (!cmd) return 'Next: -'
+  return `Next: ${mapCommandWithTeamToText(cmd)}`
 })
 
 const statusMessageHtml = computed(() => {
@@ -79,5 +88,12 @@ const statusMessageHtml = computed(() => {
   color: white;
   text-align: center;
   padding: 0.2em 0;
+}
+
+.next-command-between {
+  color: white;
+  text-align: left;
+  padding: 0.2em 0.5em;
+  font-size: 0.7em;
 }
 </style>

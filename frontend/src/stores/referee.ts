@@ -2,7 +2,7 @@ import {defineStore} from 'pinia'
 import {computed} from 'vue'
 import {create} from '@bufbuild/protobuf'
 import type {Referee, Referee_TeamInfo} from '../proto/ssl_gc_referee_message_pb'
-import {Referee_TeamInfoSchema, RefereeSchema} from '../proto/ssl_gc_referee_message_pb'
+import {Referee_Command, Referee_TeamInfoSchema, RefereeSchema} from '../proto/ssl_gc_referee_message_pb'
 import {useReferee} from '@/composables/referee'
 import {Team} from '@/proto/ssl_gc_common_pb.ts'
 import {GameEvent_Type} from "@/proto/ssl_gc_game_event_pb.ts";
@@ -555,6 +555,7 @@ export const useRefereeStore = defineStore('referee', () => {
           },
         },
       ],
+      nextCommand: Referee_Command.DIRECT_FREE_BLUE,
       packetTimestamp: 0n,
       commandTimestamp: 0n,
       commandCounter: 0,

@@ -56,6 +56,38 @@ export const mapCommandToText = (command: Referee_Command): string => {
   return `unknown command: ${command}`
 }
 
+const yellowTeam = '<span class="team-yellow">Yellow</span>'
+const blueTeam = '<span class="team-blue">Blue</span>'
+
+const commandWithTeamToText = new Map<Referee_Command, string>([
+  [Referee_Command.HALT, 'Halt'],
+  [Referee_Command.STOP, 'Stop'],
+  [Referee_Command.NORMAL_START, 'Normal Start'],
+  [Referee_Command.FORCE_START, 'Force Start'],
+  [Referee_Command.PREPARE_KICKOFF_YELLOW, `Kickoff for ${yellowTeam}`],
+  [Referee_Command.PREPARE_KICKOFF_BLUE, `Kickoff for ${blueTeam}`],
+  [Referee_Command.PREPARE_PENALTY_YELLOW, `Penalty Kick for ${yellowTeam}`],
+  [Referee_Command.PREPARE_PENALTY_BLUE, `Penalty Kick for ${blueTeam}`],
+  [Referee_Command.DIRECT_FREE_YELLOW, `Free Kick for ${yellowTeam}`],
+  [Referee_Command.DIRECT_FREE_BLUE, `Free Kick for ${blueTeam}`],
+  [Referee_Command.INDIRECT_FREE_YELLOW, `Free Kick for ${yellowTeam}`],
+  [Referee_Command.INDIRECT_FREE_BLUE, `Free Kick for ${blueTeam}`],
+  [Referee_Command.TIMEOUT_YELLOW, `Timeout for ${yellowTeam}`],
+  [Referee_Command.TIMEOUT_BLUE, `Timeout for ${blueTeam}`],
+  [Referee_Command.GOAL_YELLOW, `Goal for ${yellowTeam}`],
+  [Referee_Command.GOAL_BLUE, `Goal for ${blueTeam}`],
+  [Referee_Command.BALL_PLACEMENT_YELLOW, `Ball Placement for ${yellowTeam}`],
+  [Referee_Command.BALL_PLACEMENT_BLUE, `Ball Placement for ${blueTeam}`],
+])
+
+export const mapCommandWithTeamToText = (command: Referee_Command): string => {
+  const text = commandWithTeamToText.get(command)
+  if (text !== undefined) {
+    return text
+  }
+  return `unknown command: ${command}`
+}
+
 const oppositeTeam = (team: Team): Team => {
   if (team === Team.BLUE) {
     return Team.YELLOW
