@@ -1,5 +1,5 @@
 <template>
-  <div class="team-status" :class="{ 'bot-substitution-intent': team?.botSubstitutionIntent }">
+  <div class="team-status">
     <div
       :class="{ 'team-yellow': color === 'yellow', 'team-blue': color === 'blue' }"
       class="team-name"
@@ -17,7 +17,7 @@
       </div>
       <div class="card-timers">
         <template v-for="i in 2" :key="i">
-          <CardTimer
+          <CardTime
             v-if="i <= activeTimers.length"
             :card-timer="activeTimers[i - 1]!"
           />
@@ -32,7 +32,7 @@ import {computed} from 'vue'
 import type {Referee_TeamInfo} from '@/proto/ssl_gc_referee_message_pb'
 import {getTeamLogoUrl} from '@/helpers/teamLogo'
 import StatusCard from './StatusCard.vue'
-import CardTimer from './CardTimer.vue'
+import CardTime from './CardTime.vue'
 
 const props = defineProps<{
   color: 'yellow' | 'blue'
@@ -58,14 +58,9 @@ const activeTimers = computed(() => {
   overflow: hidden;
 }
 
-.bot-substitution-intent {
-  background-color: #c2c3d0;
-}
-
 .team-name {
   margin-top: 4px;
   margin-bottom: 4px;
-  font-size: 0.85em;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

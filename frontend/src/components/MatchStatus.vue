@@ -5,9 +5,6 @@
         'highlight-command': true,
         'stop-command': isStop,
         'halt-command': isHalt,
-        'robot-substitution-blue': isRobotSubstitutionBlue,
-        'robot-substitution-yellow': isRobotSubstitutionYellow,
-        'robot-substitution-both': isRobotSubstitutionBoth,
       }"
     >
       <div class="stage">{{ stage }}</div>
@@ -28,7 +25,23 @@
         <span v-if="isTimeout"> ({{ formatDuration(timeoutTime) }}) </span>
       </div>
     </div>
-    <MatchTime class="match-time" :stageTimeLeft="Number(stageTimeLeft)" />
+    <div class="timers-row">
+      <div class="substitution-slot">
+        <SubstitutionTime
+          v-if="hasSubstitution(Team.YELLOW)"
+          :team="refereeStore.refereeMsg.yellow!"
+          :teamSide="Team.YELLOW"
+        />
+      </div>
+      <MatchTime class="match-time" :stageTimeLeft="Number(stageTimeLeft)" />
+      <div class="substitution-slot">
+        <SubstitutionTime
+          v-if="hasSubstitution(Team.BLUE)"
+          :team="refereeStore.refereeMsg.blue!"
+          :teamSide="Team.BLUE"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,43 +50,24 @@ import { computed } from 'vue'
 import { useRefereeStore } from '@/stores/referee'
 import { formatDuration } from '@/helpers/timestamp'
 import MatchTime from '@/components/MatchTime.vue'
+import SubstitutionTime from '@/components/SubstitutionTime.vue'
 import { Referee_Command } from '@/proto/ssl_gc_referee_message_pb'
 import { Team } from '@/proto/ssl_gc_common_pb'
 import { mapStageToText, mapCommandToText } from '@/helpers/texts'
 
 const refereeStore = useRefereeStore()
 
-const isRobotSubstitution = (team: Team): boolean => {
-  if (team === Team.BLUE) {
-    return refereeStore.refereeMsg.blue?.botSubstitutionAllowed || false
-  } else if (team === Team.YELLOW) {
-    return refereeStore.refereeMsg.yellow?.botSubstitutionAllowed || false
-  }
-  return false
+const hasSubstitution = (team: Team): boolean => {
+  const info = team === Team.BLUE ? refereeStore.refereeMsg.blue : refereeStore.refereeMsg.yellow
+  return !!(info?.botSubstitutionAllowed || info?.botSubstitutionIntent)
 }
 
-const isRobotSubstitutionAny = computed(() => {
-  return isRobotSubstitution(Team.BLUE) || isRobotSubstitution(Team.YELLOW)
-})
-
-const isRobotSubstitutionBlue = computed(() => {
-  return isRobotSubstitution(Team.BLUE) && !isRobotSubstitution(Team.YELLOW)
-})
-
-const isRobotSubstitutionYellow = computed(() => {
-  return isRobotSubstitution(Team.YELLOW) && !isRobotSubstitution(Team.BLUE)
-})
-
-const isRobotSubstitutionBoth = computed(() => {
-  return isRobotSubstitution(Team.BLUE) && isRobotSubstitution(Team.YELLOW)
-})
-
 const isHalt = computed(() => {
-  return !isRobotSubstitutionAny.value && refereeStore.refereeMsg.command === Referee_Command.HALT
+  return refereeStore.refereeMsg.command === Referee_Command.HALT
 })
 
 const isStop = computed(() => {
-  return !isRobotSubstitutionAny.value && refereeStore.refereeMsg.command === Referee_Command.STOP
+  return refereeStore.refereeMsg.command === Referee_Command.STOP
 })
 
 const stage = computed(() => {
@@ -81,9 +75,6 @@ const stage = computed(() => {
 })
 
 const gameState = computed(() => {
-  if (isRobotSubstitutionAny.value) {
-    return 'Robot Substitution'
-  }
   return mapCommandToText(refereeStore.refereeMsg.command)
 })
 
@@ -200,18 +191,20 @@ const stageTimeLeft = computed(() => {
   background-color: #ee0022;
 }
 
-.highlight-command.robot-substitution-blue {
-  background-color: #779fff;
-  color: #353535;
+.timers-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  flex-shrink: 0;
 }
 
-.highlight-command.robot-substitution-yellow {
-  background-color: #fff145;
-  color: #353535;
+.substitution-slot {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
 }
 
-.highlight-command.robot-substitution-both {
-  background-image: linear-gradient(to right, #fff145 0%, #779fff 100%);
-  color: #353535;
-}
 </style>

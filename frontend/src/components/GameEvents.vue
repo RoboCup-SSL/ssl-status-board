@@ -63,7 +63,6 @@ const isOrigin = (gameEvent: GameEvent, origin: string): boolean => {
 <style scoped>
 .game-events {
   text-align: left;
-  font-size: 0.7em;
 }
 
 .table-striped {

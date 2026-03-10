@@ -96,7 +96,6 @@ const statusMessageHtml = computed(() => {
   color: white;
   text-align: center;
   padding: 0.2em 0.5em;
-  font-size: 0.7em;
   flex-shrink: 0;
 }
 

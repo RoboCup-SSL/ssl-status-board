@@ -1,43 +1,39 @@
 <template>
-  <div class="card-timer">
+  <div class="timer-circle">
     <svg class="circle" viewBox="0 0 36 36">
       <circle class="circle-bg" cx="18" cy="18" r="15.9" />
       <circle
+        v-if="percentage > 0"
         class="circle-fill"
         cx="18"
         cy="18"
         r="15.9"
+        :stroke="color"
         :stroke-dasharray="`${percentage} 100`"
       />
     </svg>
-    <span class="timer-text">{{ seconds }}</span>
+    <span class="timer-text" :style="{ color, fontSize }">
+      <slot />
+    </span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps<{
-  cardTimer: number // time in microseconds
+defineProps<{
+  percentage: number
+  color: string
+  fontSize?: string
 }>()
-
-const percentage = computed(() => {
-  return props.cardTimer / 1200000
-})
-
-const seconds = computed(() => {
-  return Math.ceil(props.cardTimer / 1000000)
-})
 </script>
 
 <style scoped>
-.card-timer {
+.timer-circle {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.2em;
-  height: 1.2em;
+  width: 100%;
+  height: 100%;
 }
 
 .circle {
@@ -54,15 +50,12 @@ const seconds = computed(() => {
 
 .circle-fill {
   fill: none;
-  stroke: yellow;
   stroke-width: 3;
   stroke-linecap: round;
 }
 
 .timer-text {
   position: absolute;
-  color: yellow;
-  font-size: 0.4em;
   font-weight: bold;
   line-height: 1;
 }

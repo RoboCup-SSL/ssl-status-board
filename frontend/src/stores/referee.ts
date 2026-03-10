@@ -679,11 +679,100 @@ export const useRefereeStore = defineStore('referee', () => {
     })
   }
 
-  type DevScenario = 'full' | 'minimal' | 'halftime'
+  const createSubstitutionState = (): Referee => {
+    const yellow = create(Referee_TeamInfoSchema, {
+      name: 'TIGERs Mannheim',
+      score: 2,
+      yellowCards: 1,
+      yellowCardTimes: [60000000],
+      maxAllowedBots: 11,
+      botSubstitutionAllowed: true,
+      botSubstitutionTimeLeft: 12000000,
+    })
+
+    const blue = create(Referee_TeamInfoSchema, {
+      name: 'ER-Force',
+      score: 1,
+      maxAllowedBots: 11,
+      botSubstitutionAllowed: true,
+      botSubstitutionTimeLeft: 5000000,
+    })
+
+    return create(RefereeSchema, {
+      sourceIdentifier: 'dev',
+      yellow,
+      blue,
+      stage: Referee_Stage.NORMAL_SECOND_HALF,
+      command: Referee_Command.HALT,
+      stageTimeLeft: 180000000n,
+      nextCommand: Referee_Command.DIRECT_FREE_YELLOW,
+      gameEvents: [
+        {
+          type: GameEvent_Type.BOT_SUBSTITUTION,
+          origin: [ORIGIN_UI],
+          createdTimestamp: 100000000n,
+          event: {
+            case: 'botSubstitution',
+            value: {
+              byTeam: Team.YELLOW,
+            },
+          },
+        },
+        {
+          type: GameEvent_Type.BOT_SUBSTITUTION,
+          origin: [ORIGIN_UI],
+          createdTimestamp: 200000000n,
+          event: {
+            case: 'botSubstitution',
+            value: {
+              byTeam: Team.BLUE,
+            },
+          },
+        },
+      ],
+      packetTimestamp: 0n,
+      commandTimestamp: 0n,
+      commandCounter: 0,
+      matchType: 0,
+    })
+  }
+
+  const createSubstitutionIntentState = (): Referee => {
+    const yellow = create(Referee_TeamInfoSchema, {
+      name: 'TIGERs Mannheim',
+      score: 1,
+      maxAllowedBots: 11,
+      botSubstitutionIntent: true,
+    })
+
+    const blue = create(Referee_TeamInfoSchema, {
+      name: 'ER-Force',
+      score: 0,
+      maxAllowedBots: 11,
+    })
+
+    return create(RefereeSchema, {
+      sourceIdentifier: 'dev',
+      yellow,
+      blue,
+      stage: Referee_Stage.NORMAL_FIRST_HALF,
+      command: Referee_Command.FORCE_START,
+      stageTimeLeft: 220000000n,
+      gameEvents: [],
+      packetTimestamp: 0n,
+      commandTimestamp: 0n,
+      commandCounter: 0,
+      matchType: 0,
+    })
+  }
+
+  type DevScenario = 'full' | 'minimal' | 'halftime' | 'substitution' | 'substitution-intent'
   const devScenarios: Record<DevScenario, () => Referee> = {
     full: createFullGameState,
     minimal: createMinimalState,
     halftime: createHalftimeState,
+    substitution: createSubstitutionState,
+    'substitution-intent': createSubstitutionIntentState,
   }
 
   // Get the current referee message, using WebSocket data or fallback to default state
