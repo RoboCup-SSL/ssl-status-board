@@ -72,10 +72,8 @@ const activeTimers = computed(() => {
 }
 
 .team-logo {
-  max-width: 60%;
-  max-height: 100%;
   object-fit: contain;
-  flex-shrink: 1;
+  flex: 1;
   min-height: 0;
 }
 

@@ -5,16 +5,16 @@
 
       <div class="match-status-container">
         <MatchStatus />
+        <div class="next-command" v-html="nextCommandHtml || '&nbsp;'">
+        </div>
       </div>
 
       <TeamStatus class="team-status" color="blue" :team="refereeStore.refereeMsg.blue" />
     </div>
 
-    <hr class="upper-lower-separator" />
+    <hr v-if="statusMessage" class="upper-lower-separator" />
 
-    <div v-if="statusMessage" class="status-message-between" v-html="statusMessageHtml">
-    </div>
-    <div class="next-command-between" v-html="nextCommandHtml">
+    <div v-if="statusMessage" class="status-message" v-html="statusMessageHtml">
     </div>
 
     <hr class="upper-lower-separator" />
@@ -39,7 +39,7 @@ const statusMessage = computed(() => {
 
 const nextCommandHtml = computed(() => {
   const cmd = refereeStore.refereeMsg.nextCommand
-  if (!cmd) return 'Next: -'
+  if (!cmd) return ''
   return `Next: ${mapCommandWithTeamToText(cmd)}`
 })
 
@@ -61,13 +61,14 @@ const statusMessageHtml = computed(() => {
 .upper-container {
   display: flex;
   align-items: stretch;
-  height: 50%;
+  height: 60%;
   flex-shrink: 0;
 }
 
 .lower-container {
   flex: 1;
   overflow: auto;
+  min-height: 0;
 }
 
 .upper-lower-separator {
@@ -77,6 +78,13 @@ const statusMessageHtml = computed(() => {
 .match-status-container {
   flex-grow: 0.4;
   flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.match-status-container > :first-child {
+  flex: 1;
+  min-height: 0;
 }
 
 .team-status {
@@ -84,16 +92,17 @@ const statusMessageHtml = computed(() => {
   flex-basis: 40%;
 }
 
-.status-message-between {
+.next-command {
+  color: white;
+  text-align: center;
+  padding: 0.2em 0.5em;
+  font-size: 0.7em;
+  flex-shrink: 0;
+}
+
+.status-message {
   color: white;
   text-align: center;
   padding: 0.2em 0;
-}
-
-.next-command-between {
-  color: white;
-  text-align: left;
-  padding: 0.2em 0.5em;
-  font-size: 0.7em;
 }
 </style>
