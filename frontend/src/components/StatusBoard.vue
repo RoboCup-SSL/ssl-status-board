@@ -52,7 +52,7 @@ const statusMessageHtml = computed(() => {
 <style scoped>
 .status-board {
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 3vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@ const statusMessageHtml = computed(() => {
 
 .match-status-container {
   flex-grow: 0.4;
-  flex-basis: 40%;
+  flex-basis: 60%;
   display: flex;
   flex-direction: column;
 }

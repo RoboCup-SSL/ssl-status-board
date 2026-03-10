@@ -33,7 +33,6 @@ const timeText = computed(() => formatDuration(props.stageTimeLeft))
 
 <style scoped>
 .match-time {
-  width: 4em;
-  height: 4em;
+  width: 3em;
 }
 </style>
