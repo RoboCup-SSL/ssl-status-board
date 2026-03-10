@@ -12,13 +12,12 @@
 
     <hr class="upper-lower-separator" />
 
-    <GameEvents class="lower-container" />
-
-    <div v-if="statusMessage" class="status-message-overlay">
-      <div class="status-message-box">
-        {{ statusMessage }}
-      </div>
+    <div v-if="statusMessage" class="status-message-between" v-html="statusMessageHtml">
     </div>
+
+    <hr class="upper-lower-separator" />
+
+    <GameEvents class="lower-container" />
   </div>
 </template>
 
@@ -33,6 +32,11 @@ const refereeStore = useRefereeStore()
 
 const statusMessage = computed(() => {
   return refereeStore.refereeMsg.statusMessage || null
+})
+
+const statusMessageHtml = computed(() => {
+  if (!statusMessage.value) return ''
+  return statusMessage.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')
 })
 </script>
 
@@ -71,26 +75,9 @@ const statusMessage = computed(() => {
   flex-basis: 40%;
 }
 
-.status-message-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 100;
-}
-
-.status-message-box {
-  background-color: rgba(0, 0, 0, 0.75);
+.status-message-between {
   color: white;
-  padding: 0.8em 1.5em;
-  border-radius: 1em;
-  font-size: 3vw;
-  max-width: 80%;
   text-align: center;
+  padding: 0.2em 0;
 }
 </style>
