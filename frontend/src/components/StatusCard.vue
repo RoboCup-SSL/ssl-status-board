@@ -20,9 +20,9 @@ defineProps<{
 .card {
   margin: 0.1em;
   border-radius: 0.2em;
-  width: 1.5em;
-  height: 2em;
-  font-size: 0.6em;
+  width: 1.2em;
+  height: 1.4em;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
