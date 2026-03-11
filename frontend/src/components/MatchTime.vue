@@ -1,15 +1,15 @@
 <template>
   <div class="match-time">
-    <TimerCircle :percentage="percentage" :color="strokeColor" font-size="0.8em">
+    <TimerRoundedRect :percentage="percentage" :color="strokeColor" font-size="1.5em">
       {{ timeText }}
-    </TimerCircle>
+    </TimerRoundedRect>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { formatDuration } from '@/helpers/timestamp'
-import TimerCircle from './TimerCircle.vue'
+import TimerRoundedRect from './TimerRoundedRect.vue'
 
 const props = defineProps<{
   stageTimeLeft: number
@@ -33,6 +33,7 @@ const timeText = computed(() => formatDuration(props.stageTimeLeft))
 
 <style scoped>
 .match-time {
-  width: 3em;
+  width: 5em;
+  height: 2.5em;
 }
 </style>

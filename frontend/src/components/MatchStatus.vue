@@ -151,7 +151,7 @@ const stageTimeLeft = computed(() => {
 .score {
   white-space: nowrap;
   width: 100%;
-  font-size: 1.5em;
+  font-size: 2.5em;
   display: flex;
   justify-content: center;
   align-items: baseline;
