@@ -14,6 +14,14 @@
         <StatusCard :value="team?.redCards || 0" bg-color="#ea1a18"/>
         <StatusCard :value="team?.yellowCards || 0" bg-color="#e9ea2a" text-color="#2c3e50"/>
         <StatusCard :value="team?.foulCounter || 0" bg-color="#c7c7c7" text-color="#2c3e50"/>
+        <StatusCard
+          :value="'≤' + (team?.maxAllowedBots ?? 0)"
+          bg-color="transparent"
+          text-color="#ccc"
+          border-color="#ccc"
+          icon="/bot.png"
+          icon-alt="max bots"
+        />
       </div>
       <div class="card-timers">
         <template v-for="i in 2" :key="i">
