@@ -44,7 +44,7 @@ const percentage = computed(() => {
   return Math.min(100, Math.max(0, ratio * 100))
 })
 
-const timeText = computed(() => timeLeft.value / 1000000)
+const timeText = computed(() => Math.ceil(timeLeft.value / 1000000))
 </script>
 
 <style scoped>
