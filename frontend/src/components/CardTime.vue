@@ -1,14 +1,14 @@
 <template>
   <div class="card-time">
-    <TimerCircle :percentage="percentage" color="yellow" font-size="0.5em">
+    <TimerRoundedRect :percentage="percentage" color="yellow" font-size="1em">
       {{ seconds }}
-    </TimerCircle>
+    </TimerRoundedRect>
   </div>
 </template>
 
 <script setup lang="ts">
 import {computed} from 'vue'
-import TimerCircle from './TimerCircle.vue'
+import TimerRoundedRect from './TimerRoundedRect.vue'
 
 const props = defineProps<{
   cardTimer: number
@@ -25,7 +25,7 @@ const seconds = computed(() => {
 
 <style scoped>
 .card-time {
-  width: 1.5em;
+  width: 3em;
   height: 1.5em;
 }
 </style>

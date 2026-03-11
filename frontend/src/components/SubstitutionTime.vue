@@ -1,17 +1,17 @@
 <template>
   <div class="substitution-time">
     <div class="substitution-label" :class="teamColorClass">{{ label }}</div>
-    <div v-if="timeLeft > 0" class="substitution-circle">
-      <TimerCircle :percentage="percentage" :color="teamColor" font-size="0.8em">
+    <div v-if="timeLeft > 0" class="substitution-timer">
+      <TimerRoundedRect :percentage="percentage" :color="teamColor" font-size="1em">
         {{ timeText }}
-      </TimerCircle>
+      </TimerRoundedRect>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {computed} from 'vue'
-import TimerCircle from './TimerCircle.vue'
+import TimerRoundedRect from './TimerRoundedRect.vue'
 import type {Referee_TeamInfo} from '@/proto/ssl_gc_referee_message_pb'
 import {Team} from '@/proto/ssl_gc_common_pb'
 
@@ -59,9 +59,9 @@ const timeText = computed(() => Math.ceil(timeLeft.value / 1000000))
   margin-bottom: 0.2em;
 }
 
-.substitution-circle {
-  width: 4em;
-  height: 4em;
+.substitution-timer {
+  width: 3.2em;
+  height: 2em;
 }
 
 </style>
