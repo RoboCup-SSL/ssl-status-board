@@ -63,9 +63,7 @@ const hasSubstitution = (team: Team): boolean => {
 }
 
 const isHalt = computed(() => {
-  return refereeStore.refereeMsg.command === Referee_Command.HALT ||
-    refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_BLUE ||
-    refereeStore.refereeMsg.command === Referee_Command.TIMEOUT_YELLOW
+  return refereeStore.refereeMsg.command === Referee_Command.HALT
 })
 
 const isStop = computed(() => {
