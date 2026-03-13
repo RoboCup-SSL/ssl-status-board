@@ -1,6 +1,10 @@
 <template>
   <div class="substitution-time">
-    <div class="substitution-label" :class="teamColorClass">{{ label }}</div>
+    <div
+      class="substitution-label"
+      :class="{ active: isActive }"
+      :style="isActive ? { backgroundColor: teamColor } : {}"
+    >{{ label }}</div>
     <div v-if="timeLeft > 0" class="substitution-timer">
       <TimerRoundedRect :percentage="percentage" :color="teamColor" font-size="1em">
         {{ timeText }}
@@ -28,11 +32,9 @@ const label = computed(() => {
   return ''
 })
 
-const timeLeft = computed(() => props.team.botSubstitutionTimeLeft || 0)
+const isActive = computed(() => !!props.team.botSubstitutionAllowed)
 
-const teamColorClass = computed(() => {
-  return props.teamSide === Team.YELLOW ? 'team-yellow' : 'team-blue'
-})
+const timeLeft = computed(() => props.team.botSubstitutionTimeLeft || 0)
 
 const teamColor = computed(() => {
   return props.teamSide === Team.YELLOW ? '#fff145' : '#779fff'
@@ -57,6 +59,13 @@ const timeText = computed(() => Math.ceil(timeLeft.value / 1000000))
 
 .substitution-label {
   margin-bottom: 0.2em;
+  padding: 0.1em 0.4em;
+  border-radius: 0.3em;
+  transition: background-color 500ms ease;
+}
+
+.substitution-label.active {
+  color: #2c3e50;
 }
 
 .substitution-timer {
