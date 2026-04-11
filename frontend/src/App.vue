@@ -24,6 +24,15 @@ const showVideo = computed(() => {
   }
   return false
 })
+
+const statusMessage = computed(() => {
+  return refereeStore.refereeMsg.statusMessage || 'Hey ho'
+})
+
+const statusMessageHtml = computed(() => {
+  if (!statusMessage.value) return ''
+  return statusMessage.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')
+})
 </script>
 
 <template>
@@ -36,6 +45,7 @@ const showVideo = computed(() => {
       :height="showVideo ? '100%' : '0'"
       allow="autoplay"
     />
+    <div v-if="showVideo && statusMessage" class="video-status-overlay" v-html="statusMessageHtml"></div>
     <StatusBoard :class="{ hidden: showVideo }" />
   </div>
 </template>
@@ -57,6 +67,21 @@ iframe {
   overflow: hidden;
   display: block;
   position: absolute;
+}
+
+.video-status-overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 3vw;
+  padding: 0.3em 0.8em;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 0.3em 0.3em;
+  z-index: 10;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .hidden {
