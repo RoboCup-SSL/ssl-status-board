@@ -291,7 +291,7 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
     }
     case 'multipleFouls': {
       const event = gameEvent.event.value
-      const causes = event.causedGameEvents.map((cause: GameEvent) => mapGameEventToText(cause)).join(', ')
+      const causes = [...event.causedGameEvents].reverse().map((cause: GameEvent) => mapGameEventToText(cause)).join(', ')
       return formatDetails('Multiple fouls', [botId(event)]) + ': ' + causes
     }
     case 'unsportingBehaviorMinor': {
