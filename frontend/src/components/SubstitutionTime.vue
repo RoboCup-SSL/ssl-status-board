@@ -2,8 +2,8 @@
   <div class="substitution-time">
     <div
       class="substitution-label"
-      :class="{ active: isActive }"
-      :style="isActive ? { backgroundColor: teamColor } : {}"
+      :class="{ active: isActive, intent: isIntent }"
+      :style="(isActive || isIntent) ? { backgroundColor: teamColor } : {}"
     >{{ label }}</div>
     <div v-if="timeLeft > 0" class="substitution-timer">
       <TimerRoundedRect :percentage="percentage" :color="teamColor" font-size="1em">
@@ -33,6 +33,7 @@ const label = computed(() => {
 })
 
 const isActive = computed(() => !!props.team.botSubstitutionAllowed)
+const isIntent = computed(() => !isActive.value && !!props.team.botSubstitutionIntent)
 
 const timeLeft = computed(() => props.team.botSubstitutionTimeLeft || 0)
 
@@ -64,7 +65,8 @@ const timeText = computed(() => Math.ceil(timeLeft.value / 1000000))
   transition: background-color 500ms ease;
 }
 
-.substitution-label.active {
+.substitution-label.active,
+.substitution-label.intent {
   color: #2c3e50;
 }
 
