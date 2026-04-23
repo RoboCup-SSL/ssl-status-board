@@ -53,6 +53,7 @@ const knownLogos = new Set([
   'utbots',
   'yellow',
   'zjunlict',
+  'zunoh-robotics',
 ])
 
 export const getTeamLogoUrl = (teamName: string): string => {
