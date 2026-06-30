@@ -40,6 +40,7 @@ const knownLogos = new Set([
   'src',
   'taurabots',
   'the-bots',
+  'tigerforce',
   'tigers-mannheim',
   'turtlerabbit',
   'titans',
