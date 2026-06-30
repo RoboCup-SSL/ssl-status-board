@@ -10,6 +10,7 @@ const knownLogos = new Set([
   'delft-mercurians',
   'eagles',
   'er-force',
+  'er-mannheim',
   'greentea',
   'ibis',
   'immortals',
