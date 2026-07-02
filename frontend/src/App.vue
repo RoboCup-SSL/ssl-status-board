@@ -26,7 +26,7 @@ const showVideo = computed(() => {
 })
 
 const statusMessage = computed(() => {
-  return refereeStore.refereeMsg.statusMessage || 'Hey ho'
+  return refereeStore.refereeMsg.statusMessage
 })
 
 const statusMessageHtml = computed(() => {
