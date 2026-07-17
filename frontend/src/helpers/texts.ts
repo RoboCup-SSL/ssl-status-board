@@ -326,7 +326,7 @@ export const mapGameEventToText = (gameEvent: GameEvent): string => {
     }
     case 'emergencyStop': {
       const event = gameEvent.event.value
-      return formatDetails('Emergency stop executed', [botId(event)])
+      return formatDetails('Forced timeout executed', [botId(event)])
     }
     default:
       return 'unknown game event'
