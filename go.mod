@@ -2,7 +2,7 @@ module github.com/RoboCup-SSL/ssl-status-board
 
 go 1.25.0
 
-toolchain go1.26.5
+toolchain go1.27.1
 
 require (
 	github.com/RoboCup-SSL/ssl-go-tools v1.12.0
