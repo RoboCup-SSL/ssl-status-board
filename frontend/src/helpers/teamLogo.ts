@@ -46,6 +46,7 @@ const knownLogos = new Set([
   'turtlerabbit',
   'titans',
   'traps',
+  'tritonbots',
   'ubc-thunderbots',
   'unball',
   'ultron',
